@@ -36,7 +36,10 @@
         "twbs/bootstrap": "3.0.*",
         "bmatzner/fontawesome-bundle": "~4.2",
         "jquery/jquery":  "1.10.*",
-        "oyejorge/less.php": "~1.5"
+        "oyejorge/less.php": "~1.5",
+        "symfony/finder": "~2.5",
+        "symfony/console": "~2.5",
+        "elfet/deployer": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [
