@@ -1,0 +1,19 @@
+<div id="logo" class="site-logo text-center">
+    <h1>Wine'ot</h1>
+    {#<a href="index.html" rel="home"><img src="assets/img/logo.png" alt="NowKnow | Knowledge Base HTML Template" /></a>#}
+</div><!-- #logo -->
+<div id="navbar" class="navbar-wrapper text-center">
+    <nav class="navbar navbar-default site-navigation" role="navigation">
+        <ul class="nav navbar-nav navbar-menu">
+            <li class="{% if menu_selected=='home' %}active{% endif %}">
+                <a href="{{ path('wineot_home') }}">Home</a>
+            </li>
+            <li class="{% if menu_selected=='register' %}active{% endif %}">
+                <a href="{{ path('wineot_user_register') }}">Register</a>
+            </li>
+            <li class="{% if menu_selected=='login' %}active{% endif %}">
+                <a href="{{ path('wineot_user_login') }}">Login </a>
+            </li>
+        </ul><!-- .navbar-login -->
+    </nav><!-- #site-navigation -->
+</div><!-- #navbar -->

@@ -1,0 +1,11 @@
+wineot_user_login:
+    path:     /login
+    defaults: { _controller: WineotUserBundle:Security:login }
+wineot_user_login_check:
+    path:     /loginCheck
+wineot_user_register:
+    path:     /register
+    defaults: { _controller: WineotUserBundle:Security:register }
+wineot_user_profile:
+    path:     /profile
+    defaults: { _controller: WineotUserBundle:Security:profile }

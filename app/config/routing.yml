@@ -1,0 +1,8 @@
+wineot_user:
+    resource: "@WineotUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+wineot_front_end_home:
+    resource: "@WineotFrontEndHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+

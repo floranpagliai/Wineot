@@ -1,0 +1,24 @@
+user:
+    action:
+        login: "Connexion"
+        logout: "Déconnexion"
+        register: "Inscription"
+        forgot: "Mot de passe oublié ?"
+        remember_me: "Se souvenir de moi"
+        save: "Sauvegarder"
+        return_home: "Retour sur l'accueil"
+    title:
+        login: "Se connecter"
+        register: "S'inscrire"
+    form:
+        email: "Email"
+        password: "Mot de passe"
+        password_validation: "Mot de passe (validation)"
+        password_old: "Ancien mot de passe"
+        firstname: "Prénom"
+        lastname: "Nom"
+    warn:
+        password_updated: "Mot de passe mis à jour."
+        can_login: "Utilisateur enregistré. Vous pouvez maintenant vous connecter."
+        unique_email: "Cet email est déjà utilisé."
+        password_length: "Votre mot de passe doit faire entre 5 et 30 caractères"
