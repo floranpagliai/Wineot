@@ -32,6 +32,16 @@ class User implements UserInterface {
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=25, unique=true)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=true)
+     */
+    private $lastname;
+
+    /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
@@ -181,4 +191,37 @@ class User implements UserInterface {
     {
         $this->username = $username;
     }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
 }
