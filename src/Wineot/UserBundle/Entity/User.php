@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Acme\UserBundle\Entity\User
+ * Wineot\UserBundle\Entity\User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity
@@ -32,6 +32,19 @@ class User implements UserInterface {
     private $username;
 
     /**
+<<<<<<< Updated upstream
+=======
+     * @ORM\Column(type="string", length=25)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $lastname;
+
+    /**
+>>>>>>> Stashed changes
      * @ORM\Column(type="string", length=64)
      */
     private $password;
