@@ -6,14 +6,20 @@
     <nav class="navbar navbar-default site-navigation" role="navigation">
         <ul class="nav navbar-nav navbar-menu">
             <li class="{% if menu_selected=='home' %}active{% endif %}">
-                <a href="{{ path('wineot_home') }}">Home</a>
+                <a href="{{ path('wineot_home') }}">{{ 'global.menu.home'|trans }}</a>
             </li>
+            {% if app.user %}
+                <li>
+                    <a href="{{ path('wineot_user_logout') }}">{{ 'user.action.logout'|trans }}</a>
+                </li>
+            {% else %}
             <li class="{% if menu_selected=='register' %}active{% endif %}">
-                <a href="{{ path('wineot_user_register') }}">Register</a>
+                <a href="{{ path('wineot_user_register') }}">{{ 'user.action.register'|trans }}</a>
             </li>
             <li class="{% if menu_selected=='login' %}active{% endif %}">
-                <a href="{{ path('wineot_user_login') }}">Login </a>
+                <a href="{{ path('wineot_user_login') }}">{{ 'user.action.login'|trans }}</a>
             </li>
+            {% endif %}
         </ul><!-- .navbar-login -->
     </nav><!-- #site-navigation -->
 </div><!-- #navbar -->

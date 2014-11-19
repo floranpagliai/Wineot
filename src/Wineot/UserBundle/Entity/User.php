@@ -11,12 +11,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Acme\UserBundle\Entity\User
+ * Wineot\UserBundle\Entity\User
  *
- * @ORM\Table(name="users")
  * @ORM\Entity
+ * @ORM\Table(name="users")
+ * @UniqueEntity(fields="email", message="user.warn.unique_email")
  */
 class User implements UserInterface {
     /**
@@ -42,6 +44,12 @@ class User implements UserInterface {
     private $lastname;
 
     /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
@@ -56,11 +64,6 @@ class User implements UserInterface {
      * )
      * */
     protected $plainPassword;
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     */
-    private $email;
 
     /**
      * Returns the roles granted to the user.

@@ -1,55 +1,55 @@
 {% extends 'WineotUserBundle::layout.html.twig' %}
 {% set menu_selected = 'register' %}
 {% block body %}
-    {{ form_start(form) }}
-    {% if errors  is defined %}
-        {% for error in errors %}
-            <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
-        {% endfor %}
-    {% endif %}
     <div class="col-lg-4 col-lg-offset-4">
         <h2 class="section-title clearfix"><i class="line"></i>
-            Register
+            {{ 'user.action.register'|trans }}
         </h2>
-    <fieldset>
-        <div class="form-group">
-            <label class="sr-only" for="username">Username</label>
-            {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.username'|trans } } ) }}
-        </div>
-        <div class="form-group">
-            <label class="sr-only" for="firstname">Firstname</label>
-            {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
-        </div>
-        <div class="form-group">
-            <label class="sr-only" for="lastname">Lastname</label>
-            {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
-        </div>
-        <div class="form-group">
-            <label class="sr-only" for="email">Email</label>
-            {{ form_widget(form.email, { 'attr': { 'placeholder': 'user.form.email'|trans } } ) }}
-        </div>
-{#        <div class="form-group">
-            <label class="sr-only" for="firstname">Firstname</label>
-            {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
-        </div>
-        <div class="form-group">
-            <label class="sr-only" for="lastname">Lastname</label>
-            {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
-        </div>#}
-        <div class="form-group">
-            <label class="sr-only" for="password">Password</label>
-            {{ form_widget(form.plain_password.first, { 'attr': { 'placeholder': 'user.form.password'|trans } } ) }}
-        </div>
-        <div class="form-group">
-            <label class="sr-only" for="password">Password</label>
-            {{ form_widget(form.plain_password.second, { 'attr': { 'placeholder': 'user.form.password_validation'|trans } } ) }}
-        </div>
+        {{ form_start(form) }}
+        {% if errors  is defined %}
+            {% for error in errors %}
+                <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
+            {% endfor %}
+        {% endif %}
+        <fieldset>
+            <div class="form-group">
+                <label class="sr-only" for="username">Username</label>
+                {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.username'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="firstname">Firstname</label>
+                {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="lastname">Lastname</label>
+                {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="email">Email</label>
+                {{ form_widget(form.email, { 'attr': { 'placeholder': 'user.form.email'|trans } } ) }}
+            </div>
+            {#        <div class="form-group">
+                        <label class="sr-only" for="firstname">Firstname</label>
+                        {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="lastname">Lastname</label>
+                        {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
+                    </div>#}
+            <div class="form-group">
+                <label class="sr-only" for="password">Password</label>
+                {{ form_widget(form.plain_password.first, { 'attr': { 'placeholder': 'user.form.password'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="password">Password</label>
+                {{ form_widget(form.plain_password.second, { 'attr': { 'placeholder': 'user.form.password_validation'|trans } } ) }}
+            </div>
+            <br>
+            <input class="btn btn-lg btn-blue btn-block" type="submit" id="_submit" name="_submit"
+                   value="{{ 'user.action.register'|trans }}"/>
+        </fieldset>
         <br>
-        <input class="btn btn-lg btn-blue btn-block" type="submit" id="_submit" name="_submit"
-               value="{{ 'user.action.register'|trans }}"/>
-    </fieldset>
-    <br>
 
-    {{ form_end(form) }}
+        {{ form_end(form) }}
     </div>
 {% endblock %}
