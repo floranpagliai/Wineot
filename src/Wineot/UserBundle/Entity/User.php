@@ -11,12 +11,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Wineot\UserBundle\Entity\User
  *
- * @ORM\Table(name="users")
  * @ORM\Entity
+ * @ORM\Table(name="users")
+ * @UniqueEntity(fields="email", message="user.warn.unique_email")
  */
 class User implements UserInterface {
     /**
@@ -27,13 +29,11 @@ class User implements UserInterface {
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string", length=25)
      */
     private $username;
 
     /**
-<<<<<<< Updated upstream
-=======
      * @ORM\Column(type="string", length=25)
      */
     private $firstname;
@@ -44,7 +44,12 @@ class User implements UserInterface {
     private $lastname;
 
     /**
->>>>>>> Stashed changes
+     * @ORM\Column(type="string", length=60, unique=true)
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
@@ -59,11 +64,6 @@ class User implements UserInterface {
      * )
      * */
     protected $plainPassword;
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     */
-    private $email;
 
     /**
      * Returns the roles granted to the user.
@@ -194,4 +194,37 @@ class User implements UserInterface {
     {
         $this->username = $username;
     }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
 }
