@@ -25,6 +25,9 @@ security:
             form_login:
                 login_path:  wineot_user_login
                 check_path:  wineot_user_login_check
+            logout:
+                path:     wineot_user_logout
+                target:   wineot_home
 
     access_control:
         - { path: ^/user/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

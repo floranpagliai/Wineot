@@ -80,4 +80,8 @@ class SecurityController extends Controller {
         return $this->render('WineotUserBundle:Security:profile.html.twig');
     }
 
+    public function logoutAction()
+    {
+        throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
+    }
 } 
