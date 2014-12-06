@@ -21,6 +21,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
+        "phpunit/phpunit": "4.3.*",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "1.2.*",
@@ -34,7 +35,7 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-         "braincrafted/bootstrap-bundle": "~2.0",
+        "braincrafted/bootstrap-bundle": "~2.0",
         "twbs/bootstrap": "3.0.*",
         "bmatzner/fontawesome-bundle": "~4.2",
         "jquery/jquery":  "1.10.*",

@@ -12,6 +12,7 @@ user:
         register: "S'inscrire"
     form:
         email: "Email"
+        username: "Nom d'utilisateur"
         password: "Mot de passe"
         password_validation: "Mot de passe (validation)"
         password_old: "Ancien mot de passe"

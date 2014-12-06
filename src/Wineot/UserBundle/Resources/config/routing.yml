@@ -9,3 +9,6 @@ wineot_user_register:
 wineot_user_profile:
     path:     /profile
     defaults: { _controller: WineotUserBundle:Security:profile }
+wineot_user_logout:
+    path:     /logout
+    defaults: { _controller: WineotUserBundle:Security:logout }

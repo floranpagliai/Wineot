@@ -5,6 +5,12 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    public function init()
+    {
+        date_default_timezone_set( 'Europe/Paris' );
+        parent::init();
+    }
+
     public function registerBundles()
     {
         $bundles = array(
@@ -22,6 +28,7 @@ class AppKernel extends Kernel
             new Wineot\FrontEnd\HomeBundle\WineotFrontEndHomeBundle(),
             new Wineot\UserBundle\WineotUserBundle(),
             new Wineot\StyleGuideBundle\WineotStyleGuideBundle()
+            new Wineot\DataBundle\WineotDataBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
