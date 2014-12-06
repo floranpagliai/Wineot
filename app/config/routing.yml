@@ -6,3 +6,7 @@ wineot_front_end_home:
     resource: "@WineotFrontEndHomeBundle/Resources/config/routing.yml"
     prefix:   /
 
+wineot_styleguide:
+    resource: "@WineotStyleGuideBundle/Resources/config/routing.yml"
+    prefix:   /
+
