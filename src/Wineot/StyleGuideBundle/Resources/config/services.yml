@@ -1,0 +1,7 @@
+parameters:
+#    wineot_style_guide.example.class: Wineot\StyleGuideBundle\Example
+
+services:
+#    wineot_style_guide.example:
+#        class: %wineot_style_guide.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

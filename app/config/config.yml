@@ -30,7 +30,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [WineotStyleGuideBundle]
     filters:
         lessphp:
              file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php

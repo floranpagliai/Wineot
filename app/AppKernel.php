@@ -27,6 +27,7 @@ class AppKernel extends Kernel
 
             new Wineot\FrontEnd\HomeBundle\WineotFrontEndHomeBundle(),
             new Wineot\UserBundle\WineotUserBundle(),
+            new Wineot\StyleGuideBundle\WineotStyleGuideBundle()
             new Wineot\DataBundle\WineotDataBundle(),
         );
 

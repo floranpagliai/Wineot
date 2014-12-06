@@ -1,0 +1,157 @@
+.btn {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #c41230;
+  border-color: #9d000b;
+}
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.open .dropdown-toggle.btn {
+  color: #fff;
+  background-color: #9d000b;
+  border-color: #9d000b;
+}
+.btn:active,
+.btn.active,
+.open .dropdown-toggle.btn {
+  background-image: none;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn,
+.btn.disabled:hover,
+.btn[disabled]:hover,
+fieldset[disabled] .btn:hover,
+.btn.disabled:focus,
+.btn[disabled]:focus,
+fieldset[disabled] .btn:focus,
+.btn.disabled:active,
+.btn[disabled]:active,
+fieldset[disabled] .btn:active,
+.btn.disabled.active,
+.btn[disabled].active,
+fieldset[disabled] .btn.active {
+  background-color: #f1422c;
+  border-color: #d72020;
+}
+.btn {
+  padding-bottom: 5px;
+  border-bottom-width: 2px;
+}
+.btn:active,
+.btn.active {
+  border-top-width: 2px;
+  border-bottom-width: 1px;
+}
+.btn-lg.btn {
+  padding-bottom: 8px;
+  border-bottom-width: 3px;
+  border-radius: 4px;
+}
+.btn-lg.btn:active,
+.btn-lg.btn.active {
+  border-top-width: 3px;
+  border-bottom-width: 1px;
+}
+.btn-sm.btn,
+.btn-xs.btn {
+  padding-bottom: 4px;
+  border-bottom-width: 2px;
+}
+.btn-xs.btn {
+  font-size: 10px;
+  padding-bottom: 0;
+  border-radius: 2px;
+}
+.btn-sm.btn:active,
+.btn-sm.btn.active,
+.btn-xs.btn:active,
+.btn-xs.btn.active {
+  border-top-width: 2px;
+  border-bottom-width: 1px;
+}
+/*	Social Media	*/
+.btn-social {
+  padding: 4px 5px;
+  background-color: #fff;
+  color: #666;
+  border-color: #ccc;
+  border-radius: 1em;
+  -webkit-transition: all 0.6s linear;
+  transition: all 0.6s linear;
+}
+.btn-social > .fa-fw {
+  padding-right: 0;
+  text-align: center;
+}
+.btn-social:hover,
+.btn-social:focus,
+.btn-social:active {
+  color: #fff;
+}
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active {
+  background-color: #3c5fac;
+}
+.btn-twitter:hover,
+.btn-twitter:focus,
+.btn-twitter:active {
+  background-color: #36b8da;
+}
+.btn-google-plus:hover,
+.btn-google-plus:focus,
+.btn-google-plus:active,
+.btn-youtube:hover,
+.btn-youtube:focus,
+.btn-youtube:active {
+  background-color: #c8302d;
+}
+.btn-vimeo:hover,
+.btn-vimeo:focus,
+.btn-vimeo:active {
+  background-color: #20b9eb;
+}
+.btn-linkedin:hover,
+.btn-linkedin:focus,
+.btn-linkedin:active {
+  background-color: #2089b5;
+}
+.btn-flickr:hover,
+.btn-flickr:focus,
+.btn-flickr:active {
+  background-color: #ff0084;
+}
+.btn-pinterest:hover,
+.btn-pinterest:focus,
+.btn-pinterest:active {
+  background-color: #c91f27;
+}
+.btn-dribbble:hover,
+.btn-dribbble:focus,
+.btn-dribbble:active {
+  background-color: #ea4c89;
+}
+.btn-instagram:hover,
+.btn-instagram:focus,
+.btn-instagram:active {
+  background-color: #3f729b;
+}
+.btn-rss:hover,
+.btn-rss:focus,
+.btn-rss:active {
+  background-color: #f27d09;
+}
+.btn-like:hover,
+.btn-like:focus,
+.btn-like:active {
+  background-color: #338338;
+}
+.btn-dislike:hover,
+.btn-dislike:focus,
+.btn-dislike:active {
+  background-color: #990707;
+}

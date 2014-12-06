@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <!-- Bootstrap -->
+    {% stylesheets
+    'css/bootstrap.css'
+    'bundles/bmatznerfontawesome/css/font-awesome.min.css'
+    'bundles/wineotstyleguide/css/styleguide.css'
+    '%kernel.root_dir%/Resources/css/*'
+    filter='cssrewrite' %}
+    <link href="{{ asset_url }}" rel="stylesheet" media="screen"/>
+    {% endstylesheets %}
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+</head>
+
+<body>
+<div id="page" class="site">
+
+    <div id="features" class="site-hero clearfix">
+        <div class="container">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+    <div id="main" class="site-main clearfix">
+        <div class="container">
+
+            <div class="content-area">
+                <div class="row">
+
+                    <div id="sidebar" class="site-sidebar col-md-3">
+
+                    </div>
+                    <div id="content" class="site-content col-md-9">
+                        <h1 class="section-title clearfix"><i class="line"></i>Typography</h1>
+                        <div class="row">
+                            <div id="content" class="site-content col-md-6">
+                            <h1>h1. heading<span class="sg-span-info pull-right">36px</span></h1>
+                            <h2>h2. heading<span class="sg-span-info pull-right">30px</span></h2>
+                            <h3>h3. heading<span class="sg-span-info pull-right">24px</span></h3>
+                            <h4>h4. heading<span class="sg-span-info pull-right">18px</span></h4>
+                            <h5>h5. heading<span class="sg-span-info pull-right">14px</span></h5>
+                            <h6>h6. heading<span class="sg-span-info pull-right">12px</span></h6>
+                                </div>
+                        </div>
+                        <h1 class="section-title clearfix"><i class="line"></i>Colors</h1>
+                        <div class="row">
+                            <div class="sg-color sg-color-grappefruit col-md-2">grappefruit
+                                <div class="sg-color-footer">
+                                    #c41230
+                                </div>
+                            </div>
+                            <div class="sg-color sg-color-grappefruit-dark col-md-2">grappefruit dark
+                                <div class="sg-color-footer">
+                                    #9d000b
+                                </div>
+                            </div>
+                            <div class="sg-color sg-color-light-grey col-md-2">light grey
+                                <div class="sg-color-footer">
+                                    #f9f9f9
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- .content-area -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #main -->
+
+    </div>
+
+    {% block javascripts %}{% endblock %}
+    <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <!-- Include all JavaScripts, compiled by Assetic -->
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+</body>
+</html>
+

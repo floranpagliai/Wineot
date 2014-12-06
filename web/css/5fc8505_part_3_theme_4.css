@@ -94,7 +94,7 @@ h6,
   text-transform: uppercase;
   color: #fff;
   background-color: #c41230;
-  border-color: #cf000f;
+  border-color: #9d000b;
 }
 .btn:hover,
 .btn:focus,
@@ -102,8 +102,8 @@ h6,
 .btn.active,
 .open .dropdown-toggle.btn {
   color: #fff;
-  background-color: #cf000f;
-  border-color: #c41230;
+  background-color: #9d000b;
+  border-color: #9d000b;
 }
 .btn:active,
 .btn.active,
@@ -522,7 +522,7 @@ ol.with-line-border > li {
 }
 .site-hero {
   padding: 35px 0;
-  background: #c41230;
+  background: url("../../img/swirl_pattern.png");
 }
 .site-main {
   margin-top: -35px;
@@ -532,7 +532,7 @@ ol.with-line-border > li {
 .site-main .content-area {
   padding: 30px;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .breadcrumb {
   margin: 10px 0;
