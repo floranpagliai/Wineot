@@ -16,33 +16,27 @@ class SearchController extends Controller
 {
     public function searchAction(Request $request)
     {
-        $vinList = '';
-        echo "<script>alert(\"Fonction\")</script>";
         $form = $this->createForm(new SearchType());
 
-
-       //if($request->isMethod('POST')){
-        if ($form->isValid()) {
-            $vinRecherche = $form->getName();
-            echo "<script>alert(\"POST\")</script>";
-            $vinList = $this
-                ->getDoctrine()
-                ->getManager()
-                ->getRepository('WineotSearchBundle:vin')
-                ->findBy(array('name' => $vinRecherche));
-          if(!empty($vinList)){
-            createArticle($vinList);
-          }
-           else{
-               // AUCUN RESULTATS
-           }
+        if ($request->isMethod('POST')) {
+            $form->submit($request);
+            if ($form->isValid()) {
+                $searchInput = $form->getData()["searchInput"];
+                $wineList = $this
+                    ->getDoctrine()
+                    ->getManager()
+                    ->getRepository('WineotDataBundle:Wine')
+                    ->findBy(array('name' => $searchInput));
+                if(!empty($wineList)){
+                    return $this->render('WineotSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
+                }
+                else{
+                    // AUCUN RESULTATS
+                }
+            }
         }
 
-        return $this->render('WineotSearchBundle:Search:Search.html.twig', array('form' =>$form->createView()));
-    }
-
-    public function createArticle($vinList){
-        return $this->render('WineotSearchBundle:Search:ResultSearch.html.twig', array('vinList' =>$vinList));
+        return $this->render('WineotSearchBundle:Search:Search.html.twig', array('form' => $form->createView()));
     }
 
 
@@ -51,8 +45,8 @@ class SearchController extends Controller
     /* $paramRender = array('form' => $form->createView(),
  'vinList' => $vinList);*/
 
-   /* public function FormAction(){
-        $form = $this->createForm(new SearchType());
-        return $this->render('WineotSearchBundle:Search:Search.html.twig', array('form'=> $form->createView()));
-    }*/
+    /* public function FormAction(){
+         $form = $this->createForm(new SearchType());
+         return $this->render('WineotSearchBundle:Search:Search.html.twig', array('form'=> $form->createView()));
+     }*/
 }
