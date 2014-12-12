@@ -1,0 +1,12 @@
+{#
+{{ form_start(form) }}
+<div class="form-inline">
+    <div class="form-group">
+        {{  form_widget(form.name, { 'attr' : {'placeholder':'Rechercher un vin...', 'class': 'search-field form-control input-lg'} })}}
+
+    </div>
+    <button type="submit" class="search-submit btn btn-lg pull-right">Search</button>
+</div>
+{{ form_end(form) }}
+#}
+{{ form(form) }}

@@ -1,3 +1,7 @@
+wineot_search:
+    resource: "@WineotSearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
 wineot_user:
     resource: "@WineotUserBundle/Resources/config/routing.yml"
     prefix:   /user
