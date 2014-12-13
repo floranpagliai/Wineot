@@ -1,0 +1,14 @@
+.wine-thumbnail article {
+  border: 1px solid black;
+}
+.wine-thumbnail header {
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+}
+.wine-thumbnail img {
+  width: 100%;
+  background: url("../../img/wine-thumbnail-shadow.png") 0 100% no-repeat;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
