@@ -1,0 +1,17 @@
+{% for wine in wineList %}
+    <div class="wine-thumbnail col-lg-3 col-md-3">
+        <article>
+            <header>
+                <a href="#">
+                    <img src="{{ asset('img/image.jpeg') }}"/>
+                    <div class="img-background"></div>
+                    <h1>{{ vin.title }}<span> 2012</span></h1>
+                </a>
+            </header>
+            <div class="wine-thumbnail-info">
+                <h2>{{ vin.resume }}</h2>
+                <h3></h3>
+            </div>
+        </article>
+    </div>
+{% endfor %}
