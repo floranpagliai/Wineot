@@ -1,6 +1,6 @@
 <?php
 
-namespace Wineot\SearchBundle\Form\Type;
+namespace Wineot\FrontEnd\SearchBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

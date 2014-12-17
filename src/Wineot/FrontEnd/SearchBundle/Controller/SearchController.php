@@ -1,15 +1,14 @@
 <?php
 
-namespace Wineot\SearchBundle\Controller;
+namespace Wineot\FrontEnd\SearchBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use  Doctrine\ORM\EntityRepository;
-use Wineot\SearchBundle\Entity\Vin;
-use Wineot\SearchBundle\Form\Type\SearchType;
+use Doctrine\ORM\EntityRepository;
+use Wineot\FrontEnd\SearchBundle\Form\Type\SearchType;
 
 
 class SearchController extends Controller
@@ -28,7 +27,8 @@ class SearchController extends Controller
                     ->getRepository('WineotDataBundle:Wine')
                     ->findBy(array('name' => $searchInput));
                 if(!empty($wineList)){
-                    return $this->render('WineotSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
+                    // IL FAUT REDIRECT VERS UNE ACTION QUI VA RENDER A SON TOUR
+                    return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
                 }
                 else{
                     // AUCUN RESULTATS
@@ -36,17 +36,6 @@ class SearchController extends Controller
             }
         }
 
-        return $this->render('WineotSearchBundle:Search:Search.html.twig', array('form' => $form->createView()));
+        return $this->render('WineotFrontEndSearchBundle:Search:Search.html.twig', array('form' => $form->createView()));
     }
-
-
-
-
-    /* $paramRender = array('form' => $form->createView(),
- 'vinList' => $vinList);*/
-
-    /* public function FormAction(){
-         $form = $this->createForm(new SearchType());
-         return $this->render('WineotSearchBundle:Search:Search.html.twig', array('form'=> $form->createView()));
-     }*/
 }
