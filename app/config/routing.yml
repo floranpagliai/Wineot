@@ -1,5 +1,5 @@
 wineot_search:
-    resource: "@WineotSearchBundle/Resources/config/routing.yml"
+    resource: "@WineotFrontEndSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
 wineot_user:

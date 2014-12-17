@@ -1,7 +1,0 @@
-parameters:
-#    wineot_search.example.class: Wineot\SearchBundle\Example
-
-services:
-#    wineot_search.example:
-#        class: %wineot_search.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

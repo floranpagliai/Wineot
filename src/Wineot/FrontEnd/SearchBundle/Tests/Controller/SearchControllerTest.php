@@ -1,6 +1,6 @@
 <?php
 
-namespace Wineot\SearchBundle\Tests\Controller;
+namespace Wineot\FrontEnd\SearchBundle\Tests\Controller;
 use Wineot\SearchBundle\Form\Type\SearchType;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
