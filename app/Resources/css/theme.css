@@ -715,13 +715,11 @@ ol.with-line-border > li {
 }
 .site-search .search-advance {
   margin-top: 10px;
-  display: none;
 }
 .site-search .search-advance .form-group {
   min-height: 34px;
 }
 .site-search .search-advance-button {
-  display: none;
   width: 2em;
   height: 2em;
   margin: -1em;
