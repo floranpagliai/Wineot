@@ -34,13 +34,13 @@ class SearchController extends Controller
                 ->setParameter('searchInput', '%'.$searchInput.'%')
                 ->getQuery()
                 ->getResult();
-            if(!empty($wineList)){
+//            if(!empty($wineList)){
                 return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
-            }
-            else{
+//            }
+//            else{
 
-                // AUCUN RESULTATS
-            }
+//                 AUCUN RESULTATS
+//            }
         }
     }
 }
