@@ -1,0 +1,7 @@
+parameters:
+#    wineot_user.example.class: Wineot\UserBundle\Example
+
+services:
+#    wineot_user.example:
+#        class: %wineot_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

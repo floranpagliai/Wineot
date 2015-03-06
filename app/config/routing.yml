@@ -1,7 +1,3 @@
-wineot_landing_page_home:
-    resource: "@WineotLandingPageHomeBundle/Resources/config/routing.yml"
-    prefix:   /
-
 wineot_search:
     resource: "@WineotFrontEndSearchBundle/Resources/config/routing.yml"
     prefix:   /
