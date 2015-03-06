@@ -541,11 +541,11 @@ ol.with-line-border > li {
 .breadcrumb,
 .breadcrumb a,
 .breadcrumb > .active {
-  color: #fff;
+  color: #9d000b;
 }
 .breadcrumb a:hover,
 .breadcrumb > .text {
-  color: #ffc;
+  color: #c41230;
 }
 /*-----------------------------------------------------------------------------------*/
 /*	4.0 - Header
