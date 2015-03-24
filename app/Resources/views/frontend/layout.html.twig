@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+{% include 'header.html.twig' %}
+<body>
+<div id="page" class="site">
+    <header class="site-header" role="banner">
+        <div class="container">
+            {% include 'frontend/navbar.html.twig' %}
+            {% include 'frontend/search.html.twig' %}
+        </div>
+    </header>
+
+    <div id="features" class="site-hero clearfix">
+        <div class="container">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <!-- .site-hero -->
+
+    <div id="main" class="site-main clearfix">
+        <div class="container">
+
+            <div class="content-area">
+                <div class="row">
+
+                    <div id="content" class="site-content col-md-12">
+                        <div class="row">
+                            {% block body %}
+                            {% endblock %}
+
+                            {#<div id="sidebar" class="site-sidebar col-md-3">#}
+                                {#azefzaf#}
+                                {#{% block sidebar %}#}
+                                {#{% endblock %}#}
+                            {#</div>#}
+                            <!-- #sidebar -->
+
+                        </div>
+                    </div>
+                    <!-- .content-area -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #main -->
+
+        {% include 'footer.html.twig' %}
+    </div>
+</body>
+</html>
