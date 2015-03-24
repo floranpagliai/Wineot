@@ -1,6 +1,6 @@
 security:
     encoders:
-        Wineot\UserBundle\Entity\User:
+        Wineot\DataBundle\Document\User:
             algorithm:        md5
             encode_as_base64: false
             iterations:       1
@@ -10,8 +10,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        userbundle:
-            entity: { class: Wineot\UserBundle\Entity\User, property: username }
+        default_provider:
+            mongodb: { class: Wineot\DataBundle\Document\User, property: username }
 
     firewalls:
         dev:
@@ -20,7 +20,7 @@ security:
 
         main:
             pattern:    ^/
-            provider: userbundle
+            provider: default_provider
             anonymous: ~
             form_login:
                 login_path:  wineot_user_login

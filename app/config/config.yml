@@ -72,9 +72,9 @@ doctrine:
 doctrine_mongodb:
     connections:
         default:
-            server: mongodb://5.135.165.207:27017
+            server: mongodb://%database_mongo_host%:%database_mongo_port%
             options: {}
-    default_database: wineotdb
+    default_database: "%database_mongo_db%"
     document_managers:
         default:
             auto_mapping: true

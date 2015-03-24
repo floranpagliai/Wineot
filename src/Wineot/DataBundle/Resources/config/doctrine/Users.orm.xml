@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Wineot\DataBundle\Entity\Users" table="users">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_1483A5E9E7927C74" columns="email"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="username" type="string" column="username" length="25" nullable="false"/>
+    <field name="password" type="string" column="password" length="64" nullable="false"/>
+    <field name="email" type="string" column="email" length="60" nullable="false"/>
+    <field name="firstname" type="string" column="firstname" length="25" nullable="false"/>
+    <field name="lastname" type="string" column="lastname" length="25" nullable="false"/>
+  </entity>
+</doctrine-mapping>
