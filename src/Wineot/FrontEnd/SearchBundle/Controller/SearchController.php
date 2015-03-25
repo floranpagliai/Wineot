@@ -26,7 +26,7 @@ class SearchController extends Controller
         if ($form->isValid()) {
             $searchInput = $form->getData()["searchInput"];
             $wineList = $this
-                ->getDoctrine()
+                ->get('doctrine_mongodb')
                 ->getManager()
                 ->getRepository('WineotDataBundle:Wine')
                 ->createQueryBuilder('q')
