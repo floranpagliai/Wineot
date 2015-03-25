@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2b31a2cf42f2d68fbcd1b02f94ea58ed",
+    "hash": "821318ac977c9e439ec29e589dbffc98",
     "packages": [
         {
             "name": "bmatzner/fontawesome-bundle",
@@ -775,12 +775,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "a95e87158d9e224abf2c587f02d62a924a8af90f"
+                "reference": "55443f65c67d0864984832107be1ba88604bfd12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/a95e87158d9e224abf2c587f02d62a924a8af90f",
-                "reference": "a95e87158d9e224abf2c587f02d62a924a8af90f",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/55443f65c67d0864984832107be1ba88604bfd12",
+                "reference": "55443f65c67d0864984832107be1ba88604bfd12",
                 "shasum": ""
             },
             "require": {
@@ -845,7 +845,7 @@
                 "odm",
                 "persistence"
             ],
-            "time": "2015-03-24 07:19:29"
+            "time": "2015-03-24 13:30:36"
         },
         {
             "name": "doctrine/mongodb-odm-bundle",
@@ -2693,7 +2693,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "ext-mongo": "1.6.4"
     },
     "platform-dev": []
 }
