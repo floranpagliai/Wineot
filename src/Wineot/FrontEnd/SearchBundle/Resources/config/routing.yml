@@ -1,4 +1,7 @@
 wineot_search_homepage:
     path:     /search
     defaults: { _controller: WineotFrontEndSearchBundle:Search:search }
+wineot_search_result:
+    path:     /searchResult
+    defaults: { _controller: WineotFrontEndSearchBundle:Search:searchResult }
 

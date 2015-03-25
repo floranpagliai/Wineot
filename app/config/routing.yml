@@ -14,3 +14,6 @@ wineot_styleguide:
     resource: "@WineotStyleGuideBundle/Resources/config/routing.yml"
     prefix:   /
 
+wineot_landing_page_home:
+    resource: "@WineotLandingPageHomeBundle/Resources/config/routing.yml"
+    prefix:   /

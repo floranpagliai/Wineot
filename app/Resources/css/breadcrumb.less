@@ -1,0 +1,40 @@
+@import "vars/colors.less";
+
+.breadcrumb-custom {
+  padding: 0 5px;
+  background: none;
+}
+.breadcrumb-custom > li a {
+  font-weight: 700;
+}
+.breadcrumb-custom > li:after {
+  display: inline-block;
+  content: "\f105";
+  padding: 0 0.5em 0 0.6em;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  line-height: normal;
+  vertical-align: baseline;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  opacity: 0.75;
+}
+.breadcrumb-custom > li:before,
+.breadcrumb-custom > li:last-child:after,
+.breadcrumb-custom > .text:after {
+  display: none;
+}
+.breadcrumb-custom > .text {
+  padding-right: 1em;
+}
+.breadcrumb-custom > .active {
+  font-weight: 600;
+}
+.ie .breadcrumb-custom > li:before,
+.ie .breadcrumb-custom > li:after {
+  display: none !important;
+}
+.ie .breadcrumb-custom > li a {
+  margin-right: 0.75em;
+}

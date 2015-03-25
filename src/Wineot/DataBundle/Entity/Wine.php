@@ -30,6 +30,11 @@ class Wine {
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $resume;
+
+    /**
      * @param mixed $id
      */
     public function setId($id)
@@ -60,4 +65,21 @@ class Wine {
     {
         return $this->name;
     }
+
+    /**
+     * @param mixed $resume
+     */
+    public function setResume($resume)
+    {
+        $this->resume = $resume;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResume()
+    {
+        return $this->resume;
+    }
+
 } 
