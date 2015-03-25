@@ -25,7 +25,6 @@
         "symfony/symfony": "~2.6",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "1.2.*",
-        "ext-mongo": "1.6.4",
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "twig/extensions": "1.0.*",
