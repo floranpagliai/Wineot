@@ -38,3 +38,21 @@
         </div>
     </div>
 </footer><!-- #colophon -->
+{% block javascripts %}{% endblock %}
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script>(function($) {
+        /*-----------------------------------------------------------------------------------*/
+        /*	Main Search
+         /*-----------------------------------------------------------------------------------*/
+        $('#header-search .search-field').on('focus', function() {
+            $('#header-search .search-advance-button').fadeIn()
+            $('#header-search .search-advance').slideDown()
+        })
+        $('#header-search .search-advance-button').on('click', function(e) {
+            e.preventDefault()
+            $(this).fadeOut(100)
+            $('#header-search .search-advance').slideUp(100)
+        })
+
+    })(jQuery);</script>

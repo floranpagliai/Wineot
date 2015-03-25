@@ -1,0 +1,126 @@
+.navbar-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+.site-navigation {
+  margin-bottom: 0;
+  display: inline-block;
+  background: #fff;
+  border-color: #eee;
+  border-radius: 0;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.site-navigation > ul {
+  margin: 0;
+}
+.site-navigation li > a {
+  color: inherit;
+}
+.site-navigation li > a > i.sub-indicator {
+  padding-right: 0;
+}
+.site-navigation li.active > a,
+.site-navigation li:hover > a,
+.site-navigation li > a:hover,
+.site-navigation li > a:focus {
+  background: none !important;
+  color: #b00 !important;
+}
+.site-navigation > ul > li > a {
+  padding-top: 12px;
+  border-top: 3px solid transparent;
+  border-right: 1px solid #eee;
+}
+.site-navigation > ul:last-child > li:last-child > a {
+  border-right: 0;
+}
+.site-navigation > ul > li.active > a,
+.site-navigation > ul > li:hover > a,
+.site-navigation > ul > li > a:hover,
+.site-navigation > ul > li > a:focus {
+  border-top-color: #ddd;
+}
+
+/*	Sub Menu	*/
+.site-navigation .dropdown-menu {
+  margin-left: -1px;
+  padding: 0;
+  text-align: left;
+  border-color: #eee;
+  border-radius: 0;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.site-navigation .dropdown-menu > li {
+  position: relative;
+}
+.site-navigation .dropdown-menu > li > a {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+.site-navigation .dropdown-menu > li:last-child > a {
+  border-bottom: 0;
+}
+.site-navigation .dropdown-menu li > a > i.sub-indicator:before {
+  content: "\f105";
+}
+.site-navigation .dropdown-menu .dropdown-menu {
+  margin-top: -1px;
+  margin-left: -10px;
+  top: 0;
+  left: 100%;
+}
+
+/*	User not Login	*/
+.site-navigation .navbar-login a:not(.collapsed) {
+  color: #b00;
+  border-top-color: #ddd;
+}
+.site-navigation .navbar-login a:not(.collapsed) > i.sub-indicator:before {
+  content: "\f139";
+}
+.site-navigation .login-form.collapse {
+  visibility: hidden;
+}
+.site-navigation .login-form.in {
+  visibility: visible;
+}
+.site-navigation .login-form {
+  width: 225px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #eee;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: 100%;
+  right: -1px;
+  z-index: 9999;
+}
+.site-navigation .login-form ul {
+  margin: -3px 0;
+  font-size: 0.9em;
+}
+
+/*	User Login	*/
+.site-navigation .navbar-user .dropdown-menu {
+  left: auto;
+  right: -1px;
+}
+.site-navigation .user-menu {
+  width: 225px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: 0;
+}
+.site-navigation .user-menu .banner-content {
+  margin-bottom: 0;
+}
+.site-navigation .user-menu .avatar {
+  border: 1px solid #fff;
+  border-bottom-width: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
