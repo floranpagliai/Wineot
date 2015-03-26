@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Wineot\UserBundle\Entity\User;
+use Wineot\DataBundle\Document\User;
 use Wineot\UserBundle\Form\Type\UserType;
 
 class SecurityController extends Controller {
@@ -60,7 +60,7 @@ class SecurityController extends Controller {
                 $encoder = $this->get('security.encoder_factory')->getEncoder($user);
                 $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
 
-                $em = $this->getDoctrine()->getManager();
+                $em = $this->get('doctrine_mongodb')->getManager();
                 $em->persist($user);
                 $em->flush();
 
