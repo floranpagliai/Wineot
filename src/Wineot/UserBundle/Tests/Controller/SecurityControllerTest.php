@@ -40,7 +40,7 @@ class SecurityControllerTest extends WebTestCase {
         $client = static::createClient();
         $crawler = $client->request('GET', '/user/register');
 
-        $buttonCrawlerNode = $crawler->selectButton('_submit');
+        $buttonCrawlerNode = $crawler->selectButton('submit_user_register');
         $form = $buttonCrawlerNode->form();
 
         $testForm = array(
@@ -52,10 +52,11 @@ class SecurityControllerTest extends WebTestCase {
             'user[plain_password][second]' => 'blabla'
         );
 
+        $response = $client->getResponse();
 
-//        $client->submit($form, $testForm);
-//        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-//
+        $client->submit($form, $testForm);
+        $this->assertTrue($response->isSuccessful());
+
 //        $client->submit($form, $testForm);
 //        $this->assertGreaterThan(0, $crawler->filter('html:contains("alert alert-danger")')->count());
     }
