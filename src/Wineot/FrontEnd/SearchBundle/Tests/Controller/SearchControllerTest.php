@@ -1,10 +1,9 @@
 <?php
 
 namespace Wineot\FrontEnd\SearchBundle\Tests\Controller;
-use Wineot\SearchBundle\Form\Type\SearchType;
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Wineot\FrontEnd\SearchBundle\Form\Type\SearchType;
 
 class SearchControllerTest extends TypeTestCase
 {
