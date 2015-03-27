@@ -7,7 +7,7 @@ use Wineot\FrontEnd\SearchBundle\Form\Type\SearchType;
 
 class SearchControllerTest extends TypeTestCase
 {
-    public function testSearch()
+    public function testSearchForm()
     {
         $formData = array('searchInput' => 'bonjour');
 

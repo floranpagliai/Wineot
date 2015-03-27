@@ -7,6 +7,7 @@
 
 namespace Wineot\DataBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,27 +53,6 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-     * Returns the roles granted to the user.
-     *
-     * <code>
-     * public function getRoles()
-     * {
-     *     return array('ROLE_USER');
-     * }
-     * </code>
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return Role[] The user roles
-     */
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-
-    /**
      * @var string
      *
      * @MongoDB\Field(type="string")
@@ -111,11 +91,24 @@ class User implements UserInterface
     private $comments;
 
     /**
+     * @var array
+     *
+     * @MongoDB\Field(type="collection")
+     */
+    private $role;
+
+    /**
      * @var integer
      *
      * @MongoDB\Id
      */
     private $id;
+
+    public function __construct()
+    {
+        $this->role[] = 'ROLE_USER';
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Set username
@@ -275,15 +268,11 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
-    public function __construct()
-    {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
     /**
      * Add comment
      *
-     * @param Wineot\DataBundle\Document\Comment $comment
+     * @param \Wineot\DataBundle\Document\Comment $comment
      */
     public function addComment(\Wineot\DataBundle\Document\Comment $comment)
     {
@@ -293,7 +282,7 @@ class User implements UserInterface
     /**
      * Remove comment
      *
-     * @param Wineot\DataBundle\Document\Comment $comment
+     * @param \Wineot\DataBundle\Document\Comment $comment
      */
     public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
     {
@@ -308,5 +297,15 @@ class User implements UserInterface
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * @return Role[] The user roles
+     */
+    public function getRoles()
+    {
+        return $this->role;
     }
 }

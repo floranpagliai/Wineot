@@ -32,7 +32,8 @@ class AppKernel extends Kernel
             new Wineot\StyleGuideBundle\WineotStyleGuideBundle(),
             new Wineot\DataBundle\WineotDataBundle(),
             new Wineot\FrontEnd\SearchBundle\WineotFrontEndSearchBundle(),
-            new Wineot\LandingPage\HomeBundle\WineotLandingPageHomeBundle()
+            new Wineot\LandingPage\HomeBundle\WineotLandingPageHomeBundle(),
+            new Wineot\BackEnd\BackEndBundle\WineotBackEndBackEndBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

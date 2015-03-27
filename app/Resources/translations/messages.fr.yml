@@ -1,3 +1,9 @@
 global:
     menu:
         home: "Accueil"
+        admin: "Administration"
+    wine:
+        color:
+            red: "Rouge"
+            pink: "Rosé"
+            white: "Blanc"

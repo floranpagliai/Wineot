@@ -9,12 +9,16 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
+use Wineot\DataBundle\Document\Comment;
 
 /**
  * @MongoDB\Document(collection="wines")
  */
 class Wine
 {
+    const COLOR_RED     = 0;
+    const COLOR_PINK    = 1;
+    const COLOR_WHITE   = 2;
     /**
      * @var string
      *
@@ -54,7 +58,7 @@ class Wine
 
     /**
      * @var array
-     * @MongoDB\ReferenceOne(targetDocument="Comment", inversedBy="wineId")
+     * @MongoDB\ReferenceOne(targetDocument="Comment", inversedBy="wineId", nullable=true)
      */
     private $comments;
 
@@ -166,7 +170,7 @@ class Wine
     /**
      * Set comments
      *
-     * @param Wineot\DataBundle\Document\Comment $comments
+     * @param \Wineot\DataBundle\Document\Comment $comments
      * @return self
      */
     public function setComments(\Wineot\DataBundle\Document\Comment $comments)
@@ -178,10 +182,19 @@ class Wine
     /**
      * Get comments
      *
-     * @return Wineot\DataBundle\Document\Comment $comments
+     * @return \Wineot\DataBundle\Document\Comment $comments
      */
     public function getComments()
     {
         return $this->comments;
+    }
+
+    public static function getColors()
+    {
+        return array(
+            Wine::COLOR_RED => 'global.wine.color.red',
+            Wine::COLOR_PINK => 'Rosé',
+            Wine::COLOR_WHITE => 'Blanc'
+        );
     }
 }

@@ -11,14 +11,26 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class SecurityControllerTest extends WebTestCase {
-    public function testLogin()
+class SecurityControllerTest extends WebTestCase
+{
+    public function testUserPageDown()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/user/login');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+
+        $client->request('GET', '/user/register');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+    }
+
+    public function testUserFirewall()
     {
         $client = static::createClient();
 
         //Trying go to user route without being logged
         $client->request('GET', '/user/profile');
-        $this->assertTrue($client->getResponse()->isRedirect('http://localhost/user/login'));
+        $this->assertTrue($client->getResponse()->isRedirect());
 
         //Log a test user
         $session = $client->getContainer()->get('session');
@@ -32,10 +44,9 @@ class SecurityControllerTest extends WebTestCase {
         //Trying go to user route being logged
         $crawler = $client->request('GET', '/user/profile');
         $this->assertFalse($client->getResponse()->isRedirect());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("testUser")')->count());
     }
 
-    public function testRegister()
+    public function testUserFormRegister()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/user/register');
