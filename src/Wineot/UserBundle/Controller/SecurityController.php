@@ -15,7 +15,8 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Wineot\DataBundle\Document\User;
 use Wineot\UserBundle\Form\Type\UserType;
 
-class SecurityController extends Controller {
+class SecurityController extends Controller
+{
     public function loginAction(Request $request)
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
@@ -48,26 +49,26 @@ class SecurityController extends Controller {
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
             return $this->redirect($this->generateUrl('wineot_user_profile'));
+
+        $em = $this->get('doctrine_mongodb')->getManager();
+
         $user = new User();
         $form = $this->createForm(new UserType(), $user);
         $errors = null;
 
-        if ($request->isMethod('post')) {
-            $form->submit($request);
-            $validator = $this->get('validator');
-            $errors = $validator->validate($user);
-            if ($form->isValid()) {
-                $encoder = $this->get('security.encoder_factory')->getEncoder($user);
-                $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
+        $form->handleRequest($request);
+        $validator = $this->get('validator');
+        $errors = $validator->validate($user);
+        if ($form->isValid()) {
+            $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
 
-                $em = $this->get('doctrine_mongodb')->getManager();
-                $em->persist($user);
-                $em->flush();
+            $em->persist($user);
+            $em->flush();
 
-                $flash = $this->get('braincrafted_bootstrap.flash');
-                $flash->success($this->get('translator')->trans('user.warn.can_login'));
-                return $this->redirect($this->generateUrl('wineot_user_login'));
-            }
+            $flash = $this->get('braincrafted_bootstrap.flash');
+            $flash->success($this->get('translator')->trans('user.warn.can_login'));
+//            return $this->redirect($this->generateUrl('wineot_user_login'));
         }
         $paramsRender = array('form' => $form->createView(), 'errors' => $errors);
         return $this->render('WineotUserBundle:Security:register.html.twig', $paramsRender);
