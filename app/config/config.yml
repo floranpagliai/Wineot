@@ -55,19 +55,19 @@ braincrafted_bootstrap:
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
 
 # Doctrine Configuration
-doctrine:
-    dbal:
-        driver:   "%database_driver%"
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
-
-    orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+#doctrine:
+#    dbal:
+#        driver:   "%database_driver%"
+#        host:     "%database_host%"
+#        port:     "%database_port%"
+#        dbname:   "%database_name%"
+#        user:     "%database_user%"
+#        password: "%database_password%"
+#        charset:  UTF8
+#
+#    orm:
+#        auto_generate_proxy_classes: "%kernel.debug%"
+#        auto_mapping: true
 
 doctrine_mongodb:
     connections:
@@ -77,6 +77,8 @@ doctrine_mongodb:
     default_database: "%database_mongo_db%"
     document_managers:
         default:
+            mappings:
+                WineotDataBundle: ~
             auto_mapping: true
 
 # Swiftmailer Configuration

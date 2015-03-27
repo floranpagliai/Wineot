@@ -29,17 +29,17 @@ class SearchController extends Controller
                 ->get('doctrine_mongodb')
                 ->getManager()
                 ->getRepository('WineotDataBundle:Wine')
-                ->createQueryBuilder('q')
-                ->where('q.name LIKE :searchInput')
-                ->setParameter('searchInput', '%'.$searchInput.'%')
-                ->getQuery()
-                ->getResult();
+                ->findBy(array(
+                    'name' => new \MongoRegex('/^'.$searchInput.'/i'),
+                    //Ajouter ligne comme ci dessus pour elargir la recherche
+                    //Voir http://docs.mongodb.org/manual/reference/operator/query/regex/ pour les regex
+                ));
 //            if(!empty($wineList)){
                 return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
 //            }
 //            else{
 
-//                 AUCUN RESULTATS
+//                 TODO : Page d'erreur si aucune correspondance
 //            }
         }
     }
