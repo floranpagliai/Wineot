@@ -28,7 +28,7 @@
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
         "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "dev-master",
+        "symfony/assetic-bundle": "2.6.*",
         "symfony/swiftmailer-bundle": "2.3.*",
         "symfony/monolog-bundle": "2.3.*",
         "symfony/finder": "~2.5",
