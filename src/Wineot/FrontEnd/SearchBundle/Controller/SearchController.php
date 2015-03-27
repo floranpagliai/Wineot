@@ -29,11 +29,9 @@ class SearchController extends Controller
                 ->get('doctrine_mongodb')
                 ->getManager()
                 ->getRepository('WineotDataBundle:Wine')
-                ->createQueryBuilder('q')
-                ->where('q.name LIKE :searchInput')
-                ->setParameter('searchInput', '%'.$searchInput.'%')
-                ->getQuery()
-                ->getResult();
+                ->findBy(array(
+                    'name' => new \MongoRegex('/^'.$searchInput.'/'),
+                ));
 //            if(!empty($wineList)){
                 return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
 //            }
