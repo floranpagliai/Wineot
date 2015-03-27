@@ -33,20 +33,30 @@ class Wine
      * @Assert\Length(
      *      max = 255
      * )
-     * @Assert\NotBlank()
      */
     private $resume;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 255
-     * )
+     * @MongoDB\Field(type="int")
      * @Assert\NotBlank()
      */
-    private $cepage;
+    private $color;
+
+    /**
+     * @var integer
+     *
+     * @MongoDB\Field(type="int", name="production_year")
+     * @Assert\NotBlank()
+     */
+    private $productionYear;
+
+    /**
+     * @var array
+     * @MongoDB\ReferenceOne(targetDocument="Comment", inversedBy="wineId")
+     */
+    private $comments;
 
     /**
      * @var integer
@@ -100,28 +110,6 @@ class Wine
     }
 
     /**
-     * Set cepage
-     *
-     * @param string $cepage
-     * @return self
-     */
-    public function setCepage($cepage)
-    {
-        $this->cepage = $cepage;
-        return $this;
-    }
-
-    /**
-     * Get cepage
-     *
-     * @return string $cepage
-     */
-    public function getCepage()
-    {
-        return $this->cepage;
-    }
-
-    /**
      * Get id
      *
      * @return id $id
@@ -129,5 +117,71 @@ class Wine
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set productionYear
+     *
+     * @param int $productionYear
+     * @return self
+     */
+    public function setProductionYear($productionYear)
+    {
+        $this->productionYear = $productionYear;
+        return $this;
+    }
+
+    /**
+     * Get productionYear
+     *
+     * @return int $productionYear
+     */
+    public function getProductionYear()
+    {
+        return $this->productionYear;
+    }
+
+    /**
+     * Set color
+     *
+     * @param int $color
+     * @return self
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return int $color
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set comments
+     *
+     * @param Wineot\DataBundle\Document\Comment $comments
+     * @return self
+     */
+    public function setComments(\Wineot\DataBundle\Document\Comment $comments)
+    {
+        $this->comments = $comments;
+        return $this;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Wineot\DataBundle\Document\Comment $comments
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

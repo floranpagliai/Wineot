@@ -104,6 +104,13 @@ class User implements UserInterface
     private $lastname;
 
     /**
+     * @var array
+     *
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="userId")
+     */
+    private $comments;
+
+    /**
      * @var integer
      *
      * @MongoDB\Id
@@ -267,5 +274,39 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add comment
+     *
+     * @param Wineot\DataBundle\Document\Comment $comment
+     */
+    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param Wineot\DataBundle\Document\Comment $comment
+     */
+    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection $comments
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

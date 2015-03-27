@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+            new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
 
             new Wineot\FrontEnd\HomeBundle\WineotFrontEndHomeBundle(),
             new Wineot\UserBundle\WineotUserBundle(),
