@@ -10,6 +10,6 @@ class DefaultController extends Controller
     {
         if (!$this->get('security.context')->isGranted('ROLE_ADMIN'))
             return $this->redirect($this->generateUrl('wineot_front_end_homepage'));
-        return $this->render('WineotBackEndBackEndBundle:Default:index.html.twig');
+        return $this->render('WineotBackEndCRUDBundle:Default:index.html.twig');
     }
 }

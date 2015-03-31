@@ -1,0 +1,6 @@
+services:
+    wineot.twig.wine_extension:
+        class: Wineot\DataBundle\Twig\WineExtension
+        arguments: ["@translator.default"]
+        tags:
+            - { name: twig.extension }

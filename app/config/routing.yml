@@ -1,3 +1,7 @@
+wineot_back_end_crud:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing.yml"
+    prefix:   /admin/crud
+
 wineot_front_end_home:
     resource: "@WineotFrontEndHomeBundle/Resources/config/routing.yml"
     prefix:   /

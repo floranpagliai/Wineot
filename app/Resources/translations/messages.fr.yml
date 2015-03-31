@@ -4,6 +4,9 @@ global:
         admin: "Administration"
     wine:
         color:
-            red: "Rouge"
-            pink: "Rosé"
-            white: "Blanc"
+            red: "Vin rouge"
+            pink: "Vin rosé"
+            white: "Vin blanc"
+            red_short: "Rouge"
+            pink_short: "Rosé"
+            white_short: "Blanc"

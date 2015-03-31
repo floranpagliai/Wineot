@@ -38,9 +38,14 @@
         </div>
     </div>
 </footer><!-- #colophon -->
-{% block javascripts %}{% endblock %}
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
+
+{% javascripts
+    'js/jquery.js'
+    'js/bootstrap.js'
+    '@UtilsNotifyMessengerBundle/Resources/public/js/*'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 <script>(function($) {
         /*-----------------------------------------------------------------------------------*/
         /*	Main Search
@@ -55,4 +60,12 @@
             $('#header-search .search-advance').slideUp(100)
         })
 
-    })(jQuery);</script>
+    })(jQuery);
+    $(function () {
+        // Tooltips for sidebar toggle and sidebar logout button
+        $('.tooltip-sidebar-toggle, .tooltips').tooltip({
+            selector: "[data-toggle=tooltip]",
+            container: "body"
+        });
+    });
+</script>

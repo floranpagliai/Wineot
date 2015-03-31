@@ -1,7 +1,6 @@
 {% extends 'WineotUserBundle::layout.html.twig' %}
 {% set menu_selected = 'login' %}
 {% block body %}
-    {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
     <div class="col-lg-4 col-lg-offset-4">
         <h2 class="section-title  clearfix"><i class="line"></i>
             {{ 'user.action.login'|trans }}
@@ -30,7 +29,7 @@
                     </label>
                 </div>
                 <br>
-                <input class="btn btn-lg btn-blue btn-block" type="submit" id="_submit" name="_submit"
+                <input class="btn btn-lg btn-block" type="submit" id="_submit" name="_submit"
                        value="{{ 'user.action.login'|trans }}"/>
             </fieldset>
             <br>

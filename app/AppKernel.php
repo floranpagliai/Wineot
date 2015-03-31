@@ -27,6 +27,8 @@ class AppKernel extends Kernel
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
 
+            new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
+
             new Wineot\FrontEnd\HomeBundle\WineotFrontEndHomeBundle(),
             new Wineot\UserBundle\WineotUserBundle(),
             new Wineot\StyleGuideBundle\WineotStyleGuideBundle(),
@@ -34,6 +36,7 @@ class AppKernel extends Kernel
             new Wineot\FrontEnd\SearchBundle\WineotFrontEndSearchBundle(),
             new Wineot\LandingPage\HomeBundle\WineotLandingPageHomeBundle(),
             new Wineot\BackEnd\BackEndBundle\WineotBackEndBackEndBundle(),
+            new Wineot\BackEnd\CRUDBundle\WineotBackEndCRUDBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

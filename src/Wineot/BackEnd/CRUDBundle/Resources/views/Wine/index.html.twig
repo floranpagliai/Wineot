@@ -1,0 +1,41 @@
+{% extends 'WineotBackEndCRUDBundle::layout.html.twig' %}
+{% set menu_selected = 'admin' %}
+{% block body %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Color</th>
+            <th class="btn-table"></th>
+            <th class="btn-table"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for wine in wines %}
+            <tr>
+                <td>
+                    <b>{{ wine.name }}</b><br/>
+                    {{ wine.description }}
+                </td>
+                <td>{{ wine.color|wineColor(true) }}</td>
+                <td class="tooltips">
+                    <a href="{{ path('wineot_back_end_crud_wine_edit', { 'id': wine.id }) }}"
+                       class="btn btn-sm btn-blue btn-block" data-toggle="tooltip"
+                       data-placement="top" data-original-title="Edit">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+                <td class="tooltips">
+                    <a href="{{ path('wineot_back_end_crud_wine_delete', { 'id': wine.id }) }}"
+                       class="btn btn-sm btn-red btn-block" data-toggle="tooltip"
+                       data-placement="top" data-original-title="Delete" onclick="return confirm('Delete ?')">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_wine_add') }}">add</a>
+
+{% endblock %}

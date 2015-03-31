@@ -59,7 +59,7 @@ class User implements UserInterface
      * @Assert\Email()
      * @Assert\NotBlank()
      */
-    private $email;
+    private $mail;
 
     /**
      * @var string
@@ -176,9 +176,9 @@ class User implements UserInterface
      * @param string $email
      * @return self
      */
-    public function setEmail($email)
+    public function setMail($email)
     {
-        $this->email = $email;
+        $this->mail = $email;
         return $this;
     }
 
@@ -187,9 +187,9 @@ class User implements UserInterface
      *
      * @return string $email
      */
-    public function getEmail()
+    public function getMail()
     {
-        return $this->email;
+        return $this->mail;
     }
 
     /**
@@ -305,6 +305,28 @@ class User implements UserInterface
      * @return Role[] The user roles
      */
     public function getRoles()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set role
+     *
+     * @param collection $role
+     * @return self
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return collection $role
+     */
+    public function getRole()
     {
         return $this->role;
     }

@@ -1,0 +1,9 @@
+wineot_back_end_crud_homepage:
+    path:     /
+    defaults: { _controller: WineotBackEndCRUDBundle:Default:index }
+wineot_back_end_crud_wine:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing/wine.yml"
+    prefix:   /wine
+wineot_back_end_crud_user:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing/user.yml"
+    prefix:   /user

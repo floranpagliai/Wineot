@@ -5,14 +5,14 @@
         <article>
             <header>
                 <a href="#">
-                    <img src="{{ asset('img/image.jpeg') }}"/>
+                    <img src="{{ asset('img/image.png') }}"/>
                     <div class="img-background"></div>
-                    <h1>{{ wine.name }}<span> 2012</span></h1>
+                    <h1>{{ wine.name }}<span> {{ wine.productionYear }}</span></h1>
                 </a>
             </header>
             <div class="wine-thumbnail-info">
-                <h2>{{ wine.resume }}</h2>
-                <h3></h3>
+                <h2>{{ wine.color|wineColor }}</h2>
+                <h2></h2>
             </div>
         </article>
     </div>

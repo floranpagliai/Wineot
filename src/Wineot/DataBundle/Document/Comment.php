@@ -7,6 +7,7 @@
 
 namespace Wineot\DataBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -36,17 +37,17 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="user_id")
-     * @MongoDB\ReferenceMany(targetDocument="User", mappedBy="comments")
+     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments")
      */
     private $userId;
 
     /**
      * @var integer
      *
-     * @MongoDB\Field(name="wine_id")
-     * @MongoDB\ReferenceMany(targetDocument="Wine", mappedBy="comments")
+     * @MongoDB\Field(name="vintage_id")
+     * @MongoDB\ReferenceOne(targetDocument="Vintage", inversedBy="comments")
      */
-    private $wineId;
+    private $vintageId;
 
     /**
      * @var integer
@@ -57,10 +58,11 @@ class Comment
 
     public function __construct()
     {
-        $this->userId = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->wineId = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userId = new ArrayCollection();
+        $this->wineId = new ArrayCollection();
     }
-    
+
+
     /**
      * Set comment
      *
@@ -106,29 +108,21 @@ class Comment
     }
 
     /**
-     * Add userId
+     * Set userId
      *
-     * @param Wineot\DataBundle\Document\User $userId
+     * @param \Wineot\DataBundle\Document\User $userId
+     * @return self
      */
-    public function addUserId(\Wineot\DataBundle\Document\User $userId)
+    public function setUserId(User $userId)
     {
-        $this->userId[] = $userId;
-    }
-
-    /**
-     * Remove userId
-     *
-     * @param Wineot\DataBundle\Document\User $userId
-     */
-    public function removeUserId(\Wineot\DataBundle\Document\User $userId)
-    {
-        $this->userId->removeElement($userId);
+        $this->userId = $userId;
+        return $this;
     }
 
     /**
      * Get userId
      *
-     * @return \Doctrine\Common\Collections\Collection $userId
+     * @return \Wineot\DataBundle\Document\User $userId
      */
     public function getUserId()
     {
@@ -136,33 +130,25 @@ class Comment
     }
 
     /**
-     * Add wineId
+     * Set vintageId
      *
-     * @param Wineot\DataBundle\Document\Wine $wineId
+     * @param \Wineot\DataBundle\Document\Vintage $vintageId
+     * @return self
      */
-    public function addWineId(\Wineot\DataBundle\Document\Wine $wineId)
+    public function setVintageId(Vintage $vintageId)
     {
-        $this->wineId[] = $wineId;
+        $this->vintageId = $vintageId;
+        return $this;
     }
 
     /**
-     * Remove wineId
+     * Get vintageId
      *
-     * @param Wineot\DataBundle\Document\Wine $wineId
+     * @return \Wineot\DataBundle\Document\Vintage $vintageId
      */
-    public function removeWineId(\Wineot\DataBundle\Document\Wine $wineId)
+    public function getVintageId()
     {
-        $this->wineId->removeElement($wineId);
-    }
-
-    /**
-     * Get wineId
-     *
-     * @return \Doctrine\Common\Collections\Collection $wineId
-     */
-    public function getWineId()
-    {
-        return $this->wineId;
+        return $this->vintageId;
     }
 
     /**

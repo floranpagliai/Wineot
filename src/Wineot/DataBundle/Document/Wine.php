@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="wines")
+ * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
  */
 class Wine
 {
@@ -34,11 +34,8 @@ class Wine
      * @var string
      *
      * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 255
-     * )
      */
-    private $resume;
+    private $description;
 
     /**
      * @var integer
@@ -49,18 +46,12 @@ class Wine
     private $color;
 
     /**
-     * @var integer
-     *
-     * @MongoDB\Field(type="int", name="production_year")
-     * @Assert\NotBlank()
-     */
-    private $productionYear;
-
-    /**
      * @var array
-     * @MongoDB\ReferenceOne(targetDocument="Comment", inversedBy="wineId", nullable=true)
+     *
+     * @MongoDB\Field(name="comments")
+     * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wineId")
      */
-    private $comments;
+    private $vintages;
 
     /**
      * @var integer
@@ -68,7 +59,11 @@ class Wine
      * @MongoDB\Id
      */
     private $id;
-
+    public function __construct()
+    {
+        $this->vintages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Set name
      *
@@ -92,57 +87,25 @@ class Wine
     }
 
     /**
-     * Set resume
+     * Set description
      *
-     * @param string $resume
+     * @param string $description
      * @return self
      */
-    public function setResume($resume)
+    public function setDescription($description)
     {
-        $this->resume = $resume;
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * Get resume
+     * Get description
      *
-     * @return string $resume
+     * @return string $description
      */
-    public function getResume()
+    public function getDescription()
     {
-        return $this->resume;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set productionYear
-     *
-     * @param int $productionYear
-     * @return self
-     */
-    public function setProductionYear($productionYear)
-    {
-        $this->productionYear = $productionYear;
-        return $this;
-    }
-
-    /**
-     * Get productionYear
-     *
-     * @return int $productionYear
-     */
-    public function getProductionYear()
-    {
-        return $this->productionYear;
+        return $this->description;
     }
 
     /**
@@ -168,33 +131,51 @@ class Wine
     }
 
     /**
-     * Set comments
+     * Add vintage
      *
-     * @param \Wineot\DataBundle\Document\Comment $comments
-     * @return self
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
      */
-    public function setComments(\Wineot\DataBundle\Document\Comment $comments)
+    public function addVintage(Vintage $vintage)
     {
-        $this->comments = $comments;
-        return $this;
+        $this->vintages[] = $vintage;
     }
 
     /**
-     * Get comments
+     * Remove vintage
      *
-     * @return \Wineot\DataBundle\Document\Comment $comments
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
      */
-    public function getComments()
+    public function removeVintage(Vintage $vintage)
     {
-        return $this->comments;
+        $this->vintages->removeElement($vintage);
+    }
+
+    /**
+     * Get vintages
+     *
+     * @return \Doctrine\Common\Collections\Collection $vintages
+     */
+    public function getVintages()
+    {
+        return $this->vintages;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     public static function getColors()
     {
         return array(
             Wine::COLOR_RED => 'global.wine.color.red',
-            Wine::COLOR_PINK => 'Rosé',
-            Wine::COLOR_WHITE => 'Blanc'
+            Wine::COLOR_PINK => 'global.wine.color.pink',
+            Wine::COLOR_WHITE => 'global.wine.color.white'
         );
     }
 }
