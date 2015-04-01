@@ -8,6 +8,7 @@
 namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -96,11 +97,13 @@ class User implements UserInterface
     private $comments;
 
     /**
-     * @var string
+     * @var collection
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\Field(type="collection")
+     *
+     * @Assert\NotBlank()
      */
-    private $role;
+    private $roles;
 
     /**
      * @var integer
@@ -111,7 +114,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->role = 'ROLE_USER';
+        $this->roles = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
 
@@ -307,33 +310,25 @@ class User implements UserInterface
     /**
      * Returns the roles granted to the user.
      *
-     * @return Role[] The user roles
+     * @return Roles[] The user roles
      */
     public function getRoles()
     {
-        return array($this->role);
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return $roles;
     }
 
     /**
-     * Set role
+     * Set roles
      *
-     * @param string $role
+     * @param $roles
      * @return self
      */
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
         return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string $role
-     */
-    public function getRole()
-    {
-        return $this->role;
     }
 
     /**
@@ -342,7 +337,6 @@ class User implements UserInterface
     public static function getRolesType()
     {
         return array(
-            'ROLE_USER' => 'User',
             'ROLE_ADMIN' => 'Admin'
         );
     }

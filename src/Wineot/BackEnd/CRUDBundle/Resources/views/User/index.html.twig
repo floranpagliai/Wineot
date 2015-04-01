@@ -19,7 +19,9 @@
                 </td>
                 <td>{{ user.mail }}</td>
                 <td>
-                    {{ user.role }}
+                    {% for role in user.roles %}
+                        {{ role }}<br/>
+                    {% endfor %}
                 </td>
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_user_edit', { 'id': user.id }) }}"
