@@ -46,7 +46,8 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-<script>(function($) {
+<script>
+    $(function($) {
         /*-----------------------------------------------------------------------------------*/
         /*	Main Search
          /*-----------------------------------------------------------------------------------*/
@@ -59,8 +60,7 @@
             $(this).fadeOut(100)
             $('#header-search .search-advance').slideUp(100)
         })
-
-    })(jQuery);
+    });
     $(function () {
         // Tooltips for sidebar toggle and sidebar logout button
         $('.tooltip-sidebar-toggle, .tooltips').tooltip({

@@ -13,16 +13,13 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
                 <td>
                     <b>{{ user.username }}</b><br/>
                     {{ user.firstname }} {{ user.lastname }}
                 </td>
                 <td>{{ user.mail }}</td>
                 <td>
-                    {% for role in user.role %}
-                        {{ role }}<br/>
-                    {% endfor %}
+                    {{ user.role }}
                 </td>
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_user_edit', { 'id': user.id }) }}"
@@ -42,6 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_user_add') }}">add</a>
-
 {% endblock %}

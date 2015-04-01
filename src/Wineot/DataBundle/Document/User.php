@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @MongoDB\Document(collection="users")
- * @MongoDBUnique(fields="email", message="user.warn.unique_email")
+ * @MongoDBUnique(fields="mail", message="user.warn.unique_email")
  */
 class User implements UserInterface
 {
@@ -36,7 +36,11 @@ class User implements UserInterface
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
-     *      max = 64
+     *      min = "5",
+     *      max = "30",
+     *      minMessage = "user.warn.password_length",
+     *      maxMessage = "user.warn.password_length",
+     *      groups = {"Default"}
      * )
      */
     private $password;
@@ -47,7 +51,8 @@ class User implements UserInterface
      *      min = "5",
      *      max = "30",
      *      minMessage = "user.warn.password_length",
-     *      maxMessage = "user.warn.password_length"
+     *      maxMessage = "user.warn.password_length",
+     *      groups = {"Default"}
      * )
      * */
     private $plainPassword;
@@ -91,9 +96,9 @@ class User implements UserInterface
     private $comments;
 
     /**
-     * @var array
+     * @var string
      *
-     * @MongoDB\Field(type="collection")
+     * @MongoDB\Field(type="string")
      */
     private $role;
 
@@ -106,7 +111,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->role[] = 'ROLE_USER';
+        $this->role = 'ROLE_USER';
         $this->comments = new ArrayCollection();
     }
 
@@ -306,13 +311,13 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->role;
+        return array($this->role);
     }
 
     /**
      * Set role
      *
-     * @param collection $role
+     * @param string $role
      * @return self
      */
     public function setRole($role)
@@ -324,10 +329,21 @@ class User implements UserInterface
     /**
      * Get role
      *
-     * @return collection $role
+     * @return string $role
      */
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getRolesType()
+    {
+        return array(
+            'ROLE_USER' => 'User',
+            'ROLE_ADMIN' => 'Admin'
+        );
     }
 }

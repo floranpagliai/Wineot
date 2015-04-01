@@ -68,6 +68,7 @@ class Wine
      * @MongoDB\Id
      */
     private $id;
+
     public function __construct()
     {
         $this->vintages = new \Doctrine\Common\Collections\ArrayCollection();
@@ -179,15 +180,6 @@ class Wine
         return $this->id;
     }
 
-    public static function getColors()
-    {
-        return array(
-            Wine::COLOR_RED => 'global.wine.color.red',
-            Wine::COLOR_PINK => 'global.wine.color.pink',
-            Wine::COLOR_WHITE => 'global.wine.color.white'
-        );
-    }
-
     /**
      * Set wineryId
      *
@@ -216,5 +208,17 @@ class Wine
         foreach($this->vintages as $vintage)
             $comments[] = $vintage->getComments();
         return $comments;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getColors()
+    {
+        return array(
+            Wine::COLOR_RED => 'global.wine.color.red',
+            Wine::COLOR_PINK => 'global.wine.color.pink',
+            Wine::COLOR_WHITE => 'global.wine.color.white'
+        );
     }
 }

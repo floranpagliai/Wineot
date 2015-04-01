@@ -8,6 +8,8 @@
 namespace Wineot\BackEnd\CRUDBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Wineot\DataBundle\Form\UserType;
 
 class UserController extends Controller
 {
@@ -20,14 +22,26 @@ class UserController extends Controller
         return $this->render('WineotBackEndCRUDBundle:User:index.html.twig', $paramsRender);
     }
 
-    public function addAction()
+    public function editAction(Request $request, $id)
     {
+        $flash = $this->get('notify_messenger.flash');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $user = $dm->getRepository('WineotDataBundle:User')->find($id);
+        if (!$user) {
+            $flash->error($this->get('translator')->trans('crud.error.user.notfound'));
+            return $this->redirectToRoute('wineot_back_end_crud_wine');
+        }
+        $form = $this->createForm(new UserType(), $user);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $dm->persist($user);
+            $dm->flush();
 
-    }
-
-    public function editAction()
-    {
-
+            $flash->success($this->get('translator')->trans('crud.warn.user.edited'));
+            return $this->redirectToRoute('wineot_back_end_crud_user');
+        }
+        $paramsRender = array('form' => $form->createView(), 'id' => $id);
+        return $this->render('WineotBackEndCRUDBundle:User:edit.html.twig', $paramsRender);
     }
 
     public function deleteAction($id)
