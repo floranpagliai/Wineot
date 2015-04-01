@@ -30,7 +30,7 @@ class Winery {
      * @var array
      *
      * @MongoDB\Field(name="wines")
-     * @MongoDB\ReferenceMany(targetDocument="Wine", mappedBy="winery")
+     * @MongoDB\ReferenceMany(targetDocument="Wine", mappedBy="winery", cascade={"persist", "remove"})
      */
     private $wines;
 

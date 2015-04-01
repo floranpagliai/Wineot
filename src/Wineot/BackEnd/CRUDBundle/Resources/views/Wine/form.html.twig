@@ -6,19 +6,17 @@
         {% endif %}
 <fieldset>
     <div class="form-group">
-        <label class="sr-only" for="username">Name</label>
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
     </div>
     <div class="form-group">
-        <label class="sr-only" for="firstname">Description</label>
         {{ form_widget(form.description, { 'attr': { 'placeholder': 'description'|trans } } ) }}
     </div>
     <div class="form-group">
-        <label class="sr-only" for="lastname">Color</label>
         {{ form_widget(form.color, { 'attr': { 'placeholder': 'color'|trans } } ) }}
     </div>
+    {% include 'WineotBackEndCRUDBundle:Vintage:form.html.twig' %}
     <div class="form-group">
-        <label class="sr-only" for="lastname">Winery</label>
+        <label class="sr-only" for="winery">Winery</label>
         {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
     </div>
     <br>
@@ -27,3 +25,6 @@
 </fieldset>
 <br>
 {{ form_end(form) }}
+{% block javascript %}
+
+{% endblock %}

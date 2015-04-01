@@ -39,7 +39,7 @@ class Comment
      * @MongoDB\Field(name="user_id")
      * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments")
      */
-    private $userId;
+    private $user;
 
     /**
      * @var integer
@@ -47,7 +47,7 @@ class Comment
      * @MongoDB\Field(name="vintage_id")
      * @MongoDB\ReferenceOne(targetDocument="Vintage", inversedBy="comments")
      */
-    private $vintageId;
+    private $vintage;
 
     /**
      * @var integer
@@ -110,45 +110,45 @@ class Comment
     /**
      * Set userId
      *
-     * @param \Wineot\DataBundle\Document\User $userId
+     * @param \Wineot\DataBundle\Document\User $user
      * @return self
      */
-    public function setUserId(User $userId)
+    public function setUser(User $user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
         return $this;
     }
 
     /**
      * Get userId
      *
-     * @return \Wineot\DataBundle\Document\User $userId
+     * @return \Wineot\DataBundle\Document\User $user
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
      * Set vintageId
      *
-     * @param \Wineot\DataBundle\Document\Vintage $vintageId
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
      * @return self
      */
-    public function setVintageId(Vintage $vintageId)
+    public function setVintageId(Vintage $vintage)
     {
-        $this->vintageId = $vintageId;
+        $this->vintage = $vintage;
         return $this;
     }
 
     /**
      * Get vintageId
      *
-     * @return \Wineot\DataBundle\Document\Vintage $vintageId
+     * @return \Wineot\DataBundle\Document\Vintage $vintage
      */
-    public function getVintageId()
+    public function getVintage()
     {
-        return $this->vintageId;
+        return $this->vintage;
     }
 
     /**
@@ -159,5 +159,17 @@ class Comment
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set vintage
+     *
+     * @param Wineot\DataBundle\Document\Vintage $vintage
+     * @return self
+     */
+    public function setVintage(\Wineot\DataBundle\Document\Vintage $vintage)
+    {
+        $this->vintage = $vintage;
+        return $this;
     }
 }

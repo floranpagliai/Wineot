@@ -10,6 +10,7 @@ namespace Wineot\BackEnd\CRUDBundle\Controller;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Wineot\DataBundle\Document\Vintage;
 use Wineot\DataBundle\Document\Wine;
 use Wineot\DataBundle\Form\WineType;
 

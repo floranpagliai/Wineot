@@ -9,7 +9,7 @@ namespace Wineot\BackEnd\CRUDBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Wineot\DataBundle\Form\UserType;
+use Wineot\DataBundle\Form\UserEditCrudType;
 
 class UserController extends Controller
 {
@@ -31,7 +31,7 @@ class UserController extends Controller
             $flash->error($this->get('translator')->trans('crud.error.user.notfound'));
             return $this->redirectToRoute('wineot_back_end_crud_wine');
         }
-        $form = $this->createForm(new UserType(), $user);
+        $form = $this->createForm(new UserEditCrudType(), $user);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $dm->persist($user);

@@ -8,6 +8,7 @@
 namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
@@ -17,9 +18,9 @@ use Wineot\DataBundle\Document\Comment;
  */
 class Wine
 {
-    const COLOR_RED     = 0;
-    const COLOR_PINK    = 1;
-    const COLOR_WHITE   = 2;
+    const COLOR_RED = 0;
+    const COLOR_PINK = 1;
+    const COLOR_WHITE = 2;
     /**
      * @var string
      *
@@ -47,18 +48,18 @@ class Wine
     private $color;
 
     /**
-     * @var array
+     * @var collection
      *
      * @MongoDB\Field(name="vintages")
-     * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wineId")
+     * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wine", cascade={"persist", "remove"})
      */
     private $vintages;
 
     /**
      * @var integer
      *
-     * @MongoDB\Field(name="winery_id")
-     * @MongoDB\ReferenceOne(targetDocument="Winery", inversedBy="wines")
+     * @MongoDB\Field(type="int", name="winery_id")
+     * @MongoDB\ReferenceOne(targetDocument="Winery", inversedBy="wines", cascade={"persist"}, simple=true)
      */
     private $winery;
 
@@ -71,9 +72,9 @@ class Wine
 
     public function __construct()
     {
-        $this->vintages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->vintages = new ArrayCollection();
     }
-    
+
     /**
      * Set name
      *
@@ -147,6 +148,7 @@ class Wine
      */
     public function addVintage(Vintage $vintage)
     {
+        $vintage->setWine($this);
         $this->vintages[] = $vintage;
     }
 
@@ -204,9 +206,13 @@ class Wine
 
     public function getComments()
     {
-        $comments = new ArrayCollection();
-        foreach($this->vintages as $vintage)
-            $comments[] = $vintage->getComments();
+        $comments = array();
+        foreach ($this->vintages as $vintage) {
+            $vintage_comments = $vintage->getComments();
+            if(!isset($vintage_comments))
+                $comments[] = $vintage_comments;
+        }
+
         return $comments;
     }
 

@@ -92,7 +92,7 @@ class User implements UserInterface
     /**
      * @var array
      *
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="userId")
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="user")
      */
     private $comments;
 

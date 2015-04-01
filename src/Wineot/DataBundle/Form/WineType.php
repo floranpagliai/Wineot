@@ -14,15 +14,18 @@ class WineType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
-            ->add('description', 'textarea')
-            ->add('color', 'choice', array('choices' => Wine::getColors()))
-        ;
+        $builder->add('name');
+        $builder->add('description', 'textarea');
+        $builder->add('color', 'choice', array('choices' => Wine::getColors()));
+        $builder->add('vintages', 'collection', array(
+            'type' => new VintageType(),
+            'allow_add' => true,
+            'by_reference' => false,
+        ));
         $builder->add('winery', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Winery',
             'property' => 'name',
-            'query_builder' => function(DocumentRepository $er)  {
+            'query_builder' => function (DocumentRepository $er) {
                     return $er->createQueryBuilder('c');
                 }
         ));

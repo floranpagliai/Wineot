@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Wineot\DataBundle\Document\User;
-use Wineot\UserBundle\Form\Type\UserType;
+use Wineot\DataBundle\Form\UserType;
 
 class SecurityController extends Controller
 {

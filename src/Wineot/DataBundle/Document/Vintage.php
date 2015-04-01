@@ -7,16 +7,20 @@
 
 namespace Wineot\DataBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
  * @MongoDB\Document(collection="vintages")
  */
-class Vintage {
+class Vintage
+{
     /**
-     * @var integer
+     * @var Int
      *
      * @MongoDB\Field(type="int", name="production_year")
      * @Assert\NotBlank()
@@ -24,10 +28,17 @@ class Vintage {
     private $productionYear;
 
     /**
-     * @var array
+     * @var float
+     *
+     * @MongoDB\Field(type="float", name="winery_price", nullable=true)
+     */
+    private $wineryPrice;
+
+    /**
+     * @var collection
      *
      * @MongoDB\Field(name="comments")
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintageId", nullable=true)
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintage", nullable=true)
      */
     private $comments;
 
@@ -35,7 +46,7 @@ class Vintage {
      * @var integer
      *
      * @MongoDB\Field(name="wine_id")
-     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages")
+     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages", simple=true)
      */
     private $wine;
 
@@ -45,11 +56,12 @@ class Vintage {
      * @MongoDB\Id
      */
     private $id;
+
     public function __construct()
     {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
-    
+
     /**
      * Set productionYear
      *
@@ -99,18 +111,21 @@ class Vintage {
      */
     public function getComments()
     {
-        return $this->comments;
+        if (!empty($this->comments))
+            return $this->comments;
+        else
+            return NULL;
     }
 
     /**
      * Set wineId
      *
-     * @param \Wineot\DataBundle\Document\Wine $wineId
+     * @param \Wineot\DataBundle\Document\Wine $wine
      * @return self
      */
-    public function setWine(\Wineot\DataBundle\Document\Wine $wineId)
+    public function setWine(Wine $wine)
     {
-        $this->wine = $wineId;
+        $this->wine = $wine;
         return $this;
     }
 
@@ -132,5 +147,27 @@ class Vintage {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set wineryPrice
+     *
+     * @param float $wineryPrice
+     * @return self
+     */
+    public function setWineryPrice($wineryPrice)
+    {
+        $this->wineryPrice = $wineryPrice;
+        return $this;
+    }
+
+    /**
+     * Get wineryPrice
+     *
+     * @return float $wineryPrice
+     */
+    public function getWineryPrice()
+    {
+        return $this->wineryPrice;
     }
 }

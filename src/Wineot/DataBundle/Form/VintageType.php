@@ -16,9 +16,9 @@ class VintageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('productionYear')
-        ;
+        $builder->add('productionYear', 'choice', array(
+            'choices' => array_combine(range(date('Y'), date('Y')-100),range(date('Y'), date('Y')-100))));
+        $builder->add('wineryPrice', 'money');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
