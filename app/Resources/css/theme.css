@@ -37,11 +37,11 @@
 /*	0.0 - Commons
 /*-----------------------------------------------------------------------------------*/
 ::selection {
-  background: #b00;
+  background: #bb0000;
   color: #fff;
 }
 ::-moz-selection {
-  background: #b00;
+  background: #bb0000;
   color: #fff;
 }
 body {
@@ -224,7 +224,7 @@ ol.with-line-border > li {
 /*	3.0 - Basic Structure
 /*-----------------------------------------------------------------------------------*/
 .site {
-  background: #fff;
+  background: #f9f9f9;
 }
 .site-hero {
   min-height: 200px;
@@ -238,7 +238,7 @@ ol.with-line-border > li {
 }
 .site-main .content-area {
   padding: 30px;
-  background-color: #fff;
+  background-color: #f9f9f9;
   border-radius: 8px;
 }
 .breadcrumb {
@@ -260,7 +260,7 @@ ol.with-line-border > li {
 /*	4.1 - Site Header
 /*-----------------------------------------------------------------------------------*/
 .site-header {
-  background: #f9f9f9;
+  background: #fff;
   padding: 30px 0;
 }
 .site-logo {

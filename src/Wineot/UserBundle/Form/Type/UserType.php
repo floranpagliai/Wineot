@@ -20,7 +20,7 @@ class UserType extends AbstractType
         $builder->add('username', 'text');
         $builder->add('firstname', 'text');
         $builder->add('lastname', 'text');
-        $builder->add('email', 'email');
+        $builder->add('mail', 'email');
         $builder->add('plain_password', 'repeated', array(
             'type' => 'password',
             'invalid_message' => 'Les mots de passe doivent correspondre',

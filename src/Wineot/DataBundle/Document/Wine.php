@@ -7,6 +7,7 @@
 
 namespace Wineot\DataBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
@@ -48,10 +49,18 @@ class Wine
     /**
      * @var array
      *
-     * @MongoDB\Field(name="comments")
+     * @MongoDB\Field(name="vintages")
      * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wineId")
      */
     private $vintages;
+
+    /**
+     * @var integer
+     *
+     * @MongoDB\Field(name="winery_id")
+     * @MongoDB\ReferenceOne(targetDocument="Winery", inversedBy="wines")
+     */
+    private $winery;
 
     /**
      * @var integer
@@ -177,5 +186,35 @@ class Wine
             Wine::COLOR_PINK => 'global.wine.color.pink',
             Wine::COLOR_WHITE => 'global.wine.color.white'
         );
+    }
+
+    /**
+     * Set wineryId
+     *
+     * @param \Wineot\DataBundle\Document\Winery $wineryId
+     * @return self
+     */
+    public function setWinery(Winery $wineryId)
+    {
+        $this->winery = $wineryId;
+        return $this;
+    }
+
+    /**
+     * Get wineryId
+     *
+     * @return \Wineot\DataBundle\Document\Winery $wineryId
+     */
+    public function getWinery()
+    {
+        return $this->winery;
+    }
+
+    public function getComments()
+    {
+        $comments = new ArrayCollection();
+        foreach($this->vintages as $vintage)
+            $comments[] = $vintage->getComments();
+        return $comments;
     }
 }

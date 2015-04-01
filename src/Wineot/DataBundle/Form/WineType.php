@@ -2,6 +2,7 @@
 
 namespace Wineot\DataBundle\Form;
 
+use Doctrine\ODM\MongoDB\DocumentRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -18,6 +19,13 @@ class WineType extends AbstractType
             ->add('description', 'textarea')
             ->add('color', 'choice', array('choices' => Wine::getColors()))
         ;
+        $builder->add('winery', 'document', array(
+            'class' => 'Wineot\DataBundle\Document\Winery',
+            'property' => 'name',
+            'query_builder' => function(DocumentRepository $er)  {
+                    return $er->createQueryBuilder('c');
+                }
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

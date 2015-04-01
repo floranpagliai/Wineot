@@ -37,7 +37,7 @@ class Vintage {
      * @MongoDB\Field(name="wine_id")
      * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages")
      */
-    private $wineId;
+    private $wine;
 
     /**
      * @var integer
@@ -108,9 +108,9 @@ class Vintage {
      * @param \Wineot\DataBundle\Document\Wine $wineId
      * @return self
      */
-    public function setWineId(\Wineot\DataBundle\Document\Wine $wineId)
+    public function setWine(\Wineot\DataBundle\Document\Wine $wineId)
     {
-        $this->wineId = $wineId;
+        $this->wine = $wineId;
         return $this;
     }
 
@@ -119,9 +119,9 @@ class Vintage {
      *
      * @return \Wineot\DataBundle\Document\Wine $wineId
      */
-    public function getWineId()
+    public function getWine()
     {
-        return $this->wineId;
+        return $this->wine;
     }
 
     /**

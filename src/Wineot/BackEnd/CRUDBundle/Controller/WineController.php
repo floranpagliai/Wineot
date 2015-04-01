@@ -65,7 +65,7 @@ class WineController extends Controller
         return $this->render('WineotBackEndCRUDBundle:Wine:edit.html.twig', $paramsRender);
     }
 
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
