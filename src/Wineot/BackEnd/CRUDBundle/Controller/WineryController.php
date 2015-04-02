@@ -43,13 +43,41 @@ class WineryController extends Controller
         return $this->render('WineotBackEndCRUDBundle:Winery:add.html.twig', $paramsRender);
     }
 
-    public function editAction()
+    public function editAction(Request $request, $id)
     {
+        $flash = $this->get('notify_messenger.flash');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($id);
+        if (!$winery) {
+            $flash->error($this->get('translator')->trans('crud.error.winery.notfound'));
+            return $this->redirectToRoute('wineot_back_end_crud_wine');
+        }
+        $form = $this->createForm(new WineryType(), $winery);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $dm->persist($winery);
+            $dm->flush();
 
+            $flash->success($this->get('translator')->trans('crud.warn.winery.edited'));
+            return $this->redirectToRoute('wineot_back_end_crud_winery');
+        }
+        $paramsRender = array('form' => $form->createView(), 'id' => $id);
+        return $this->render('WineotBackEndCRUDBundle:Winery:edit.html.twig', $paramsRender);
     }
 
     public function deleteAction($id)
     {
+        $flash = $this->get('notify_messenger.flash');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($id);
+        if ($winery) {
+            $dm->remove($winery);
+            $dm->flush();
 
+            $flash->success($this->get('translator')->trans('crud.warn.winery.deleted'));
+        } else {
+            $flash->error($this->get('translator')->trans('crud.error.winery.notfound'));
+        }
+        return $this->redirectToRoute('wineot_back_end_crud_winery');
     }
 } 

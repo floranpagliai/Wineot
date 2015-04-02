@@ -10,3 +10,6 @@ wineot_back_end_crud_wine:
 wineot_back_end_crud_user:
     resource: "@WineotBackEndCRUDBundle/Resources/config/routing/user.yml"
     prefix:   /user
+wineot_back_end_crud_comment:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing/comment.yml"
+    prefix:   /comment
