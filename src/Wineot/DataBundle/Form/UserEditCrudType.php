@@ -35,6 +35,6 @@ class UserEditCrudType extends AbstractType
 
     public function getName()
     {
-        return 'wineot_databundle_usereditcrudtype';
+        return 'wineot_databundle_usereditcrud';
     }
 }

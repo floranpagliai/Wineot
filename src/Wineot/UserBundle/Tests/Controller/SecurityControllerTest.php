@@ -42,7 +42,7 @@ class SecurityControllerTest extends WebTestCase
         $client->getCookieJar()->set($cookie);
 
         //Trying go to user route being logged
-        $crawler = $client->request('GET', '/user/profile');
+        $client->request('GET', '/user/profile');
         $this->assertFalse($client->getResponse()->isRedirect());
     }
 
@@ -55,12 +55,12 @@ class SecurityControllerTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $testForm = array(
-            'user[username]'  => 'test',
-            'user[firstname]'  => 'test',
-            'user[lastname]'  => 'test',
-            'user[email]'  => 'test@wineot.fr',
-            'user[plain_password][first]'  => 'blabla',
-            'user[plain_password][second]' => 'blabla'
+            'wineot_databundle_user[username]'  => 'test',
+            'wineot_databundle_user[firstname]'  => 'test',
+            'wineot_databundle_user[lastname]'  => 'test',
+            'wineot_databundle_user[mail]'  => 'test@wineot.fr',
+            'wineot_databundle_user[plain_password][first]'  => 'blabla',
+            'wineot_databundle_user[plain_password][second]' => 'blabla'
         );
 
         $response = $client->getResponse();

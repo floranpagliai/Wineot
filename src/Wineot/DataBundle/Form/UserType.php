@@ -33,6 +33,6 @@ class UserType extends AbstractType
 
     public function getName()
     {
-        return 'wineot_userbundle_usertype';
+        return 'wineot_databundle_user';
     }
 }
