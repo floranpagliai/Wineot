@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Wineot\DataBundle\Document\User;
-use Wineot\UserBundle\Form\Type\UserType;
+use Wineot\DataBundle\Form\UserType;
 
 class SecurityController extends Controller
 {
@@ -57,18 +57,20 @@ class SecurityController extends Controller
         $errors = null;
 
         $form->handleRequest($request);
-        $validator = $this->get('validator');
-        $errors = $validator->validate($user);
-        if ($form->isValid()) {
-            $encoder = $this->get('security.encoder_factory')->getEncoder($user);
-            $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
+        if ($request->isMethod('POST')) {
+            $validator = $this->get('validator');
+            $errors = $validator->validate($user);
+            if ($form->isValid()) {
+                $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
 
-            $em->persist($user);
-            $em->flush();
+                $em->persist($user);
+                $em->flush();
 
-            $flash = $this->get('braincrafted_bootstrap.flash');
-            $flash->success($this->get('translator')->trans('user.warn.can_login'));
-//            return $this->redirect($this->generateUrl('wineot_user_login'));
+                $flash = $this->get('notify_messenger.flash');
+                $flash->success($this->get('translator')->trans('user.warn.can_login'));
+                return $this->redirect($this->generateUrl('wineot_user_login'));
+            }
         }
         $paramsRender = array('form' => $form->createView(), 'errors' => $errors);
         return $this->render('WineotUserBundle:Security:register.html.twig', $paramsRender);

@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 <div class="form-inline">
     <div class="form-group">
-        {{  form_widget(form.searchInput, { 'attr' : {'placeholder':'Rechercher un vin...', 'class': 'search-field form-control input-lg'} })}}
+        {{  form_widget(form.searchInput, { 'attr' : {'placeholder':'Search a wine...', 'class': 'search-field form-control input-lg'} })}}
 
     </div>
     <input type="submit" class="search-submit btn btn-lg pull-right" id="_submit" name="_submit" value="Search"/>
@@ -12,12 +12,12 @@
         <div class="col-sm-4"><!-- Example parametre -->
             <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="#" class="col-sm-3 control-label">Robe</label>
+                    <label for="#" class="col-sm-3 control-label">Color</label>
                     <div class="col-sm-9">
                         <select name="category" class="form-control">
-                            <option value="">Rouge</option>
-                            <option value="">Blanc</option>
-                            <option value="">Rosé</option>
+                            <option value="0">{{ 'global.wine.color.red'|trans }}</option>
+                            <option value="1">{{ 'global.wine.color.pink'|trans }}</option>
+                            <option value="2">{{ 'global.wine.color.white'|trans }}</option>
                         </select>
                     </div>
                 </div>

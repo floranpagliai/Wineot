@@ -1,0 +1,10 @@
+wine:
+    pattern:  /
+    defaults: { _controller: "WineotDataBundle:Wine:index" }
+
+wine_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "WineotDataBundle:Wine:show" }
+
+
+

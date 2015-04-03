@@ -1,0 +1,7 @@
+parameters:
+    notify_messenger.flash.class: Utils\NotifyMessengerBundle\Session\FlashMessage
+
+services:
+    notify_messenger.flash:
+        class: %notify_messenger.flash.class%
+        arguments: [@session]

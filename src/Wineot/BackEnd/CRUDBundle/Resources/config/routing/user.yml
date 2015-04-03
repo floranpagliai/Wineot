@@ -1,0 +1,9 @@
+wineot_back_end_crud_user:
+    path:     /
+    defaults: { _controller: WineotBackEndCRUDBundle:User:index }
+wineot_back_end_crud_user_edit:
+    path:     /{id}/edit
+    defaults: { _controller: WineotBackEndCRUDBundle:User:edit }
+wineot_back_end_crud_user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: WineotBackEndCRUDBundle:User:delete }

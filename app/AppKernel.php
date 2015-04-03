@@ -25,13 +25,18 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+            new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
+
+            new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
 
             new Wineot\FrontEnd\HomeBundle\WineotFrontEndHomeBundle(),
             new Wineot\UserBundle\WineotUserBundle(),
             new Wineot\StyleGuideBundle\WineotStyleGuideBundle(),
             new Wineot\DataBundle\WineotDataBundle(),
             new Wineot\FrontEnd\SearchBundle\WineotFrontEndSearchBundle(),
-            new Wineot\LandingPage\HomeBundle\WineotLandingPageHomeBundle()
+            new Wineot\LandingPage\HomeBundle\WineotLandingPageHomeBundle(),
+            new Wineot\BackEnd\BackEndBundle\WineotBackEndBackEndBundle(),
+            new Wineot\BackEnd\CRUDBundle\WineotBackEndCRUDBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

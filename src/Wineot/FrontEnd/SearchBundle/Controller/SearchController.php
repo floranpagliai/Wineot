@@ -30,7 +30,7 @@ class SearchController extends Controller
                 ->getManager()
                 ->getRepository('WineotDataBundle:Wine')
                 ->findBy(array(
-                    'name' => new \MongoRegex('/^'.$searchInput.'/'),
+                    'name' => new \MongoRegex("/$searchInput/i"),
                 ));
 //            if(!empty($wineList)){
                 return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));

@@ -7,14 +7,20 @@
 
 namespace Wineot\DataBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
+use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="wines")
+ * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
  */
 class Wine
 {
+    const COLOR_RED = 0;
+    const COLOR_PINK = 1;
+    const COLOR_WHITE = 2;
     /**
      * @var string
      *
@@ -30,23 +36,32 @@ class Wine
      * @var string
      *
      * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 255
-     * )
-     * @Assert\NotBlank()
      */
-    private $resume;
+    private $description;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 255
-     * )
+     * @MongoDB\Field(type="int")
      * @Assert\NotBlank()
      */
-    private $cepage;
+    private $color;
+
+    /**
+     * @var collection
+     *
+     * @MongoDB\Field(name="vintages")
+     * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wine", cascade={"persist", "remove"})
+     */
+    private $vintages;
+
+    /**
+     * @var integer
+     *
+     * @MongoDB\Field(type="int", name="winery_id")
+     * @MongoDB\ReferenceOne(targetDocument="Winery", inversedBy="wines", cascade={"persist"}, simple=true)
+     */
+    private $winery;
 
     /**
      * @var integer
@@ -54,6 +69,11 @@ class Wine
      * @MongoDB\Id
      */
     private $id;
+
+    public function __construct()
+    {
+        $this->vintages = new ArrayCollection();
+    }
 
     /**
      * Set name
@@ -78,47 +98,78 @@ class Wine
     }
 
     /**
-     * Set resume
+     * Set description
      *
-     * @param string $resume
+     * @param string $description
      * @return self
      */
-    public function setResume($resume)
+    public function setDescription($description)
     {
-        $this->resume = $resume;
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * Get resume
+     * Get description
      *
-     * @return string $resume
+     * @return string $description
      */
-    public function getResume()
+    public function getDescription()
     {
-        return $this->resume;
+        return $this->description;
     }
 
     /**
-     * Set cepage
+     * Set color
      *
-     * @param string $cepage
+     * @param int $color
      * @return self
      */
-    public function setCepage($cepage)
+    public function setColor($color)
     {
-        $this->cepage = $cepage;
+        $this->color = $color;
         return $this;
     }
 
     /**
-     * Get cepage
+     * Get color
      *
-     * @return string $cepage
+     * @return int $color
      */
-    public function getCepage()
+    public function getColor()
     {
-        return $this->cepage;
+        return $this->color;
+    }
+
+    /**
+     * Add vintage
+     *
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function addVintage(Vintage $vintage)
+    {
+        $vintage->setWine($this);
+        $this->vintages[] = $vintage;
+    }
+
+    /**
+     * Remove vintage
+     *
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function removeVintage(Vintage $vintage)
+    {
+        $this->vintages->removeElement($vintage);
+    }
+
+    /**
+     * Get vintages
+     *
+     * @return \Doctrine\Common\Collections\Collection $vintages
+     */
+    public function getVintages()
+    {
+        return $this->vintages;
     }
 
     /**
@@ -129,5 +180,51 @@ class Wine
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set wineryId
+     *
+     * @param \Wineot\DataBundle\Document\Winery $wineryId
+     * @return self
+     */
+    public function setWinery(Winery $wineryId)
+    {
+        $this->winery = $wineryId;
+        return $this;
+    }
+
+    /**
+     * Get wineryId
+     *
+     * @return \Wineot\DataBundle\Document\Winery $wineryId
+     */
+    public function getWinery()
+    {
+        return $this->winery;
+    }
+
+    public function getComments()
+    {
+        $comments = array();
+        foreach ($this->vintages as $vintage) {
+            $vintage_comments = $vintage->getComments();
+            if(!isset($vintage_comments))
+                $comments[] = $vintage_comments;
+        }
+
+        return $comments;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getColors()
+    {
+        return array(
+            Wine::COLOR_RED => 'global.wine.color.red',
+            Wine::COLOR_PINK => 'global.wine.color.pink',
+            Wine::COLOR_WHITE => 'global.wine.color.white'
+        );
     }
 }

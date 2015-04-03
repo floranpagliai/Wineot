@@ -1,20 +1,42 @@
 {% extends "WineotFrontEndSearchBundle::layout.html.twig" %}
 {% block body %}
-{% for wine in wineList %}
-    <div class="wine-thumbnail col-lg-3 col-md-3">
-        <article>
-            <header>
-                <a href="#">
-                    <img src="{{ asset('img/image.jpeg') }}"/>
-                    <div class="img-background"></div>
-                    <h1>{{ wine.name }}<span> 2012</span></h1>
-                </a>
-            </header>
-            <div class="wine-thumbnail-info">
-                <h2>{{ wine.resume }}</h2>
-                <h3></h3>
-            </div>
-        </article>
-    </div>
-{% endfor %}
+    <ul class="wine-thumbnails">
+        {% for wine in wineList %}
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="wine-thumbnail">
+                    <article>
+                        <div class="wine-thumbnail-img col-xs-5">
+                            <a href="#">
+                                <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+
+                                <div class="img-background"></div>
+                            </a>
+                        </div>
+                        <div class="wine-thumbnail-body col-xs-7">
+                            <h2>{{ wine.winery.name }}</h2>
+
+                            <h1>{{ wine.name }}{#<span> {{ wine.productionYear }}</span>#}</h1>
+
+                            <p>{{ wine.color|wineColor }}</p>
+                        </div>
+                        <div class="wine-thumbnail-footer">
+                            <div class="wine-thumbnail-key">
+                                <i class="fa fa-comments"></i>
+                                {{ wine.comments|length }}
+                            </div>
+                            <div class="wine-thumbnail-key">
+                                <i class="fa fa-star"></i>
+                                0
+                            </div>
+                            <div class="wine-thumbnail-key">
+                                <i class="fa fa-tag"></i>
+                                6 €
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

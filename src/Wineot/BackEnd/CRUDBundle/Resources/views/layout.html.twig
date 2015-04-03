@@ -1,0 +1,16 @@
+{% extends "frontend/layout.html.twig" %}
+{% set menu_selected = 'admin' %}
+{% set search_active = false %}
+{% set sitehero_active = false %}
+{% block sidebar %}
+    <section id="section-categories" class="section">
+        <h2 class="section-title h4 clearfix"><i class="line"></i>CRUD</h2>
+        <ul class="nav nav-pills nav-stacked nav-categories">
+            <li><a href="{{ path('wineot_back_end_crud_winery') }}">Winery</a></li>
+            <li><a href="{{ path('wineot_back_end_crud_wine') }}">Wine</a></li>
+            <li><a href="{{ path('wineot_back_end_crud_user') }}">User</a></li>
+            <li><a href="{{ path('wineot_back_end_crud_comment') }}">Comments</a></li>
+        </ul>
+    </section>
+    <!-- #section-categories -->
+{% endblock %}

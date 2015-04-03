@@ -1,0 +1,4 @@
+wineot_data_wine:
+    resource: "@WineotDataBundle/Resources/config/routing/wine.yml"
+    prefix:   /wine
+

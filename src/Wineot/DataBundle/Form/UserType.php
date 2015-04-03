@@ -1,16 +1,11 @@
 <?php
-/**
- * User: floran
- * Date: 08/11/14
- * Time: 15:42
- */
 
-namespace Wineot\UserBundle\Form\Type;
-
+namespace Wineot\DataBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Wineot\DataBundle\Document\User;
 
 class UserType extends AbstractType
 {
@@ -20,7 +15,7 @@ class UserType extends AbstractType
         $builder->add('username', 'text');
         $builder->add('firstname', 'text');
         $builder->add('lastname', 'text');
-        $builder->add('email', 'email');
+        $builder->add('mail', 'email');
         $builder->add('plain_password', 'repeated', array(
             'type' => 'password',
             'invalid_message' => 'Les mots de passe doivent correspondre',
@@ -38,6 +33,6 @@ class UserType extends AbstractType
 
     public function getName()
     {
-        return 'user';
+        return 'wineot_databundle_user';
     }
 }

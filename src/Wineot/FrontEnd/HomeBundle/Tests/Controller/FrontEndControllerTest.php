@@ -4,16 +4,13 @@ namespace Wineot\FrontEnd\HomeBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class FrontEndControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testHomePageDown()
     {
         $client = static::createClient();
 
         $client->request('GET', '/');
-
-        $response = $client->getResponse();
-
-        $this->assertTrue($response->isSuccessful());
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 }

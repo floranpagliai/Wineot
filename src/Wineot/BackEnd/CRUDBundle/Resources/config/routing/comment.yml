@@ -1,0 +1,6 @@
+wineot_back_end_crud_comment:
+    path:     /
+    defaults: { _controller: WineotBackEndCRUDBundle:Comment:index }
+wineot_back_end_crud_comment_delete:
+    path:     /{id}/delete
+    defaults: { _controller: WineotBackEndCRUDBundle:Comment:delete }

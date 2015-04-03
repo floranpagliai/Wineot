@@ -1,0 +1,12 @@
+wineot_back_end_crud_winery:
+    path:     /
+    defaults: { _controller: WineotBackEndCRUDBundle:Winery:index }
+wineot_back_end_crud_winery_add:
+    path:     /add
+    defaults: { _controller: WineotBackEndCRUDBundle:Winery:add }
+wineot_back_end_crud_winery_edit:
+    path:     /{id}/edit
+    defaults: { _controller: WineotBackEndCRUDBundle:Winery:edit }
+wineot_back_end_crud_winery_delete:
+    path:     /{id}/delete
+    defaults: { _controller: WineotBackEndCRUDBundle:Winery:delete }

@@ -37,11 +37,11 @@
 /*	0.0 - Commons
 /*-----------------------------------------------------------------------------------*/
 ::selection {
-  background: #b00;
+  background: #bb0000;
   color: #fff;
 }
 ::-moz-selection {
-  background: #b00;
+  background: #bb0000;
   color: #fff;
 }
 body {
@@ -224,9 +224,10 @@ ol.with-line-border > li {
 /*	3.0 - Basic Structure
 /*-----------------------------------------------------------------------------------*/
 .site {
-  background: #fff;
+  background: #f9f9f9;
 }
 .site-hero {
+  min-height: 200px;
   padding: 35px 0;
   background: url("img/swirl_pattern.png");
 }
@@ -237,7 +238,7 @@ ol.with-line-border > li {
 }
 .site-main .content-area {
   padding: 30px;
-  background-color: #fff;
+  background-color: #f9f9f9;
   border-radius: 8px;
 }
 .breadcrumb {
@@ -259,7 +260,7 @@ ol.with-line-border > li {
 /*	4.1 - Site Header
 /*-----------------------------------------------------------------------------------*/
 .site-header {
-  background: #f9f9f9;
+  background: #fff;
   padding: 30px 0;
 }
 .site-logo {
@@ -532,6 +533,12 @@ ol.with-line-border > li {
 }
 .comment-form .user-data .btn {
   margin-top: 5px;
+}
+/*	5.6 - Form
+/*-----------------------------------------------------------------------------------*/
+.form-group textarea {
+  resize: none;
+  min-height: 100px;
 }
 /*-----------------------------------------------------------------------------------*/
 /*	6.0 - Widgets

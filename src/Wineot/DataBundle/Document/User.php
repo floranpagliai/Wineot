@@ -7,6 +7,8 @@
 
 namespace Wineot\DataBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @MongoDB\Document(collection="users")
- * @MongoDBUnique(fields="email", message="user.warn.unique_email")
+ * @MongoDBUnique(fields="mail", message="user.warn.unique_email")
  */
 class User implements UserInterface
 {
@@ -35,7 +37,11 @@ class User implements UserInterface
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
-     *      max = 64
+     *      min = "5",
+     *      max = "30",
+     *      minMessage = "user.warn.password_length",
+     *      maxMessage = "user.warn.password_length",
+     *      groups = {"Default"}
      * )
      */
     private $password;
@@ -46,31 +52,11 @@ class User implements UserInterface
      *      min = "5",
      *      max = "30",
      *      minMessage = "user.warn.password_length",
-     *      maxMessage = "user.warn.password_length"
+     *      maxMessage = "user.warn.password_length",
+     *      groups = {"Default"}
      * )
      * */
     private $plainPassword;
-
-    /**
-     * Returns the roles granted to the user.
-     *
-     * <code>
-     * public function getRoles()
-     * {
-     *     return array('ROLE_USER');
-     * }
-     * </code>
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return Role[] The user roles
-     */
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
 
     /**
      * @var string
@@ -79,7 +65,7 @@ class User implements UserInterface
      * @Assert\Email()
      * @Assert\NotBlank()
      */
-    private $email;
+    private $mail;
 
     /**
      * @var string
@@ -104,11 +90,33 @@ class User implements UserInterface
     private $lastname;
 
     /**
+     * @var array
+     *
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="user")
+     */
+    private $comments;
+
+    /**
+     * @var collection
+     *
+     * @MongoDB\Field(type="collection")
+     *
+     * @Assert\NotBlank()
+     */
+    private $roles;
+
+    /**
      * @var integer
      *
      * @MongoDB\Id
      */
     private $id;
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Set username
@@ -176,9 +184,9 @@ class User implements UserInterface
      * @param string $email
      * @return self
      */
-    public function setEmail($email)
+    public function setMail($email)
     {
-        $this->email = $email;
+        $this->mail = $email;
         return $this;
     }
 
@@ -187,9 +195,9 @@ class User implements UserInterface
      *
      * @return string $email
      */
-    public function getEmail()
+    public function getMail()
     {
-        return $this->email;
+        return $this->mail;
     }
 
     /**
@@ -267,5 +275,69 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+    
+    /**
+     * Add comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection $comments
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * @return Roles[] The user roles
+     */
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return $roles;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param $roles
+     * @return self
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getRolesType()
+    {
+        return array(
+            'ROLE_ADMIN' => 'Admin'
+        );
     }
 }
