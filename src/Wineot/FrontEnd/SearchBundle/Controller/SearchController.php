@@ -22,6 +22,7 @@ class SearchController extends Controller
     {
         $form = $this->createForm(new SearchType());
 
+        $wineList = null;
         $form->submit($request);
         if ($form->isValid()) {
             $searchInput = $form->getData()["searchInput"];
@@ -32,13 +33,8 @@ class SearchController extends Controller
                 ->findBy(array(
                     'name' => new \MongoRegex("/$searchInput/i"),
                 ));
-//            if(!empty($wineList)){
-                return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
-//            }
-//            else{
-
-//                 AUCUN RESULTATS
-//            }
         }
+        return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
+
     }
 }

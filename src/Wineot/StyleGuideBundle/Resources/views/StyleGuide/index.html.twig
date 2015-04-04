@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}"/>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Merriweather' rel='stylesheet' type='text/css'>
 
     {% stylesheets
@@ -45,15 +45,14 @@
 			<h2>Branding</h2>
 
 			<ul>
-				<li class="cd-box"><img src="assets/branding/logo-ver-1.jpg" alt="Logo version 1"></li>
-				<li class="cd-box"><img src="assets/branding/logo-ver-2.jpg" alt="Logo version 2"></li>
+				<li class="cd-box"><img src="{{ asset('bundles/wineotstyleguide/assets/branding/logo-ver-1.jpg') }}" alt="Logo version 1"></li>
+				<li class="cd-box"><img src="{{ asset('bundles/wineotstyleguide/assets/branding/logo-ver-2.jpg') }}" alt="Logo version 2"></li>
 			</ul>
-
-			<ul>
-				<li><img src="assets/branding/touch-icon-1.jpg" alt="Touch Icon 1"></li>
-				<li><img src="assets/branding/touch-icon-2.jpg" alt="Touch Icon 2"></li>
-				<li><img src="assets/branding/favicon-1.jpg" alt="Favicon 1"></li>
-				<li><img src="assets/branding/favicon-2.jpg" alt="Favicon 2"></li>
+            <ul>
+                <li><img src="{{ asset('bundles/wineotstyleguide/assets/branding/touch-icon-1-2.jpg') }}" alt="Touch Icon 1"></li>
+				<li><img src="{{ asset('bundles/wineotstyleguide/assets/branding/touch-icon-2.jpg') }}" alt="Touch Icon 2"></li>
+				<li><img src="{{ asset('bundles/wineotstyleguide/assets/branding/favicon-1.jpg') }}" alt="Favicon 1"></li>
+				<li><img src="{{ asset('bundles/wineotstyleguide/assets/branding/favicon-2.jpg') }}" alt="Favicon 2"></li>
 			</ul> 
 		</section>
 
@@ -96,10 +95,10 @@
 			<h2>Buttons</h2>
 
 			<div class="cd-box">
-				<button class="btn">Normal</button>
-				<button class="btn btn-success">Success</button>
-				<button class="btn btn-alert">Alert</button>
-				<button class="btn btn-outline">Outline</button>
+				<button class="btn btn-lg">Normal</button>
+				<button class="btn btn-sm btn-blue"><i class="fa fa-pencil"></i></button>
+				<button class="btn btn-sm btn-red"><i class="fa fa-times"></i></button>
+				{#<button class="btn btn-outline">Outline</button>#}
 			</div>
 
 		</section>
@@ -156,9 +155,9 @@
 	</main>
     <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
     <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <!-- Include all JavaScripts, compiled by Assetic -->
     <script src="{{ asset('bundles/wineotstyleguide/js/main.js') }}"></script>
     <script src="{{ asset('bundles/wineotstyleguide/js/modernizr.js') }}"></script>
-    <script src="{{ asset('bundles/wineotstyleguide/js/bootstrap.js') }}"></script>
 </body>
 </html>
