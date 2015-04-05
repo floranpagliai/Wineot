@@ -20,11 +20,11 @@
                 </td>
                 <td>
                     <b>{{ wine.name }}</b><br/>
-                    {{ wine.description }}
+                    {#{{ wine.description }}#}
                 </td>
                 <td>
                 {% for vintage in wine.vintages %}
-                    {{ vintage.productionYear }}<br/>
+                    {{ vintage.productionYear }}
                 {% endfor %}
                 </td>
                 <td>{{ wine.color|wineColor(true) }}</td>

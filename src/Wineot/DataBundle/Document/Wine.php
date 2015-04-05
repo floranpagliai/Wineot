@@ -51,7 +51,12 @@ class Wine
      * @var collection
      *
      * @MongoDB\Field(name="vintages")
-     * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wine", cascade={"persist", "remove"})
+     * @MongoDB\ReferenceMany(
+     * targetDocument="Vintage",
+     * mappedBy="wine",
+     * cascade={"persist", "remove"},
+     * sort={"productionYear": "asc"},
+     * simple=true)
      */
     private $vintages;
 
