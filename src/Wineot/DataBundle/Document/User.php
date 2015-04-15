@@ -90,7 +90,7 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @var array
+     * @var collection
      *
      * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="user")
      */
@@ -114,7 +114,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->roles = new ArrayCollection();
+        $this->roles[] = 'ROLE_USER';
         $this->comments = new ArrayCollection();
     }
 
@@ -282,7 +282,7 @@ class User implements UserInterface
      *
      * @param \Wineot\DataBundle\Document\Comment $comment
      */
-    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
     }
@@ -292,7 +292,7 @@ class User implements UserInterface
      *
      * @param \Wineot\DataBundle\Document\Comment $comment
      */
-    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
@@ -314,9 +314,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
-        return $roles;
+        return $this->roles;
     }
 
     /**
@@ -337,7 +335,7 @@ class User implements UserInterface
     public static function getRolesType()
     {
         return array(
-            'ROLE_ADMIN' => 'Admin'
+            'ROLE_ADMIN' => 'Admin',
         );
     }
 }
