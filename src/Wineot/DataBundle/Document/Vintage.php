@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="vintages")
+ * @MongoDB\EmbeddedDocument
  */
 class Vintage
 {
@@ -42,20 +42,20 @@ class Vintage
      */
     private $comments;
 
-    /**
-     * @var integer
-     *
-     * @MongoDB\Field(name="wine_id")
-     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages", simple=true)
-     */
-    private $wine;
-
-    /**
-     * @var integer
-     *
-     * @MongoDB\Id
-     */
-    private $id;
+//    /**
+//     * @var integer
+//     *
+//     * @MongoDB\Field(name="wine_id")
+//     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages", simple=true)
+//     */
+//    private $wine;
+//
+//    /**
+//     * @var integer
+//     *
+//     * @MongoDB\Id
+//     */
+//    private $id;
 
     public function __construct()
     {

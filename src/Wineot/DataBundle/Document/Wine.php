@@ -51,7 +51,8 @@ class Wine
      * @var collection
      *
      * @MongoDB\Field(name="vintages")
-     * @MongoDB\ReferenceMany(targetDocument="Vintage", mappedBy="wine", cascade={"persist", "remove"})
+     * @MongoDB\EmbedMany(
+     * targetDocument="Vintage")
      */
     private $vintages;
 
