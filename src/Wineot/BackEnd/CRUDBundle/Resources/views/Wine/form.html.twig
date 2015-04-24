@@ -6,6 +6,10 @@
         {% endif %}
 <fieldset>
     <div class="form-group">
+        <label class="sr-only" for="winery">Winery</label>
+        {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
+    </div>
+    <div class="form-group">
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
     </div>
     <div class="form-group">
@@ -15,10 +19,6 @@
         {{ form_widget(form.color, { 'attr': { 'placeholder': 'color'|trans } } ) }}
     </div>
     {% include 'WineotBackEndCRUDBundle:Vintage:form.html.twig' %}
-    <div class="form-group">
-        <label class="sr-only" for="winery">Winery</label>
-        {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
-    </div>
     <br>
     <input class="btn btn-lg  btn-block" type="submit" id="_submit" name="submit_wine"
            value="{{ 'submit'|trans }}"/>
