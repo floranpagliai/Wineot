@@ -282,7 +282,7 @@ class User implements UserInterface
      *
      * @param \Wineot\DataBundle\Document\Comment $comment
      */
-    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
     }
@@ -314,9 +314,6 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-       /* $roles = $this->roles;
-        $roles[] = 'ROLE_USER';*/
-
         return $this->roles;
     }
 
@@ -338,7 +335,7 @@ class User implements UserInterface
     public static function getRolesType()
     {
         return array(
-            'ROLE_ADMIN' => 'Admin'
+            'ROLE_ADMIN' => 'Admin',
         );
     }
 }
