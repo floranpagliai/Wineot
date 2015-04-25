@@ -1,4 +1,15 @@
+.wine-color-0 {
+  color: #9d000b;
+}
+.wine-color-1 {
+  color: #e97e9b;
+}
+.wine-color-2 {
+  color: #f0c300;
+}
 .btn {
+  padding-bottom: 5px;
+  border-bottom-width: 2px;
   font-weight: 600;
   text-transform: uppercase;
   color: #fff;
@@ -18,6 +29,8 @@
 .btn.active,
 .open .dropdown-toggle.btn {
   background-image: none;
+  border-top-width: 2px;
+  border-bottom-width: 1px;
 }
 .btn.disabled,
 .btn[disabled],
@@ -36,15 +49,6 @@ fieldset[disabled] .btn:active,
 fieldset[disabled] .btn.active {
   background-color: #f1422c;
   border-color: #d72020;
-}
-.btn {
-  padding-bottom: 5px;
-  border-bottom-width: 2px;
-}
-.btn:active,
-.btn.active {
-  border-top-width: 2px;
-  border-bottom-width: 1px;
 }
 .btn-lg.btn {
   padding-bottom: 8px;

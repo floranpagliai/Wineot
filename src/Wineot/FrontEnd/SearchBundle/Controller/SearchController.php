@@ -23,25 +23,23 @@ class SearchController extends Controller
     {
         $form = $this->createForm(new SearchType());
 
+        $wineList = null;
         $form->submit($request);
         if ($form->isValid()) {
             $searchInput = $form->getData()["searchInput"];
-            $valueColor = $request->get('category');
-            $wineList = $this
-                ->get('doctrine_mongodb')
-                ->getManager()
-                ->getRepository('WineotDataBundle:Wine')
-                ->findBy(array(
-                    'name' => new \MongoRegex("/$searchInput/i"),
-                    'color' => intval($valueColor),
-                ));
-//            if(!empty($wineList)){
-                return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
-//            }
-//            else{
+            $valueColor = $request->get('wineColor');
 
-//                 AUCUN RESULTATS
-//            }
+            $query = $this->get('doctrine_mongodb')
+                ->getManager()
+                ->createQueryBuilder('WineotDataBundle:Wine')
+                ->field('name')->equals(new \MongoRegex("/$searchInput/i"))
+                ->sort('name', 'ASC');
+
+            if ($valueColor != 3)
+                $query->field('color')->equals(intval($valueColor));
+            $wineList = $query->getQuery()->execute();
         }
+        return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
+
     }
 }

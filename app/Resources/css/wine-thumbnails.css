@@ -1,3 +1,12 @@
+.wine-color-0 {
+  color: #9d000b;
+}
+.wine-color-1 {
+  color: #e97e9b;
+}
+.wine-color-2 {
+  color: #f0c300;
+}
 .wine-thumbnails {
   margin: 0;
   padding: 0;
@@ -69,11 +78,9 @@
 .wine-thumbnail h1 span {
   font-weight: 200;
 }
-.wine-thumbnail-info {
-  padding-left: 1rem;
-}
 .wine-thumbnail h2 {
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 200;
 }
 .wine-thumbnail h3 {
   font-size: 12px;

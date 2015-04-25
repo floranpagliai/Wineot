@@ -17,7 +17,7 @@
 
                             <h1>{{ wine.name }}{#<span> {{ wine.productionYear }}</span>#}</h1>
 
-                            <p>{{ wine.color|wineColor }}</p>
+                            <p><i class="fa fa-circle-o-notch wine-color-{{ wine.color}}"></i> {{ wine.color|wineColor }}</p>
                         </div>
                         <div class="wine-thumbnail-footer">
                             <div class="wine-thumbnail-key">
