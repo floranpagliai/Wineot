@@ -12,9 +12,10 @@ class SearchController extends Controller
 {
     public function searchAction(Request $request)
     {
-        $form = $this->createForm(new SearchType(), null, [
-            'action' => $this->generateUrl('wineot_search_result'),
-            'method' => 'POST']);
+        $form = $this->createForm(new SearchType(), null,
+            array(
+                'action' => $this->generateUrl('wineot_search_result'),
+                'method' => 'GET'));
 
         return $this->render('WineotFrontEndSearchBundle:Search:Search.html.twig', array('form' => $form->createView()));
     }
@@ -26,7 +27,7 @@ class SearchController extends Controller
         $wineList = null;
         $form->submit($request);
         if ($form->isValid()) {
-            $searchInput = $form->getData()["searchInput"];
+            $searchInput = $request->get("searchInput");
             $valueColor = $request->get('wineColor');
 
             $query = $this->get('doctrine_mongodb')
