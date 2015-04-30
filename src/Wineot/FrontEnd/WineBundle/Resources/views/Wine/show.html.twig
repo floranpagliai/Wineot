@@ -1,8 +1,5 @@
 {% extends "WineotFrontEndSearchBundle::layout.html.twig" %}
 {% block body %}
-    <ul class="wine-thumbnails">
-        {% for wine in wineList %}
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="wine-thumbnail">
                     <article>
                         <div class="wine-thumbnail-img col-xs-5">
@@ -36,7 +33,4 @@
 
                     </article>
                 </div>
-            </li>
-        {% endfor %}
-    </ul>
 {% endblock %}

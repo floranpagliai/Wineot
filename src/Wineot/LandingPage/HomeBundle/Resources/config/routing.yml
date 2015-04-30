@@ -1,3 +1,0 @@
-wineot_landing_page_home:
-    path:     /landingpage
-    defaults: { _controller: WineotLandingPageHomeBundle:Home:index }
