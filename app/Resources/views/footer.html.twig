@@ -30,11 +30,98 @@
 
             <div class="site-social text-right col-md-6">
                 <ul class="list-inline hidden-print">
-                    <li><a href="#" class="btn-social btn-facebook"><i class="fa fa-facebook fa-fw"></i></a></li>
-                    <li><a href="#" class="btn-social btn-twitter"><i class="fa fa-twitter fa-fw"></i></a></li>
+                    <li><a href="https://www.facebook.com/pages/Wineot/1401290980192347" target="_blank" class="btn-social btn-facebook"><i class="fa fa-facebook fa-fw"></i></a></li>
+                    <li><a href="https://twitter.com/WineOt_fr" target="_blank" class="btn-social btn-twitter"><i class="fa fa-twitter fa-fw"></i></a></li>
                 </ul>
             </div>
             <!-- .site-social -->
         </div>
     </div>
 </footer><!-- #colophon -->
+
+{% javascripts
+    'js/jquery.js'
+    'js/bootstrap.js'
+    '@UtilsNotifyMessengerBundle/Resources/public/js/*'
+%}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}
+<script>
+    $(function($) {
+        /*-----------------------------------------------------------------------------------*/
+        /*	Main Search
+         /*-----------------------------------------------------------------------------------*/
+        $('#header-search .search-field').on('focus', function() {
+            $('#header-search .search-advance-button').fadeIn()
+            $('#header-search .search-advance').slideDown()
+        })
+        $('#header-search .search-advance-button').on('click', function(e) {
+            e.preventDefault()
+            $(this).fadeOut(100)
+            $('#header-search .search-advance').slideUp(100)
+        })
+    });
+    $(function () {
+        // Tooltips for sidebar toggle and sidebar logout button
+        $('.tooltip-sidebar-toggle, .tooltips').tooltip({
+            selector: "[data-toggle=tooltip]",
+            container: "body"
+        });
+    });
+</script>
+{% block page_script %}
+    <script type="text/javascript">
+        var collectionHolder = $('tbody.vintages');
+
+        // ajoute un lien « add a tag »
+        var $addTagLink = $('<a href="#" class="btn btn-sm btn-primary add_tag_link"><i class="fa fa-plus"></i> Add a vintage</a>');
+
+        var $newLinkLi = $addTagLink;
+
+        jQuery(document).ready(function () {
+            // ajoute l'ancre « ajouter un tag » et li à la balise ul
+            collectionHolder.append($newLinkLi);
+
+            $addTagLink.on('click', function (e) {
+                // empêche le lien de créer un « # » dans l'URL
+                e.preventDefault();
+
+                // ajoute un nouveau formulaire tag (voir le prochain bloc de code)
+                addTagForm(collectionHolder, $newLinkLi);
+            });
+
+            collectionHolder.find('tr').each(function () {
+                addTagFormDeleteLink($(this));
+            });
+        });
+
+        function addTagForm(collectionHolder, $newLinkLi) {
+            // Récupère l'élément ayant l'attribut data-prototype comme expliqué plus tôt
+            var prototype = collectionHolder.attr('data-prototype');
+
+            // Remplace '__name__' dans le HTML du prototype par un nombre basé sur
+            // la longueur de la collection courante
+            var newForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+
+            // Affiche le formulaire dans la page dans un li, avant le lien "ajouter un tag"
+            var $newFormLi = $('<tr></tr>').append(newForm);
+            $newLinkLi.before($newFormLi);
+            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<td class="tooltip-content"><a href="#" class="btn btn-sm btn-red btn-block" data-toggle="tooltip" ' +
+                    'data-placement="top" data-original-title="Delete vintage"><i class="fa fa-times"></i></a></td>');
+
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function (e) {
+                // empêche le lien de créer un « # » dans l'URL
+                e.preventDefault();
+
+                // supprime l'élément li pour le formulaire de tag
+                $tagFormLi.remove();
+            });
+        }
+    </script>
+{% endblock %}

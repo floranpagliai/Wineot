@@ -1,0 +1,3 @@
+wineot_style_guide_homepage:
+    path:     /styleguide
+    defaults: { _controller: WineotStyleGuideBundle:Default:index }

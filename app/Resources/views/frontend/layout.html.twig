@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+{% include 'header.html.twig' %}
+<body>
+<div id="page" class="site">
+    {% include 'UtilsNotifyMessengerBundle::flash.html.twig' %}
+    <header class="site-header" role="banner">
+        <div class="container">
+            {% include 'frontend/navbar.html.twig' %}
+            {% if search_active is not defined  %}
+                {% include 'frontend/search.html.twig' %}
+            {% endif %}
+        </div>
+    </header>
+
+    {% if sitehero_active is not defined  %}
+        <div class="site-hero clearfix">
+            <div class="container">
+                {#<div class="features row">#}
+                {#<div class="col-sm-4">#}
+                {#<div class="banner-wrapper text-center">#}
+                {#<span class="fa-stack fa-3x">#}
+                {#<i class="fa fa-circle fa-stack-2x"></i>#}
+                {#<i class="fa fa-expand fa-stack-1x fa-inverse"></i>#}
+                {#</span>#}
+                {#<h4 class="banner-title h3">Responsive Layout</h4>#}
+                {#<div class="banner-content">#}
+                {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae placerat …</p>#}
+                {#</div>#}
+                {#<p><a href="#" class="btn btn-custom btn-sm">Read More</a></p>#}
+                {#</div><!-- .banner-wrapper -->#}
+                {#</div>#}
+                {#</div>#}
+            </div>
+        </div><!-- .site-hero -->
+    {% endif %}
+
+
+    <div id="main" class="site-main clearfix">
+        <div class="container">
+
+            <div class="content-area">
+                <div class="row">
+
+                    {% set sidebar_block = block('sidebar') %}
+                    {% set body_block = block('body') %}
+                    {% if sidebar_block is not empty %}
+                        <div id="sidebar" class="site-sidebar col-md-3">
+                            <div class="widget-area">
+                                {{ sidebar_block|raw }}
+                            </div>
+                        </div>
+                        <div id="content" class="site-content col-md-9">
+                            <div class="row">
+                                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
+                                {{ body_block|raw }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div id="content" class="site-content col-md-12">
+                            <div class="row">
+                                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
+                                {{ body_block|raw }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #main -->
+
+    {% include 'footer.html.twig' %}
+</div>
+</body>
+</html>

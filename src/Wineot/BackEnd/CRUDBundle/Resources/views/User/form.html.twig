@@ -1,0 +1,35 @@
+    {{ form_start(form) }}
+    {% if errors  is defined %}
+        {% for error in errors %}
+            <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
+        {% endfor %}
+    {% endif %}
+    <fieldset>
+        <div class="form-group">
+            <label class="sr-only" for="username">Username</label>
+            {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.username'|trans } } ) }}
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="firstname">Firstname</label>
+            {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="lastname">Lastname</label>
+            {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="email">Email</label>
+            {{ form_widget(form.mail, { 'attr': { 'placeholder': 'user.form.email'|trans } } ) }}
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="password">Roles</label>
+            {{ form_widget(form.roles, { 'attr': { 'placeholder': 'user.form.roles'|trans } } ) }}
+        </div>
+        <br>
+        <input class="btn btn-lg btn-block" type="submit" id="_submit" name="submit_user"
+               value="{{ 'submit'|trans }}"/>
+    </fieldset>
+    <br>
+
+    {{ form_end(form) }}
+</div>

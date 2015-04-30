@@ -1,0 +1,36 @@
+{% if menu_selected is not defined %}
+    {% set menu_selected='home' %}
+{% endif %}
+<div id="logo" class="site-logo text-center">
+    {#<h1>Wine'ot</h1>#}
+    <a href="{{ path('wineot_front_end_homepage') }}"><img src="{{ asset('img/logo.png') }}" alt="Wine'ot"
+                                                           height="80%"/></a>
+</div><!-- #logo -->
+<div id="navbar" class="navbar-wrapper text-center">
+    <nav class="navbar navbar-default site-navigation" role="navigation">
+        <ul class="nav navbar-nav navbar-menu">
+            <li class="{% if menu_selected=='home' %}active{% endif %}">
+                <a href="{{ path('wineot_front_end_homepage') }}">{{ 'global.menu.home'|trans }}</a>
+            </li>
+            {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="{% if menu_selected=='admin' %}active{% endif %}">
+                        <a href="{{ path('wineot_back_end_homepage') }}">{{ 'global.menu.admin'|trans }}</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="{{ path('wineot_user_logout') }}">{{ 'user.action.logout'|trans }}</a>
+                </li>
+            {% else %}
+                <li class="{% if menu_selected=='register' %}active{% endif %}">
+                    <a href="{{ path('wineot_user_register') }}">{{ 'user.action.register'|trans }}</a>
+                </li>
+                <li class="{% if menu_selected=='login' %}active{% endif %}">
+                    <a href="{{ path('wineot_user_login') }}">{{ 'user.action.login'|trans }}</a>
+                </li>
+            {% endif %}
+        </ul>
+        <!-- .navbar-login -->
+    </nav>
+    <!-- #site-navigation -->
+</div><!-- #navbar -->

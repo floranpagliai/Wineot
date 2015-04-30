@@ -1,0 +1,14 @@
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div id="messenger" class="messenger-success" data-message="{{ flashMessage|trans }}">
+    </div>
+{% endfor %}
+
+{% for flashMessage in app.session.flashbag.get('info') %}
+    <div id="messenger" class="messenger-info" data-message="{{ flashMessage|trans }}">
+    </div>
+{% endfor %}
+
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <div id="messenger" class="messenger-error" data-message="{{ flashMessage|trans }}">
+    </div>
+{% endfor %}

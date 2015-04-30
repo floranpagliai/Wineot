@@ -1,8 +1,28 @@
-wineot_user:
-    resource: "@WineotUserBundle/Resources/config/routing.yml"
-    prefix:   /user
+wineot_back_end_crud:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing.yml"
+    prefix:   /admin/crud
 
 wineot_front_end_home:
     resource: "@WineotFrontEndHomeBundle/Resources/config/routing.yml"
     prefix:   /
 
+wineot_back_end_home:
+    resource: "@WineotBackEndBackEndBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+wineot_search:
+    resource: "@WineotFrontEndSearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+wineot_user:
+    resource: "@WineotUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+
+wineot_styleguide:
+    resource: "@WineotStyleGuideBundle/Resources/config/routing.yml"
+    prefix:   /
+
+wineot_landing_page_home:
+    resource: "@WineotLandingPageHomeBundle/Resources/config/routing.yml"
+    prefix:   /

@@ -1,0 +1,7 @@
+search:
+    action:
+        search: "Rechercher un vin"
+    title:
+        search: "Recherche"
+    form:
+        color: "Couleur"

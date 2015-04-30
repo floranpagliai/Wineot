@@ -12,10 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Wineot\UserBundle\Entity\User;
-use Wineot\UserBundle\Form\Type\UserType;
+use Wineot\DataBundle\Document\User;
+use Wineot\DataBundle\Form\UserType;
 
-class SecurityController extends Controller {
+class SecurityController extends Controller
+{
     public function loginAction(Request $request)
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
@@ -48,23 +49,25 @@ class SecurityController extends Controller {
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
             return $this->redirect($this->generateUrl('wineot_user_profile'));
+
+        $em = $this->get('doctrine_mongodb')->getManager();
+
         $user = new User();
         $form = $this->createForm(new UserType(), $user);
         $errors = null;
 
-        if ($request->isMethod('post')) {
-            $form->submit($request);
+        $form->handleRequest($request);
+        if ($request->isMethod('POST')) {
             $validator = $this->get('validator');
             $errors = $validator->validate($user);
             if ($form->isValid()) {
                 $encoder = $this->get('security.encoder_factory')->getEncoder($user);
                 $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
 
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 
-                $flash = $this->get('braincrafted_bootstrap.flash');
+                $flash = $this->get('notify_messenger.flash');
                 $flash->success($this->get('translator')->trans('user.warn.can_login'));
                 return $this->redirect($this->generateUrl('wineot_user_login'));
             }

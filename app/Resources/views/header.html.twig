@@ -1,0 +1,21 @@
+<head>
+    <title>{% block page_title %}Wine'ot{% endblock %}</title>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}"/>
+
+    {% stylesheets
+    'css/bootstrap.css'
+    'bundles/bmatznerfontawesome/css/font-awesome.min.css'
+    '@UtilsNotifyMessengerBundle/Resources/public/css/*'
+    '%kernel.root_dir%/Resources/css/*'
+    filter='cssrewrite' %}
+    <link href="{{ asset_url }}" rel="stylesheet" media="screen"/>
+    {% endstylesheets %}
+    {% block stylesheets %}{% endblock %}
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+</head>
