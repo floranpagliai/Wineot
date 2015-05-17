@@ -33,7 +33,6 @@ class WineController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-//            $wine->getImage()->upload();
             $dm->persist($wine);
             $dm->flush();
 
@@ -57,7 +56,6 @@ class WineController extends Controller
         $form = $this->createForm(new WineType(), $wine);
         $form->handleRequest($request);
         if ($form->isValid()) {
-//            $wine->getImage()->upload();
             $dm->persist($wine);
             $dm->flush();
 
@@ -77,8 +75,27 @@ class WineController extends Controller
             $dm->remove($wine);
             $dm->flush();
 
-
             $flash->success($this->get('translator')->trans('crud.warn.wine.deleted'));
+        } else {
+            $flash->error($this->get('translator')->trans('crud.error.wine.notfound'));
+        }
+        return $this->redirectToRoute('wineot_back_end_crud_wine');
+    }
+
+    public function deletePictureAction($id)
+    {
+        $flash = $this->get('notify_messenger.flash');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($id);
+        if ($wine) {
+            $wine = new Wine();
+            $picture = $wine->getLabelPicture();
+            $dm->remove($picture);
+            $wine->setLabelPicture(null);
+            $dm->persist($wine);
+            $dm->flush();
+
+            $flash->success($this->get('translator')->trans('crud.warn.wine.picture.deleted'));
         } else {
             $flash->error($this->get('translator')->trans('crud.error.wine.notfound'));
         }

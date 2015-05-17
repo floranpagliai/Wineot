@@ -3,7 +3,11 @@
     <div class="features row">
         <div class="col-sm-8 banner-wrapper">
             <div class="wine-show image col-sm-3">
-                <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                {% if  wine.labelPicture.md5 is defined %}
+                    <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
+                {% else %}
+                    <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                {% endif %}
             </div>
             <div class="wine-show content col-sm-9">
                 <h2 class="">{{ wine.winery.name }}</h2>

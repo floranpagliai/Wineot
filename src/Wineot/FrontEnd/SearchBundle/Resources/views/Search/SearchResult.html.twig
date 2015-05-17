@@ -7,18 +7,23 @@
                     <article>
                         <div class="wine-thumbnail-img col-xs-5">
                             <a href="#">
-                                <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
-
+                                {% if  wine.labelPicture.md5 is defined %}
+                                    <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
+                                {% else %}
+                                    <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                                {% endif %}
                                 <div class="img-background"></div>
                             </a>
                         </div>
                         <div class="wine-thumbnail-body col-xs-7">
                             <h2>{{ wine.winery.name }}</h2>
+
                             <h1>
                                 <a href="{{ path('wineot_front_end_wine_show',
                                 { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}">{{ wine.name }}
                                 </a>
                             </h1>
+
                             <p>
                                 <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
                             </p>

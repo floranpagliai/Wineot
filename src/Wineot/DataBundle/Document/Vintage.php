@@ -38,8 +38,10 @@ class Vintage
      * @var Image
      *
      * @MongoDB\Field(name="label_picture")
-     * @MongoDB\EmbedOne(
-     * targetDocument="Image")
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"persist"},
+     *  simple=true)
      */
     private $labelPicture;
 
