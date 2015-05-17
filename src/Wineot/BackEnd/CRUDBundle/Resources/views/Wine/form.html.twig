@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         {% if  wine.image.path is defined %}
-            <img class="img-rounded img-responsive" src="{{ asset(wine.image.path) }}" width="200px">
+            <img class="img-rounded img-responsive" src="{{ asset(wine.image.getWebPath()) }}" width="200px">
         {% else %}
             {{ form_widget(form.image) }}
         {% endif %}
