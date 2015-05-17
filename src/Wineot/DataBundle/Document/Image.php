@@ -10,6 +10,7 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\HasLifecycleCallbacks;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -95,7 +96,7 @@ class Image
 
     public function getWebPath()
     {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+        return null === $this->path ? null : $this->getUploadDir().'/'.$this->name;
     }
 
     protected function getUploadRootDir()
@@ -122,8 +123,8 @@ class Image
             $this->getUploadRootDir(), $this->getFile()->getClientOriginalName()
         );
 
-        $this->path = $this->getUploadRootDir() . '/' . $this->getFile()->getClientOriginalName();
-
+        $this->path = $this->getUploadRootDir();
+        $this->name = $this->getFile()->getClientOriginalName();
         $this->file = null;
     }
 
