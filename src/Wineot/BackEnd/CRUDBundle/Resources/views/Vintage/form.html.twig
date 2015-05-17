@@ -17,6 +17,7 @@
             <td>{{ form_widget(formData.productionYear) }}</td>
             <td>{{ form_widget(formData.wineryPrice) }}</td>
             <td>{{ form_widget(formData.labelPicture) }}</td>
+            <td class="hidden">form_widget(formData)</td>
     {% endmacro %}
     {% if not form.vars.valid %}
         <div class="alert alert-danger">

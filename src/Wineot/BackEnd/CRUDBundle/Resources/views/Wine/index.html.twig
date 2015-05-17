@@ -16,7 +16,9 @@
         {% for wine in wines %}
             <tr>
                 <td>
+                    {% if wine.winery.name is defined  %}
                     <b>{{ wine.winery.name }}</b>
+                        {% endif %}
                 </td>
                 <td>
                     <b>{{ wine.name }}</b><br/>
