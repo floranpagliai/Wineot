@@ -6,10 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class WineController extends Controller
 {
-    public function showAction($wineName)
+    public function showAction($wineName, $wineId)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Wine')->findOneBy(array('name'=>$wineName));
+        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
         return $this->render('WineotFrontEndWineBundle:Wine:show.html.twig', array('wine' => $wine));
     }
 }

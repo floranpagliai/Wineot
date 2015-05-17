@@ -17,6 +17,7 @@ class WineType extends AbstractType
         $builder->add('name');
         $builder->add('description', 'textarea');
         $builder->add('color', 'choice', array('choices' => Wine::getColors()));
+        $builder->add('image', new ImageType(), array('required' => false));
         $builder->add('vintages', 'collection', array(
             'type' => new VintageType(),
             'allow_add' => true,

@@ -19,6 +19,7 @@ class VintageType extends AbstractType
         $builder->add('productionYear', 'choice', array(
             'choices' => array_combine(range(date('Y'), date('Y')-100),range(date('Y'), date('Y')-100))));
         $builder->add('wineryPrice', 'money');
+        $builder->add('labelPicture', new ImageType(), array('required' => false));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

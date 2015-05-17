@@ -52,6 +52,7 @@
 }
 .wine-thumbnail .wine-thumbnail-body {
   height: 100%;
+  margin-top: 5px;
 }
 .wine-thumbnail .wine-thumbnail-footer {
   position: absolute;

@@ -33,6 +33,7 @@ class WineController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+//            $wine->getImage()->upload();
             $dm->persist($wine);
             $dm->flush();
 
@@ -56,13 +57,14 @@ class WineController extends Controller
         $form = $this->createForm(new WineType(), $wine);
         $form->handleRequest($request);
         if ($form->isValid()) {
+//            $wine->getImage()->upload();
             $dm->persist($wine);
             $dm->flush();
 
             $flash->success($this->get('translator')->trans('crud.warn.wine.edited'));
             return $this->redirectToRoute('wineot_back_end_crud_wine');
         }
-        $paramsRender = array('form' => $form->createView(), 'id' => $id);
+        $paramsRender = array('form' => $form->createView(), 'id' => $id, 'wine' => $wine);
         return $this->render('WineotBackEndCRUDBundle:Wine:edit.html.twig', $paramsRender);
     }
 

@@ -57,6 +57,15 @@ class Wine
     private $vintages;
 
     /**
+     * @var Image
+     *
+     * @MongoDB\Field(name="image")
+     * @MongoDB\EmbedOne(
+     * targetDocument="Image")
+     */
+    private $image;
+
+    /**
      * @var integer
      *
      * @MongoDB\Field(type="int", name="winery_id")
@@ -149,7 +158,6 @@ class Wine
      */
     public function addVintage(Vintage $vintage)
     {
-        $vintage->setWine($this);
         $this->vintages[] = $vintage;
     }
 
@@ -215,6 +223,22 @@ class Wine
         }
 
         return $comments;
+    }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Image $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

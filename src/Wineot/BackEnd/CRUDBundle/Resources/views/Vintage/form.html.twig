@@ -8,17 +8,15 @@
     <tr>
         <th>{{ 'vintage'|trans }}</th>
         <th>{{ 'price'|trans }}</th>
+        <th>{{ 'labelPicture'|trans }}</th>
         <th class="btn-table"></th>
     </tr>
     </thead>
 
     {% macro tagCollectionItem(formData) %}
-        {% if formData.productionYear is defined %}
             <td>{{ form_widget(formData.productionYear) }}</td>
-        {% else %}
-            <td>{{ form_widget(formData.productionYear) }}</td>
-        {% endif %}
             <td>{{ form_widget(formData.wineryPrice) }}</td>
+            <td>{{ form_widget(formData.labelPicture) }}</td>
     {% endmacro %}
     {% if not form.vars.valid %}
         <div class="alert alert-danger">

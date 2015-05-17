@@ -35,27 +35,21 @@ class Vintage
     private $wineryPrice;
 
     /**
+     * @var Image
+     *
+     * @MongoDB\Field(name="label_picture")
+     * @MongoDB\EmbedOne(
+     * targetDocument="Image")
+     */
+    private $labelPicture;
+
+    /**
      * @var collection
      *
      * @MongoDB\Field(name="comments")
      * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintage", nullable=true)
      */
     private $comments;
-
-//    /**
-//     * @var integer
-//     *
-//     * @MongoDB\Field(name="wine_id")
-//     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages", simple=true)
-//     */
-//    private $wine;
-//
-//    /**
-//     * @var integer
-//     *
-//     * @MongoDB\Id
-//     */
-//    private $id;
 
     public function __construct()
     {
@@ -118,38 +112,6 @@ class Vintage
     }
 
     /**
-     * Set wineId
-     *
-     * @param \Wineot\DataBundle\Document\Wine $wine
-     * @return self
-     */
-    public function setWine(Wine $wine)
-    {
-        $this->wine = $wine;
-        return $this;
-    }
-
-    /**
-     * Get wineId
-     *
-     * @return \Wineot\DataBundle\Document\Wine $wineId
-     */
-    public function getWine()
-    {
-        return $this->wine;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set wineryPrice
      *
      * @param float $wineryPrice
@@ -170,4 +132,22 @@ class Vintage
     {
         return $this->wineryPrice;
     }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Image $labelPicture
+     */
+    public function setLabelPicture($labelPicture)
+    {
+        $this->labelPicture = $labelPicture;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Image
+     */
+    public function getLabelPicture()
+    {
+        return $this->labelPicture;
+    }
+
+
 }
