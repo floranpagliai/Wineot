@@ -15,7 +15,11 @@
         {% for winery in wineries %}
             <tr>
                 <td>{{ winery.name }}</td>
-                <td>{{ winery.region.name }} · {{ winery.country.name }}</td>
+                <td>
+                    {% if winery.region.name is defined %}
+                {{ winery.region.name }} · {{ winery.country.name }}
+                    {% endif %}
+                </td>
                 <td>{{ winery.wines|length }}</td>
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_winery_edit', { 'id': winery.id }) }}"

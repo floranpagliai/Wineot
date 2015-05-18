@@ -42,7 +42,7 @@ class Winery
      * @MongoDB\ReferenceMany(
      *  targetDocument="Wine",
      *  mappedBy="winery",
-     *  cascade={"all"},)
+     *  cascade={"all"})
      */
     private $wines = array();
 
@@ -60,7 +60,6 @@ class Winery
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Region",
-     *  cascade={"persist"},
      *  simple=true)
      */
     private $region;

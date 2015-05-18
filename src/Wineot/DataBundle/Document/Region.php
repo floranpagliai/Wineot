@@ -42,6 +42,16 @@ class Region
     private $country;
 
     /**
+     * @var collection
+     *
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="Winery",
+     *  mappedBy="region",
+     *  cascade={"all"})
+     */
+    private $wineries = array();
+
+    /**
      * @param \Wineot\DataBundle\Document\Country $country
      */
     public function setCountry($country)
@@ -88,4 +98,21 @@ class Region
     {
         return $this->name;
     }
+
+    /**
+     * @param \Doctrine\ODM\MongoDB\Mapping\Annotations\Collection $wineries
+     */
+    public function setWineries($wineries)
+    {
+        $this->wineries = $wineries;
+    }
+
+    /**
+     * @return \Doctrine\ODM\MongoDB\Mapping\Annotations\Collection
+     */
+    public function getWineries()
+    {
+        return $this->wineries;
+    }
+
 } 
