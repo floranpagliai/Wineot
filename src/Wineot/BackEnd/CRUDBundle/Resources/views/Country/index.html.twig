@@ -6,6 +6,7 @@
         <tr>
             <th>Name</th>
             <th>Code</th>
+            <th>Regions</th>
             <th class="btn-table"></th>
             <th class="btn-table"></th>
         </tr>
@@ -14,11 +15,14 @@
         {% for country in countries %}
             <tr>
                 <td>
-                    <b>{{ country.name }}</b><br/>
+                    {{ country.name }}<br/>
                 </td>
                 <td>
                     <i class="country-flag flag-{{ country.code }}"></i>
-                    <b>{{ country.code }}</b><br/>
+                    {{ country.code }}<br/>
+                </td>
+                <td>
+                    {{ country.regions|length }}<br/>
                 </td>
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_country_edit', { 'id': country.id }) }}"

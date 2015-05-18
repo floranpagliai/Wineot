@@ -13,6 +13,7 @@
         <label class="sr-only" for="code">Code</label>
         {{ form_widget(form.code, { 'attr': { 'placeholder': 'code'|trans } } ) }}
     </div>
+    {% include 'WineotBackEndCRUDBundle:Region:form.html.twig' %}
     <br>
     <input class="btn btn-lg  btn-block" type="submit" id="_submit" name="submit_country"
            value="{{ 'submit'|trans }}"/>

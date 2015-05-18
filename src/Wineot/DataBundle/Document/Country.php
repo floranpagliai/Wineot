@@ -42,15 +42,18 @@ class Country {
     /**
      * @var collection
      *
-     * @MongoDB\Field(name="regions")
      * @MongoDB\ReferenceMany(
      *  targetDocument="Region",
-     *  mappedBy="country",
-     *  cascade={"persist", "remove"},
+     *  inversedBy="country",
+     *  cascade={"all"},
      *  simple=true)
      */
-    private $regions;
+    private $regions = array();
 
+    public function __construct()
+    {
+        $this->regions = new ArrayCollection();
+    }
     /**
      * @param int $id
      */

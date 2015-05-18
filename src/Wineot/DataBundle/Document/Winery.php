@@ -9,6 +9,7 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -36,28 +37,33 @@ class Winery
     private $name;
 
     /**
-     * @var array
+     * @var collection
      *
-     * @MongoDB\Field(name="wines")
-     * @MongoDB\ReferenceMany(targetDocument="Wine", mappedBy="winery", cascade={"persist", "remove"})
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="Wine",
+     *  mappedBy="winery",
+     *  cascade={"all"},)
      */
-    private $wines;
+    private $wines = array();
 
     /**
      * @var Country
      *
-     * @MongoDB\Field(type="int", name="country_id")
      * @MongoDB\ReferenceOne(
      *  targetDocument="Country",
-     *  cascade={"persist"},
      *  simple=true)
      */
     private $country;
 
-    public function __construct()
-    {
-        $this->wines = new ArrayCollection();
-    }
+    /**
+     * @var Region
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Region",
+     *  cascade={"persist"},
+     *  simple=true)
+     */
+    private $region;
     
     /**
      * Set name
@@ -136,4 +142,21 @@ class Winery
     {
         return $this->country;
     }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Region $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Region
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
 }

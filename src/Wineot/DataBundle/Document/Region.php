@@ -13,7 +13,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @MongoDB\Document
+ * @MongoDB\Document(collection="regions")
  */
 class Region
 {
@@ -35,10 +35,9 @@ class Region
     /**
      * @var Country
      *
-     * @MongoDB\Field(name="country_id")
      * @MongoDB\ReferenceOne(
      *  targetDocument="Country",
-     *  inversedBy="regions")
+     *  mappedBy="regions"))
      */
     private $country;
 

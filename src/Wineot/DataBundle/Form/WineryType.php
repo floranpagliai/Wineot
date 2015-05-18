@@ -25,6 +25,13 @@ class WineryType extends AbstractType
                     return $er->createQueryBuilder('c');
                 }
         ));
+        $builder->add('region', 'document', array(
+            'class' => 'Wineot\DataBundle\Document\Region',
+            'property' => 'name',
+            'query_builder' => function (DocumentRepository $er) {
+                    return $er->createQueryBuilder('c');
+                }
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

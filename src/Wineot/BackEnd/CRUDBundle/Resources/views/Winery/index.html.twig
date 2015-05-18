@@ -5,6 +5,8 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Loaclisation</th>
+            <th>Wines</th>
             <th class="btn-table"></th>
             <th class="btn-table"></th>
         </tr>
@@ -13,6 +15,8 @@
         {% for winery in wineries %}
             <tr>
                 <td>{{ winery.name }}</td>
+                <td>{{ winery.region.name }} · {{ winery.country.name }}</td>
+                <td>{{ winery.wines|length }}</td>
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_winery_edit', { 'id': winery.id }) }}"
                        class="btn btn-sm btn-blue btn-block" data-toggle="tooltip"

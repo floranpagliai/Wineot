@@ -22,6 +22,24 @@ class Wine
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
     /**
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
+     * @var Winery
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Winery",
+     *  inversedBy="wines",
+     *  cascade={"persist"},
+     *  simple=true)
+     */
+    private $winery;
+
+    /**
      * @var string
      *
      * @MongoDB\Field(type="string")
@@ -50,7 +68,6 @@ class Wine
     /**
      * @var collection
      *
-     * @MongoDB\Field(name="vintages")
      * @MongoDB\EmbedMany(
      *  targetDocument="Vintage")
      */
@@ -59,32 +76,12 @@ class Wine
     /**
      * @var Image
      *
-     * @MongoDB\Field(name="label_picture")
      * @MongoDB\ReferenceOne(
      *  targetDocument="Image",
-     *  cascade={"persist"},
+     *  cascade={"all"},
      *  simple=true)
      */
     private $labelPicture;
-
-    /**
-     * @var Winery
-     *
-     * @MongoDB\Field(type="int", name="winery_id")
-     * @MongoDB\ReferenceOne(
-     *  targetDocument="Winery",
-     *  inversedBy="wines",
-     *  cascade={"persist"},
-     *  simple=true)
-     */
-    private $winery;
-
-    /**
-     * @var integer
-     *
-     * @MongoDB\Id
-     */
-    private $id;
 
     public function __construct()
     {

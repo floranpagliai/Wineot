@@ -17,12 +17,11 @@
             <tr>
                 <td>
                     {% if wine.winery.name is defined  %}
-                    <b>{{ wine.winery.name }}</b>
+                    { wine.winery.name }}
                         {% endif %}
                 </td>
                 <td>
-                    <b>{{ wine.name }}</b><br/>
-                    {#{{ wine.description }}#}
+                    {{ wine.name }}
                 </td>
                 <td>
                 {% for vintage in wine.vintages %}
