@@ -16,12 +16,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Comment
 {
+    /** @MongoDB\Id */
+    private $id;
+
     /** @var string
      *
-     * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 255
-     * )
+     * @MongoDB\String
+     * @Assert\Length(max = 255)
      */
     private $comment;
 
@@ -48,20 +49,6 @@ class Comment
      * @MongoDB\ReferenceOne(targetDocument="Vintage", inversedBy="comments")
      */
     private $vintage;
-
-    /**
-     * @var integer
-     *
-     * @MongoDB\Id
-     */
-    private $id;
-
-    public function __construct()
-    {
-        $this->userId = new ArrayCollection();
-        $this->wineId = new ArrayCollection();
-    }
-
 
     /**
      * Set comment

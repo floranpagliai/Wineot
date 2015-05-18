@@ -1,0 +1,10 @@
+{% extends 'WineotBackEndCRUDBundle::layout.html.twig' %}
+{% set menu_selected = 'admin' %}
+{% block body %}
+    <div>
+        <h2 class="section-title clearfix"><i class="line"></i>
+            {{ 'crud.action.add'|trans }}
+        </h2>
+        {% include 'WineotBackEndCRUDBundle:Country:form.html.twig' %}
+    </div>
+{% endblock %}

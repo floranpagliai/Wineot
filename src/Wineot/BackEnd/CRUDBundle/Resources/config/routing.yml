@@ -13,3 +13,6 @@ wineot_back_end_crud_user:
 wineot_back_end_crud_comment:
     resource: "@WineotBackEndCRUDBundle/Resources/config/routing/comment.yml"
     prefix:   /comment
+wineot_back_end_crud_country:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing/country.yml"
+    prefix:   /country

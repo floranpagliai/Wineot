@@ -1,0 +1,102 @@
+.country-flag {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-size: 15px auto;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 4px;
+}
+.flag-ad {
+  background-image: url("img/flags/ad.png");
+}
+.flag-ae {
+  background-image: url("img/flags/ae.png");
+}
+.flag-af {
+  background-image: url("img/flags/af.png");
+}
+.flag-ag {
+  background-image: url("img/flags/ag.png");
+}
+.flag-ai {
+  background-image: url("img/flags/ai.png");
+}
+.flag-al {
+  background-image: url("img/flags/al.png");
+}
+.flag-am {
+  background-image: url("img/flags/am.png");
+}
+.flag-an {
+  background-image: url("img/flags/an.png");
+}
+.flag-ao {
+  background-image: url("img/flags/ao.png");
+}
+.flag-ar {
+  background-image: url("img/flags/ar.png");
+}
+.flag-as {
+  background-image: url("img/flags/as.png");
+}
+.flag-at {
+  background-image: url("img/flags/at.png");
+}
+.flag-au {
+  background-image: url("img/flags/au.png");
+}
+.flag-aw {
+  background-image: url("img/flags/aw.png");
+}
+.flag-ax {
+  background-image: url("img/flags/ax.png");
+}
+.flag-az {
+  background-image: url("img/flags/az.png");
+}
+.flag-ba {
+  background-image: url("img/flags/ba.png");
+}
+.flag-bb {
+  background-image: url("img/flags/bb.png");
+}
+.flag-bd {
+  background-image: url("img/flags/bd.png");
+}
+.flag-be {
+  background-image: url("img/flags/be.png");
+}
+.flag-bg {
+  background-image: url("img/flags/bg.png");
+}
+.flag-bh {
+  background-image: url("img/flags/bh.png");
+}
+.flag-bi {
+  background-image: url("img/flags/bi.png");
+}
+.flag-bj {
+  background-image: url("img/flags/bj.png");
+}
+.flag-bm {
+  background-image: url("img/flags/bm.png");
+}
+.flag-bn {
+  background-image: url("img/flags/bn.png");
+}
+.flag-es {
+  background-image: url("img/flags/es.png");
+}
+.flag-us {
+  background-image: url("img/flags/us.png");
+}
+.flag-it {
+  background-image: url("img/flags/it.png");
+}
+.flag-cl {
+  background-image: url("img/flags/it.png");
+}
+.flag-fr {
+  background-image: url("img/flags/fr.png");
+}

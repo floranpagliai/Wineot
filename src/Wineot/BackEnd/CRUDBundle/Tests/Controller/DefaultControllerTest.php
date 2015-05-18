@@ -33,6 +33,9 @@ class DefaultControllerTest extends WebTestCase
 
         $client->request('GET', '/admin/crud/user/');
         $this->assertTrue($client->getResponse()->isSuccessful());
+
+        $client->request('GET', '/admin/crud/country/');
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     public function testCRUDFirewall()

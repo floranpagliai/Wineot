@@ -9,12 +9,22 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @MongoDB\Document(collection="wineries")
  */
-class Winery {
+class Winery
+{
+
+    /**
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -27,24 +37,32 @@ class Winery {
     private $name;
 
     /**
-     * @var array
+     * @var collection
      *
-     * @MongoDB\Field(name="wines")
-     * @MongoDB\ReferenceMany(targetDocument="Wine", mappedBy="winery", cascade={"persist", "remove"})
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="Wine",
+     *  mappedBy="winery",
+     *  cascade={"all"})
      */
-    private $wines;
+    private $wines = array();
 
     /**
-     * @var integer
+     * @var Country
      *
-     * @MongoDB\Id
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Country",
+     *  simple=true)
      */
-    private $id;
+    private $country;
 
-    public function __construct()
-    {
-        $this->wines = new ArrayCollection();
-    }
+    /**
+     * @var Region
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Region",
+     *  simple=true)
+     */
+    private $region;
     
     /**
      * Set name
@@ -107,4 +125,37 @@ class Winery {
     {
         return $this->id;
     }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Country $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Region $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Region
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
 }

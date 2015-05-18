@@ -1,42 +1,46 @@
 {% extends "WineotFrontEndWineBundle::layout.html.twig" %}
 {% block featured %}
-    <div class="features row">
-        <div class="col-sm-8 banner-wrapper">
-            <div class="wine-show image col-sm-3">
-                {% if  wine.labelPicture.md5 is defined %}
-                    <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
-                {% else %}
-                    <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
-                {% endif %}
-            </div>
-            <div class="wine-show content col-sm-9">
-                <h2 class="">{{ wine.winery.name }}</h2>
+    <div class="featured row">
+        <div class="col-sm-8">
+            <div class="banner-wrapper row">
+                <div class="wine-show-image col-sm-3">
+                    {% if  wine.labelPicture.md5 is defined %}
+                        <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
+                    {% else %}
+                        <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                    {% endif %}
+                </div>
+                <div class="wine-show-body col-sm-9">
+                    <h2 class="">{{ wine.winery.name }}</h2>
 
-                <h1>{{ wine.name }}</h1>
-                <br/>
+                    <h1>{{ wine.name }}</h1>
+                    <br/>
 
-                <p><i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}</p>
+                    <p>
+                        <i class="country-flag flag-{{ wine.winery.country.code }}"></i> {{ wine.winery.region.name }} · {{ wine.winery.country.name }}<br/>
+                        <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
+                    </p>
 
-                <div class="wine-keys text-center">
-                    <div class="wine-key">
-                        <i class="fa fa-comments"></i>
-                        {{ wine.comments|length }}
-                    </div>
-                    <div class="wine-key">
-                        <i class="fa fa-star"></i>
-                        0
-                    </div>
-                    <div class="wine-key">
-                        <i class="fa fa-tag"></i>
-                        6 €
+                    <div class="wine-show-keys text-center">
+                        <div class="wine-show-key">
+                            <i class="fa fa-comments"></i>
+                            {{ wine.comments|length }}
+                        </div>
+                        <div class="wine-show-key">
+                            <i class="fa fa-star"></i>
+                            0
+                        </div>
+                        <div class="wine-show-key">
+                            <i class="fa fa-tag"></i>
+                            6 €
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- .banner-wrapper -->
+            </div><!-- .banner-wrapper -->
         </div>
 
         <div class="col-sm-4">
-            <div class="banner-wrapper text-center">
+            <div class="banner-wrapper row text-center">
 
                 <h4 class="banner-title h3">Comment section</h4>
 
@@ -45,8 +49,7 @@
                         placerat …</p>
                 </div>
             </div>
-            <!-- .banner-wrapper -->
-        </div>
+        </div><!-- .banner-wrapper -->
     </div>
 {% endblock %}
 {% block body %}
