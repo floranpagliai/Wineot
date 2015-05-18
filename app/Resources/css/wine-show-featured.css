@@ -1,0 +1,51 @@
+.featured {
+  min-height: 256px;
+  padding: 0px;
+}
+.featured .banner-wrapper {
+  display: block !important;
+  bottom: 0;
+  margin: 30px 0;
+  padding: 15px 0px 0px 0px;
+  background-color: #eee;
+  background: rgba(255, 255, 255, 0.8);
+}
+.featured .banner-wrapper:hover {
+  border-color: #fff;
+  background: #ffffff;
+}
+.featured .wine-show-body {
+  padding: 0px;
+}
+.featured .wine-show-body h1 {
+  font-size: 27px;
+  font-weight: bold;
+  margin: 0px;
+  margin-top: 5px;
+}
+.featured .wine-show-body h2 {
+  font-size: 19px;
+  font-weight: 200;
+  margin: 0px;
+}
+.featured .wine-show-body h3 {
+  font-size: 17px;
+  margin: 0px;
+}
+.featured .wine-show-keys {
+  width: 100%;
+  color: #b9b5b2;
+  font-size: 25px;
+  margin-top: 40px;
+}
+.featured .wine-show-keys .wine-show-key {
+  display: inline;
+  padding: 20px 40px 20px 40px;
+  border-right: 1px solid #eee;
+  white-space: nowrap;
+  font-weight: 700;
+}
+.featured .wine-show-keys .wine-show-key:last-child {
+  border: none;
+  padding-right: 0;
+}

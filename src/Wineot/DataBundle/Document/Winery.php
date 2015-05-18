@@ -14,7 +14,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @MongoDB\Document(collection="wineries")
  */
-class Winery {
+class Winery
+{
+
+    /**
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -35,11 +44,15 @@ class Winery {
     private $wines;
 
     /**
-     * @var integer
+     * @var Country
      *
-     * @MongoDB\Id
+     * @MongoDB\Field(type="int", name="country_id")
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Country",
+     *  cascade={"persist"},
+     *  simple=true)
      */
-    private $id;
+    private $country;
 
     public function __construct()
     {
@@ -106,5 +119,21 @@ class Winery {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Country $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }
