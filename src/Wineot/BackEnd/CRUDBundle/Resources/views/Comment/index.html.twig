@@ -7,7 +7,7 @@
             <th>User</th>
             <th>Wine</th>
             <th>Comment</th>
-            <th class="btn-table"></th>
+            <th>Rank</th>
             <th class="btn-table"></th>
         </tr>
         </thead>
@@ -15,13 +15,16 @@
         {% for comment in comments %}
             <tr>
                 <td>
-                    {#{{ comment.user.mail }}#}
+                    {{ comment.user.mail }}
                 </td>
                 <td>
-                    {{ comment.vintage }}
+                    {{ comment.wine.name }}
                 </td>
                 <td>
-                    {{ comment.comment }}<br/>
+                    {{ comment.comment }}
+                </td>
+                <td>
+                    {{ comment.rank }}
                 </td>
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_wine_delete', { 'id': comment.id }) }}"

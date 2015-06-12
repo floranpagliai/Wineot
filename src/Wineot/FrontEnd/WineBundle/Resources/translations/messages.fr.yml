@@ -1,0 +1,8 @@
+wine:
+    title:
+        description: "Description"
+    vintage:
+        title:
+            vintages: "Millésimes"
+            all_vintage: "Tout les millésimes"
+

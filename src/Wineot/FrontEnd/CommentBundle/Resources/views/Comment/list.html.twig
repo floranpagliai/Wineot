@@ -1,0 +1,14 @@
+    <div class="wine-comments">
+        <h3 class="section-title clearfix"><i class="line"></i>{{ 'comment.title.list'|trans }}</h3>
+            {% for comment in comments %}
+                <article class="wine-comment">
+                    <a href="#"><h4>{{ comment.user.username }}</h4></a>
+                    <span class="rank">{{ comment.rank+1 }}</span>
+                    <div class="comment">
+                        <p>
+                            {{ comment.comment }}
+                        </p>
+                    </div>
+                </article>
+            {% endfor %}
+    </div>

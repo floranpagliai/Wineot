@@ -1,7 +1,7 @@
 search:
     action:
         search: "Rechercher un vin"
-    title:
+    button:
         search: "Recherche"
     form:
         color: "Couleur"

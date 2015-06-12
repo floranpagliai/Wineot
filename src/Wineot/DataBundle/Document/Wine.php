@@ -80,6 +80,14 @@ class Wine
      */
     private $id;
 
+    /**
+     * @var collection
+     *
+     * @MongoDB\Field(name="comments")
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintage", nullable=true)
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->vintages = new ArrayCollection();
@@ -213,17 +221,17 @@ class Wine
         return $this->winery;
     }
 
-    public function getComments()
-    {
-        $comments = array();
-        foreach ($this->vintages as $vintage) {
-            $vintage_comments = $vintage->getComments();
-            if(!isset($vintage_comments))
-                $comments[] = $vintage_comments;
-        }
-
-        return $comments;
-    }
+//    public function getComments()
+//    {
+//        $comments = array();
+//        foreach ($this->vintages as $vintage) {
+//            $vintage_comments = $vintage->getComments();
+//            if(!isset($vintage_comments))
+//                $comments[] = $vintage_comments;
+//        }
+//
+//        return $comments;
+//    }
 
     /**
      * @param \Wineot\DataBundle\Document\Image $image
@@ -239,6 +247,39 @@ class Wine
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection $comments
+     */
+    public function getComments()
+    {
+        if (!empty($this->comments))
+            return $this->comments;
+        else
+            return NULL;
     }
 
     /**

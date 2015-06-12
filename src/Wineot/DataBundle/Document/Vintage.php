@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Wineot\DataBundle\Document\Comment;
 
 /**
@@ -22,7 +23,7 @@ class Vintage
     /**
      * @var Int
      *
-     * @MongoDB\Field(type="int", name="production_year")
+     * @MongoDB\Field(type="int", name="production_year"))
      * @Assert\NotBlank()
      */
     private $productionYear;
@@ -42,14 +43,6 @@ class Vintage
      * targetDocument="Image")
      */
     private $labelPicture;
-
-    /**
-     * @var collection
-     *
-     * @MongoDB\Field(name="comments")
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintage", nullable=true)
-     */
-    private $comments;
 
     public function __construct()
     {
@@ -76,39 +69,6 @@ class Vintage
     public function getProductionYear()
     {
         return $this->productionYear;
-    }
-
-    /**
-     * Add comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
-     */
-    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
-    {
-        $this->comments[] = $comment;
-    }
-
-    /**
-     * Remove comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
-     */
-    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection $comments
-     */
-    public function getComments()
-    {
-        if (!empty($this->comments))
-            return $this->comments;
-        else
-            return NULL;
     }
 
     /**

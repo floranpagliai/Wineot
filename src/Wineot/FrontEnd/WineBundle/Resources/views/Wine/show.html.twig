@@ -1,31 +1,27 @@
 {% extends "WineotFrontEndWineBundle::layout.html.twig" %}
 {% block featured %}
-    <div class="features row">
-        <div class="col-sm-8 banner-wrapper">
-            <div class="wine-show image col-sm-3">
-                <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
-            </div>
-            <div class="wine-show content col-sm-9">
-                <h2 class="">{{ wine.winery.name }}</h2>
+    <div class="featured row">
+        <div class="col-sm-8">
+            <div class="banner-wrapper row">
+                <div class="wine-show-image col-sm-3">
+                    {% if  wine.labelPicture.md5 is defined %}
+                        <img class="img-responsive img-thumbnail" src="{{ wine.labelPicture.getImage() }}">
+                    {% else %}
+                        <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                    {% endif %}
+                </div>
+                <div class="wine-show-body col-sm-9">
+                    <h2 class="">{{ wine.winery.name }}</h2>
 
-                <h1>{{ wine.name }}</h1>
-                <br/>
+                    <h1>{{ wine.name }}
+                        {% if vintage is not empty %}
+                        <span> {{ vintage }}</span>
+                            {% endif %}
+                    </h1>
+                    <br/>
 
                 <p><i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}</p>
 
-                <div class="wine-keys text-center">
-                    <div class="wine-key">
-                        <i class="fa fa-comments"></i>
-                        {{ wine.comments|length }}
-                    </div>
-                    <div class="wine-key">
-                        <i class="fa fa-star"></i>
-                        0
-                    </div>
-                    <div class="wine-key">
-                        <i class="fa fa-tag"></i>
-                        6 €
-                    </div>
                 </div>
             </div>
             <!-- .banner-wrapper -->
@@ -34,31 +30,38 @@
         <div class="col-sm-4">
             <div class="banner-wrapper text-center">
 
-                <h4 class="banner-title h3">Comment section</h4>
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wine' : wine })) %}
+                {#<h4 class="banner-title h3">Comment section</h4>#}
 
-                <div class="banner-content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae
-                        placerat …</p>
-                </div>
+                {#<div class="banner-content">#}
+                    {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae#}
+                        {#placerat …</p>#}
+                {#</div>#}
             </div>
             <!-- .banner-wrapper -->
         </div>
     </div>
 {% endblock %}
 {% block body %}
-    <div class="col-sm-7">
+    <div class="col-sm-12">
         <h3 class="section-title clearfix"><i class="line"></i>
-            Description
+            {{ 'wine.title.description'|trans }}
         </h3>
-
-        <p>{{ wine.description }}</p>
+       <div class="col-sm-8 col-sm-offset-4">
+           <p>{{ wine.description }}</p>
+       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-12">
         <h3 class="section-title clearfix"><i class="line"></i>
-            Vintages
+            {{ 'wine.vintage.title.vintages'|trans }}
         </h3>
+        <div class="col-sm-8 col-sm-offset-4">
         <table class="table table-hover">
             <tbody>
+                <tr>
+                    <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
+                    <td class="text-right"> €</td>
+                </tr>
             {% for vintage in wine.vintages %}
                 <tr>
                     <td>{{ vintage.productionYear }}</td>
@@ -67,20 +70,9 @@
             {% endfor %}
             </tbody>
         </table>
+            </div>
     </div>
 {% endblock %}
 {% block sidebar_right %}
-    <section id="section-categories" class="section">
-        <ul class="nav nav-pills nav-stacked nav-categories">
-            <li>
-                <a href="{{ path('wineot_back_end_crud_winery') }}">Comment</a>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae
-                    placerat …</p>
-            </li>
-            <li><a href="{{ path('wineot_back_end_crud_wine') }}">Comment</a></li>
-            <li><a href="{{ path('wineot_back_end_crud_user') }}">Comment</a></li>
-            <li><a href="{{ path('wineot_back_end_crud_comment') }}">Comment</a></li>
-        </ul>
-    </section>
+        {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}
 {% endblock %}

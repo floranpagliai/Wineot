@@ -8,7 +8,6 @@ class AppKernel extends Kernel
     public function init()
     {
         date_default_timezone_set( 'Europe/Paris' );
-        parent::init();
     }
 
     public function registerBundles()
@@ -37,6 +36,7 @@ class AppKernel extends Kernel
             new Wineot\BackEnd\BackEndBundle\WineotBackEndBackEndBundle(),
             new Wineot\BackEnd\CRUDBundle\WineotBackEndCRUDBundle(),
             new Wineot\FrontEnd\WineBundle\WineotFrontEndWineBundle(),
+            new Wineot\FrontEnd\CommentBundle\WineotFrontEndCommentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
