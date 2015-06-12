@@ -1,0 +1,12 @@
+wineot_back_end_crud_country:
+    path:     /
+    defaults: { _controller: WineotBackEndCRUDBundle:Country:index }
+wineot_back_end_crud_country_add:
+    path:     /add
+    defaults: { _controller: WineotBackEndCRUDBundle:Country:add }
+wineot_back_end_crud_country_edit:
+    path:     /{id}/edit
+    defaults: { _controller: WineotBackEndCRUDBundle:Country:edit }
+wineot_back_end_crud_country_delete:
+    path:     /{id}/delete
+    defaults: { _controller: WineotBackEndCRUDBundle:Country:delete }

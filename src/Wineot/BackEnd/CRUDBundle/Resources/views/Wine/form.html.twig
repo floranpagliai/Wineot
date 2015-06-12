@@ -10,11 +10,15 @@
         {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
     </div>
     <div class="form-group">
-        {% if  wine.image.path is defined %}
-            <img class="img-rounded img-responsive" src="{{ asset(wine.image.path) }}" width="200px">
-        {% else %}
-            {{ form_widget(form.image) }}
+        {% if  wine.labelPicture.md5 is defined %}
+            <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}" width="200px">
+            {#<a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': wine.id }) }}"#}
+               {#onclick="return confirm('Delete ?')">#}
+                {#<i class="fa fa-times"></i>#}
+            {#</a>#}
+
         {% endif %}
+        {{ form_widget(form.labelPicture) }}
     </div>
     <div class="form-group">
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}

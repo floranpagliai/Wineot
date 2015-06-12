@@ -22,6 +22,24 @@ class Wine
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
     /**
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
+     * @var Winery
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Winery",
+     *  inversedBy="wines",
+     *  cascade={"persist"},
+     *  simple=true)
+     */
+    private $winery;
+
+    /**
      * @var string
      *
      * @MongoDB\Field(type="string")
@@ -50,35 +68,20 @@ class Wine
     /**
      * @var collection
      *
-     * @MongoDB\Field(name="vintages")
      * @MongoDB\EmbedMany(
-     * targetDocument="Vintage")
+     *  targetDocument="Vintage")
      */
     private $vintages;
 
     /**
      * @var Image
      *
-     * @MongoDB\Field(name="image")
-     * @MongoDB\EmbedOne(
-     * targetDocument="Image")
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"all"},
+     *  simple=true)
      */
-    private $image;
-
-    /**
-     * @var integer
-     *
-     * @MongoDB\Field(type="int", name="winery_id")
-     * @MongoDB\ReferenceOne(targetDocument="Winery", inversedBy="wines", cascade={"persist"}, simple=true)
-     */
-    private $winery;
-
-    /**
-     * @var integer
-     *
-     * @MongoDB\Id
-     */
-    private $id;
+    private $labelPicture;
 
     /**
      * @var collection
@@ -212,9 +215,9 @@ class Wine
     }
 
     /**
-     * Get wineryId
+     * Get winery
      *
-     * @return \Wineot\DataBundle\Document\Winery $wineryId
+     * @return \Wineot\DataBundle\Document\Winery $winery
      */
     public function getWinery()
     {
@@ -234,19 +237,19 @@ class Wine
 //    }
 
     /**
-     * @param \Wineot\DataBundle\Document\Image $image
+     * @param \Wineot\DataBundle\Document\Image $labelPicture
      */
-    public function setImage($image)
+    public function setLabelPicture($labelPicture)
     {
-        $this->image = $image;
+        $this->labelPicture = $labelPicture;
     }
 
     /**
      * @return \Wineot\DataBundle\Document\Image
      */
-    public function getImage()
+    public function getLabelPicture()
     {
-        return $this->image;
+        return $this->labelPicture;
     }
 
     /**

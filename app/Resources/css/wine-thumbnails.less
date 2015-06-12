@@ -36,16 +36,16 @@
 
 .wine-thumbnail .img-background {
   position: absolute;
-  opacity: 0.7;
+  opacity: 0.3;
   bottom: 0;
   background-size: cover;
   width: 100%;
   height: 100%;
-  background-image:linear-gradient(transparent 60%, black);
+  background-image:linear-gradient(transparent 0%, black);
 }
 
 .wine-thumbnail .wine-thumbnail-img:hover .img-background {
-  opacity: 0.5;
+  opacity: 0.2;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 
@@ -53,6 +53,7 @@
 
 .wine-thumbnail .wine-thumbnail-body {
   height: 100%;
+  padding: 5px;
   margin-top: 5px;
 }
 
@@ -79,7 +80,9 @@
 }
 
 .wine-thumbnail h1 {
-  font-size: 18px;
+  font-size: 22px;
+  margin-top: 3px;
+  font-weight: bold;
 }
 
 .wine-thumbnail h1 span {
@@ -87,8 +90,9 @@
 }
 
 .wine-thumbnail h2 {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 200;
+  margin-top: 0px;
 }
 
 .wine-thumbnail h3 {

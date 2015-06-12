@@ -11,7 +11,8 @@ class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('file', 'file');
+        $builder->add('fileuploaded', 'file', array(
+            'data_class' => 'Doctrine\MongoDB\GridFSFile'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

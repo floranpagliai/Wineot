@@ -5,7 +5,7 @@
             <div class="banner-wrapper row">
                 <div class="wine-show-image col-sm-3">
                     {% if  wine.labelPicture.md5 is defined %}
-                        <img class="img-responsive img-thumbnail" src="{{ wine.labelPicture.getImage() }}">
+                        <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
                     {% endif %}
@@ -20,15 +20,16 @@
                     </h1>
                     <br/>
 
-                <p><i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}</p>
-
+                    <p>
+                        <i class="country-flag flag-{{ wine.winery.country.code }}"></i> {{ wine.winery.region.name }} · {{ wine.winery.country.name }}<br/>
+                        <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
+                    </p>
                 </div>
-            </div>
-            <!-- .banner-wrapper -->
+            </div><!-- .banner-wrapper -->
         </div>
 
         <div class="col-sm-4">
-            <div class="banner-wrapper text-center">
+            <div class="banner-wrapper row text-center">
 
                 {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wine' : wine })) %}
                 {#<h4 class="banner-title h3">Comment section</h4>#}
@@ -38,8 +39,7 @@
                         {#placerat …</p>#}
                 {#</div>#}
             </div>
-            <!-- .banner-wrapper -->
-        </div>
+        </div><!-- .banner-wrapper -->
     </div>
 {% endblock %}
 {% block body %}

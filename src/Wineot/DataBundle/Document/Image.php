@@ -9,37 +9,52 @@ namespace Wineot\DataBundle\Document;
 
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\File;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\HasLifecycleCallbacks;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @MongoDB\EmbeddedDocument @HasLifecycleCallbacks
+ * @MongoDB\Document(collection="images")
+ * @HasLifecycleCallbacks
  */
 class Image
 {
-    /**
-     * @var string
-     *
-     * @MongoDB\Field(type="string")
-     * @Assert\NotBlank()
-     */
-    public $name;
+    /** @MongoDB\Id */
+    private $id;
+
+    /** @MongoDB\File */
+    private $file;
+
+    private $fileuploaded;
+
+    /** @MongoDB\String */
+    private $filename;
+
+    /** @MongoDB\String */
+    private $mimeType;
+
+    /** @MongoDB\Date */
+    private $uploadDate;
+
+    /** @MongoDB\Int */
+    private $length;
+
+    /** @MongoDB\Int */
+    private $chunkSize;
+
+    /** @MongoDB\String */
+    private $md5;
 
     /**
-     * @var string
-     *
-     * @MongoDB\Field(type="string")
+     * @return mixed
      */
-    public $path;
+    public function getChunkSize()
+    {
+        return $this->chunkSize;
+    }
 
     /**
-     * @Assert\File(maxSize="6000000")
-     */
-    public $file;
-
-    private $filenameForRemove;
-    /**
-     * @param mixed $file
+     * @param File $file
      */
     public function setFile($file)
     {
@@ -47,7 +62,7 @@ class Image
     }
 
     /**
-     * @return mixed
+     * @return File
      */
     public function getFile()
     {
@@ -55,76 +70,105 @@ class Image
     }
 
     /**
-     * @param string $name
+     * @param mixed $fileuploaded
      */
-    public function setName($name)
+    public function setFileuploaded($fileuploaded)
     {
-        $this->name = $name;
+        $this->fileuploaded = $fileuploaded;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getName()
+    public function getFileuploaded()
     {
-        return $this->name;
+        return $this->fileuploaded;
+    }
+
+
+    /**
+     * @param File $filename
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
     }
 
     /**
-     * @param string $path
+     * @return File
      */
-    public function setPath($path)
+    public function getFilename()
     {
-        $this->path = $path;
+        return $this->filename;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getPath()
+    public function getId()
     {
-        return $this->path;
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMd5()
+    {
+        return $this->md5;
+    }
+
+    /**
+     * @param mixed $mimeType
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUploadDate()
+    {
+        return $this->uploadDate;
     }
 
 
-
-    public function getAbsolutePath()
-    {
-        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
-        return '/home/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        return 'uploads/image';
-    }
 
     /**
      * @MongoDB\PrePersist
      * @MongoDB\PreUpdate
      */
     public function upload() {
-        if (null === $this->getFile()) {
+        if (null === $this->fileuploaded) {
             return;
         }
+            $this->setFilename(md5_file($this->fileuploaded->getPathname()));
+            $this->setMimeType($this->fileuploaded->getClientMimeType());
+            $this->setFile($this->fileuploaded->getPathname());
+        $this->fileuploaded = null;
+    }
 
-        $this->getFile()->move(
-            $this->getUploadRootDir(), $this->getFile()->getClientOriginalName()
-        );
-
-        $this->path = $this->getUploadRootDir() . '/' . $this->getFile()->getClientOriginalName();
-
-        $this->file = null;
+    public function getImage()
+    {
+        return "data:".$this->getMimeType().";base64," . base64_encode($this->file->getMongoGridFSFile()->getBytes());
     }
 
 }
