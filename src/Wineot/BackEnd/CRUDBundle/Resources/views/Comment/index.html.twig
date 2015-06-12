@@ -15,10 +15,14 @@
         {% for comment in comments %}
             <tr>
                 <td>
+                    {% if comment.user.mail is defined %}
                     {{ comment.user.mail }}
+                        {% endif %}
                 </td>
                 <td>
-                    {{ comment.wine.name }}
+                    {% if comment.wine.name is defined %}
+                        {{ comment.wine.name }}
+                    {% endif %}
                 </td>
                 <td>
                     {{ comment.comment }}
@@ -27,7 +31,7 @@
                     {{ comment.rank }}
                 </td>
                 <td class="tooltips">
-                    <a href="{{ path('wineot_back_end_crud_wine_delete', { 'id': comment.id }) }}"
+                    <a href="{{ path('wineot_back_end_crud_comment_delete', { 'id': comment.id }) }}"
                        class="btn btn-sm btn-red btn-block" data-toggle="tooltip"
                        data-placement="top" data-original-title="Delete" onclick="return confirm('Delete ?')">
                         <i class="fa fa-times"></i>
