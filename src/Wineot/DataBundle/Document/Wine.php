@@ -86,8 +86,7 @@ class Wine
     /**
      * @var collection
      *
-     * @MongoDB\Field(name="comments")
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintage", nullable=true)
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="wine", nullable=true)
      */
     private $comments;
 
@@ -282,7 +281,35 @@ class Wine
         if (!empty($this->comments))
             return $this->comments;
         else
-            return NULL;
+            return null;
+    }
+
+    public function getAvgRating()
+    {
+        if ($this->comments->count() != 0) {
+            $avgRating = 0;
+            $comments = $this->comments;
+            foreach($comments as $comment)
+            {
+                $avgRating += $comment->getRank()+1;
+            }
+            return number_format($avgRating/$this->comments->count(), 1);
+        } else
+            return null;
+    }
+
+    public function getAvgPrice()
+    {
+        if ($this->vintages->count() != 0) {
+            $avgPrice = 0;
+            $vintages = $this->vintages;
+            foreach($vintages as $vintage)
+            {
+                $avgPrice += $vintage->getWineryPrice();
+            }
+            return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
+        } else
+            return null;
     }
 
     /**
