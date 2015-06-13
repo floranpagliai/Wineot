@@ -4,15 +4,15 @@
 }
 .featured .banner-wrapper {
   display: block !important;
+  min-height: 244px;
   bottom: 0;
   margin: 30px 0;
   padding: 15px 0px 0px 0px;
   background-color: #eee;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
 }
 .featured .banner-wrapper:hover {
   border-color: #fff;
-  background: #ffffff;
 }
 .featured .wine-show-body {
   padding: 0px;

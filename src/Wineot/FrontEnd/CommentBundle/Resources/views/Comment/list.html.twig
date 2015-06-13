@@ -3,7 +3,11 @@
             {% for comment in comments %}
                 <article class="wine-comment">
                     <a href="#"><h4>{{ comment.user.username }}</h4></a>
-                    <span class="rank">{{ comment.rank+1 }}</span>
+                    <p class="rank">
+                        {% for i in 0..comment.rank %}
+                            <i class="rating"></i>
+                        {% endfor %}
+                    </p>
                     <div class="comment">
                         <p>
                             {{ comment.comment }}

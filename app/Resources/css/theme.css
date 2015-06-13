@@ -45,14 +45,6 @@
 /*-----------------------------------------------------------------------------------*/
 /*	0.0 - Commons
 /*-----------------------------------------------------------------------------------*/
-::selection {
-  background: #bb0000;
-  color: #fff;
-}
-::-moz-selection {
-  background: #bb0000;
-  color: #fff;
-}
 body {
   font-family: 'Open Sans', sans-serif;
   background: #fcfcfc;

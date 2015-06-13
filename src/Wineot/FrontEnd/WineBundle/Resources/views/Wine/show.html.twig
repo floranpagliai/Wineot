@@ -15,17 +15,19 @@
 
                     <h1>{{ wine.name }}
                         {% if vintage is not empty %}
-                        <span> {{ vintage }}</span>
-                            {% endif %}
+                            <span> {{ vintage }}</span>
+                        {% endif %}
                     </h1>
                     <br/>
 
                     <p>
-                        <i class="country-flag flag-{{ wine.winery.country.code }}"></i> {{ wine.winery.region.name }} · {{ wine.winery.country.name }}<br/>
+                        <i class="country-flag flag-{{ wine.winery.country.code }}"></i> {{ wine.winery.region.name }}
+                        · {{ wine.winery.country.name }}<br/>
                         <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
                     </p>
                 </div>
-            </div><!-- .banner-wrapper -->
+            </div>
+            <!-- .banner-wrapper -->
         </div>
 
         <div class="col-sm-4">
@@ -35,11 +37,12 @@
                 {#<h4 class="banner-title h3">Comment section</h4>#}
 
                 {#<div class="banner-content">#}
-                    {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae#}
-                        {#placerat …</p>#}
+                {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae#}
+                {#placerat …</p>#}
                 {#</div>#}
             </div>
-        </div><!-- .banner-wrapper -->
+        </div>
+        <!-- .banner-wrapper -->
     </div>
 {% endblock %}
 {% block body %}
@@ -47,32 +50,36 @@
         <h3 class="section-title clearfix"><i class="line"></i>
             {{ 'wine.title.description'|trans }}
         </h3>
-       <div class="col-sm-8 col-sm-offset-4">
-           <p>{{ wine.description }}</p>
-       </div>
+
+        <div class="col-sm-8 col-sm-offset-4">
+            <p>{{ wine.description }}</p>
+        </div>
     </div>
     <div class="col-sm-12">
         <h3 class="section-title clearfix"><i class="line"></i>
             {{ 'wine.vintage.title.vintages'|trans }}
         </h3>
+
         <div class="col-sm-8 col-sm-offset-4">
-        <table class="table table-hover">
-            <tbody>
-                <tr>
-                    <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
-                    <td class="text-right"> €</td>
+            <table class="table table-hover">
+                <tbody>
+                <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
+                { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'" style="cursor: pointer;">
+                        <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
+                        <td class="text-right"> €</td>
                 </tr>
-            {% for vintage in wine.vintages %}
-                <tr>
-                    <td>{{ vintage.productionYear }}</td>
-                    <td class="text-right">{{ vintage.wineryPrice }} €</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-            </div>
+                {% for vintage in wine.vintages %}
+                    <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
+                    { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'" style="cursor: pointer;">
+                        <td>{{ vintage.productionYear }}</td>
+                        <td class="text-right">{{ vintage.wineryPrice }} €</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}
 {% block sidebar_right %}
-        {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}
+    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}
 {% endblock %}

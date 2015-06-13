@@ -79,6 +79,16 @@
         var $newLinkLi = $addTagLink;
 
         jQuery(document).ready(function () {
+            var $siteHero = $('.site-hero');
+            var $img = $('.site-hero-image').attr('src');
+            if ($img) {
+                $siteHero.css('background-image', 'url('+$img+')');
+                $siteHero.css('background-repeat', 'no-repeat');
+                $siteHero.css('-webkit-background-size', 'cover');
+                $siteHero.css('-moz-background-size', 'cover');
+                $siteHero.css('-o-background-size', 'cover');
+                $siteHero.css('background-size', 'cover');
+            }
             // ajoute l'ancre « ajouter un tag » et li à la balise ul
             collectionHolder.append($newLinkLi);
 
