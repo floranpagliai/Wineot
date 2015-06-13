@@ -4,6 +4,7 @@
 }
 .featured .banner-wrapper {
   display: block !important;
+  border-radius: 3px;
   min-height: 244px;
   bottom: 0;
   margin: 30px 0;

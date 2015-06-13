@@ -1,6 +1,7 @@
 wine:
     title:
         description: "Description"
+        other_winery_wine: "Les autres vins de ce domaine"
     vintage:
         title:
             vintages: "Millésimes"

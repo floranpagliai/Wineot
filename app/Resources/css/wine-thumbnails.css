@@ -16,6 +16,7 @@
 }
 .wine-thumbnails > li {
   height: 200px;
+  min-width: 346px;
   margin-bottom: 20px;
   float: left;
 }
@@ -51,28 +52,29 @@
   transition: all 0.3s ease;
 }
 .wine-thumbnail .wine-thumbnail-body {
-  height: 100%;
+  position: relative;
+  height: 195px;
   padding: 5px;
   margin-top: 5px;
 }
 .wine-thumbnail .wine-thumbnail-footer {
   position: absolute;
-  text-align: right;
+  left: 0;
+  text-align: center;
   bottom: 0;
-  right: 35px;
   padding-bottom: 10px;
   color: #b9b5b2;
 }
 .wine-thumbnail .wine-thumbnail-footer .wine-thumbnail-key {
   display: inline;
   padding: 15px;
+  min-width: 33.33%;
   border-right: 1px solid #eee;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 600;
 }
 .wine-thumbnail .wine-thumbnail-footer .wine-thumbnail-key:last-child {
   border: none;
-  padding-right: 0;
 }
 .wine-thumbnail h1 {
   font-size: 22px;

@@ -9,3 +9,4 @@ comment:
     warn:
         added: "Votre comentaire a bien été ajouté."
         usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+        no_comment: "Aucun avis n'a été publié sur ce vin. Soyez le premier à donner votre avis."
