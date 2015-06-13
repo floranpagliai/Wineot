@@ -16,17 +16,17 @@
         {% for wine in wines %}
             <tr>
                 <td>
-                    {% if wine.winery.name is defined  %}
-                    { wine.winery.name }}
-                        {% endif %}
+                    {% if wine.winery.name is defined %}
+                        {{ wine.winery.name }}
+                    {% endif %}
                 </td>
                 <td>
                     {{ wine.name }}
                 </td>
                 <td>
-                {% for vintage in wine.vintages %}
-                    {{ vintage.productionYear }}
-                {% endfor %}
+                    {% for vintage in wine.vintages %}
+                        {{ vintage.productionYear }}
+                    {% endfor %}
                 </td>
                 <td>{{ wine.color|wineColor(true) }}</td>
                 <td class="tooltips">

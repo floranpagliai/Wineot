@@ -42,14 +42,14 @@
                         </div>
                         <div id="content" class="site-content col-md-9">
                             <div class="row">
-                                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
+                                {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
                                 {{ body_block|raw }}
                             </div>
                         </div>
                         {% elseif sidebar_block_right is not empty %}
                             <div id="content" class="site-content col-md-9">
                                 <div class="row">
-                                    {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
+                                    {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
                                     {{ body_block|raw }}
                                 </div>
                             </div>
@@ -72,6 +72,15 @@
         </div>
     </div>
     <!-- #main -->
+
+        <div class="clearfix">
+            <div class="container">
+                {% set featured_bottom_block = block('featured_bottom') %}
+                {% if featured_bottom_block is not empty %}
+                    {{ featured_bottom_block|raw }}
+                {% endif %}
+            </div>
+        </div><!-- .site-hero -->
 
     {% include 'footer.html.twig' %}
 </div>

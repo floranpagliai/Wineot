@@ -38,7 +38,7 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="user_id")
-     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments")
+     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments", simple=true)
      */
     private $user;
 
@@ -46,9 +46,9 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="vintage_id")
-     * @MongoDB\ReferenceOne(targetDocument="Vintage", inversedBy="comments")
+     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="comments", simple=true)
      */
-    private $vintage;
+    private $wine;
 
     /**
      * Set comment
@@ -117,25 +117,13 @@ class Comment
     }
 
     /**
-     * Set vintageId
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     * @return self
-     */
-    public function setVintageId(Vintage $vintage)
-    {
-        $this->vintage = $vintage;
-        return $this;
-    }
-
-    /**
      * Get vintageId
      *
-     * @return \Wineot\DataBundle\Document\Vintage $vintage
+     * @return \Wineot\DataBundle\Document\Wine $wine
      */
-    public function getVintage()
+    public function getWine()
     {
-        return $this->vintage;
+        return $this->wine;
     }
 
     /**
@@ -149,14 +137,14 @@ class Comment
     }
 
     /**
-     * Set vintage
+     * Set Wine
      *
-     * @param Wineot\DataBundle\Document\Vintage $vintage
+     * @param \Wineot\DataBundle\Document\Wine $wine
      * @return self
      */
-    public function setVintage(\Wineot\DataBundle\Document\Vintage $vintage)
+    public function setWine(Wine $wine)
     {
-        $this->vintage = $vintage;
+        $this->wine = $wine;
         return $this;
     }
 }

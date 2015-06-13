@@ -83,6 +83,13 @@ class Wine
      */
     private $labelPicture;
 
+    /**
+     * @var collection
+     *
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="wine", nullable=true)
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->vintages = new ArrayCollection();
@@ -216,17 +223,17 @@ class Wine
         return $this->winery;
     }
 
-    public function getComments()
-    {
-        $comments = array();
-        foreach ($this->vintages as $vintage) {
-            $vintage_comments = $vintage->getComments();
-            if(!isset($vintage_comments))
-                $comments[] = $vintage_comments;
-        }
-
-        return $comments;
-    }
+//    public function getComments()
+//    {
+//        $comments = array();
+//        foreach ($this->vintages as $vintage) {
+//            $vintage_comments = $vintage->getComments();
+//            if(!isset($vintage_comments))
+//                $comments[] = $vintage_comments;
+//        }
+//
+//        return $comments;
+//    }
 
     /**
      * @param \Wineot\DataBundle\Document\Image $labelPicture
@@ -242,6 +249,67 @@ class Wine
     public function getLabelPicture()
     {
         return $this->labelPicture;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection $comments
+     */
+    public function getComments()
+    {
+        if (!empty($this->comments))
+            return $this->comments;
+        else
+            return null;
+    }
+
+    public function getAvgRating()
+    {
+        if ($this->comments->count() != 0) {
+            $avgRating = 0;
+            $comments = $this->comments;
+            foreach($comments as $comment)
+            {
+                $avgRating += $comment->getRank()+1;
+            }
+            return number_format($avgRating/$this->comments->count(), 1);
+        } else
+            return null;
+    }
+
+    public function getAvgPrice()
+    {
+        if ($this->vintages->count() != 0) {
+            $avgPrice = 0;
+            $vintages = $this->vintages;
+            foreach($vintages as $vintage)
+            {
+                $avgPrice += $vintage->getWineryPrice();
+            }
+            return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
+        } else
+            return null;
     }
 
     /**

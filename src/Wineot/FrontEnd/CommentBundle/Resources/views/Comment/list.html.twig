@@ -1,0 +1,24 @@
+    <div class="wine-comments">
+        <h3 class="section-title clearfix"><i class="line"></i>{{ 'comment.title.list'|trans }}</h3>
+        {% if comments is not empty %}
+        {% for comment in comments %}
+            <article class="wine-comment">
+                <a href="#"><h4>{{ comment.user.username }}</h4></a>
+
+                <p class="rank">
+                    {% for i in 0..comment.rank %}
+                        <i class="rating"></i>
+                    {% endfor %}
+                </p>
+
+                <div class="comment">
+                    <p>
+                        {{ comment.comment }}
+                    </p>
+                </div>
+            </article>
+        {% endfor %}
+            {% else %}
+            <p class="text-center">{{ 'comment.warn.no_comment'|trans }}</p>
+        {% endif %}
+    </div>

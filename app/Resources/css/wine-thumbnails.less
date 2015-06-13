@@ -1,4 +1,3 @@
-@wine-thumbnail-size: 200px;
 @import "vars/colors.less";
 .wine-thumbnails {
   margin: 0;
@@ -10,6 +9,7 @@
 
 .wine-thumbnails > li {
   height: @wine-thumbnail-size;
+  min-width: 346px;
   margin-bottom: 20px;
   float: left;
 }
@@ -17,10 +17,10 @@
 .wine-thumbnail {
   min-height: @wine-thumbnail-size;
   padding: 0px;
-  background-color: #fff;
+  background-color: @wine-thumbnail-background;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.1);
-  box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.1);
+  -webkit-box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
+  box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
   overflow: hidden;
 }
 
@@ -52,16 +52,18 @@
 }
 
 .wine-thumbnail .wine-thumbnail-body {
-  height: 100%;
+  position:relative;
+  height: @wine-thumbnail-size - 5;
   padding: 5px;
   margin-top: 5px;
 }
 
 .wine-thumbnail .wine-thumbnail-footer {
   position: absolute;
-  text-align: right;
+  left:0;
+  text-align: center;
   bottom: 0;
-  right: 35px;
+//  right: 35px;
   padding-bottom: 10px;
   color: #b9b5b2;
 }
@@ -69,14 +71,15 @@
 .wine-thumbnail .wine-thumbnail-footer .wine-thumbnail-key {
   display: inline;
   padding: 15px;
+  min-width: 33.33%;
   border-right: 1px solid #eee;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .wine-thumbnail .wine-thumbnail-footer .wine-thumbnail-key:last-child {
   border: none;
-  padding-right: 0;
+//  padding-right: 0;
 }
 
 .wine-thumbnail h1 {
