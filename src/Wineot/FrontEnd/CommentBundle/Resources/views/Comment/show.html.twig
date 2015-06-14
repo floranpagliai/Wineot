@@ -1,0 +1,17 @@
+<article class="wine-comment">
+    {% if showUserName is defined and showUserName == true %}
+        <a href="#"><h4>{{ comment.user.username }}</h4></a>
+    {% endif %}
+
+    <p>
+        {% for i in 0..comment.rank %}
+            <i class="rank rank-big"></i>
+        {% endfor %}
+    </p>
+
+    <div class="comment">
+        <p>
+            {{ comment.comment }}
+        </p>
+    </div>
+</article>

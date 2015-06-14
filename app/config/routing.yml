@@ -1,10 +1,14 @@
-wineot_front_end_comment:
-    resource: "@WineotFrontEndCommentBundle/Resources/config/routing.yml"
-    prefix:   /
+wineot_front_end_winery:
+    resource: "@WineotFrontEndWineryBundle/Resources/config/routing.yml"
+    prefix:   /winery
 
 wineot_front_end_wine:
     resource: "@WineotFrontEndWineBundle/Resources/config/routing.yml"
     prefix:   /winery/{wineryName}/wine
+
+wineot_front_end_comment:
+    resource: "@WineotFrontEndCommentBundle/Resources/config/routing.yml"
+    prefix:   /
 
 wineot_back_end_crud:
     resource: "@WineotBackEndCRUDBundle/Resources/config/routing.yml"

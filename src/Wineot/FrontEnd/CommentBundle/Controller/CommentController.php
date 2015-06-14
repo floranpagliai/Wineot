@@ -8,6 +8,7 @@
 namespace Wineot\FrontEnd\CommentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\Comment;
 use Wineot\DataBundle\Form\CommentType;
@@ -22,18 +23,23 @@ class CommentController extends Controller
         return $this->render('WineotFrontEndCommentBundle:Comment:list.html.twig', $paramsRender);
     }
 
-    public function addAction(Request $request, $wine)
+    public function addAction(Request $request, $wineId)
     {
         $user = $this->getUser();
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
+        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
         $comment = new Comment();
-        $comment->setWine($wine);
         $form = $this->createForm(new CommentType(), $comment);
+        $userComment = null;
+
+        $comment->setWine($wine);
         $form->handleRequest($request);
+        if ($user)
+            $userComment = $dm->getRepository('WineotDataBundle:Comment')->findOneBy(array('wine' => $wine->getId(), 'user' => $user->getId()));
         if ($request->isMethod('POST')) {
             if ($user) {
-                if ($form->isValid()) {
+                if ($form->isValid() && !isset($userComment)) {
                     $comment->setUser($user);
                     $dm->persist($comment);
                     $dm->flush();
@@ -45,7 +51,7 @@ class CommentController extends Controller
             }
         }
 
-        $paramsRender = array('form' => $form->createView());
+        $paramsRender = array('form' => $form->createView(), 'userComment' => $userComment);
         return $this->render('WineotFrontEndCommentBundle:Comment:add.html.twig', $paramsRender);
     }
 } 

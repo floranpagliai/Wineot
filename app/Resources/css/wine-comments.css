@@ -9,12 +9,22 @@
 .wine-comments h4 {
   margin-bottom: 0px;
 }
-.rating {
+.wine-comments .comment {
+  font-weight: lighter;
+}
+.wine-comment .rank {
   display: inline-block;
-  width: 15px;
-  height: 15px;
-  background-size: 15px auto;
   background-repeat: no-repeat;
   position: relative;
   background-image: url("../../img/icons/star.png");
+}
+.rank-small {
+  background-size: 15px auto;
+  width: 15px;
+  height: 15px;
+}
+.rank-big {
+  background-size: 30px auto;
+  width: 30px;
+  height: 30px;
 }

@@ -11,7 +11,7 @@
                     {% endif %}
                 </div>
                 <div class="wine-show-body col-sm-9">
-                    <h2 class="">{{ wine.winery.name }}</h2>
+                    <h2>{{ wine.winery.name }}</h2>
 
                     <h1>{{ wine.name }}
                         {% if vintage is not empty %}
@@ -33,6 +33,9 @@
                             <p>
                                 {% if wine.getAvgRating() is not null %}
                                     {{ wine.getAvgRating() }}
+                                    {% for i in 0..wine.getAvgRating()%}
+                                        <i class="rank rank-small"></i>
+                                    {% endfor %}
                                 {% else %}
                                     -
                                 {% endif %}
@@ -40,7 +43,6 @@
                         </div>
                         <div class="wine-show-key">
                             <h4>Avg Price</h4>
-
                             <p>
                                 {% if wine.getAvgPrice() is not null %}
                                     {{ wine.getAvgPrice() }} €
@@ -58,7 +60,7 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wine' : wine })) %}
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wineId' : wine.id })) %}
             </div>
         </div>
         <!-- .banner-wrapper -->

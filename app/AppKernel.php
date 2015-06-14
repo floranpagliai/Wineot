@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Wineot\BackEnd\CRUDBundle\WineotBackEndCRUDBundle(),
             new Wineot\FrontEnd\WineBundle\WineotFrontEndWineBundle(),
             new Wineot\FrontEnd\CommentBundle\WineotFrontEndCommentBundle(),
+            new Wineot\FrontEnd\WineryBundle\WineotFrontEndWineryBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

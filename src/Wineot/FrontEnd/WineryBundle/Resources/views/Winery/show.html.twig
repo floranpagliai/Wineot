@@ -1,0 +1,105 @@
+{% extends "WineotFrontEndWineryBundle::layout.html.twig" %}
+{% block featured %}
+    <div class="featured row">
+        <div class="col-sm-8">
+            <div class="banner-wrapper row">
+                {#<div class="wine-show-image col-sm-3">#}
+                    {#{% if  winery.labelPicture.md5 is defined %}#}
+                        {#<img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">#}
+                    {#{% else %}#}
+                        {#<img class="img-responsive" src="{{ asset('img/image.png') }}"/>#}
+                    {#{% endif %}#}
+                {#</div>#}
+                <div class="wine-show-body col-sm-12">
+
+                    <h1>{{ winery.name }}
+                    </h1>
+                    <br/>
+
+                    <p>
+                        <i class="country-flag flag-{{ winery.country.code }}"></i> {{ winery.region.name }}
+                        · {{ winery.country.name }}<br/>
+                    </p>
+
+                    {#<div class="wine-show-keys">#}
+                        {#<div class="wine-show-key">#}
+                            {#<h4>Avg Rating</h4>#}
+
+                            {#<p>#}
+                                {#{% if wine.getAvgRating() is not null %}#}
+                                    {#{{ wine.getAvgRating() }}#}
+                                {#{% else %}#}
+                                    {#-#}
+                                {#{% endif %}#}
+                            {#</p>#}
+                        {#</div>#}
+                        {#<div class="wine-show-key">#}
+                            {#<h4>Avg Price</h4>#}
+
+                            {#<p>#}
+                                {#{% if wine.getAvgPrice() is not null %}#}
+                                    {#{{ wine.getAvgPrice() }} €#}
+                                {#{% else %}#}
+                                    {#-#}
+                                {#{% endif %}#}
+                            {#</p>#}
+                        {#</div>#}
+                    </div>
+
+                </div>
+            </div>
+            <!-- .banner-wrapper -->
+        </div>
+
+        <div class="col-sm-4">
+            <div class="banner-wrapper row text-center">
+            </div>
+        </div>
+        <!-- .banner-wrapper -->
+    </div>
+{% endblock %}
+{% block body %}
+    {#<div class="col-sm-12">#}
+        {#<h3 class="section-title clearfix"><i class="line"></i>#}
+            {#{{ 'wine.title.description'|trans }}#}
+        {#</h3>#}
+
+        {#<div class="col-sm-8 col-sm-offset-4">#}
+            {#<p>{{ wine.description }}</p>#}
+        {#</div>#}
+    {#</div>#}
+    {#{% if wine.vintages is not empty %}#}
+        {#<div class="col-sm-12">#}
+            {#<h3 class="section-title clearfix"><i class="line"></i>#}
+                {#{{ 'wine.vintage.title.vintages'|trans }}#}
+            {#</h3>#}
+
+            {#<div class="col-sm-8 col-sm-offset-4">#}
+                {#<table class="table table-hover">#}
+                    {#<tbody>#}
+                    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
+                    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"#}
+                        {#style="cursor: pointer;">#}
+                        {#<td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>#}
+                        {#<td class="text-right">{{ wine.getAvgPrice() }} €</td>#}
+                    {#</tr>#}
+                    {#{% for vintage in wine.vintages %}#}
+                        {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
+                        {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'"#}
+                            {#style="cursor: pointer;">#}
+                            {#<td>{{ vintage.productionYear }}</td>#}
+                            {#<td class="text-right">{{ vintage.wineryPrice }} €</td>#}
+                        {#</tr>#}
+                    {#{% endfor %}#}
+                    {#</tbody>#}
+                {#</table>#}
+            {#</div>#}
+        {#</div>#}
+    {#{% endif %}#}
+{% endblock %}
+{% block sidebar_right %}
+    {#{% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}#}
+{% endblock %}
+{% block featured_bottom %}
+
+{% endblock %}

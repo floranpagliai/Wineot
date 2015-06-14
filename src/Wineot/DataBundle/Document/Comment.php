@@ -7,6 +7,7 @@
 
 namespace Wineot\DataBundle\Document;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,7 +22,7 @@ class Comment
 
     /** @var string
      *
-     * @MongoDB\String
+     * @MongoDB\String(nullable=true)
      * @Assert\Length(max = 255)
      */
     private $comment;
@@ -49,6 +50,13 @@ class Comment
      * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="comments", simple=true)
      */
     private $wine;
+
+    /**
+     * @var datetime $createdAt
+     *
+     * @MongoDB\Field(name="created_at", type="timestamp", nullable=false)
+     */
+    private $createdAt;
 
     /**
      * Set comment
@@ -146,5 +154,21 @@ class Comment
     {
         $this->wine = $wine;
         return $this;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

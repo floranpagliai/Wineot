@@ -5,9 +5,9 @@
             <article class="wine-comment">
                 <a href="#"><h4>{{ comment.user.username }}</h4></a>
 
-                <p class="rank">
+                <p>
                     {% for i in 0..comment.rank %}
-                        <i class="rating"></i>
+                        <i class="rank rank-small"></i>
                     {% endfor %}
                 </p>
 
