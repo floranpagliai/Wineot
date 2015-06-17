@@ -7,8 +7,10 @@
 
 namespace Wineot\DataBundle\Document;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,12 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Comment
 {
+    /** @MongoDB\Id */
+    private $id;
+
     /** @var string
      *
-     * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 255
-     * )
+     * @MongoDB\String(nullable=true)
+     * @Assert\Length(max = 255)
      */
     private $comment;
 
@@ -37,7 +40,7 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="user_id")
-     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments")
+     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments", simple=true)
      */
     private $user;
 
@@ -45,23 +48,16 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="vintage_id")
-     * @MongoDB\ReferenceOne(targetDocument="Vintage", inversedBy="comments")
+     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="comments", simple=true)
      */
-    private $vintage;
+    private $wine;
 
     /**
-     * @var integer
+     * @var Datetime $createdAt
      *
-     * @MongoDB\Id
+     * @MongoDB\Date(name="created_at")
      */
-    private $id;
-
-    public function __construct()
-    {
-        $this->userId = new ArrayCollection();
-        $this->wineId = new ArrayCollection();
-    }
-
+    private $createdAt;
 
     /**
      * Set comment
@@ -130,25 +126,13 @@ class Comment
     }
 
     /**
-     * Set vintageId
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     * @return self
-     */
-    public function setVintageId(Vintage $vintage)
-    {
-        $this->vintage = $vintage;
-        return $this;
-    }
-
-    /**
      * Get vintageId
      *
-     * @return \Wineot\DataBundle\Document\Vintage $vintage
+     * @return \Wineot\DataBundle\Document\Wine $wine
      */
-    public function getVintage()
+    public function getWine()
     {
-        return $this->vintage;
+        return $this->wine;
     }
 
     /**
@@ -162,14 +146,30 @@ class Comment
     }
 
     /**
-     * Set vintage
+     * Set Wine
      *
-     * @param Wineot\DataBundle\Document\Vintage $vintage
+     * @param \Wineot\DataBundle\Document\Wine $wine
      * @return self
      */
-    public function setVintage(\Wineot\DataBundle\Document\Vintage $vintage)
+    public function setWine(Wine $wine)
     {
-        $this->vintage = $vintage;
+        $this->wine = $wine;
         return $this;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

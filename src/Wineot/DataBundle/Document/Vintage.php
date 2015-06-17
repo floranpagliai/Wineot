@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Wineot\DataBundle\Document\Comment;
 
 /**
@@ -22,7 +23,7 @@ class Vintage
     /**
      * @var Int
      *
-     * @MongoDB\Field(type="int", name="production_year")
+     * @MongoDB\Field(type="int", name="production_year"))
      * @Assert\NotBlank()
      */
     private $productionYear;
@@ -35,27 +36,15 @@ class Vintage
     private $wineryPrice;
 
     /**
-     * @var collection
+     * @var Image
      *
-     * @MongoDB\Field(name="comments")
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="vintage", nullable=true)
+     * @MongoDB\Field(name="label_picture")
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"persist"},
+     *  simple=true)
      */
-    private $comments;
-
-//    /**
-//     * @var integer
-//     *
-//     * @MongoDB\Field(name="wine_id")
-//     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="vintages", simple=true)
-//     */
-//    private $wine;
-//
-//    /**
-//     * @var integer
-//     *
-//     * @MongoDB\Id
-//     */
-//    private $id;
+    private $labelPicture;
 
     public function __construct()
     {
@@ -85,71 +74,6 @@ class Vintage
     }
 
     /**
-     * Add comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
-     */
-    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
-    {
-        $this->comments[] = $comment;
-    }
-
-    /**
-     * Remove comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
-     */
-    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection $comments
-     */
-    public function getComments()
-    {
-        if (!empty($this->comments))
-            return $this->comments;
-        else
-            return NULL;
-    }
-
-    /**
-     * Set wineId
-     *
-     * @param \Wineot\DataBundle\Document\Wine $wine
-     * @return self
-     */
-    public function setWine(Wine $wine)
-    {
-        $this->wine = $wine;
-        return $this;
-    }
-
-    /**
-     * Get wineId
-     *
-     * @return \Wineot\DataBundle\Document\Wine $wineId
-     */
-    public function getWine()
-    {
-        return $this->wine;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set wineryPrice
      *
      * @param float $wineryPrice
@@ -170,4 +94,22 @@ class Vintage
     {
         return $this->wineryPrice;
     }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Image $labelPicture
+     */
+    public function setLabelPicture($labelPicture)
+    {
+        $this->labelPicture = $labelPicture;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Image
+     */
+    public function getLabelPicture()
+    {
+        return $this->labelPicture;
+    }
+
+
 }

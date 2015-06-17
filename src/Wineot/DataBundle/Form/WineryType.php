@@ -7,6 +7,7 @@
 
 namespace Wineot\DataBundle\Form;
 
+use Doctrine\ODM\MongoDB\DocumentRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,9 +17,21 @@ class WineryType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
-        ;
+        $builder->add('name');
+        $builder->add('country', 'document', array(
+            'class' => 'Wineot\DataBundle\Document\Country',
+            'property' => 'name',
+            'query_builder' => function (DocumentRepository $er) {
+                    return $er->createQueryBuilder('c');
+                }
+        ));
+        $builder->add('region', 'document', array(
+            'class' => 'Wineot\DataBundle\Document\Region',
+            'property' => 'name',
+            'query_builder' => function (DocumentRepository $er) {
+                    return $er->createQueryBuilder('c');
+                }
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

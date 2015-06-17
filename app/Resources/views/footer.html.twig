@@ -42,6 +42,7 @@
 {% javascripts
     'js/jquery.js'
     'js/bootstrap.js'
+    '%kernel.root_dir%/Resources/js/*'
     '@UtilsNotifyMessengerBundle/Resources/public/js/*'
 %}
 <script src="{{ asset_url }}" type="text/javascript"></script>
@@ -71,14 +72,24 @@
 </script>
 {% block page_script %}
     <script type="text/javascript">
-        var collectionHolder = $('tbody.vintages');
+        var collectionHolder = $('tbody.collection');
 
         // ajoute un lien « add a tag »
-        var $addTagLink = $('<a href="#" class="btn btn-sm btn-primary add_tag_link"><i class="fa fa-plus"></i> Add a vintage</a>');
+        var $addTagLink = $('<a href="#" class="btn btn-sm btn-primary add_tag_link"><i class="fa fa-plus"></i> Add</a>');
 
         var $newLinkLi = $addTagLink;
 
         jQuery(document).ready(function () {
+            var $siteHero = $('.site-hero');
+            var $img = $('.site-hero-image').attr('src');
+            if ($img) {
+                $siteHero.css('background-image', 'url('+$img+')');
+                $siteHero.css('background-repeat', 'no-repeat');
+                $siteHero.css('-webkit-background-size', 'cover');
+                $siteHero.css('-moz-background-size', 'cover');
+                $siteHero.css('-o-background-size', 'cover');
+                $siteHero.css('background-size', 'cover');
+            }
             // ajoute l'ancre « ajouter un tag » et li à la balise ul
             collectionHolder.append($newLinkLi);
 
@@ -111,7 +122,7 @@
 
         function addTagFormDeleteLink($tagFormLi) {
             var $removeFormA = $('<td class="tooltip-content"><a href="#" class="btn btn-sm btn-red btn-block" data-toggle="tooltip" ' +
-                    'data-placement="top" data-original-title="Delete vintage"><i class="fa fa-times"></i></a></td>');
+                    'data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a></td>');
 
             $tagFormLi.append($removeFormA);
 

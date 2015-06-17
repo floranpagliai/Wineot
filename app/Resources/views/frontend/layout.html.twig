@@ -16,21 +16,10 @@
     {% if sitehero_active is not defined  %}
         <div class="site-hero clearfix">
             <div class="container">
-                {#<div class="features row">#}
-                {#<div class="col-sm-4">#}
-                {#<div class="banner-wrapper text-center">#}
-                {#<span class="fa-stack fa-3x">#}
-                {#<i class="fa fa-circle fa-stack-2x"></i>#}
-                {#<i class="fa fa-expand fa-stack-1x fa-inverse"></i>#}
-                {#</span>#}
-                {#<h4 class="banner-title h3">Responsive Layout</h4>#}
-                {#<div class="banner-content">#}
-                {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis, purus quis dictum vitae placerat …</p>#}
-                {#</div>#}
-                {#<p><a href="#" class="btn btn-custom btn-sm">Read More</a></p>#}
-                {#</div><!-- .banner-wrapper -->#}
-                {#</div>#}
-                {#</div>#}
+                {% set featured_block = block('featured') %}
+                {% if featured_block is not empty %}
+                    {{ featured_block|raw }}
+                {% endif %}
             </div>
         </div><!-- .site-hero -->
     {% endif %}
@@ -43,6 +32,7 @@
                 <div class="row">
 
                     {% set sidebar_block = block('sidebar') %}
+                    {% set sidebar_block_right = block('sidebar_right') %}
                     {% set body_block = block('body') %}
                     {% if sidebar_block is not empty %}
                         <div id="sidebar" class="site-sidebar col-md-3">
@@ -52,10 +42,22 @@
                         </div>
                         <div id="content" class="site-content col-md-9">
                             <div class="row">
-                                {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
+                                {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
                                 {{ body_block|raw }}
                             </div>
                         </div>
+                        {% elseif sidebar_block_right is not empty %}
+                            <div id="content" class="site-content col-md-8">
+                                <div class="row">
+                                    {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
+                                    {{ body_block|raw }}
+                                </div>
+                            </div>
+                            <div id="sidebar" class="site-sidebar col-md-4">
+                                <div class="widget-area">
+                                    {{ sidebar_block_right|raw }}
+                                </div>
+                            </div>
                     {% else %}
                         <div id="content" class="site-content col-md-12">
                             <div class="row">
@@ -70,6 +72,15 @@
         </div>
     </div>
     <!-- #main -->
+
+        <div class="clearfix">
+            <div class="container">
+                {% set featured_bottom_block = block('featured_bottom') %}
+                {% if featured_bottom_block is not empty %}
+                    {{ featured_bottom_block|raw }}
+                {% endif %}
+            </div>
+        </div><!-- .site-hero -->
 
     {% include 'footer.html.twig' %}
 </div>

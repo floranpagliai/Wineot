@@ -1,7 +1,8 @@
 search:
     action:
         search: "Rechercher un vin"
-    title:
+        favorite: "Ajouter à mes favoris"
+    button:
         search: "Recherche"
     form:
         color: "Couleur"

@@ -1,0 +1,3 @@
+wineot_front_end_winery_show:
+    path:     /{wineryName}
+    defaults: { _controller: WineotFrontEndWineryBundle:Winery:show }

@@ -22,6 +22,24 @@ class Wine
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
     /**
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
+     * @var Winery
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Winery",
+     *  inversedBy="wines",
+     *  cascade={"persist"},
+     *  simple=true)
+     */
+    private $winery;
+
+    /**
      * @var string
      *
      * @MongoDB\Field(type="string")
@@ -50,26 +68,27 @@ class Wine
     /**
      * @var collection
      *
-     * @MongoDB\Field(name="vintages")
      * @MongoDB\EmbedMany(
-     * targetDocument="Vintage")
+     *  targetDocument="Vintage")
      */
     private $vintages;
 
     /**
-     * @var integer
+     * @var Image
      *
-     * @MongoDB\Field(type="int", name="winery_id")
-     * @MongoDB\ReferenceOne(targetDocument="Winery", inversedBy="wines", cascade={"persist"}, simple=true)
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"all"},
+     *  simple=true)
      */
-    private $winery;
+    private $labelPicture;
 
     /**
-     * @var integer
+     * @var collection
      *
-     * @MongoDB\Id
+     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="wine", nullable=true)
      */
-    private $id;
+    private $comments;
 
     public function __construct()
     {
@@ -149,7 +168,6 @@ class Wine
      */
     public function addVintage(Vintage $vintage)
     {
-        $vintage->setWine($this);
         $this->vintages[] = $vintage;
     }
 
@@ -196,25 +214,107 @@ class Wine
     }
 
     /**
-     * Get wineryId
+     * Get winery
      *
-     * @return \Wineot\DataBundle\Document\Winery $wineryId
+     * @return \Wineot\DataBundle\Document\Winery $winery
      */
     public function getWinery()
     {
         return $this->winery;
     }
 
+//    public function getComments()
+//    {
+//        $comments = array();
+//        foreach ($this->vintages as $vintage) {
+//            $vintage_comments = $vintage->getComments();
+//            if(!isset($vintage_comments))
+//                $comments[] = $vintage_comments;
+//        }
+//
+//        return $comments;
+//    }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Image $labelPicture
+     */
+    public function setLabelPicture($labelPicture)
+    {
+        $this->labelPicture = $labelPicture;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Image
+     */
+    public function getLabelPicture()
+    {
+        return $this->labelPicture;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    public function isFavorited(User $user)
+    {
+        return $user->isFavorited($this);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection $comments
+     */
     public function getComments()
     {
-        $comments = array();
-        foreach ($this->vintages as $vintage) {
-            $vintage_comments = $vintage->getComments();
-            if(!isset($vintage_comments))
-                $comments[] = $vintage_comments;
-        }
+        if (!empty($this->comments))
+            return $this->comments;
+        else
+            return null;
+    }
 
-        return $comments;
+    public function getAvgRating()
+    {
+        if ($this->comments->count() != 0) {
+            $avgRating = 0;
+            $comments = $this->comments;
+            foreach($comments as $comment)
+            {
+                $avgRating += $comment->getRank();
+            }
+            return number_format($avgRating/$this->comments->count(), 1);
+        } else
+            return null;
+    }
+
+    public function getAvgPrice()
+    {
+        if ($this->vintages->count() != 0) {
+            $avgPrice = 0;
+            $vintages = $this->vintages;
+            foreach($vintages as $vintage)
+            {
+                $avgPrice += $vintage->getWineryPrice();
+            }
+            return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
+        } else
+            return null;
     }
 
     /**
