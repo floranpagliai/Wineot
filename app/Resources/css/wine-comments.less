@@ -34,3 +34,26 @@
   width: 30px;
   height: 30px;
 }
+.rating {
+  font-size: 0;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 30px;
+  color: #E8E6E5;
+  margin-right: 3px;
+}
+.rating input:checked ~ label {
+  color: #E8E6E5;
+}
+.rating:hover label{
+  color: #ffb701 !important;
+}
+
+.rating label:hover ~ label{
+  color: #E8E6E5 !important;
+}

@@ -1,0 +1,5 @@
+services:
+    form.type.rating:
+        class: Utils\RatingBundle\Form\Type\RatingType
+        tags:
+            - { name: form.type, alias: rating }
