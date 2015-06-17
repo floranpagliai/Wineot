@@ -1,0 +1,60 @@
+<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="wine-thumbnail">
+        <article>
+            <div class="wine-thumbnail-img col-xs-5">
+                <a href="{{ path('wineot_front_end_wine_show',
+                { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}">
+                    {% if  wine.labelPicture.md5 is defined %}
+                        <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
+                    {% else %}
+                        <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                    {% endif %}
+                    <div class="img-background"></div>
+                </a>
+            </div>
+            <div class="wine-thumbnail-body col-xs-7">
+                <h2>
+                    <a href="#">
+                        {{ wine.winery.name }}
+                    </a>
+                </h2>
+
+                <h1>
+                    <a href="{{ path('wineot_front_end_wine_show',
+                    { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}">{{ wine.name }}
+                    </a>
+                </h1>
+
+                <p>
+                    <i class="country-flag flag-{{ wine.winery.country.code }}"></i> {{ wine.winery.region.name }}
+                    · {{ wine.winery.country.name }}<br/>
+                    <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
+                </p>
+
+                <div class="wine-thumbnail-footer">
+                    <div class="wine-thumbnail-key">
+                        <i class="fa fa-comments"></i>
+                        {{ wine.comments|length }}
+                    </div>
+                    <div class="wine-thumbnail-key">
+                        <i class="fa fa-star"></i>
+                        {% if wine.getAvgRating() is not null %}
+                            {{ wine.getAvgRating() }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                    <div class="wine-thumbnail-key">
+                        <i class="fa fa-tag"></i>
+                        {% if wine.getAvgPrice() is not null %}
+                            {{ wine.getAvgPrice()|number_format }} €
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+</li>

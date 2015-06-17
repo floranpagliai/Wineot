@@ -1,11 +1,9 @@
 .featured {
-  min-height: 256px;
   padding: 0px;
 }
 .featured .banner-wrapper {
   display: block !important;
   border-radius: 3px;
-  min-height: 244px;
   bottom: 0;
   margin: 30px 0;
   padding: 15px 0px 0px 0px;
@@ -22,20 +20,22 @@
 .featured .wine-show-image {
   padding-bottom: 15px;
 }
+.featured h1,
+h2,
+h3 {
+  margin: 0px;
+}
 .featured .wine-show-body h1 {
   font-size: 27px;
   font-weight: bold;
-  margin: 0px;
   margin-top: 5px;
 }
 .featured .wine-show-body h2 {
   font-size: 19px;
   font-weight: 200;
-  margin: 0px;
 }
 .featured .wine-show-body h3 {
   font-size: 17px;
-  margin: 0px;
 }
 .featured .wine-show-keys {
   text-align: center;
@@ -54,4 +54,8 @@
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+.featured .wine-show-share {
+  border-top: 1px solid #ddd;
+  padding: 15px 10px 10px;
 }

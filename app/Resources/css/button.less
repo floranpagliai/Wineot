@@ -125,12 +125,15 @@ fieldset[disabled] .btn.active {
   color: #fff;
   background-color: #2573a6;
 }
-
-/*	Social Media	*/
+.btn-rounded:hover,
+.btn-rounded:focus,
+.btn-rounded:active {
+  color: #fff;
+}
 .btn-social {
-    padding: 4px 5px;
-    background-color: #fff;
-    color: #666;
+    padding: 4px 4px;
+    background-color: @button-rounded-background;
+    color: @button-rounded-text;
     border-color: #ccc;
     border-radius: 1em;
     -webkit-transition: all 0.6s linear;
@@ -163,3 +166,9 @@ fieldset[disabled] .btn.active {
 .btn-youtube:active {
     background-color: #c8302d;
 }
+.btn-favorite:hover,
+.btn-favorite:focus,
+.btn-favorite:active {
+  background-color: @grapefruit;
+}
+

@@ -7,15 +7,15 @@
                     <span class="date">{{ comment.createdAt|date("m/d/Y") }}</span>
                 </h4>
 
-                <p>
+                <div class="rank-small">
                     {% for i in 1..comment.rank %}
-                        <i class="rank rank-small"></i>
+                        <i class="fa fa-star"></i>
                     {% endfor %}
-                </p>
+                </div>
 
                 <div class="comment">
                     <p>
-                        {{ comment.comment }}
+                        "{{ comment.comment }}"
                     </p>
                 </div>
             </article>

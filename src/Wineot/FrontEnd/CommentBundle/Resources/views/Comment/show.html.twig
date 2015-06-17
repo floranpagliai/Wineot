@@ -3,15 +3,20 @@
         <a href="#"><h4>{{ comment.user.username }}</h4></a>
     {% endif %}
 
-    <p>
-        {% for i in 1..comment.rank %}
-            <i class="rank rank-big"></i>
-        {% endfor %}
-    </p>
+    <div class="rank-big">
+            {% for i in 1..comment.rank %}
+                <i class="fa fa-star"></i>
+            {% endfor %}
+    </div>
 
     <div class="comment">
         <p>
-            {{ comment.comment }}
+            {% if comment.comment is not null  %}
+                "{{ comment.comment }}"<br/>
+                {#<a href="#">Edit</a>#}
+            {% else %}
+                <a href="#">Add comment</a>
+            {% endif %}
         </p>
     </div>
 </article>

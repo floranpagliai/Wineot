@@ -1,6 +1,6 @@
 <div class="col-md-12">
+    <h2>{{ 'comment.form.comment'|trans }}</h2>
     {% if userComment is not null %}
-        <h2>{{ 'comment.form.comment'|trans }}</h2>
         {% include 'WineotFrontEndCommentBundle:Comment:show.html.twig' with {'comment': userComment, 'showUserName': false} %}
     {% else %}
         {{ form_start(form) }}
