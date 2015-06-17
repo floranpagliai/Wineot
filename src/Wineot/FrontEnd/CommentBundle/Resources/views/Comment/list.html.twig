@@ -3,17 +3,19 @@
         {% if comments is not empty %}
         {% for comment in comments %}
             <article class="wine-comment">
-                <a href="#"><h4>{{ comment.user.username }}</h4></a>
+                <h4><a href="#">{{ comment.user.username }}</a>
+                    <span class="date">{{ comment.createdAt|date("m/d/Y") }}</span>
+                </h4>
 
-                <p class="rank">
-                    {% for i in 0..comment.rank %}
-                        <i class="rating"></i>
+                <div class="rank-small">
+                    {% for i in 1..comment.rank %}
+                        <i class="fa fa-star"></i>
                     {% endfor %}
-                </p>
+                </div>
 
                 <div class="comment">
                     <p>
-                        {{ comment.comment }}
+                        "{{ comment.comment }}"
                     </p>
                 </div>
             </article>

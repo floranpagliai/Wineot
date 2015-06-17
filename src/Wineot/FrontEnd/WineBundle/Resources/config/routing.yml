@@ -1,3 +1,9 @@
 wineot_front_end_wine_show:
     path:     /{wineName}_{wineId}_{vintage}
     defaults: { _controller: WineotFrontEndWineBundle:Wine:show, vintage: null }
+wineot_front_end_wine_favorite:
+    path:     /favorite/{wineId}
+    defaults: { _controller: WineotFrontEndWineBundle:Wine:favorite }
+wineot_front_end_wine_unfavorite:
+    path:     /unfavorite/{wineId}
+    defaults: { _controller: WineotFrontEndWineBundle:Wine:unfavorite }

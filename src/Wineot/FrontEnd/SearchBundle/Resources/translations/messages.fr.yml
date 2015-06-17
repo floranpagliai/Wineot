@@ -1,6 +1,7 @@
 search:
     action:
         search: "Rechercher un vin"
+        favorite: "Ajouter à mes favoris"
     button:
         search: "Recherche"
     form:

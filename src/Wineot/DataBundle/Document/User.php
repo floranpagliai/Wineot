@@ -99,6 +99,13 @@ class User implements UserInterface
     /**
      * @var collection
      *
+     * @MongoDB\ReferenceMany(name="favorite_wine_ids", targetDocument="Wine", simple=true)
+     */
+    private $favoritesWines;
+
+    /**
+     * @var collection
+     *
      * @MongoDB\Field(type="collection")
      *
      * @Assert\NotBlank()
@@ -116,6 +123,7 @@ class User implements UserInterface
     {
         $this->roles[] = 'ROLE_USER';
         $this->comments = new ArrayCollection();
+        $this->favoritesWines = new ArrayCollection();
     }
 
     /**
@@ -327,6 +335,52 @@ class User implements UserInterface
     {
         $this->roles = $roles;
         return $this;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $favoritesWines
+     */
+    public function setFavoritesWines($favoritesWines)
+    {
+        $this->favoritesWines = $favoritesWines;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavoritesWines()
+    {
+        return $this->favoritesWines;
+    }
+
+    /**
+     * Add favorite wine
+     *
+     * @param \Wineot\DataBundle\Document\Wine $wine
+     */
+    public function addFavoriteWine(Wine $wine)
+    {
+        if (!$this->isFavorited($wine))
+            $this->favoritesWines->add($wine);
+    }
+
+    /**
+     * Remove favorite wine
+     *
+     * @param \Wineot\DataBundle\Document\Wine $wine
+     */
+    public function removeFavoriteWine(Wine $wine)
+    {
+        $this->favoritesWines->removeElement($wine);
+    }
+
+
+    public function isFavorited(Wine $wine)
+    {
+        if ($this->favoritesWines->contains($wine))
+            return true;
+        else
+            return false;
     }
 
     /**

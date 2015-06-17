@@ -16,7 +16,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('comment', 'textarea');
-        $builder->add('rank', 'choice', array('choices' => array(1,2,3,4,5)));
+        $builder->add('rank', 'rating');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -47,13 +47,13 @@
                             </div>
                         </div>
                         {% elseif sidebar_block_right is not empty %}
-                            <div id="content" class="site-content col-md-9">
+                            <div id="content" class="site-content col-md-8">
                                 <div class="row">
                                     {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
                                     {{ body_block|raw }}
                                 </div>
                             </div>
-                            <div id="sidebar" class="site-sidebar col-md-3">
+                            <div id="sidebar" class="site-sidebar col-md-4">
                                 <div class="widget-area">
                                     {{ sidebar_block_right|raw }}
                                 </div>

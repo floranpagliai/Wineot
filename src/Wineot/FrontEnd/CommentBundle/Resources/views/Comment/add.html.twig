@@ -1,22 +1,28 @@
 <div class="col-md-12">
-    {{ form_start(form) }}
-    {% if errors  is defined %}
-        {% for error in errors %}
-            <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
-        {% endfor %}
+    <h2>{{ 'comment.form.comment'|trans }}</h2>
+    {% if userComment is not null %}
+        {% include 'WineotFrontEndCommentBundle:Comment:show.html.twig' with {'comment': userComment, 'showUserName': false} %}
+    {% else %}
+        {{ form_start(form) }}
+        {% if errors  is defined %}
+            {% for error in errors %}
+                <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
+            {% endfor %}
+        {% endif %}
+        <fieldset>
+            <div class="form-group">
+                <label class="sr-only" for="rank">Rank</label>
+                {{ form_widget(form.rank) }}
+            </div>
+            {#<a href="#" onclick="$('#wineot_databundle_commenttype_comment').toggle();$(this).hide()">Add comment</a>#}
+            <div class="form-group">
+                <label class="sr-only" for="name">Comment</label>
+                {{ form_widget(form.comment, { 'attr': { 'placeholder': 'comment.form.comment'|trans } } ) }}
+            </div>
+            <input class="btn btn-lg btn-block" type="submit" id="_submit" name="submit_wine"
+                   value="{{ 'comment.action.add'|trans }}"/>
+        </fieldset>
+        <br>
+        {{ form_end(form) }}
     {% endif %}
-    <fieldset>
-        <div class="form-group">
-            <label class="sr-only" for="rank">Rank</label>
-            {{ form_widget(form.rank) }}
-        </div>
-        <div class="form-group">
-            <label class="sr-only" for="name">Comment</label>
-            {{ form_widget(form.comment, { 'attr': { 'placeholder': 'comment.form.comment'|trans } } ) }}
-        </div>
-        <input class="btn btn-lg  btn-block" type="submit" id="_submit" name="submit_wine"
-               value="{{ 'comment.action.add'|trans }}"/>
-    </fieldset>
-    <br>
-    {{ form_end(form) }}
 </div>

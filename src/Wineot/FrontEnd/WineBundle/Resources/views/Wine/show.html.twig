@@ -11,7 +11,7 @@
                     {% endif %}
                 </div>
                 <div class="wine-show-body col-sm-9">
-                    <h2 class="">{{ wine.winery.name }}</h2>
+                    <h2>{{ wine.winery.name }}</h2>
 
                     <h1>{{ wine.name }}
                         {% if vintage is not empty %}
@@ -26,19 +26,24 @@
                         <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
                     </p>
 
+                    <p>{{ wine.description }}</p>
+
                     <div class="wine-show-keys">
-                        <div class="wine-show-key">
+                        <div class="wine-show-key pull-right">
                             <h4>Avg Rating</h4>
 
                             <p>
                                 {% if wine.getAvgRating() is not null %}
                                     {{ wine.getAvgRating() }}
+                                    {% for i in 1..wine.getAvgRating() %}
+                                        <i class="rank rank-small"></i>
+                                    {% endfor %}
                                 {% else %}
                                     -
                                 {% endif %}
                             </p>
                         </div>
-                        <div class="wine-show-key">
+                        <div class="wine-show-key pull-right">
                             <h4>Avg Price</h4>
 
                             <p>
@@ -58,22 +63,41 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wine' : wine })) %}
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wineId' : wine.id })) %}
+                <span class="horizontal-line"></span>
+
+                <div class="col-md-12 wine-show-share">
+                    <p>
+                        {% if app.user and app.user.isFavorited(wine) %}
+                            <a href="{{ path('wineot_front_end_wine_favorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
+                               class="btn-social btn-favorite-active" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
+                                <i class="fa fa-heart fa-fw"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('wineot_front_end_wine_unfavorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
+                               class="btn-social btn-favorite" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'wine.action.unfavorite'|trans }}">
+                                <i class="fa fa-heart fa-fw"></i>
+                            </a>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
         <!-- .banner-wrapper -->
     </div>
 {% endblock %}
 {% block body %}
-    <div class="col-sm-12">
-        <h3 class="section-title clearfix"><i class="line"></i>
-            {{ 'wine.title.description'|trans }}
-        </h3>
+    {#<div class="col-sm-12">#}
+    {#<h3 class="section-title clearfix"><i class="line"></i>#}
+    {#{{ 'wine.title.description'|trans }}#}
+    {#</h3>#}
 
-        <div class="col-sm-8 col-sm-offset-4">
-            <p>{{ wine.description }}</p>
-        </div>
-    </div>
+    {#<div class="col-sm-8 col-sm-offset-4">#}
+    {#<p>{{ wine.description }}</p>#}
+    {#</div>#}
+    {#</div>#}
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
@@ -111,8 +135,11 @@
         <h3 class="section-title clearfix"><i class="line"></i>
             {{ 'wine.title.other_winery_wine'|trans }}
         </h3>
-        {% include 'WineotFrontEndWineBundle:Wine:otherwinestest.html.twig' with {'wine': wine} %}
-        {% include 'WineotFrontEndWineBundle:Wine:otherwinestest.html.twig' with {'wine': wine} %}
-        {% include 'WineotFrontEndWineBundle:Wine:otherwinestest.html.twig' with {'wine': wine} %}
+        <ul class="wine-thumbnails">
+
+            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
+            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
+            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
+            <ul class="wine-thumbnails">
     </div>
 {% endblock %}

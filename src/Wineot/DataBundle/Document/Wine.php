@@ -271,6 +271,11 @@ class Wine
         $this->comments->removeElement($comment);
     }
 
+    public function isFavorited(User $user)
+    {
+        return $user->isFavorited($this);
+    }
+
     /**
      * Get comments
      *
@@ -291,7 +296,7 @@ class Wine
             $comments = $this->comments;
             foreach($comments as $comment)
             {
-                $avgRating += $comment->getRank()+1;
+                $avgRating += $comment->getRank();
             }
             return number_format($avgRating/$this->comments->count(), 1);
         } else

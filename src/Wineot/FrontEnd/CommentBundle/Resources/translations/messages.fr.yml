@@ -3,7 +3,6 @@ comment:
         add: "Donner votre avis"
     title:
         list: "Les avis sur ce vin"
-        register: "S'inscrire"
     form:
         comment: "Votre avis sur le vin"
     warn:
