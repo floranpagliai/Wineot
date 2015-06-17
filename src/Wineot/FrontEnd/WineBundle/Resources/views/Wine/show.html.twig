@@ -63,7 +63,7 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wineId' : wine.id })) %}
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'wineId' : wine.id })) %}
                 <span class="horizontal-line"></span>
 
                 <div class="col-md-12 wine-show-share">
