@@ -124,11 +124,6 @@ fieldset[disabled] .btn.active {
   color: #fff;
   background-color: #2573a6;
 }
-.btn-rounded:hover,
-.btn-rounded:focus,
-.btn-rounded:active {
-  color: #fff;
-}
 .btn-social {
   padding: 4px 4px;
   background-color: #666666;
@@ -169,4 +164,14 @@ fieldset[disabled] .btn.active {
 .btn-favorite:focus,
 .btn-favorite:active {
   background-color: #c41230;
+}
+.btn-favorite-active,
+.btn-favorite-active,
+.btn-favorite-active {
+  background-color: #c41230;
+}
+.btn-favorite-active:hover,
+.btn-favorite-active:focus,
+.btn-favorite-active:active {
+  background-color: #666666;
 }

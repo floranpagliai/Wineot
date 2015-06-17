@@ -19,11 +19,31 @@ class WineController extends Controller
     {
         $flash = $this->get('notify_messenger.flash');
         $user = $this->getUser();
-        if(!$user)
+        if (!$user) {
             $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));
+            return $this->redirect($request->headers->get('referer'));
+        }
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
         $user->addFavoriteWine($wine);
+        $flash->success($this->get('translator')->trans('comment.warn.favorited'));
+        $dm->persist($user);
+        $dm->flush();
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    public function unfavoriteAction(Request $request, $wineId)
+    {
+        $flash = $this->get('notify_messenger.flash');
+        $user = $this->getUser();
+        if (!$user) {
+            $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));
+            return $this->redirect($request->headers->get('referer'));
+        }
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
+        $user->removeFavoriteWine($wine);
+        $flash->success($this->get('translator')->trans('comment.warn.unfavorited'));
         $dm->persist($user);
         $dm->flush();
         return $this->redirect($request->headers->get('referer'));

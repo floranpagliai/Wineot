@@ -123,6 +123,7 @@ class User implements UserInterface
     {
         $this->roles[] = 'ROLE_USER';
         $this->comments = new ArrayCollection();
+        $this->favoritesWines = new ArrayCollection();
     }
 
     /**
@@ -357,9 +358,10 @@ class User implements UserInterface
      *
      * @param \Wineot\DataBundle\Document\Wine $wine
      */
-    public function addFavoriteWine($wine)
+    public function addFavoriteWine(Wine $wine)
     {
-        $this->favoritesWines[] = $wine;
+        if (!$this->isFavorited($wine))
+            $this->favoritesWines->add($wine);
     }
 
     /**
@@ -367,9 +369,18 @@ class User implements UserInterface
      *
      * @param \Wineot\DataBundle\Document\Wine $wine
      */
-    public function removeFavoriteWine($wine)
+    public function removeFavoriteWine(Wine $wine)
     {
         $this->favoritesWines->removeElement($wine);
+    }
+
+
+    public function isFavorited(Wine $wine)
+    {
+        if ($this->favoritesWines->contains($wine))
+            return true;
+        else
+            return false;
     }
 
     /**

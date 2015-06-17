@@ -63,17 +63,26 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                    {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wineId' : wine.id })) %}
-                    <span class="horizontal-line"></span>
-                    <div class="col-md-12 wine-show-share" style="">
-                        <p>
-                        <a href="{{ path('wineot_front_end_wine_favorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
-                           class="btn-social btn-favorite" data-toggle="tooltip"
-                           data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
-                            <i class="fa fa-heart fa-fw"></i>
-                        </a>
-                        </p>
-                    </div>
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wineId' : wine.id })) %}
+                <span class="horizontal-line"></span>
+
+                <div class="col-md-12 wine-show-share">
+                    <p>
+                        {% if app.user and app.user.isFavorited(wine) %}
+                            <a href="{{ path('wineot_front_end_wine_favorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
+                               class="btn-social btn-favorite-active" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
+                                <i class="fa fa-heart fa-fw"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('wineot_front_end_wine_unfavorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
+                               class="btn-social btn-favorite" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'wine.action.unfavorite'|trans }}">
+                                <i class="fa fa-heart fa-fw"></i>
+                            </a>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
         <!-- .banner-wrapper -->

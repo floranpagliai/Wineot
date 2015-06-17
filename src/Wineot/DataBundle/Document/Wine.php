@@ -271,6 +271,11 @@ class Wine
         $this->comments->removeElement($comment);
     }
 
+    public function isFavorited(User $user)
+    {
+        return $user->isFavorited($this);
+    }
+
     /**
      * Get comments
      *
