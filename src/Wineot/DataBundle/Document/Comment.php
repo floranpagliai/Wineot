@@ -10,6 +10,7 @@ namespace Wineot\DataBundle\Document;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -52,9 +53,9 @@ class Comment
     private $wine;
 
     /**
-     * @var datetime $createdAt
+     * @var Datetime $createdAt
      *
-     * @MongoDB\Field(name="created_at", type="timestamp", nullable=false)
+     * @MongoDB\Date(name="created_at")
      */
     private $createdAt;
 
