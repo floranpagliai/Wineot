@@ -42,7 +42,7 @@
 }
 .rating label {
   font-size: 30px;
-  color: #E8E6E5;
+  color: #ffb701;
   margin-right: 3px;
 }
 .rating input:checked ~ label {
