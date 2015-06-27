@@ -7,3 +7,6 @@ wineot_front_end_wine_favorite:
 wineot_front_end_wine_unfavorite:
     path:     /unfavorite/{wineId}
     defaults: { _controller: WineotFrontEndWineBundle:Wine:unfavorite }
+wineot_front_end_wine_trends:
+    path:     /trends
+    defaults: { _controller: WineotFrontEndWineBundle:Wine:trends, wineryName: all }

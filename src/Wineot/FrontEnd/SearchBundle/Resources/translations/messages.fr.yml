@@ -6,3 +6,5 @@ search:
         search: "Recherche"
     form:
         color: "Couleur"
+    title:
+        searchResult: "Résultat de la recherche"

@@ -45,7 +45,7 @@ class CommentController extends Controller
                     $dm->flush();
 
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
-                    return $this->redirect($request->headers->get('referer'));
+//                    return $this->redirect($this->getRequest()->headers->get('referer'));
                 }
             } else {
                 $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));

@@ -1,0 +1,10 @@
+<div class="col-sm-12">
+    <h3 class="section-title clearfix"><i class="line"></i>
+        {{ 'wine.title.trends'|trans }}
+    </h3>
+    <ul class="wine-thumbnails">
+        {% for wine in wines %}
+            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
+        {% endfor %}
+    </ul>
+</div>

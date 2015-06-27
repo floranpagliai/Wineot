@@ -5,7 +5,7 @@
             <div class="banner-wrapper row">
                 <div class="wine-show-image col-sm-3">
                     {% if  wine.labelPicture.md5 is defined %}
-                        <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
+                        <img class="img-responsive site-hero-image" src="{{ wine.labelPicture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
                     {% endif %}
@@ -15,7 +15,7 @@
 
                     <h1>{{ wine.name }}
                         {% if vintage is not empty %}
-                            <span> {{ vintage }}</span>
+                            <span style="font-weight: lighter"> {{ vintage }}</span>
                         {% endif %}
                     </h1>
                     <br/>
@@ -26,7 +26,7 @@
                         <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
                     </p>
 
-                    <p>{{ wine.description }}</p>
+                    <p style="min-height: 95px; padding-right: 15px;">{{ wine.description }}</p>
 
                     <div class="wine-show-keys">
                         <div class="wine-show-key pull-right">
@@ -63,19 +63,19 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'wineId' : wine.id })) %}
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'wineId' : wine.id })) %}
                 <span class="horizontal-line"></span>
 
                 <div class="col-md-12 wine-show-share">
                     <p>
                         {% if app.user and app.user.isFavorited(wine) %}
-                            <a href="{{ path('wineot_front_end_wine_favorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
+                            <a href="{{ path('wineot_front_end_wine_unfavorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
                                class="btn-social btn-favorite-active" data-toggle="tooltip"
                                data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
                                 <i class="fa fa-heart fa-fw"></i>
                             </a>
                         {% else %}
-                            <a href="{{ path('wineot_front_end_wine_unfavorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
+                            <a href="{{ path('wineot_front_end_wine_favorite', {'wineryName':wine.winery.name|replace({' ':'-'}), 'wineId': wine.id}) }}"
                                class="btn-social btn-favorite" data-toggle="tooltip"
                                data-placement="top" data-original-title="{{ 'wine.action.unfavorite'|trans }}">
                                 <i class="fa fa-heart fa-fw"></i>
@@ -97,7 +97,7 @@
     {#<div class="col-sm-8 col-sm-offset-4">#}
     {#<p>{{ wine.description }}</p>#}
     {#</div>#}
-    {#</div>#}
+    </div>
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
@@ -128,18 +128,8 @@
     {% endif %}
 {% endblock %}
 {% block sidebar_right %}
-    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}
+    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': wine })) %}
 {% endblock %}
 {% block featured_bottom %}
-    <div class="col-sm-12">
-        <h3 class="section-title clearfix"><i class="line"></i>
-            {{ 'wine.title.other_winery_wine'|trans }}
-        </h3>
-        <ul class="wine-thumbnails">
-
-            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
-            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
-            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
-            <ul class="wine-thumbnails">
-    </div>
+    {{ render_hinclude(path('wineot_front_end_wine_trends', { 'wineryName': wine.winery.name } )) }}
 {% endblock %}
