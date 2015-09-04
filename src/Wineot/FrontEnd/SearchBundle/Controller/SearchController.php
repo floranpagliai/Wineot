@@ -27,7 +27,7 @@ class SearchController extends Controller
         $wineList = null;
         $form->submit($request);
         if ($form->isValid()) {
-            $searchInput = $request->get("searchInput");
+            $searchInput = $request->query->get('search')['searchInput'];
             $valueColor = $request->get('wineColor');
 
             $query = $this->get('doctrine_mongodb')

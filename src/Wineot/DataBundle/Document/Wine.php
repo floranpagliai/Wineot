@@ -66,14 +66,6 @@ class Wine
     private $color;
 
     /**
-     * @var collection
-     *
-     * @MongoDB\EmbedMany(
-     *  targetDocument="Vintage")
-     */
-    private $vintages;
-
-    /**
      * @var Image
      *
      * @MongoDB\ReferenceOne(
@@ -86,13 +78,37 @@ class Wine
     /**
      * @var collection
      *
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="wine", nullable=true)
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="Vintage",
+     *  inversedBy="wine",
+     *  cascade={"all"},
+     *  simple=true)
+     */
+    private $vintages;
+
+    /**
+     * @var collection
+     *
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="Comment",
+     *  mappedBy="wine",
+     *  nullable=true)
      */
     private $comments;
 
     public function __construct()
     {
         $this->vintages = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -169,6 +185,7 @@ class Wine
     public function addVintage(Vintage $vintage)
     {
         $this->vintages[] = $vintage;
+        $vintage->setWine($this);
     }
 
     /**
@@ -179,6 +196,15 @@ class Wine
     public function removeVintage(Vintage $vintage)
     {
         $this->vintages->removeElement($vintage);
+        $vintage->setWine(null);
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $vintages
+     */
+    public function setVintages($vintages)
+    {
+        $this->vintages = $vintages;
     }
 
     /**
@@ -189,16 +215,6 @@ class Wine
     public function getVintages()
     {
         return $this->vintages;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

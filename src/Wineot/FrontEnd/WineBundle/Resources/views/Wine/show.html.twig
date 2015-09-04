@@ -11,7 +11,12 @@
                     {% endif %}
                 </div>
                 <div class="wine-show-body col-sm-9">
-                    <h2>{{ wine.winery.name }}</h2>
+                    <h2>
+                        <a href="{{ path('wineot_front_end_winery_show',
+                        {'wineryName':wine.winery.name|replace({' ':'-'}),
+                        'wineryId':wine.winery.id}) }}">{{ wine.winery.name }}
+                        </a>
+                    </h2>
 
                     <h1>{{ wine.name }}
                         {% if vintage is not empty %}
@@ -97,7 +102,7 @@
     {#<div class="col-sm-8 col-sm-offset-4">#}
     {#<p>{{ wine.description }}</p>#}
     {#</div>#}
-    </div>
+    {#</div>#}
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>

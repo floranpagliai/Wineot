@@ -10,16 +10,35 @@ namespace Wineot\DataBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\EmbeddedDocument
+ * @MongoDB\Document(collection="vintages")
+ * @MongoDBUnique("wine")
+ * @MongoDBUnique("productionYear")
  */
 class Vintage
 {
+    /**
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
+     * @var Wine
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Wine",
+     *  mappedBy="vintages",
+     *  simple=true)
+     */
+    private $wine;
+
     /**
      * @var Int
      *
@@ -49,6 +68,30 @@ class Vintage
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Wine $wine
+     */
+    public function setWine($wine)
+    {
+        $this->wine = $wine;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Wine
+     */
+    public function getWine()
+    {
+        return $this->wine;
     }
 
     /**
@@ -110,6 +153,4 @@ class Vintage
     {
         return $this->labelPicture;
     }
-
-
 }

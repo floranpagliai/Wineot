@@ -7,6 +7,7 @@
 
 namespace Wineot\BackEnd\CRUDBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\Country;
@@ -51,9 +52,22 @@ class CountryController extends Controller
             $flash->error($this->get('translator')->trans('crud.error.country.notfound'));
             return $this->redirectToRoute('wineot_back_end_crud_country');
         }
+
+        $originalRegion = new ArrayCollection();
+        foreach ($country->getRegions() as $region) {
+            $originalRegion->add($region);
+        }
+
         $form = $this->createForm(new CountryType(), $country);
         $form->handleRequest($request);
         if ($form->isValid()) {
+
+            foreach ($originalRegion as $region) {
+                if ($country->getRegions()->contains($region) == false) {
+                    $dm->remove($region);
+                }
+            }
+
             $dm->persist($country);
             $dm->flush();
 

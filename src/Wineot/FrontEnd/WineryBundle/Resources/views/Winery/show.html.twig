@@ -3,13 +3,6 @@
     <div class="featured row">
         <div class="col-sm-8">
             <div class="banner-wrapper row">
-                {#<div class="wine-show-image col-sm-3">#}
-                    {#{% if  winery.labelPicture.md5 is defined %}#}
-                        {#<img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">#}
-                    {#{% else %}#}
-                        {#<img class="img-responsive" src="{{ asset('img/image.png') }}"/>#}
-                    {#{% endif %}#}
-                {#</div>#}
                 <div class="wine-show-body col-sm-12">
 
                     <h1>{{ winery.name }}
@@ -21,30 +14,7 @@
                         · {{ winery.country.name }}<br/>
                     </p>
 
-                    {#<div class="wine-show-keys">#}
-                        {#<div class="wine-show-key">#}
-                            {#<h4>Avg Rating</h4>#}
-
-                            {#<p>#}
-                                {#{% if wine.getAvgRating() is not null %}#}
-                                    {#{{ wine.getAvgRating() }}#}
-                                {#{% else %}#}
-                                    {#-#}
-                                {#{% endif %}#}
-                            {#</p>#}
-                        {#</div>#}
-                        {#<div class="wine-show-key">#}
-                            {#<h4>Avg Price</h4>#}
-
-                            {#<p>#}
-                                {#{% if wine.getAvgPrice() is not null %}#}
-                                    {#{{ wine.getAvgPrice() }} €#}
-                                {#{% else %}#}
-                                    {#-#}
-                                {#{% endif %}#}
-                            {#</p>#}
-                        {#</div>#}
-                    </div>
+                    <p style="min-height: 95px; padding-right: 15px;">description</p>
 
                 </div>
             </div>
@@ -53,6 +23,22 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
+                <div class="wine-show-keys">
+                    <div class="wine-show-key row">
+                        <h4>Avg Rating</h4>
+
+                        <p>
+                            -
+                        </p>
+                    </div>
+                    <div class="wine-show-key row">
+                        <h4>Avg Price</h4>
+
+                        <p>
+                            -
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- .banner-wrapper -->
