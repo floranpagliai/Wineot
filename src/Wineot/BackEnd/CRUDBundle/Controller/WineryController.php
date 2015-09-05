@@ -61,7 +61,7 @@ class WineryController extends Controller
             $flash->success($this->get('translator')->trans('crud.warn.winery.edited'));
             return $this->redirectToRoute('wineot_back_end_crud_winery');
         }
-        $paramsRender = array('form' => $form->createView(), 'id' => $id);
+        $paramsRender = array('form' => $form->createView(), 'id' => $id, 'winery' => $winery);
         return $this->render('WineotBackEndCRUDBundle:Winery:edit.html.twig', $paramsRender);
     }
 

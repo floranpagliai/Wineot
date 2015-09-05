@@ -64,6 +64,16 @@ class Winery
     private $region;
 
     /**
+     * @var Image
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"all"},
+     *  simple=true)
+     */
+    private $coverPicture;
+
+    /**
      * Get id
      *
      * @return id $id
@@ -172,4 +182,19 @@ class Winery
         return $this->region;
     }
 
+    /**
+     * @param \Wineot\DataBundle\Document\Image $coverPicture
+     */
+    public function setCoverPicture($coverPicture)
+    {
+        $this->coverPicture = $coverPicture;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Image
+     */
+    public function getCoverPicture()
+    {
+        return $this->coverPicture;
+    }
 }

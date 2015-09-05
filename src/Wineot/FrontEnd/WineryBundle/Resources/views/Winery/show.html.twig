@@ -1,5 +1,10 @@
 {% extends "WineotFrontEndWineryBundle::layout.html.twig" %}
 {% block featured %}
+    {% if  winery.coverPicture.md5 is defined %}
+        <img class="site-hero-image invisible" src="{{ winery.coverPicture.getImage() }}">
+    {% else %}
+        <img class="site-hero-image invisible" src="{{ asset('img/winery_default.jpg') }}"/>
+    {% endif %}
     <div class="featured row">
         <div class="col-sm-8">
             <div class="banner-wrapper row">
