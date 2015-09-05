@@ -15,12 +15,11 @@ class WineController extends Controller
         return $this->render('WineotFrontEndWineBundle:Wine:show.html.twig', array('wine' => $wine, 'vintage' => $vintage));
     }
 
-    public function trendsAction($wineryName)
+    public function trendsAction()
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $winery = $dm->getRepository('WineotDataBundle:Winery')->findOneBy(array('name' => $wineryName));
-        $wines = $dm->getRepository('WineotDataBundle:Wine')->findTrendingWines($winery);
-        return $this->render('WineotFrontEndWineBundle:Wine:trends.html.twig', array('wines' => $wines));
+        $wines = $dm->getRepository('WineotDataBundle:Wine')->findTrendingWines();
+        return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', array('wines' => $wines));
     }
 
     public function favoriteAction(Request $request, $wineId)

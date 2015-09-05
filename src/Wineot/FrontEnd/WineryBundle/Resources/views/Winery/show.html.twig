@@ -16,6 +16,23 @@
 
                     <p style="min-height: 95px; padding-right: 15px;">description</p>
 
+                    <div class="wine-show-keys" style="margin-top: 40px;">
+                        <div class="wine-show-key pull-right">
+                            <h4>Avg Rating</h4>
+
+                            <p>
+                                -
+                            </p>
+                        </div>
+                        <div class="wine-show-key pull-right">
+                            <h4>Avg Price</h4>
+
+                            <p>
+                                -
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!-- .banner-wrapper -->
@@ -23,22 +40,6 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                <div class="wine-show-keys">
-                    <div class="wine-show-key row">
-                        <h4>Avg Rating</h4>
-
-                        <p>
-                            -
-                        </p>
-                    </div>
-                    <div class="wine-show-key row">
-                        <h4>Avg Price</h4>
-
-                        <p>
-                            -
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- .banner-wrapper -->
@@ -84,8 +85,10 @@
     {#{% endif %}#}
 {% endblock %}
 {% block sidebar_right %}
-    {#{% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}#}
+
 {% endblock %}
 {% block featured_bottom %}
-
+    {{ render(path('wineot_front_end_winery_winelist',
+    { 'wineryName': winery.name|replace({' ':'-'}),
+    'wineryId': winery.id} )) }}
 {% endblock %}

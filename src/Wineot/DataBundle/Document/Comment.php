@@ -40,7 +40,10 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="user_id")
-     * @MongoDB\ReferenceOne(targetDocument="User", inversedBy="comments", simple=true)
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="User",
+     *  inversedBy="comments",
+     *  simple=true)
      */
     private $user;
 
@@ -48,7 +51,10 @@ class Comment
      * @var integer
      *
      * @MongoDB\Field(name="vintage_id")
-     * @MongoDB\ReferenceOne(targetDocument="Wine", inversedBy="comments", simple=true)
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Wine",
+     *  inversedBy="comments",
+     *  simple=true)
      */
     private $wine;
 

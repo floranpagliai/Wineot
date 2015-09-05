@@ -1,3 +1,6 @@
 wineot_front_end_winery_show:
     path:     /{wineryName}_{wineryId}
     defaults: { _controller: WineotFrontEndWineryBundle:Winery:show }
+wineot_front_end_winery_winelist:
+    path:     /{wineryName}_{wineryId}/list
+    defaults: { _controller: WineotFrontEndWineryBundle:Winery:listWine }

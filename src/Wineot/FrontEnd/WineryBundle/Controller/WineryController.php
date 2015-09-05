@@ -11,11 +11,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class WineryController extends Controller
 {
-    public function showAction($wineryName)
+    public function showAction($wineryName, $wineryId)
     {
         $wineryName = str_replace("-", " ", $wineryName);
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $winery = $dm->getRepository('WineotDataBundle:Winery')->findOneBy(array('name' => $wineryName));
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->findOneBy(array(
+            'id' => $wineryId,
+            'name' => $wineryName));
         return $this->render('WineotFrontEndWineryBundle:Winery:show.html.twig', array('winery' => $winery));
+    }
+
+    public function listWineAction($wineryName, $wineryId)
+    {
+        $wineryName = str_replace("-", " ", $wineryName);
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->findOneBy(array(
+            'id' => $wineryId,
+            'name' => $wineryName));
+        $wines = $winery->getWines();
+        return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', array('wines' => $wines));
     }
 } 

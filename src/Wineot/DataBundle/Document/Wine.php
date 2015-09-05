@@ -34,7 +34,6 @@ class Wine
      * @MongoDB\ReferenceOne(
      *  targetDocument="Winery",
      *  inversedBy="wines",
-     *  cascade={"persist"},
      *  simple=true)
      */
     private $winery;
@@ -81,8 +80,7 @@ class Wine
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
      *  inversedBy="wine",
-     *  cascade={"all"},
-     *  simple=true)
+     *  cascade={"all"})
      */
     private $vintages;
 
@@ -201,10 +199,12 @@ class Wine
 
     /**
      * @param \Doctrine\Common\Collections\Collection $vintages
+     * @return $this
      */
     public function setVintages($vintages)
     {
         $this->vintages = $vintages;
+        return $this;
     }
 
     /**

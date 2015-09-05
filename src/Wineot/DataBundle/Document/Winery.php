@@ -9,7 +9,7 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Collection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,10 +41,9 @@ class Winery
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Wine",
-     *  mappedBy="winery",
-     *  cascade={"all"})
+     *  mappedBy="winery")
      */
-    private $wines = array();
+    private $wines;
 
     /**
      * @var Country
@@ -63,7 +62,17 @@ class Winery
      *  simple=true)
      */
     private $region;
-    
+
+    /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
      * Set name
      *
@@ -107,23 +116,26 @@ class Winery
     }
 
     /**
+     * @param \Doctrine\Common\Collections\Collection $wines
+     * @return self
+     */
+    public function setWines($wines)
+    {
+        $this->wines = $wines;
+        return $this;
+    }
+
+    /**
      * Get wines
      *
      * @return \Doctrine\Common\Collections\Collection $wines
      */
     public function getWines()
     {
-        return $this->wines;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
+        if (!empty($this->wines))
+            return $this->wines;
+        else
+            return null;
     }
 
     /**
@@ -144,10 +156,12 @@ class Winery
 
     /**
      * @param \Wineot\DataBundle\Document\Region $region
+     * @return self
      */
     public function setRegion($region)
     {
         $this->region = $region;
+        return $this;
     }
 
     /**
