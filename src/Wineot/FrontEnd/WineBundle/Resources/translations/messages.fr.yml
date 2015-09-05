@@ -7,4 +7,7 @@ wine:
         title:
             vintages: "Millésimes"
             all_vintage: "Tout les millésimes"
+    keys:
+        avg_rating: "Note Moyenne"
+        avg_price: "Prix Moyen"
 

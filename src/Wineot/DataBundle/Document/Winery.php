@@ -197,4 +197,16 @@ class Winery
     {
         return $this->coverPicture;
     }
+
+    public function getAvgRating()
+    {
+        $avgRating = null;
+        foreach ($this->wines as $wine) {
+            $avgRating += $wine->getAvgRating();
+        }
+        if ($avgRating)
+            return number_format($avgRating / $this->wines->count(), 1);
+        else
+            return null;
+    }
 }

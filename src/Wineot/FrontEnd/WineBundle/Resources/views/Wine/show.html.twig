@@ -35,7 +35,7 @@
 
                     <div class="wine-show-keys">
                         <div class="wine-show-key pull-right">
-                            <h4>Avg Rating</h4>
+                            <h4>{{ 'wine.keys.avg_rating'|trans }}</h4>
 
                             <p>
                                 {% if wine.getAvgRating() is not null %}
@@ -49,7 +49,7 @@
                             </p>
                         </div>
                         <div class="wine-show-key pull-right">
-                            <h4>Avg Price</h4>
+                            <h4>{{ 'wine.keys.avg_price'|trans }}</h4>
 
                             <p>
                                 {% if wine.getAvgPrice() is not null %}
