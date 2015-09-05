@@ -37,6 +37,34 @@ class Winery
     private $name;
 
     /**
+     * @var string
+     *
+     * @MongoDB\String(nullable=true)
+     * @Assert\Length(
+     *      max = 255
+     * )
+     */
+    private $mail;
+
+    /**
+     * @var string
+     *
+     * @MongoDB\String(nullable=true)
+     * @Assert\Length(
+     *      max = 255
+     * )
+     */
+    private $phone;
+
+    /**
+     * @var Address
+     *
+     * @MongoDB\EmbedOne(
+     *  targetDocument="Address")
+     */
+    private $address;
+
+    /**
      * @var collection
      *
      * @MongoDB\ReferenceMany(
@@ -196,6 +224,56 @@ class Winery
     public function getCoverPicture()
     {
         return $this->coverPicture;
+    }
+
+    /**
+     * @param string $mail
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param \Wineot\DataBundle\Document\Address $address
+     * @return self
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * @return \Wineot\DataBundle\Document\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     public function getAvgRating()

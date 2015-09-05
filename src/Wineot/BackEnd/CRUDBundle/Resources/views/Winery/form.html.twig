@@ -6,16 +6,20 @@
         {% endif %}
 <fieldset>
     <div class="form-group">
-        <label class="sr-only" for="name">Name</label>
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
     </div>
     <div class="form-group">
-        <label class="sr-only" for="country">Country</label>
         {{ form_widget(form.country, { 'attr': { 'placeholder': 'country'|trans } } ) }}
     </div>
     <div class="form-group">
-        <label class="sr-only" for="region">Region</label>
         {{ form_widget(form.region, { 'attr': { 'placeholder': 'region'|trans } } ) }}
+    </div>
+    {% include 'WineotDataBundle:Address:form.html.twig' %}
+    <div class="form-group">
+        {{ form_widget(form.mail, { 'attr': { 'placeholder': 'mail'|trans } } ) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(form.phone, { 'attr': { 'placeholder': 'phone'|trans } } ) }}
     </div>
     <div class="form-group">
         {% if  winery.coverPicture.md5 is defined %}

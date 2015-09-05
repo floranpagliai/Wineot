@@ -24,6 +24,7 @@
                     <div class="wine-show-keys" style="margin-top: 40px;">
                         <div class="wine-show-key pull-right">
                             <h4>{{ 'winery.keys.avg_rating'|trans }}</h4>
+
                             <p>
                                 {% if winery.getAvgRating() is not null %}
                                     {{ winery.getAvgRating() }}
@@ -37,6 +38,7 @@
                         </div>
                         <div class="wine-show-key pull-right">
                             <h4>{{ 'winery.keys.wines_count'|trans }}</h4>
+
                             <p>
                                 {{ winery.wines|length }}
                             </p>
@@ -51,6 +53,22 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
+                {% if  winery.address is not null %}
+                    <div class="wine-show-address">
+                        <h2>{{ 'winery.title.address'|trans }}</h2>
+
+                        <p>
+                            {{ winery.address.address }}<br/>
+                            {{ winery.address.zipcode }}, {{ winery.address.town }}
+                        </p>
+                    </div>
+                {% endif %}
+                    {% if winery.phone is not null %}
+                        <p><i class="fa fa-phone"></i> {{ winery.phone }}<br/></p>
+                    {% endif %}
+                    {% if winery.mail is not null %}
+                        <p><i class="fa fa-envelope"></i> <a href="mailto:{{ winery.mail }}">{{ winery.mail }}</a></p>
+                    {% endif %}
             </div>
         </div>
         <!-- .banner-wrapper -->
@@ -58,41 +76,41 @@
 {% endblock %}
 {% block body %}
     {#<div class="col-sm-12">#}
-        {#<h3 class="section-title clearfix"><i class="line"></i>#}
-            {#{{ 'wine.title.description'|trans }}#}
-        {#</h3>#}
+    {#<h3 class="section-title clearfix"><i class="line"></i>#}
+    {#{{ 'wine.title.description'|trans }}#}
+    {#</h3>#}
 
-        {#<div class="col-sm-8 col-sm-offset-4">#}
-            {#<p>{{ wine.description }}</p>#}
-        {#</div>#}
+    {#<div class="col-sm-8 col-sm-offset-4">#}
+    {#<p>{{ wine.description }}</p>#}
+    {#</div>#}
     {#</div>#}
     {#{% if wine.vintages is not empty %}#}
-        {#<div class="col-sm-12">#}
-            {#<h3 class="section-title clearfix"><i class="line"></i>#}
-                {#{{ 'wine.vintage.title.vintages'|trans }}#}
-            {#</h3>#}
+    {#<div class="col-sm-12">#}
+    {#<h3 class="section-title clearfix"><i class="line"></i>#}
+    {#{{ 'wine.vintage.title.vintages'|trans }}#}
+    {#</h3>#}
 
-            {#<div class="col-sm-8 col-sm-offset-4">#}
-                {#<table class="table table-hover">#}
-                    {#<tbody>#}
-                    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
-                    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"#}
-                        {#style="cursor: pointer;">#}
-                        {#<td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>#}
-                        {#<td class="text-right">{{ wine.getAvgPrice() }} €</td>#}
-                    {#</tr>#}
-                    {#{% for vintage in wine.vintages %}#}
-                        {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
-                        {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'"#}
-                            {#style="cursor: pointer;">#}
-                            {#<td>{{ vintage.productionYear }}</td>#}
-                            {#<td class="text-right">{{ vintage.wineryPrice }} €</td>#}
-                        {#</tr>#}
-                    {#{% endfor %}#}
-                    {#</tbody>#}
-                {#</table>#}
-            {#</div>#}
-        {#</div>#}
+    {#<div class="col-sm-8 col-sm-offset-4">#}
+    {#<table class="table table-hover">#}
+    {#<tbody>#}
+    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
+    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"#}
+    {#style="cursor: pointer;">#}
+    {#<td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>#}
+    {#<td class="text-right">{{ wine.getAvgPrice() }} €</td>#}
+    {#</tr>#}
+    {#{% for vintage in wine.vintages %}#}
+    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
+    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'"#}
+    {#style="cursor: pointer;">#}
+    {#<td>{{ vintage.productionYear }}</td>#}
+    {#<td class="text-right">{{ vintage.wineryPrice }} €</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    {#</tbody>#}
+    {#</table>#}
+    {#</div>#}
+    {#</div>#}
     {#{% endif %}#}
 {% endblock %}
 {% block sidebar_right %}

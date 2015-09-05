@@ -18,6 +18,9 @@ class WineryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name');
+        $builder->add('mail');
+        $builder->add('phone');
+        $builder->add('address', new AddressType(), array('required' => false));
         $builder->add('coverPicture', new ImageType(), array('required' => false));
         $builder->add('country', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Country',
