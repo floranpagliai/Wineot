@@ -29,6 +29,7 @@ class WineryController extends Controller
             'id' => $wineryId,
             'name' => $wineryName));
         $wines = $winery->getWines();
-        return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', array('wines' => $wines));
+        $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
+        return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
     }
 } 

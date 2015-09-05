@@ -1,0 +1,5 @@
+winery:
+    title:
+        description: "Description"
+        wines_list: "Les vins de ce domaine"
+
