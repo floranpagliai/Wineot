@@ -24,23 +24,42 @@ class SearchController extends Controller
     {
         $form = $this->createForm(new SearchType());
 
-        $wineList = null;
+        $wines = null;
+        $wineries = null;
         $form->submit($request);
         if ($form->isValid()) {
-            $searchInput = $request->query->get('search')['searchInput'];
+            $searchInputs = explode(" ", $request->query->get('search')['searchInput']);
             $valueColor = $request->get('wineColor');
 
-            $query = $this->get('doctrine_mongodb')
-                ->getManager()
-                ->createQueryBuilder('WineotDataBundle:Wine')
-                ->field('name')->equals(new \MongoRegex("/$searchInput/i"))
+            $search = array();
+            foreach ($searchInputs as $searchInput) {
+                $search[] = new \MongoRegex("/$searchInput/i");
+            }
+
+            $dm = $this->get('doctrine_mongodb')->getManager();
+
+            //Find wineries ids for the searched text
+            $query = $dm->createQueryBuilder('WineotDataBundle:Winery');
+            $wineries = $query
+                ->field('name')->in($search)
+                ->getQuery()->execute();
+            $wineriesIds = array();
+            foreach ($wineries as $winery)
+                $wineriesIds[] = $winery->getId();
+
+            //Find wines for the searched text or with the id of wineries found
+            $query = $dm->createQueryBuilder('WineotDataBundle:Wine');
+            $query
+                ->addOr($query->expr()->field('name')->in($search))
+                ->addOr($query->expr()->field('winery')->in($wineriesIds))
                 ->sort('name', 'ASC');
 
             if ($valueColor != 3)
                 $query->field('color')->equals(intval($valueColor));
-            $wineList = $query->getQuery()->execute();
+            $wines = $query->getQuery()->execute();
         }
-        return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', array('wineList' => $wineList));
+        $paramsRender = array('wines' => $wines, 'wineries' => $wineries);
+        return $this->render('WineotFrontEndSearchBundle:Search:SearchResult.html.twig', $paramsRender);
 
     }
 }

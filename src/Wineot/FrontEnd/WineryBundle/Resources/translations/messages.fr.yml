@@ -4,6 +4,6 @@ winery:
         wines_list: "Les vins de ce domaine"
         address: "Adresse"
     keys:
-        avg_rating: "Note Moyenne"
+        avg_rating: "Notes Moyenne"
         wines_count: "Vins"
 

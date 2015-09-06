@@ -10,8 +10,7 @@
             <div class="banner-wrapper row">
                 <div class="wine-show-body col-sm-12">
 
-                    <h1>{{ winery.name }}
-                    </h1>
+                    <h1>{{ winery.name }}</h1>
                     <br/>
 
                     <p>
@@ -63,12 +62,12 @@
                         </p>
                     </div>
                 {% endif %}
-                    {% if winery.phone is not null %}
-                        <p><i class="fa fa-phone"></i> {{ winery.phone }}<br/></p>
-                    {% endif %}
-                    {% if winery.mail is not null %}
-                        <p><i class="fa fa-envelope"></i> <a href="mailto:{{ winery.mail }}">{{ winery.mail }}</a></p>
-                    {% endif %}
+                {% if winery.phone is not null %}
+                    <p><i class="fa fa-phone"></i> {{ winery.phone }}<br/></p>
+                {% endif %}
+                {% if winery.mail is not null %}
+                    <p><i class="fa fa-envelope"></i> <a href="mailto:{{ winery.mail }}">{{ winery.mail }}</a></p>
+                {% endif %}
             </div>
         </div>
         <!-- .banner-wrapper -->

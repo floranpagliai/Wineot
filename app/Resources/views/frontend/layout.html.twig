@@ -7,13 +7,13 @@
     <header class="site-header" role="banner">
         <div class="container">
             {% include 'frontend/navbar.html.twig' %}
-            {% if search_active is not defined  %}
+            {% if search_active is not defined %}
                 {% include 'frontend/search.html.twig' %}
             {% endif %}
         </div>
     </header>
 
-    {% if sitehero_active is not defined  %}
+    {% if sitehero_active is not defined %}
         <div class="site-hero clearfix">
             <div class="container">
                 {% set featured_block = block('featured') %}
@@ -46,18 +46,18 @@
                                 {{ body_block|raw }}
                             </div>
                         </div>
-                        {% elseif sidebar_block_right is not empty %}
-                            <div id="content" class="site-content col-md-8">
-                                <div class="row">
-                                    {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
-                                    {{ body_block|raw }}
-                                </div>
+                    {% elseif sidebar_block_right is not empty %}
+                        <div id="content" class="site-content col-md-9" style="border-right: solid 2px #f2f2f2;">
+                            <div class="row">
+                                {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
+                                {{ body_block|raw }}
                             </div>
-                            <div id="sidebar" class="site-sidebar col-md-4">
-                                <div class="widget-area">
-                                    {{ sidebar_block_right|raw }}
-                                </div>
+                        </div>
+                        <div id="sidebar" class="site-sidebar col-md-3">
+                            <div class="widget-area">
+                                {{ sidebar_block_right|raw }}
                             </div>
+                        </div>
                     {% else %}
                         <div id="content" class="site-content col-md-12">
                             <div class="row">
@@ -73,14 +73,15 @@
     </div>
     <!-- #main -->
 
-        <div class="clearfix">
-            <div class="container">
-                {% set featured_bottom_block = block('featured_bottom') %}
-                {% if featured_bottom_block is not empty %}
-                    {{ featured_bottom_block|raw }}
-                {% endif %}
-            </div>
-        </div><!-- .site-hero -->
+    <div class="clearfix">
+        <div class="container">
+            {% set featured_bottom_block = block('featured_bottom') %}
+            {% if featured_bottom_block is not empty %}
+                {{ featured_bottom_block|raw }}
+            {% endif %}
+        </div>
+    </div>
+    <!-- .site-hero -->
 
     {% include 'footer.html.twig' %}
 </div>

@@ -8,9 +8,8 @@
   color: #f0c300;
 }
 .wine-comments {
-  border-left: solid 2px #f2f2f2;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0px;
+  padding-right: 15px;
 }
 .wine-comments .wine-comment {
   border-bottom: 1px solid #f2f2f2;
@@ -20,7 +19,9 @@
 }
 .wine-comment .comment {
   font-weight: lighter;
-  min-height: 100px;
+}
+.featured .wine-comment .comment {
+  min-height: 175px;
 }
 .wine-comment .date {
   float: right;

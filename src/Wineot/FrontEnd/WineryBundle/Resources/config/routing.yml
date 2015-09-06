@@ -4,3 +4,6 @@ wineot_front_end_winery_show:
 wineot_front_end_winery_winelist:
     path:     /{wineryName}_{wineryId}/list
     defaults: { _controller: WineotFrontEndWineryBundle:Winery:listWine }
+wineot_front_end_winery_best_rated:
+    path:     /{wineryName}_{wineryId}/bestrated
+    defaults: { _controller: WineotFrontEndWineryBundle:Winery:bestRated }

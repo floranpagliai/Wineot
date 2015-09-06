@@ -29,4 +29,13 @@ class WineRepository extends DocumentRepository
             ->limit(3);
         return $query->getQuery()->execute();
     }
+
+    public function findBestRatedWines($wineryId)
+    {
+        $query = $this->createQueryBuilder();
+        $query->field('winery')->equals($wineryId);
+        $query->sort('avg_rating', 'DESC')
+            ->limit(3);
+        return $query->getQuery()->execute();
+    }
 }

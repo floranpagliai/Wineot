@@ -5,9 +5,12 @@
             {{ 'search.title.searchResult'|trans }}
         </h3>
         <ul class="wine-thumbnails">
-            {% for wine in wineList %}
+            {% for wine in wines %}
                 {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
             {% endfor %}
         </ul>
+        {#{% for winery in wineries %}#}
+            {#{% include 'WineotFrontEndWineryBundle:Winery:poster.html.twig' with {'winery': winery} %}#}
+        {#{% endfor %}#}
     </div>
 {% endblock %}

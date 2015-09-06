@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @MongoDB\Document(collection="wineries")
+ * @MongoDB\Document(collection="wineries", repositoryClass="Wineot\DataBundle\Repository\WineryRepository")
  */
 class Winery
 {

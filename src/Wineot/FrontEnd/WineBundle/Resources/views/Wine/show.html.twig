@@ -118,12 +118,20 @@
                         <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
                         <td class="text-right">{{ wine.getAvgPrice() }} €</td>
                     </tr>
-                    {% for vintage in wine.vintages %}
+                    {% for vintageElem in wine.vintages %}
                         <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
-                        { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'"
+                        { 'wineryName':wine.winery.name|replace({' ':'-'}),
+                        'wineName':wine.name|replace({' ':'-'}),
+                        'wineId':wine.id,
+                        'vintage':vintageElem.productionYear }) }}'"
                             style="cursor: pointer;">
-                            <td>{{ vintage.productionYear }}</td>
-                            <td class="text-right">{{ vintage.wineryPrice }} €</td>
+                            {% if vintage == vintageElem.productionYear %}
+                                <td><b>{{ vintageElem.productionYear }}</b></td>
+                                <td class="text-right"><b>{{ vintageElem.wineryPrice }} €</b></td>
+                            {% else %}
+                                <td>{{ vintageElem.productionYear }}</td>
+                                <td class="text-right">{{ vintageElem.wineryPrice }} €</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -136,5 +144,7 @@
     {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': wine })) %}
 {% endblock %}
 {% block featured_bottom %}
-    {{ render_hinclude(path('wineot_front_end_wine_trends')) }}
+    {% include 'WineotFrontEndWineryBundle:Winery:poster.html.twig' with {'winery': wine.winery} %}
+    {{ render_hinclude(path('wineot_front_end_winery_best_rated',
+    { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineryId':wine.winery.id })) }}
 {% endblock %}
