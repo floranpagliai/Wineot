@@ -11,29 +11,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class WineryController extends Controller
 {
-    public function showAction($wineryName, $wineryId)
+    public function showAction($wineryId)
     {
-        $wineryName = str_replace("-", " ", $wineryName);
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $winery = $dm->getRepository('WineotDataBundle:Winery')->findOneBy(array(
-            'id' => $wineryId,
-            'name' => $wineryName));
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($wineryId);
+        if (!$winery)
+            throw $this->createNotFoundException('winery.warn.doesntexsit');
         return $this->render('WineotFrontEndWineryBundle:Winery:show.html.twig', array('winery' => $winery));
     }
 
-    public function listWineAction($wineryName, $wineryId)
+    public function listWineAction($wineryId)
     {
-        $wineryName = str_replace("-", " ", $wineryName);
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $winery = $dm->getRepository('WineotDataBundle:Winery')->findOneBy(array(
-            'id' => $wineryId,
-            'name' => $wineryName));
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($wineryId);
+        if (!$winery)
+            throw $this->createNotFoundException('winery.warn.doesntexsit');
         $wines = $winery->getWines();
         $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
         return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
     }
 
-    public function bestRatedAction($wineryName, $wineryId)
+    public function bestRatedAction($wineryId)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wines = $dm->getRepository('WineotDataBundle:Wine')->findBestRatedWines($wineryId);

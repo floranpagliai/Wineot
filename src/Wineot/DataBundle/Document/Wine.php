@@ -80,7 +80,8 @@ class Wine
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
      *  inversedBy="wine",
-     *  cascade={"all"})
+     *  cascade={"all"},
+     *  simple=true)
      */
     private $vintages;
 

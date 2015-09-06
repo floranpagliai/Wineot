@@ -12,6 +12,8 @@ class WineController extends Controller
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
+        if (!$wine)
+            throw $this->createNotFoundException('wine.warn.doesntexsit');
         $paramsRender = array('wine' => $wine, 'vintage' => $vintage);
         return $this->render('WineotFrontEndWineBundle:Wine:show.html.twig', $paramsRender);
     }
