@@ -279,11 +279,14 @@ class Winery
     public function getAvgRating()
     {
         $avgRating = null;
+        $rankedWine = 0;
         foreach ($this->wines as $wine) {
+            if ($wine->getAvgRating())
+                $rankedWine++;
             $avgRating += $wine->getAvgRating();
         }
         if ($avgRating)
-            return number_format($avgRating / $this->wines->count(), 1);
+            return number_format($avgRating / $rankedWine, 1);
         else
             return null;
     }
