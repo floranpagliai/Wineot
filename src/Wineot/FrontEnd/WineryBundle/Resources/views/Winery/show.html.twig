@@ -27,9 +27,6 @@
                             <p>
                                 {% if winery.getAvgRating() is not null %}
                                     {{ winery.getAvgRating() }}
-                                    {% for i in 1..winery.getAvgRating() %}
-                                        <i class="rank rank-small"></i>
-                                    {% endfor %}
                                 {% else %}
                                     -
                                 {% endif %}
