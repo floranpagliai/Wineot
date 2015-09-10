@@ -1,8 +1,16 @@
 {% extends "WineotFrontEndSearchBundle::layout.html.twig" %}
 {% block body %}
-    <ul class="wine-thumbnails">
-        {% for wine in wineList %}
-            {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
-        {% endfor %}
-    </ul>
+    <div class="col-sm-12">
+        <h3 class="section-title clearfix"><i class="line"></i>
+            {{ 'search.title.searchResult'|trans }}
+        </h3>
+        <ul class="wine-thumbnails">
+            {% for wine in wines %}
+                {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
+            {% endfor %}
+        </ul>
+        {#{% for winery in wineries %}#}
+            {#{% include 'WineotFrontEndWineryBundle:Winery:poster.html.twig' with {'winery': winery} %}#}
+        {#{% endfor %}#}
+    </div>
 {% endblock %}

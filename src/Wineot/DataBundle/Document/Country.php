@@ -48,7 +48,7 @@ class Country {
      *  cascade={"all"},
      *  simple=true)
      */
-    private $regions = array();
+    private $regions;
 
     public function __construct()
     {
@@ -84,6 +84,28 @@ class Country {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add region
+     *
+     * @param Region $region
+     */
+    public function addRegion(Region $region)
+    {
+        $this->regions[] = $region;
+        $region->setCountry($this);
+    }
+
+    /**
+     * Remove region
+     *
+     * @param Region $region
+     */
+    public function removeRegion(Region $region)
+    {
+        $this->regions->removeElement($region);
+        $region->setCountry(null);
     }
 
     /**

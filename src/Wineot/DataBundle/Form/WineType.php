@@ -21,7 +21,9 @@ class WineType extends AbstractType
         $builder->add('vintages', 'collection', array(
             'type' => new VintageType(),
             'allow_add' => true,
+            'allow_delete' => true,
             'by_reference' => false,
+            'cascade_validation' => true
         ));
         $builder->add('winery', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Winery',

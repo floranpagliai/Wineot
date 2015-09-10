@@ -20,6 +20,7 @@ class CountryType extends AbstractType
         $builder->add('regions', 'collection', array(
             'type' => new RegionType(),
             'allow_add' => true,
+            'allow_delete' => true,
             'by_reference' => false,
         ));
     }

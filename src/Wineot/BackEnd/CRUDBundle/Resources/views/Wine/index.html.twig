@@ -24,9 +24,7 @@
                     {{ wine.name }}
                 </td>
                 <td>
-                    {% for vintage in wine.vintages %}
-                        {{ vintage.productionYear }}
-                    {% endfor %}
+                    {{ wine.vintages|length }}
                 </td>
                 <td>{{ wine.color|wineColor(true) }}</td>
                 <td class="tooltips">

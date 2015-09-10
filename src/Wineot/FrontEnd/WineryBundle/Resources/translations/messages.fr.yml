@@ -1,0 +1,9 @@
+winery:
+    title:
+        description: "Description"
+        wines_list: "Les vins de ce domaine"
+        address: "Adresse"
+    keys:
+        avg_rating: "Notes Moyenne"
+        wines_count: "Vins"
+

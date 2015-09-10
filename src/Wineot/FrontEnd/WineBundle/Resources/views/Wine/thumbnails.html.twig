@@ -14,9 +14,9 @@
             </div>
             <div class="wine-thumbnail-body col-xs-7">
                 <h2>
-                    <a href="#">
-                        {{ wine.winery.name }}
-                    </a>
+                    <a href="{{ path('wineot_front_end_winery_show',
+                    {'wineryName':wine.winery.name|replace({' ':'-'}),
+                    'wineryId':wine.winery.id}) }}">{{ wine.winery.name }}</a>
                 </h2>
 
                 <h1>
@@ -32,10 +32,10 @@
                 </p>
 
                 <div class="wine-thumbnail-footer">
-                    <div class="wine-thumbnail-key">
-                        <i class="fa fa-comments"></i>
-                        {{ wine.comments|length }}
-                    </div>
+                    {#<div class="wine-thumbnail-key">#}
+                        {#<i class="fa fa-comments"></i>#}
+                        {#{{ wine.comments|length }}#}
+                    {#</div>#}
                     <div class="wine-thumbnail-key">
                         <i class="fa fa-star"></i>
                         {% if wine.getAvgRating() is not null %}
@@ -47,7 +47,7 @@
                     <div class="wine-thumbnail-key">
                         <i class="fa fa-tag"></i>
                         {% if wine.getAvgPrice() is not null %}
-                            {{ wine.getAvgPrice()|number_format }} €
+                            {{ wine.getAvgPrice()|number_format }}€
                         {% else %}
                             -
                         {% endif %}

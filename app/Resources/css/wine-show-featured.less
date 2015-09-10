@@ -1,16 +1,17 @@
+@import "vars/colors.less";
 .featured {
-//  min-height:400px;
   padding: 0px;
 }
 .featured .banner-wrapper {
   display: block !important;
+  min-height: 345px;
   border-radius: 3px;
-//  min-height:244px;
   bottom: 0;
   margin: 30px 0;
   padding: 15px 0px 0px 0px;
-  background-color: #eee;
   background: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
+  box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
 }
 .featured .banner-wrapper:hover {
   border-color: #fff;
@@ -42,12 +43,10 @@
   font-size: 25px;
 }
 .featured .wine-show-keys .wine-show-key {
-  width: 25%;
+  width: 200px;
   margin: 10px;
   border-radius: 5px;
-//  -webkit-box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
-//  box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
-  background-color: #f2f2f2;
+  background-color: @wine-show-key-background;
   display: inline;
   white-space: nowrap;
   font-weight: 700;
@@ -61,4 +60,9 @@
 .featured .wine-show-share {
   border-top:1px solid #ddd;
   padding: 15px 10px 10px;
+}
+.featured .wine-show-address p {
+  font-size: 0.92em;
+  text-transform: uppercase;
+  line-height: 1.53846154;
 }

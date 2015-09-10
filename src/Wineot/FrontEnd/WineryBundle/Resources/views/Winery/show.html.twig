@@ -1,19 +1,16 @@
 {% extends "WineotFrontEndWineryBundle::layout.html.twig" %}
 {% block featured %}
+    {% if  winery.coverPicture.md5 is defined %}
+        <img class="site-hero-image invisible" src="{{ winery.coverPicture.getImage() }}">
+    {% else %}
+        <img class="site-hero-image invisible" src="{{ asset('img/winery_default.jpg') }}"/>
+    {% endif %}
     <div class="featured row">
         <div class="col-sm-8">
             <div class="banner-wrapper row">
-                {#<div class="wine-show-image col-sm-3">#}
-                    {#{% if  winery.labelPicture.md5 is defined %}#}
-                        {#<img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">#}
-                    {#{% else %}#}
-                        {#<img class="img-responsive" src="{{ asset('img/image.png') }}"/>#}
-                    {#{% endif %}#}
-                {#</div>#}
                 <div class="wine-show-body col-sm-12">
 
-                    <h1>{{ winery.name }}
-                    </h1>
+                    <h1>{{ winery.name }}</h1>
                     <br/>
 
                     <p>
@@ -21,29 +18,31 @@
                         · {{ winery.country.name }}<br/>
                     </p>
 
-                    {#<div class="wine-show-keys">#}
-                        {#<div class="wine-show-key">#}
-                            {#<h4>Avg Rating</h4>#}
+                    <p style="min-height: 95px; padding-right: 15px;">description</p>
 
-                            {#<p>#}
-                                {#{% if wine.getAvgRating() is not null %}#}
-                                    {#{{ wine.getAvgRating() }}#}
-                                {#{% else %}#}
-                                    {#-#}
-                                {#{% endif %}#}
-                            {#</p>#}
-                        {#</div>#}
-                        {#<div class="wine-show-key">#}
-                            {#<h4>Avg Price</h4>#}
+                    <div class="wine-show-keys" style="margin-top: 40px;">
+                        <div class="wine-show-key pull-right">
+                            <h4>{{ 'winery.keys.avg_rating'|trans }}</h4>
 
-                            {#<p>#}
-                                {#{% if wine.getAvgPrice() is not null %}#}
-                                    {#{{ wine.getAvgPrice() }} €#}
-                                {#{% else %}#}
-                                    {#-#}
-                                {#{% endif %}#}
-                            {#</p>#}
-                        {#</div>#}
+                            <p>
+                                {% if winery.getAvgRating() is not null %}
+                                    {{ winery.getAvgRating() }}
+                                    {% for i in 1..winery.getAvgRating() %}
+                                        <i class="rank rank-small"></i>
+                                    {% endfor %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="wine-show-key pull-right">
+                            <h4>{{ 'winery.keys.wines_count'|trans }}</h4>
+
+                            <p>
+                                {{ winery.wines|length }}
+                            </p>
+                        </div>
+
                     </div>
 
                 </div>
@@ -53,6 +52,22 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
+                {% if  winery.address is not null %}
+                    <div class="wine-show-address">
+                        <h2>{{ 'winery.title.address'|trans }}</h2>
+
+                        <p>
+                            {{ winery.address.address }}<br/>
+                            {{ winery.address.zipcode }}, {{ winery.address.town }}
+                        </p>
+                    </div>
+                {% endif %}
+                {% if winery.phone is not null %}
+                    <p><i class="fa fa-phone"></i> {{ winery.phone }}<br/></p>
+                {% endif %}
+                {% if winery.mail is not null %}
+                    <p><i class="fa fa-envelope"></i> <a href="mailto:{{ winery.mail }}">{{ winery.mail }}</a></p>
+                {% endif %}
             </div>
         </div>
         <!-- .banner-wrapper -->
@@ -60,46 +75,48 @@
 {% endblock %}
 {% block body %}
     {#<div class="col-sm-12">#}
-        {#<h3 class="section-title clearfix"><i class="line"></i>#}
-            {#{{ 'wine.title.description'|trans }}#}
-        {#</h3>#}
+    {#<h3 class="section-title clearfix"><i class="line"></i>#}
+    {#{{ 'wine.title.description'|trans }}#}
+    {#</h3>#}
 
-        {#<div class="col-sm-8 col-sm-offset-4">#}
-            {#<p>{{ wine.description }}</p>#}
-        {#</div>#}
+    {#<div class="col-sm-8 col-sm-offset-4">#}
+    {#<p>{{ wine.description }}</p>#}
+    {#</div>#}
     {#</div>#}
     {#{% if wine.vintages is not empty %}#}
-        {#<div class="col-sm-12">#}
-            {#<h3 class="section-title clearfix"><i class="line"></i>#}
-                {#{{ 'wine.vintage.title.vintages'|trans }}#}
-            {#</h3>#}
+    {#<div class="col-sm-12">#}
+    {#<h3 class="section-title clearfix"><i class="line"></i>#}
+    {#{{ 'wine.vintage.title.vintages'|trans }}#}
+    {#</h3>#}
 
-            {#<div class="col-sm-8 col-sm-offset-4">#}
-                {#<table class="table table-hover">#}
-                    {#<tbody>#}
-                    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
-                    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"#}
-                        {#style="cursor: pointer;">#}
-                        {#<td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>#}
-                        {#<td class="text-right">{{ wine.getAvgPrice() }} €</td>#}
-                    {#</tr>#}
-                    {#{% for vintage in wine.vintages %}#}
-                        {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
-                        {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'"#}
-                            {#style="cursor: pointer;">#}
-                            {#<td>{{ vintage.productionYear }}</td>#}
-                            {#<td class="text-right">{{ vintage.wineryPrice }} €</td>#}
-                        {#</tr>#}
-                    {#{% endfor %}#}
-                    {#</tbody>#}
-                {#</table>#}
-            {#</div>#}
-        {#</div>#}
+    {#<div class="col-sm-8 col-sm-offset-4">#}
+    {#<table class="table table-hover">#}
+    {#<tbody>#}
+    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
+    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"#}
+    {#style="cursor: pointer;">#}
+    {#<td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>#}
+    {#<td class="text-right">{{ wine.getAvgPrice() }} €</td>#}
+    {#</tr>#}
+    {#{% for vintage in wine.vintages %}#}
+    {#<tr onclick="location.href='{{ path('wineot_front_end_wine_show',#}
+    {#{ 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id, 'vintage':vintage.productionYear }) }}'"#}
+    {#style="cursor: pointer;">#}
+    {#<td>{{ vintage.productionYear }}</td>#}
+    {#<td class="text-right">{{ vintage.wineryPrice }} €</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    {#</tbody>#}
+    {#</table>#}
+    {#</div>#}
+    {#</div>#}
     {#{% endif %}#}
 {% endblock %}
 {% block sidebar_right %}
-    {#{% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'request' : app.request, 'wine' : wine })) %}#}
+
 {% endblock %}
 {% block featured_bottom %}
-
+    {{ render(path('wineot_front_end_winery_winelist',
+    { 'wineryName': winery.name|replace({' ':'-'}),
+    'wineryId': winery.id} )) }}
 {% endblock %}

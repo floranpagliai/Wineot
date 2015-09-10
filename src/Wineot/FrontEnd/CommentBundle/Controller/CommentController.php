@@ -11,14 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\Comment;
+use Wineot\DataBundle\Document\Wine;
 use Wineot\DataBundle\Form\CommentType;
 
 class CommentController extends Controller
 {
-    public function listAction(Request $request, $wine)
+    public function listAction(Request $request, Wine $wine)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $comments = $dm->getRepository('WineotDataBundle:Comment')->findBy(array('wine' => $wine->getId()));
+        $comments = $wine->getComments();
+//        $comments = $dm->getRepository('WineotDataBundle:Comment')->findBy(array('wine' => $wine->getId()));
         $paramsRender = array('comments' => $comments);
         return $this->render('WineotFrontEndCommentBundle:Comment:list.html.twig', $paramsRender);
     }
@@ -45,7 +47,7 @@ class CommentController extends Controller
                     $dm->flush();
 
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
-                    return $this->redirect($request->headers->get('referer'));
+//                    return $this->redirect($this->getRequest()->headers->get('referer'));
                 }
             } else {
                 $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));

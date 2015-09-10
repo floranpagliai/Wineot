@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 <div class="form-inline">
     <div class="form-group">
-        {{  form_widget(form.searchInput, { 'attr' : {'placeholder': 'search.action.search'|trans, 'class': 'search-field form-control input-lg'} })}}
+        {{  form_widget(form.searchInput, { 'name' : 'searchInput', 'attr' : {'placeholder': 'search.action.search'|trans, 'class': 'search-field form-control input-lg'} })}}
 
     </div>
     <input type="submit" class="search-submit btn btn-lg pull-right" id="_submit" name="_submit" value="{{ 'search.button.search'|trans }}"/>
@@ -9,18 +9,17 @@
 <div class="search-advance">
     <div class="row">
 
-        <div class="col-sm-4"><!-- Example parametre -->
+        <div class="col-sm-4">
             <div class="form-horizontal">
                 <div class="form-group">
-                    {#<label for="#" class="col-sm-3 control-label">{{ 'search.form.color'|trans }}</label>#}
-                    <div class="col-sm-9">
+                    <label class="col-sm-12 control-label">
                         <select name="wineColor" class="form-control">
                             <option value="3">Choisir couleur</option>
                             <option value="0">{{ 'global.wine.color.red'|trans }}</option>
                             <option value="1">{{ 'global.wine.color.pink'|trans }}</option>
                             <option value="2">{{ 'global.wine.color.white'|trans }}</option>
                         </select>
-                    </div>
+                    </label>
                 </div>
             </div>
         </div>

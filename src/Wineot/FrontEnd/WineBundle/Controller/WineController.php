@@ -12,7 +12,18 @@ class WineController extends Controller
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
-        return $this->render('WineotFrontEndWineBundle:Wine:show.html.twig', array('wine' => $wine, 'vintage' => $vintage));
+        if (!$wine)
+            throw $this->createNotFoundException('wine.warn.doesntexsit');
+        $paramsRender = array('wine' => $wine, 'vintage' => $vintage);
+        return $this->render('WineotFrontEndWineBundle:Wine:show.html.twig', $paramsRender);
+    }
+
+    public function trendsAction()
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $wines = $dm->getRepository('WineotDataBundle:Wine')->findTrendingWines();
+        $paramsRender = array('wines' => $wines, 'wineListTitle' => 'wine.title.trends');
+        return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
     }
 
     public function favoriteAction(Request $request, $wineId)

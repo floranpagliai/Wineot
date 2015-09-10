@@ -7,6 +7,7 @@
 
 namespace Wineot\BackEnd\CRUDBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,9 +54,21 @@ class WineController extends Controller
             $flash->error($this->get('translator')->trans('crud.error.wine.notfound'));
             return $this->redirectToRoute('wineot_back_end_crud_wine');
         }
+
+        $originalVintages = new ArrayCollection();
+        foreach ($wine->getVintages() as $vintage) {
+            $originalVintages->add($vintage);
+        }
+
         $form = $this->createForm(new WineType(), $wine);
         $form->handleRequest($request);
         if ($form->isValid()) {
+
+            foreach ($originalVintages as $vintage) {
+                if ($wine->getVintages()->contains($vintage) == false) {
+                    $dm->remove($vintage);
+                }
+            }
             $dm->persist($wine);
             $dm->flush();
 
