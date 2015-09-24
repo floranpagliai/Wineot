@@ -47,7 +47,7 @@
                     <div class="wine-thumbnail-key">
                         <i class="fa fa-tag"></i>
                         {% if wine.getAvgPrice() is not null %}
-                            {{ wine.getAvgPrice()|number_format }}€
+                            {{ wine.getAvgPrice() }}€
                         {% else %}
                             -
                         {% endif %}
