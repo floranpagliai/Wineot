@@ -1,0 +1,25 @@
+<table class="table col-lg-6">
+    <thead>
+    <tr>
+        <th>{{ 'grappe.form.name'|trans }}</th>
+        <th class="btn-table"></th>
+    </tr>
+    </thead>
+
+    {% macro tagCollectionItem(formData) %}
+        <td>{{ form_widget(formData.grappe) }}</td>
+        <td class="hidden">form_widget(formData)</td>
+    {% endmacro %}
+    {% if not form.vars.valid %}
+        <div class="alert alert-danger">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    <tbody class="grappeCollection" data-prototype="{{ _self.tagCollectionItem(form.grappes.vars.prototype)|e }}">
+    {% for grappe in form.grappes %}
+        <tr>
+            {{ _self.tagCollectionItem(grappe) }}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
