@@ -25,6 +25,13 @@ class WineType extends AbstractType
             'by_reference' => false,
             'cascade_validation' => true
         ));
+        $builder->add('grappes', 'collection', array(
+            'type' => new GrappeSelectorType(),
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => false,
+            'cascade_validation' => true
+        ));
         $builder->add('winery', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Winery',
             'property' => 'name',

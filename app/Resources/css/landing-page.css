@@ -1,0 +1,61 @@
+(node) util.print is deprecated. Use console.log instead.
+.landing-page {
+  text-align: center;
+}
+.landing-page .site-header {
+  height: 650px;
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.1) url("img/backgroung.jpg") no-repeat right top;
+}
+.landing-page .landing-title {
+  font-family: "Open Sans", serif;
+  color: white;
+  margin-top: 42px;
+  margin-bottom: 42px;
+}
+.landing-page .landing-title h1 {
+  margin-bottom: 42px;
+  line-height: 60px;
+}
+.landing-page .landing-title .description {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+  opacity: 0.8;
+  color: white;
+  margin-bottom: 42px;
+}
+@media (max-width: 767px) {
+  .landing-page .landing-title h1 {
+    margin-bottom: 30px;
+    line-height: 50px;
+  }
+  .landing-page .landing-title .description {
+    line-height: 25px;
+    margin-bottom: 30px;
+  }
+}
+.landing-page .site-main {
+  margin-top: 0;
+}
+.landing-page input,
+.landing-page button {
+  height: 40px;
+}
+.landing-page input {
+  width: 320px;
+}
+.landing-page .section-description {
+  margin-top: 60px;
+  padding-bottom: 30px;
+}
+.landing-page .features-container .feature-box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .landing-page input,
+  .landing-page button {
+    width: 100%;
+  }
+}

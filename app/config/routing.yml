@@ -1,3 +1,7 @@
+wineot_front_end_landing:
+    resource: "@WineotFrontEndLandingBundle/Resources/config/routing.yml"
+    prefix:   /landing
+
 wineot_front_end_winery:
     resource: "@WineotFrontEndWineryBundle/Resources/config/routing.yml"
     prefix:   /winery

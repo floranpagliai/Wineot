@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
+            new Hype\MailchimpBundle\HypeMailchimpBundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
 
@@ -39,6 +40,7 @@ class AppKernel extends Kernel
             new Wineot\FrontEnd\CommentBundle\WineotFrontEndCommentBundle(),
             new Wineot\FrontEnd\WineryBundle\WineotFrontEndWineryBundle(),
             new Utils\RatingBundle\UtilsRatingBundle(),
+            new Wineot\FrontEnd\LandingBundle\WineotFrontEndLandingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
