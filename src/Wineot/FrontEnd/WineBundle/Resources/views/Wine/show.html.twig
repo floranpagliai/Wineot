@@ -31,7 +31,14 @@
                         <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
                     </p>
 
-                    <p style="min-height: 95px; padding-right: 15px;">{{ wine.description }}</p>
+                    <p style="min-height: 95px; padding-right: 15px;">
+                        {% if wine.grappes is not empty %}
+                            <strong>{{ 'wine.grappe.grappes'|trans }} :</strong><br/>
+                        {% endif %}
+                        {% for wineGrappe in wine.grappes %}
+                            {{ wineGrappe.grappe.name }}<br/>
+                        {% endfor %}
+                    </p>
 
                     <div class="wine-show-keys">
                         <div class="wine-show-key pull-right">
@@ -94,15 +101,15 @@
     </div>
 {% endblock %}
 {% block body %}
-    {#<div class="col-sm-12">#}
-    {#<h3 class="section-title clearfix"><i class="line"></i>#}
-    {#{{ 'wine.title.description'|trans }}#}
-    {#</h3>#}
+    <div class="col-sm-12">
+    <h3 class="section-title clearfix"><i class="line"></i>
+    {{ 'wine.title.description'|trans }}
+    </h3>
 
-    {#<div class="col-sm-8 col-sm-offset-4">#}
-    {#<p>{{ wine.description }}</p>#}
-    {#</div>#}
-    {#</div>#}
+    <div class="col-sm-8 col-sm-offset-4">
+    <p>{{ wine.description }}</p>
+    </div>
+    </div>
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>

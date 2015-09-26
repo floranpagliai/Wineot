@@ -1,0 +1,12 @@
+wineot_back_end_crud_grappe:
+    path:     /
+    defaults: { _controller: WineotBackEndCRUDBundle:Grappe:index }
+wineot_back_end_crud_grappe_add:
+    path:     /add
+    defaults: { _controller: WineotBackEndCRUDBundle:Grappe:add }
+wineot_back_end_crud_grappe_edit:
+    path:     /{id}/edit
+    defaults: { _controller: WineotBackEndCRUDBundle:Grappe:edit }
+wineot_back_end_crud_grappe_delete:
+    path:     /{id}/delete
+    defaults: { _controller: WineotBackEndCRUDBundle:Grappe:delete }

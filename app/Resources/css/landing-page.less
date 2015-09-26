@@ -1,0 +1,95 @@
+.landing-page {
+  text-align: center;
+
+  .site-header {
+    height: 650px;
+    background-size: cover;
+    background: rgba(0, 0, 0, 0.1) url("img/backgroung.jpg") no-repeat right top;
+  }
+
+  .landing-title {
+    font-family: "Open Sans", serif;
+    color: white;
+    margin-top: 42px;
+    margin-bottom: 42px;
+
+    h1 {
+      margin-bottom: 42px;
+      line-height: 60px;
+    }
+    .description {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 30px;
+      opacity: 0.8;
+      color: white;
+      margin-bottom: 42px;
+    }
+
+    @media (max-width: 767px) {
+      h1 {
+        margin-bottom: 30px;
+        line-height: 50px;
+      }
+
+      .description {
+        line-height: 25px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .site-main {
+    margin-top: 0;
+  }
+  input,
+  button {
+    height: 40px;
+  }
+  input {
+    width: 320px;
+  }
+
+  .section-description {
+    margin-top: 60px;
+    padding-bottom: 30px;
+
+    h2 {
+      padding-bottom: 25px;
+    }
+    .section-title {
+      margin-left: 30%;
+      margin-right: 30%;
+
+      @media (max-width: 767px) {
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+    }
+  }
+
+  .features-container {
+    .feature-box {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    input, button {
+      width: 100%;
+    }
+  }
+
+  .team-container {
+    .team-box {
+      img {
+        height: 142px;
+        width: 142px;
+      }
+    }
+  }
+}
+
+
+

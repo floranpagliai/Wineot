@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+{% include 'header.html.twig' %}
+<body style="width: 100%">
+<div id="page" class="site landing-page">
+    {% include 'UtilsNotifyMessengerBundle::flash.html.twig' %}
+    <header class="site-header" role="banner">
+        <div class="container">
+            <div id="logo" class="site-logo text-center">
+                {#<h1>Wine'ot</h1>#}
+                <a href="{{ path('wineot_front_end_homepage') }}"><img src="{{ asset('img/logo-white.png') }}" alt="Wine'ot"
+                                                                       height="80%"/></a>
+            </div><!-- #logo -->
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-12 landing-title">
+                <h1>Plus besoin d'être un expert pour choisir une bouteille de vin !</h1>
+                    <div class="description">
+                    Prend en photo l'étiquette et l'application te dira tout ce que tu doit savoir pour faire ton choix, puis partage ton avis !
+                    L'application sort bientôt donne nous ton addresse et nous serons ravie de t'envoyer un message le moment venue.</h2>
+                    {{ form_start(form) }}
+                    </div>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            {{ form_widget(form.email, { 'attr': { 'placeholder': 'landing.form.email'|trans , 'class': 'suscribe-email form-control' } } ) }}
+                        </div>
+                        <button type="submit" class="btn" id="_submit" name="_submit">{{ 'landing.button.submit'|trans }}</button>
+                    </div>
+                        {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="features-container section-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 section-description">
+                <h2 class="section-title clearfix">Fonctionnalités</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 feature-box">
+                <h3>Feature</h3>
+aze
+            </div>
+            <div class="col-sm-4 feature-box">
+                <h3>Feature</h3>
+aef
+            </div>
+            <div class="col-sm-4 feature-box">
+                <h3>Feature</h3>
+aef
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-4 feature-box">
+                <h3>Feature</h3>
+aef
+            </div>
+            <div class="col-sm-4 feature-box">
+                <h3>Feature</h3>
+
+            </div>
+            <div class="col-sm-4 feature-box">
+                <h3>Feature</h3>
+
+            </div>
+            </div>
+    </div>
+        </div>
+
+    <div class="team-container section-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 section-description">
+                    <h2 class="section-title clearfix">L'Équipe</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/floran.jpg') }}" class="img-circle">
+                    <h3>Floran Pagliai</h3>
+                    <p>Dev Web</p>
+                </div>
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/floran.jpg') }}" class="img-circle">
+                    <h3>Sarah Chasseuil</h3>
+                    <p>Dev REST</p>
+                </div>
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/vincent.jpg') }}" class="img-circle">
+                    <h3>Vincent Ribes</h3>
+                    <p>Dev Com</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/floran.jpg') }}" class="img-circle">
+                    <h3>Ayrton Wreck</h3>
+                    <p>Dev Mobile</p>
+                </div>
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/floran.jpg') }}" class="img-circle">
+                    <h3>Yohann Payrot</h3>
+                    <p>Dev Mobile</p>
+                </div>
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/floran.jpg') }}" class="img-circle">
+                    <h3>Aurélien Pluche</h3>
+                    <p>Dev Mobile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <div class="container">
+            {% set featured_bottom_block = block('featured_bottom') %}
+            {% if featured_bottom_block is not empty %}
+                {{ featured_bottom_block|raw }}
+            {% endif %}
+        </div>
+    </div>
+    <!-- .site-hero -->
+
+    {% include 'footer.html.twig' %}
+</div>
+</body>
+</html>

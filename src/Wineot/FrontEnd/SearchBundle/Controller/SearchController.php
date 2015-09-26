@@ -3,6 +3,7 @@
 namespace Wineot\FrontEnd\SearchBundle\Controller;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Int;
+use MongoRegex;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\FrontEnd\SearchBundle\Form\Type\SearchType;

@@ -16,3 +16,6 @@ wineot_back_end_crud_comment:
 wineot_back_end_crud_country:
     resource: "@WineotBackEndCRUDBundle/Resources/config/routing/country.yml"
     prefix:   /country
+wineot_back_end_crud_grappe:
+    resource: "@WineotBackEndCRUDBundle/Resources/config/routing/grappe.yml"
+    prefix:   /grappe

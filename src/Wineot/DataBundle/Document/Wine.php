@@ -79,11 +79,19 @@ class Wine
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
-     *  inversedBy="wine",
-     *  cascade={"all"},
      *  simple=true)
      */
     private $vintages;
+
+    /**
+     * @var collection
+     *
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="WineGrappe",
+     *  cascade={"all"},
+     *  simple=true)
+     */
+    private $grappes;
 
     /**
      * @var collection
@@ -291,6 +299,45 @@ class Wine
     public function isFavorited(User $user)
     {
         return $user->isFavorited($this);
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $grappes
+     * @return self
+     */
+    public function setGrappes($grappes)
+    {
+        $this->grappes = $grappes;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGrappes()
+    {
+        return $this->grappes;
+    }
+
+    /**
+     * Add grappe
+     *
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes[] = $grappe;
+    }
+
+    /**
+     * Remove grappe
+     *
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes->removeElement($grappe);
+        $grappe = null;
     }
 
     /**

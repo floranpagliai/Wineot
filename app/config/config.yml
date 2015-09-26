@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [WineotStyleGuideBundle]
+    bundles:        [WineotStyleGuideBundle, WineotFrontEndLandingBundle]
     filters:
         lessphp:
              file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
@@ -89,3 +89,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+hype_mailchimp:
+    api_key: f0bcd52787022617bf764fb9121401bf-us7
+    default_list: cda90528d2
+    ssl: true #optional configuring curl connection
