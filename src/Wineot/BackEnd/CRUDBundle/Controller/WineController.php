@@ -60,13 +60,23 @@ class WineController extends Controller
             $originalVintages->add($vintage);
         }
 
+        $originalGrappes = new ArrayCollection();
+        foreach ($wine->getGrappes() as $grappe) {
+            $originalGrappes->add($grappe);
+        }
+
         $form = $this->createForm(new WineType(), $wine);
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            foreach ($originalVintages as $vintage) {
+            foreach ($originalVintages as $grappe) {
                 if ($wine->getVintages()->contains($vintage) == false) {
                     $dm->remove($vintage);
+                }
+            }
+            foreach ($originalGrappes as $grappe) {
+                if ($wine->getGrappes()->contains($grappe) == false) {
+                    $dm->remove($grappe);
                 }
             }
             $dm->persist($wine);

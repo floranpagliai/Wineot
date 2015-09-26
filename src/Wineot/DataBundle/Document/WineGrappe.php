@@ -17,6 +17,7 @@ use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 
 /**
  * @MongoDB\Document(collection="wines_grappes")
+ * @MongoDBUnique(fields="{wine, grappe}", message="user.warn.unique_email")
  */
 class WineGrappe {
     /**
