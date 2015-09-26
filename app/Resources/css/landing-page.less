@@ -53,6 +53,19 @@
   .section-description {
     margin-top: 60px;
     padding-bottom: 30px;
+
+    h2 {
+      padding-bottom: 25px;
+    }
+    .section-title {
+      margin-left: 30%;
+      margin-right: 30%;
+
+      @media (max-width: 767px) {
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+    }
   }
 
   .features-container {
@@ -65,6 +78,15 @@
   @media (max-width: 767px) {
     input, button {
       width: 100%;
+    }
+  }
+
+  .team-container {
+    .team-box {
+      img {
+        height: 142px;
+        width: 142px;
+      }
     }
   }
 }

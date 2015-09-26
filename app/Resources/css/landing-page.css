@@ -49,6 +49,19 @@
   margin-top: 60px;
   padding-bottom: 30px;
 }
+.landing-page .section-description h2 {
+  padding-bottom: 25px;
+}
+.landing-page .section-description .section-title {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+@media (max-width: 767px) {
+  .landing-page .section-description .section-title {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
 .landing-page .features-container .feature-box {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -58,4 +71,8 @@
   .landing-page button {
     width: 100%;
   }
+}
+.landing-page .team-container .team-box img {
+  height: 142px;
+  width: 142px;
 }
