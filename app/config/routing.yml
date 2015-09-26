@@ -12,7 +12,7 @@ wineot_front_end_wine:
 
 wineot_front_end_comment:
     resource: "@WineotFrontEndCommentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /comment
 
 wineot_back_end_crud:
     resource: "@WineotBackEndCRUDBundle/Resources/config/routing.yml"

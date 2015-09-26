@@ -7,22 +7,22 @@
         <h2 class="section-title h4 clearfix"><i class="line"></i>CRUD</h2>
         <ul class="nav nav-pills nav-stacked nav-categories">
             <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_winery' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_winery') }}">Winery</a>
+                <a href="{{ path('wineot_back_end_crud_winery') }}">{{ 'crud.title.wineries'|trans }}</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_wine' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_wine') }}">Wine</a>
+                <a href="{{ path('wineot_back_end_crud_wine') }}">{{ 'crud.title.wines'|trans }}</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_user' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_user') }}">User</a>
+                <a href="{{ path('wineot_back_end_crud_user') }}">{{ 'crud.title.users'|trans }}</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_comment' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_comment') }}">Comments</a>
+                <a href="{{ path('wineot_back_end_crud_comment') }}">{{ 'crud.title.comments'|trans }}</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_country' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_country') }}">Country</a>
+                <a href="{{ path('wineot_back_end_crud_country') }}">{{ 'crud.title.countries'|trans }}</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_grappe' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_grappe') }}">Grappe</a>
+                <a href="{{ path('wineot_back_end_crud_grappe') }}">{{ 'crud.title.grappes'|trans }}</a>
             </li>
         </ul>
     </section>

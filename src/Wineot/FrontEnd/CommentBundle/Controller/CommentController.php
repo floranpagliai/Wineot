@@ -47,7 +47,7 @@ class CommentController extends Controller
                     $dm->flush();
 
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
-//                    return $this->redirect($request->headers->get('referer'));
+                    return $this->redirect($this->generateUrl('wineot_front_end_comment_add', array('wineId' => $wineId)));
                 }
             } else {
                 $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));

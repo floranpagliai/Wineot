@@ -1,0 +1,18 @@
+crud:
+    action:
+        delete: "Supprimer"
+        edit: "Éditer"
+    button:
+        search: "Recherche"
+    form:
+        color: "Couleur"
+    title:
+        comments: "Commentaires"
+        countries: "Pays"
+        grappes: "Cépages"
+        ranks: "Notes"
+        regions: "Régions"
+        users: "Utilisateurs"
+        vintages: "Millesimes"
+        wines: "Vins"
+        wineries: "Domaines"
