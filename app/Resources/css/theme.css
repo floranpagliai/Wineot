@@ -134,7 +134,7 @@ ol.with-line-border > li {
   margin-top: 0;
   margin-bottom: 1em;
   padding-bottom: 0.25em;
-  font-weight: 350;
+  font-weight: 300;
   border-bottom: 1px solid red;
   position: relative;
 }
@@ -146,7 +146,7 @@ ol.with-line-border > li {
   margin-top: 0;
   margin-bottom: 1em;
   padding-bottom: 0.25em;
-  font-weight: 350;
+  font-weight: 300;
   border-bottom: 1px solid #ddd;
   position: relative;
 }
@@ -156,6 +156,21 @@ ol.with-line-border > li {
   border-bottom: 1px solid #b55;
   position: absolute;
   bottom: -1px;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 980px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }
 /*	Accordion	*/
 .accordion {

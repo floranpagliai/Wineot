@@ -138,7 +138,7 @@ ol.with-line-border > li {
   margin-top: 0;
   margin-bottom: 1em;
   padding-bottom: 0.25em;
-  font-weight: 350;
+  font-weight: 300;
   border-bottom: 1px solid red;
   position: relative;
 }
@@ -150,7 +150,7 @@ ol.with-line-border > li {
   margin-top: 0;
   margin-bottom: 1em;
   padding-bottom: 0.25em;
-  font-weight: 350;
+  font-weight: 300;
   border-bottom: 1px solid #ddd;
   position: relative;
 }
@@ -161,51 +161,21 @@ ol.with-line-border > li {
   position: absolute;
   bottom: -1px;
 }
-//
-///*	Banner	*/
-//.banner-wrapper {
-//  font-size: 0.9em;
-//  padding: 20px;
-//  border: 1px solid #f39b93;
-//  border-top-width: 5px;
-//  -webkit-transition: all 0.6s ease-in-out;
-//  transition: all 0.6s ease-in-out;
-//}
-//.banner-wrapper:hover {
-//  border-color: #e73827;
-//  background: rgba(0, 0, 0, 0.0185);
-//}
-//.banner-title,
-//.banner-content {
-//  text-shadow: 0 1px #fff;
-//}
-//.banner-content {
-//  margin: 1.5em 0.5em;
-//}
-//.banner-content .btn {
-//  text-shadow: none;
-//}
-//
-///*	Banner Horizontal	*/
-//.banner-horizontal {
-//  border-top-width: 1px;
-//  border-left-width: 5px;
-//}
-//.banner-horizontal .banner-title,
-//.banner-horizontal .banner-content {
-//  float: left;
-//  margin: 15px 0 0;
-//  line-height: 20px;
-//}
-//.banner-horizontal .banner-title {
-//  margin-top: 14px;
-//  margin-right: 0.5em;
-//  letter-spacing: -0.05em;
-//}
-//.banner-horizontal .btn {
-//  float: right;
-//  margin: 10px 0;
-//}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 980px;
+  }
+}
+@media (min-width: 1200px){
+.container {
+  width: 1170px;
+}
+}
 
 /*	Accordion	*/
 .accordion {

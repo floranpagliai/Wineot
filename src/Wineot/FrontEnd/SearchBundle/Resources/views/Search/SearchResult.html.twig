@@ -1,16 +1,22 @@
 {% extends "WineotFrontEndSearchBundle::layout.html.twig" %}
 {% block body %}
-    <div class="col-sm-12">
+    <div class="col-sm-12 search-result">
         <h3 class="section-title clearfix"><i class="line"></i>
             {{ 'search.title.searchResult'|trans }}
         </h3>
-        <ul class="wine-thumbnails">
-            {% for wine in wines %}
-                {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
-            {% endfor %}
-        </ul>
-        {#{% for winery in wineries %}#}
+        <div class="row">
+            <ul class="wine-thumbnails">
+                {% for wine in wines %}
+                    {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
+                {% endfor %}
+            </ul>
+            {#{% for winery in wineries %}#}
             {#{% include 'WineotFrontEndWineryBundle:Winery:poster.html.twig' with {'winery': winery} %}#}
-        {#{% endfor %}#}
+            {#{% endfor %}#}
+        </div>
+        <div class="row no-result">
+            <h4>Vous ne trouvez pas le vin que vous cherchez ?</h4>
+            <a href="#" class="btn btn-lg btn-green">Ajoutez le !</a>
+        </div>
     </div>
 {% endblock %}

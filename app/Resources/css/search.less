@@ -1,3 +1,4 @@
+@import "vars/colors.less";
 .site-search .search-form {
   position: relative;
   -webkit-box-sizing: content-box;
@@ -69,6 +70,22 @@
 }
 .autocomplete-suggestion strong {
   font-weight: 600;
+}
+
+.search-result {
+  .no-result {
+    text-align: center;
+    font-size: 0.9em;
+    padding: 15px;
+    border: 1px solid @wine-thumbnail-border;
+    border-radius: 5px;
+    border-top-width: 5px;
+    -webkit-transition: all 0.6s ease-in;
+    transition: all 0.6s ease-in;
+  }
+  .no-result h4 {
+    margin-bottom: 15px;
+  }
 }
 
 @media (min-width: 768px) {

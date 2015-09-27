@@ -1,25 +1,25 @@
 @import "vars/colors.less";
 .wine-thumbnails {
-  margin: 0;
   padding: 0;
-  margin-right: -10px;
-  margin-left: -10px;
+  margin: 0 -10px;
   list-style: none;
 }
 .wine-thumbnails > li {
   height: @wine-thumbnail-size;
-  min-width: 346px;
+  //min-width: 346px;
   margin-bottom: 20px;
   float: left;
+  -webkit-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
 }
 .wine-thumbnail {
   min-height: @wine-thumbnail-size;
   padding: 0px;
   background-color: @wine-thumbnail-background;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
-  box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
   overflow: hidden;
+  -webkit-box-shadow: 0px 1px 6px 0px @wine-thumbnail-border;
+  box-shadow: 0px 1px 6px 0px rgba(50,50,50,0.3);
 }
 .wine-thumbnail .wine-thumbnail-img {
   text-align: center;

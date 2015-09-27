@@ -84,18 +84,18 @@ fieldset[disabled] .btn.active {
 }
 /* Color Button*/
 .btn-green {
-  border-color: #148f39;
+  border-color: #8cc152;
   color: #fff;
-  background-color: #16a040;
+  background-color: #a0d468;
 }
 .btn-green:hover,
 .btn-green:focus,
 .btn-green:active,
 .btn-green.active,
 .open .dropdown-toggle.btn-green {
-  border-color: #117e32;
+  border-color: #8cc152;
   color: #fff;
-  background-color: #148f39;
+  background-color: #8cc152;
 }
 .btn-red {
   border-color: #db4839;

@@ -6,23 +6,23 @@
     <section id="section-categories" class="section">
         <h2 class="section-title h4 clearfix"><i class="line"></i>CRUD</h2>
         <ul class="nav nav-pills nav-stacked nav-categories">
-            <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_winery' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_winery') }}">Winery</a>
+            <li class="{% if app.request.attributes.get('_route') in ['wineot_back_end_crud_winery', 'wineot_back_end_crud_winery_add', 'wineot_back_end_crud_winery_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_winery') }}">{{ 'crud.title.wineries'|trans }}</a>
             </li>
-            <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_wine' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_wine') }}">Wine</a>
+            <li class="{% if app.request.attributes.get('_route')  in ['wineot_back_end_crud_wine', 'wineot_back_end_crud_wine_add', 'wineot_back_end_crud_wine_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_wine') }}">{{ 'crud.title.wines'|trans }}</a>
             </li>
-            <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_user' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_user') }}">User</a>
+            <li class="{% if app.request.attributes.get('_route')  in ['wineot_back_end_crud_user', 'wineot_back_end_crud_user_add', 'wineot_back_end_crud_user_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_user') }}">{{ 'crud.title.users'|trans }}</a>
             </li>
-            <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_comment' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_comment') }}">Comments</a>
+            <li class="{% if app.request.attributes.get('_route')  in ['wineot_back_end_crud_comment', 'wineot_back_end_crud_comment_add', 'wineot_back_end_crud_comment_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_comment') }}">{{ 'crud.title.comments'|trans }}</a>
             </li>
-            <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_country' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_country') }}">Country</a>
+            <li class="{% if app.request.attributes.get('_route')  in ['wineot_back_end_crud_country', 'wineot_back_end_crud_country_add', 'wineot_back_end_crud_country_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_country') }}">{{ 'crud.title.countries'|trans }}</a>
             </li>
-            <li class="{% if app.request.attributes.get('_route') == 'wineot_back_end_crud_grappe' %}active{% endif %}">
-                <a href="{{ path('wineot_back_end_crud_grappe') }}">Grappe</a>
+            <li class="{% if app.request.attributes.get('_route') in ['wineot_back_end_crud_grappe', 'wineot_back_end_crud_grappe_add', 'wineot_back_end_crud_grappe_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_grappe') }}">{{ 'crud.title.grappes'|trans }}</a>
             </li>
         </ul>
     </section>

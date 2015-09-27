@@ -10,3 +10,6 @@ wineot_back_end_crud_winery_edit:
 wineot_back_end_crud_winery_delete:
     path:     /{id}/delete
     defaults: { _controller: WineotBackEndCRUDBundle:Winery:delete }
+wineot_back_end_crud_winery_delete_picture:
+    path:     /{id}/deletePicture
+    defaults: { _controller: WineotBackEndCRUDBundle:Winery:deletePicture }

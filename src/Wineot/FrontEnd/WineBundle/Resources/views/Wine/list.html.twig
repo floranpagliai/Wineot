@@ -2,9 +2,11 @@
     <h3 class="section-title clearfix"><i class="line"></i>
         {{ wineListTitle|trans }}
     </h3>
+    <div class="row">
     <ul class="wine-thumbnails">
         {% for wine in wines %}
             {% include 'WineotFrontEndWineBundle:Wine:thumbnails.html.twig' with {'wine': wine} %}
         {% endfor %}
     </ul>
+        </div>
 </div>

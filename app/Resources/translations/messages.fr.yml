@@ -5,7 +5,10 @@ global:
     action:
         submit: "Enregistrer"
         delete: "Supprimer"
+        add: "Ajouter"
     wine:
+        action:
+            add: "Ajouter un vin"
         color:
             red: "Vin rouge"
             pink: "Vin rosé"
@@ -15,6 +18,10 @@ global:
             white_short: "Blanc"
         picture:
             label: "Étiquette"
+    winery:
+        picture:
+            cover: "Image de couverture"
+
     vintage:
         form:
             name: "Millésimes"

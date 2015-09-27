@@ -7,7 +7,7 @@
                     {% if  wine.labelPicture.md5 is defined %}
                         <img class="img-responsive site-hero-image" src="{{ wine.labelPicture.getImage() }}">
                     {% else %}
-                        <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                        <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
                     {% endif %}
                 </div>
                 <div class="wine-show-body col-sm-9">

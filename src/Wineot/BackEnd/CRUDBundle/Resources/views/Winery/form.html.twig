@@ -24,8 +24,14 @@
     <div class="form-group">
         {% if  winery.coverPicture.md5 is defined %}
             <img class="img-responsive" src="{{ winery.coverPicture.getImage() }}" width="200px">
+            <a href="{{ path('wineot_back_end_crud_winery_delete_picture', {'id': wine.id }) }}"
+               onclick="return confirm('Delete ?')">
+                <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
+            </a>
+        {% else %}
+            <label>{{ 'global.winery.picture.cover'|trans }}</label>
+            {{ form_widget(form.coverPicture.fileuploaded) }}
         {% endif %}
-        {{ form_widget(form.coverPicture) }}
     </div>
     <br>
     <input class="btn btn-lg  btn-block" type="submit" id="_submit" name="submit_wine"
