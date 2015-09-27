@@ -4,7 +4,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Winery</th>
+            <th>{{ 'global.action.submit'|trans }}</th>
             <th>Name</th>
             <th>Vintages</th>
             <th>Color</th>
@@ -45,6 +45,6 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_wine_add') }}">add</a>
+    <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_wine_add') }}">{{ 'global.action.submit'|trans }}</a>
 
 {% endblock %}

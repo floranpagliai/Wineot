@@ -1,0 +1,23 @@
+crud:
+    action:
+        delete: "Supprimer"
+        delete_image: "Supprimer l'image"
+        edit: "Éditer"
+    button:
+        search: "Recherche"
+    form:
+        color: "Couleur"
+    title:
+        comments: "Commentaires"
+        countries: "Pays"
+        grappes: "Cépages"
+        ranks: "Notes"
+        regions: "Régions"
+        users: "Utilisateurs"
+        vintages: "Millesimes"
+        wines: "Vins"
+        wineries: "Domaines"
+    warn:
+        wine:
+            edited: "Le vin à bien été modifié"
+            deleted: "Le vin à bien été supprimé"

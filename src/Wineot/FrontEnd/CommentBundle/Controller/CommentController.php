@@ -37,8 +37,7 @@ class CommentController extends Controller
 
         $comment->setWine($wine);
         $form->handleRequest($request);
-        if ($user)
-            $userComment = $dm->getRepository('WineotDataBundle:Comment')->findOneBy(array('wine' => $wine->getId(), 'user' => $user->getId()));
+
         if ($request->isMethod('POST')) {
             if ($user) {
                 if ($form->isValid() && !isset($userComment)) {
@@ -49,6 +48,7 @@ class CommentController extends Controller
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
 //                    return $this->redirect($request->headers->get('referer'));
                 }
+                $userComment = $dm->getRepository('WineotDataBundle:Comment')->findOneBy(array('wine' => $wine->getId(), 'user' => $user->getId()));
             } else {
                 $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));
             }
