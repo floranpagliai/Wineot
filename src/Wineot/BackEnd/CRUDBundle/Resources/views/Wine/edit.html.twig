@@ -6,6 +6,6 @@
             {{ 'crud.action.edit'|trans }}
         </h2>
         {% include 'WineotBackEndCRUDBundle:Wine:form.html.twig' %}
-        <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_wine_delete', { 'id': id }) }}">delete</a>
+        <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_wine_delete', { 'id': id }) }}">{{ 'global.action.delete'|trans }}</a>
     </div>
 {% endblock %}

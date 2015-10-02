@@ -39,11 +39,12 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "braincrafted/bootstrap-bundle": "~2.0",
         "twbs/bootstrap": "3.0.*",
-        "bmatzner/fontawesome-bundle": "~4.2",
+        "bmatzner/fontawesome-bundle": "~4.4",
         "jquery/jquery":  "1.10.*",
         "oyejorge/less.php": "1.5.*",
         "ismaambrosi/generator-bundle": "~2.4",
-        "ahmedsamy/hype-mailchimp-bundle": "dev-master"
+        "ahmedsamy/hype-mailchimp-bundle": "dev-master",
+        "pinano/select2-bundle": "^4.0"
     },
     "scripts": {
         "post-install-cmd": [

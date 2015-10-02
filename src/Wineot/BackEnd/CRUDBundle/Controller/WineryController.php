@@ -10,6 +10,7 @@ namespace Wineot\BackEnd\CRUDBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Wineot\DataBundle\Document\Winery;
 use Wineot\DataBundle\Form\WineryType;
 
@@ -79,5 +80,24 @@ class WineryController extends Controller
             $flash->error($this->get('translator')->trans('crud.error.winery.notfound'));
         }
         return $this->redirectToRoute('wineot_back_end_crud_winery');
+    }
+
+    public function deletePictureAction(Request $request, $id)
+    {
+        $flash = $this->get('notify_messenger.flash');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($id);
+        if ($winery) {
+            $picture = $winery->getCoverPicture();
+            $dm->remove($picture);
+            $winery->setCoverPicture(null);
+            $dm->persist($winery);
+            $dm->flush();
+
+            $flash->success($this->get('translator')->trans('crud.warn.winery.picture.deleted'));
+        } else {
+            $flash->error($this->get('translator')->trans('crud.error.winery.notfound'));
+        }
+        return $this->redirect($request->headers->get('referer'));
     }
 } 

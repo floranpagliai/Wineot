@@ -7,7 +7,7 @@
                     {% if  wine.labelPicture.md5 is defined %}
                         <img class="img-responsive site-hero-image" src="{{ wine.labelPicture.getImage() }}">
                     {% else %}
-                        <img class="img-responsive" src="{{ asset('img/image.png') }}"/>
+                        <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
                     {% endif %}
                 </div>
                 <div class="wine-show-body col-sm-9">
@@ -33,7 +33,7 @@
 
                     <p style="min-height: 95px; padding-right: 15px;">
                         {% if wine.grappes is not empty %}
-                            <strong>{{ 'wine.grappe.grappes'|trans }} :</strong><br/>
+                            <strong>{{ 'wine.grappe.title.grappes'|trans }} :</strong><br/>
                         {% endif %}
                         {% for wineGrappe in wine.grappes %}
                             {{ wineGrappe.grappe.name }}<br/>

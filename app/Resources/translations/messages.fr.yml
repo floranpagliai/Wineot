@@ -2,7 +2,13 @@ global:
     menu:
         home: "Accueil"
         admin: "Administration"
+    action:
+        submit: "Enregistrer"
+        delete: "Supprimer"
+        add: "Ajouter"
     wine:
+        action:
+            add: "Ajouter un vin"
         color:
             red: "Vin rouge"
             pink: "Vin rosé"
@@ -10,3 +16,16 @@ global:
             red_short: "Rouge"
             pink_short: "Rosé"
             white_short: "Blanc"
+        picture:
+            label: "Étiquette"
+    winery:
+        picture:
+            cover: "Image de couverture"
+
+    vintage:
+        form:
+            name: "Millésimes"
+            domain_price: "Prix de la bouteille au domaine"
+    grappe:
+        form:
+            name: "Cépages"

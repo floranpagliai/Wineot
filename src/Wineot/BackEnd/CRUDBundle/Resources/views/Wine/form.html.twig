@@ -11,13 +11,14 @@
     <div class="form-group">
         {% if  wine.labelPicture.md5 is defined %}
             <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}" width="200px">
-            {#<a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': wine.id }) }}"#}
-               {#onclick="return confirm('Delete ?')">#}
-                {#<i class="fa fa-times"></i>#}
-            {#</a>#}
-
+            <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': wine.id }) }}"
+               onclick="return confirm('Delete ?')">
+                <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
+            </a>
+        {% else %}
+            <label>{{ 'global.wine.picture.label'|trans }}</label>
+            {{ form_widget(form.labelPicture.fileuploaded) }}
         {% endif %}
-        {{ form_widget(form.labelPicture) }}
     </div>
     <div class="form-group">
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
@@ -26,16 +27,15 @@
         {{ form_widget(form.description, { 'attr': { 'placeholder': 'description'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.color, { 'attr': { 'placeholder': 'color'|trans } } ) }}
+        {{ form_widget(form.color) }}
     </div>
     {% include 'WineotBackEndCRUDBundle:Grappe:collection.html.twig' %}
     {% include 'WineotBackEndCRUDBundle:Vintage:form.html.twig' %}
     <br>
     <input class="btn btn-lg  btn-block" type="submit" id="_submit" name="submit_wine"
-           value="{{ 'submit'|trans }}"/>
+           value="{{ 'global.action.submit'|trans }}"/>
 </fieldset>
 <br>
-{#{{ form_end(form) }}#}
 {{ form_widget(form._token) }}
 {% block javascript %}
 

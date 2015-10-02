@@ -25,6 +25,9 @@ class WineryType extends AbstractType
         $builder->add('country', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Country',
             'property' => 'name',
+            'attr' => array(
+                'class' => 'select2'
+            ),
             'query_builder' => function (DocumentRepository $er) {
                     return $er->createQueryBuilder('c');
                 }
@@ -32,6 +35,9 @@ class WineryType extends AbstractType
         $builder->add('region', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Region',
             'property' => 'name',
+            'attr' => array(
+                'class' => 'select2'
+            ),
             'query_builder' => function (DocumentRepository $er) {
                     return $er->createQueryBuilder('c');
                 }

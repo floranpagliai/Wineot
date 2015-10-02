@@ -1,11 +1,13 @@
 crud:
     action:
         delete: "Supprimer"
+        delete_image: "Supprimer l'image"
         edit: "Éditer"
     button:
         search: "Recherche"
     form:
-        color: "Couleur"
+        color: "Choisir une couleur"
+        winery: "Choisir un domaine"
     title:
         comments: "Commentaires"
         countries: "Pays"
@@ -16,3 +18,7 @@ crud:
         vintages: "Millesimes"
         wines: "Vins"
         wineries: "Domaines"
+    warn:
+        wine:
+            edited: "Le vin à bien été modifié"
+            deleted: "Le vin à bien été supprimé"
