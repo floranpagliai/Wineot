@@ -6,7 +6,8 @@ crud:
     button:
         search: "Recherche"
     form:
-        color: "Couleur"
+        color: "Choisir une couleur"
+        winery: "Choisir un domaine"
     title:
         comments: "Commentaires"
         countries: "Pays"

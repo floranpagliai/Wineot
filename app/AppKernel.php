@@ -26,8 +26,10 @@ class AppKernel extends Kernel
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
+            new Pinano\Select2Bundle\PinanoSelect2Bundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
+            new Utils\RatingBundle\UtilsRatingBundle(),
 
             new Wineot\FrontEnd\HomeBundle\WineotFrontEndHomeBundle(),
             new Wineot\UserBundle\WineotUserBundle(),
@@ -39,7 +41,6 @@ class AppKernel extends Kernel
             new Wineot\FrontEnd\WineBundle\WineotFrontEndWineBundle(),
             new Wineot\FrontEnd\CommentBundle\WineotFrontEndCommentBundle(),
             new Wineot\FrontEnd\WineryBundle\WineotFrontEndWineryBundle(),
-            new Utils\RatingBundle\UtilsRatingBundle(),
             new Wineot\FrontEnd\LandingBundle\WineotFrontEndLandingBundle(),
         );
 

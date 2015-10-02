@@ -21,6 +21,9 @@ class GrappeSelectorType extends AbstractType
             ->add('grappe', 'document', array(
                 'class' => 'Wineot\DataBundle\Document\Grappe',
                 'property' => 'name',
+                'attr' => array(
+                    'class' => 'select2'
+                ),
                 'query_builder' => function (DocumentRepository $er) {
                         return $er->createQueryBuilder('c');
                     }

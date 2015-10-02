@@ -16,7 +16,12 @@ class WineType extends AbstractType
     {
         $builder->add('name');
         $builder->add('description', 'textarea');
-        $builder->add('color', 'choice', array('choices' => Wine::getColors()));
+        $builder->add('color', 'choice', array(
+            'choices' => Wine::getColors(),
+            'placeholder' => 'crud.form.color',
+            'attr' => array(
+                'class' => 'select2'
+            ),));
         $builder->add('labelPicture', new ImageType(), array('required' => false));
         $builder->add('vintages', 'collection', array(
             'type' => new VintageType(),
@@ -35,6 +40,10 @@ class WineType extends AbstractType
         $builder->add('winery', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Winery',
             'property' => 'name',
+            'placeholder' => 'crud.form.winery',
+            'attr' => array(
+                'class' => 'select2'
+            ),
             'query_builder' => function (DocumentRepository $er) {
                     return $er->createQueryBuilder('c');
                 }

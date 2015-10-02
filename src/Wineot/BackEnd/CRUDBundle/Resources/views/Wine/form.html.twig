@@ -27,7 +27,7 @@
         {{ form_widget(form.description, { 'attr': { 'placeholder': 'description'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.color, { 'attr': { 'placeholder': 'color'|trans } } ) }}
+        {{ form_widget(form.color) }}
     </div>
     {% include 'WineotBackEndCRUDBundle:Grappe:collection.html.twig' %}
     {% include 'WineotBackEndCRUDBundle:Vintage:form.html.twig' %}
