@@ -21,6 +21,7 @@ class GrappeSelectorType extends AbstractType
             ->add('grappe', 'document', array(
                 'class' => 'Wineot\DataBundle\Document\Grappe',
                 'property' => 'name',
+                'placeholder' => 'crud.form.grappe',
                 'attr' => array(
                     'class' => 'select2'
                 ),

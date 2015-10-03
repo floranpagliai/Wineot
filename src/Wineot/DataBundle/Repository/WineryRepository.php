@@ -13,4 +13,18 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
 class WineryRepository extends DocumentRepository {
 
 
+    /**
+     * Find wineries from a array of string terms
+     *
+     * @param $search
+     * @return mixed
+     */
+    public function search($search) {
+        $query = $this->createQueryBuilder('WineotDataBundle:Winery');
+        $wineries = $query
+            ->field('name')->in($search)
+            ->getQuery()->execute();
+
+        return $wineries;
+    }
 } 
