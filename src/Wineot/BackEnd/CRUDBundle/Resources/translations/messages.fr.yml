@@ -8,6 +8,7 @@ crud:
     form:
         color: "Choisir une couleur"
         winery: "Choisir un domaine"
+        grappe: "Choisir un cépage"
     title:
         comments: "Commentaires"
         countries: "Pays"

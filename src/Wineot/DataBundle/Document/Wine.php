@@ -79,6 +79,7 @@ class Wine
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
+     *  cascade={"all"},
      *  simple=true)
      */
     private $vintages;
