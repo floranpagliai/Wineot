@@ -26,6 +26,10 @@ class WineType extends AbstractType
                 'class' => 'select2'
             )
         ));
+        $builder->add('containsSulphites', 'checkbox', array(
+            'label' => 'crud.form.wine.containsSulphites',
+            'required' => false
+        ));
         $builder->add('isBio', 'checkbox', array(
             'label' => 'crud.form.wine.isbio',
             'required' => false

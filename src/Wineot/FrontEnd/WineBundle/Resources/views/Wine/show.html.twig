@@ -101,6 +101,8 @@
     </div>
 {% endblock %}
 {% block body %}
+
+    {% if wine.description is not empty %}
     <div class="col-sm-12">
         <h3 class="section-title clearfix"><i class="line"></i>
             {{ 'wine.title.description'|trans }}
@@ -110,6 +112,8 @@
             <p>{{ wine.description }}</p>
         </div>
     </div>
+    {% endif %}
+
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
@@ -168,6 +172,7 @@
             </div>
         </div>
     {% endif %}
+
 {% endblock %}
 
 {% block sidebar_right %}

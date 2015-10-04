@@ -74,9 +74,16 @@ class Wine
     /**
      * @var boolean
      *
-     * @MongoDB\Field(type="boolean")
+     * @MongoDB\Field(type="boolean", name="is_bio")
      */
     private $isBio;
+
+    /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean", name="contains_sulphites")
+     */
+    private $containsSulphites;
 
     /**
      * @var Image
@@ -410,6 +417,22 @@ class Wine
     public function setIsBio($isBio)
     {
         $this->isBio = $isBio;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isContainsSulphites()
+    {
+        return $this->containsSulphites;
+    }
+
+    /**
+     * @param boolean $containsSulphites
+     */
+    public function setContainsSulphites($containsSulphites)
+    {
+        $this->containsSulphites = $containsSulphites;
     }
 
     /**
