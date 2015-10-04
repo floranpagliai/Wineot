@@ -22,11 +22,11 @@ class Wine
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
 
-    const FOOD_TYPE_MEET = 0;
-    const FOOD_TYPE_FISH = 1;
-    const FOOD_TYPE_VEGETABLE = 2;
-    const FOOD_TYPE_CHEESE = 3;
-    const FOOD_TYPE_DESERT = 4;
+    const FOOD_TYPE_MEET = "FOOD_TYPE_MEET";
+    const FOOD_TYPE_FISH = "FOOD_TYPE_FISH";
+    const FOOD_TYPE_VEGETABLE = "FOOD_TYPE_VEGETABLE";
+    const FOOD_TYPE_CHEESE = "FOOD_TYPE_CHEESE";
+    const FOOD_TYPE_DESERT = "FOOD_TYPE_DESERT";
 
     /**
      * @var integer
@@ -109,10 +109,11 @@ class Wine
     private $grappes;
 
     /**
+     * @var collection
      *
      * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
      */
-    private $foodPairings = array();
+    private $foodPairings;
 
     /**
      * @var collection
@@ -126,7 +127,9 @@ class Wine
 
     public function __construct()
     {
+        $this->foodPairings = Array();
         $this->vintages = new ArrayCollection();
+        $this->grappes = new ArrayCollection();
     }
 
     /**
@@ -249,10 +252,12 @@ class Wine
 
     /**
      * @param Collection $foodPairings
+     * @return self
      */
     public function setFoodPairings($foodPairings)
     {
         $this->foodPairings = $foodPairings;
+        return $this;
     }
 
     /**
@@ -260,6 +265,7 @@ class Wine
      */
     public function getFoodPairings()
     {
+//        var_dump($this->foodPairings->getValues());
         return $this->foodPairings;
     }
 

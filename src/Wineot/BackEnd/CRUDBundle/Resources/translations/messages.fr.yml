@@ -14,6 +14,7 @@ crud:
             description: "Description du vin"
             color: "Choisir une couleur"
             isbio: "Cocher si le vin est bio"
+            food_pairings: "Avec quels alliments se marrie t-il ?"
     title:
         comments: "Commentaires"
         countries: "Pays"

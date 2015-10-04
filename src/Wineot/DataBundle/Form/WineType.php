@@ -24,7 +24,8 @@ class WineType extends AbstractType
             'placeholder' => 'crud.form.wine.color',
             'attr' => array(
                 'class' => 'select2'
-            ),));
+            )
+        ));
         $builder->add('isBio', 'checkbox', array(
             'label' => 'crud.form.wine.isbio',
             'required' => false
@@ -34,9 +35,10 @@ class WineType extends AbstractType
         ));
         $builder->add('foodPairings', 'choice', array(
             'choices' => Wine::getFoodTypes(),
-            'placeholder' => 'crud.form.wine.color',
+            'label' => 'crud.form.wine.food_pairings',
+            'placeholder' => 'crud.form.wine.food_pairings',
             'multiple' => true,
-            'mapped' => false,
+//            'expanded' => true,
             'required' => false,
             'attr' => array(
                 'class' => 'select2'

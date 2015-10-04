@@ -7,15 +7,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Wineot\DataBundle\Document\User;
 
-class UserEditCrudType extends AbstractType
+class UserEditCrudType extends UserType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', 'text');
-        $builder->add('firstname', 'text');
-        $builder->add('lastname', 'text');
-        $builder->add('mail', 'email');
+        parent::buildForm($builder, $options) ;
+        $builder->remove('plain_password');
         $builder->add('roles', 'choice', array(
                 'choices' => User::getRolesType(),
                 'multiple' => true,
@@ -28,7 +26,7 @@ class UserEditCrudType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Wineot\DataBundle\Document\User',
-            'validation_groups' => array('Edit'),
+            'validation_groups' => array('Edit')
         ));
     }
 
