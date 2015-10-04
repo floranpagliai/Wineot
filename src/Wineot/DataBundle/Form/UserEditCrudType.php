@@ -17,9 +17,6 @@ class UserEditCrudType extends AbstractType
         $builder->add('lastname', 'text');
         $builder->add('mail', 'email');
         $builder->add('roles', 'choice', array(
-                'attr' => array(
-                    'class' => 'select2'
-                ),
                 'choices' => User::getRolesType(),
                 'multiple' => true,
                 'expanded' => true,

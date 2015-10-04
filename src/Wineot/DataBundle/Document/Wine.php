@@ -21,6 +21,13 @@ class Wine
     const COLOR_RED = 0;
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
+
+    const FOOD_TYPE_MEET = 0;
+    const FOOD_TYPE_FISH = 1;
+    const FOOD_TYPE_VEGETABLE = 2;
+    const FOOD_TYPE_CHEESE = 3;
+    const FOOD_TYPE_DESERT = 4;
+
     /**
      * @var integer
      *
@@ -65,6 +72,13 @@ class Wine
     private $color;
 
     /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean")
+     */
+    private $isBio;
+
+    /**
      * @var Image
      *
      * @MongoDB\ReferenceOne(
@@ -79,6 +93,7 @@ class Wine
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
+     *  cascade={"all"},
      *  simple=true)
      */
     private $vintages;
@@ -92,6 +107,12 @@ class Wine
      *  simple=true)
      */
     private $grappes;
+
+    /**
+     *
+     * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
+     */
+    private $foodPairings = array();
 
     /**
      * @var collection
@@ -227,6 +248,22 @@ class Wine
     }
 
     /**
+     * @param Collection $foodPairings
+     */
+    public function setFoodPairings($foodPairings)
+    {
+        $this->foodPairings = $foodPairings;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getFoodPairings()
+    {
+        return $this->foodPairings;
+    }
+
+    /**
      * Set wineryId
      *
      * @param \Wineot\DataBundle\Document\Winery $wineryId
@@ -353,6 +390,26 @@ class Wine
             return null;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isIsBio()
+    {
+        return $this->isBio;
+    }
+
+    /**
+     * @param boolean $isBio
+     */
+    public function setIsBio($isBio)
+    {
+        $this->isBio = $isBio;
+    }
+
+    /**
+     * Get average rating for all comment of the wine
+     * @return null|string
+     */
     public function getAvgRating()
     {
         if ($this->comments->count() != 0) {
@@ -367,6 +424,11 @@ class Wine
             return null;
     }
 
+    /**
+     * Get average price for all vintages of the wine
+     *
+     * @return null|string
+     */
     public function getAvgPrice()
     {
         if ($this->vintages->count() != 0) {
@@ -390,6 +452,20 @@ class Wine
             Wine::COLOR_RED => 'global.wine.color.red',
             Wine::COLOR_PINK => 'global.wine.color.pink',
             Wine::COLOR_WHITE => 'global.wine.color.white'
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function getFoodTypes()
+    {
+        return array(
+            Wine::FOOD_TYPE_MEET => 'MEET',
+            Wine::FOOD_TYPE_FISH => 'FISH',
+            Wine::FOOD_TYPE_VEGETABLE => 'VEGETABLE',
+            Wine::FOOD_TYPE_CHEESE => 'CHEESE',
+            Wine::FOOD_TYPE_DESERT => 'DESERT'
         );
     }
 }
