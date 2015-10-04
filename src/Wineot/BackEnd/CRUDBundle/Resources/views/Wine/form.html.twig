@@ -21,13 +21,22 @@
         {% endif %}
     </div>
     <div class="form-group">
-        {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
+        {{ form_widget(form.name, { 'attr': { 'placeholder': 'crud.form.wine.name'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.description, { 'attr': { 'placeholder': 'description'|trans } } ) }}
+        {{ form_widget(form.description, { 'attr': { 'placeholder': 'crud.form.wine.description'|trans } } ) }}
     </div>
     <div class="form-group">
         {{ form_widget(form.color) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.isBio) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.containsSulphites) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.foodPairings) }}
     </div>
     {% include 'WineotBackEndCRUDBundle:Grappe:collection.html.twig' %}
     {% include 'WineotBackEndCRUDBundle:Vintage:form.html.twig' %}

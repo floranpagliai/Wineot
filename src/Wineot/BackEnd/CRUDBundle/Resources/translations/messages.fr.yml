@@ -9,6 +9,13 @@ crud:
         color: "Choisir une couleur"
         winery: "Choisir un domaine"
         grappe: "Choisir un cépage"
+        wine:
+            name: "Nom du vin"
+            description: "Description du vin"
+            color: "Choisir une couleur"
+            isbio: "Cocher si le vin est bio"
+            containsSulphites: "Cocher si le vin contient des sulfites"
+            food_pairings: "Avec quels aliments se marie t-il ?"
     title:
         comments: "Commentaires"
         countries: "Pays"

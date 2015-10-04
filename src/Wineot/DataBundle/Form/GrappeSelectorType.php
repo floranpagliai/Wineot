@@ -17,8 +17,7 @@ class GrappeSelectorType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('grappe', 'document', array(
+        $builder->add('grappe', 'document', array(
                 'class' => 'Wineot\DataBundle\Document\Grappe',
                 'property' => 'name',
                 'placeholder' => 'crud.form.grappe',
