@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContext;
+use Wineot\DataBundle\Document\FoodPairing;
 use Wineot\DataBundle\Document\Wine;
 
 class WineType extends AbstractType
@@ -15,14 +16,38 @@ class WineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name');
-        $builder->add('description', 'textarea');
+        $builder->add('description', 'textarea', array(
+            'required' => false
+        ));
         $builder->add('color', 'choice', array(
             'choices' => Wine::getColors(),
-            'placeholder' => 'crud.form.color',
+            'placeholder' => 'crud.form.wine.color',
             'attr' => array(
                 'class' => 'select2'
-            ),));
-        $builder->add('labelPicture', new ImageType(), array('required' => false));
+            )
+        ));
+        $builder->add('containsSulphites', 'checkbox', array(
+            'label' => 'crud.form.wine.containsSulphites',
+            'required' => false
+        ));
+        $builder->add('isBio', 'checkbox', array(
+            'label' => 'crud.form.wine.isbio',
+            'required' => false
+        ));
+        $builder->add('labelPicture', new ImageType(), array(
+            'required' => false
+        ));
+        $builder->add('foodPairings', 'choice', array(
+            'choices' => Wine::getFoodTypes(),
+            'label' => 'crud.form.wine.food_pairings',
+            'placeholder' => 'crud.form.wine.food_pairings',
+            'multiple' => true,
+//            'expanded' => true,
+            'required' => false,
+            'attr' => array(
+                'class' => 'select2'
+            )
+        ));
         $builder->add('vintages', 'collection', array(
             'type' => new VintageType(),
             'allow_add' => true,

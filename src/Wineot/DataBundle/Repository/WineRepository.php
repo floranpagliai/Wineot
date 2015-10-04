@@ -43,7 +43,7 @@ class WineRepository extends DocumentRepository
 
     public function findTrendingWines()
     {
-        $query = $this->createQueryBuilder('Wine');
+        $query = $this->createQueryBuilder();
         $query->sort('name', 'ASC')
             ->limit(3);
         return $query->getQuery()->execute();

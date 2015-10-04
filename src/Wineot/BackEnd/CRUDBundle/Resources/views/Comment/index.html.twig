@@ -4,10 +4,10 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>User</th>
-            <th>Wine</th>
-            <th>Comment</th>
-            <th>Rank</th>
+            <th>{{ 'crud.title.users'|trans }}</th>
+            <th>{{ 'crud.title.wines'|trans }}</th>
+            <th>{{ 'crud.title.comments'|trans }}</th>
+            <th>{{ 'crud.title.ranks'|trans }}</th>
             <th class="btn-table"></th>
         </tr>
         </thead>
@@ -33,7 +33,7 @@
                 <td class="tooltips">
                     <a href="{{ path('wineot_back_end_crud_comment_delete', { 'id': comment.id }) }}"
                        class="btn btn-sm btn-red btn-block" data-toggle="tooltip"
-                       data-placement="top" data-original-title="Delete" onclick="return confirm('Delete ?')">
+                       data-placement="top" data-original-title="{{ 'crud.action.delete'|trans }}" onclick="return confirm('Delete ?')">
                         <i class="fa fa-times"></i>
                     </a>
                 </td>

@@ -46,7 +46,6 @@ class CommentController extends Controller
                     $dm->flush();
 
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
-//                    return $this->redirect($request->headers->get('referer'));
                 }
                 $userComment = $dm->getRepository('WineotDataBundle:Comment')->findOneBy(array('wine' => $wine->getId(), 'user' => $user->getId()));
             } else {

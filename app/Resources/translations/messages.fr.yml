@@ -18,6 +18,12 @@ global:
             white_short: "Blanc"
         picture:
             label: "Étiquette"
+        food_type:
+            meet: "Viandes"
+            fish: "Poissons"
+            vegetable: "Légumes"
+            desert: "Deserts"
+            cheese: "Fromages"
     winery:
         picture:
             cover: "Image de couverture"

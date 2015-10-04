@@ -21,6 +21,13 @@ class Wine
     const COLOR_RED = 0;
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
+
+    const FOOD_TYPE_MEET = 0;
+    const FOOD_TYPE_FISH = 1;
+    const FOOD_TYPE_VEGETABLE = 2;
+    const FOOD_TYPE_CHEESE = 3;
+    const FOOD_TYPE_DESERT = 4;
+
     /**
      * @var integer
      *
@@ -65,6 +72,20 @@ class Wine
     private $color;
 
     /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean", name="is_bio")
+     */
+    private $isBio;
+
+    /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean", name="contains_sulphites")
+     */
+    private $containsSulphites;
+
+    /**
      * @var Image
      *
      * @MongoDB\ReferenceOne(
@@ -79,6 +100,7 @@ class Wine
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
+     *  cascade={"all"},
      *  simple=true)
      */
     private $vintages;
@@ -96,6 +118,13 @@ class Wine
     /**
      * @var collection
      *
+     * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
+     */
+    private $foodPairings;
+
+    /**
+     * @var collection
+     *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Comment",
      *  mappedBy="wine",
@@ -105,7 +134,9 @@ class Wine
 
     public function __construct()
     {
+        $this->foodPairings = Array();
         $this->vintages = new ArrayCollection();
+        $this->grappes = new ArrayCollection();
     }
 
     /**
@@ -224,6 +255,25 @@ class Wine
     public function getVintages()
     {
         return $this->vintages;
+    }
+
+    /**
+     * @param Collection $foodPairings
+     * @return self
+     */
+    public function setFoodPairings($foodPairings)
+    {
+        $this->foodPairings = $foodPairings;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getFoodPairings()
+    {
+//        var_dump($this->foodPairings->getValues());
+        return $this->foodPairings;
     }
 
     /**
@@ -353,6 +403,42 @@ class Wine
             return null;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isIsBio()
+    {
+        return $this->isBio;
+    }
+
+    /**
+     * @param boolean $isBio
+     */
+    public function setIsBio($isBio)
+    {
+        $this->isBio = $isBio;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isContainsSulphites()
+    {
+        return $this->containsSulphites;
+    }
+
+    /**
+     * @param boolean $containsSulphites
+     */
+    public function setContainsSulphites($containsSulphites)
+    {
+        $this->containsSulphites = $containsSulphites;
+    }
+
+    /**
+     * Get average rating for all comment of the wine
+     * @return null|string
+     */
     public function getAvgRating()
     {
         if ($this->comments->count() != 0) {
@@ -367,6 +453,11 @@ class Wine
             return null;
     }
 
+    /**
+     * Get average price for all vintages of the wine
+     *
+     * @return null|string
+     */
     public function getAvgPrice()
     {
         if ($this->vintages->count() != 0) {
@@ -390,6 +481,20 @@ class Wine
             Wine::COLOR_RED => 'global.wine.color.red',
             Wine::COLOR_PINK => 'global.wine.color.pink',
             Wine::COLOR_WHITE => 'global.wine.color.white'
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function getFoodTypes()
+    {
+        return array(
+            Wine::FOOD_TYPE_MEET => 'global.wine.food_type.meet',
+            Wine::FOOD_TYPE_FISH => 'global.wine.food_type.fish',
+            Wine::FOOD_TYPE_VEGETABLE => 'global.wine.food_type.vegetable',
+            Wine::FOOD_TYPE_CHEESE => 'global.wine.food_type.cheese',
+            Wine::FOOD_TYPE_DESERT => 'global.wine.food_type.desert'
         );
     }
 }

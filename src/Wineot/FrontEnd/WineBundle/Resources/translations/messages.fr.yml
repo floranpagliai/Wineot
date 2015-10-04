@@ -3,6 +3,7 @@ wine:
         description: "Description"
         other_winery_wine: "Les autres vins de ce domaine"
         trends: "Les vins les plus consultés"
+        food_pairings: "Accords Mets et Vins"
     vintage:
         title:
             vintages: "Millésimes"
