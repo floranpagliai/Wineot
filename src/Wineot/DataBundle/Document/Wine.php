@@ -22,11 +22,11 @@ class Wine
     const COLOR_PINK = 1;
     const COLOR_WHITE = 2;
 
-    const FOOD_TYPE_MEET = "FOOD_TYPE_MEET";
-    const FOOD_TYPE_FISH = "FOOD_TYPE_FISH";
-    const FOOD_TYPE_VEGETABLE = "FOOD_TYPE_VEGETABLE";
-    const FOOD_TYPE_CHEESE = "FOOD_TYPE_CHEESE";
-    const FOOD_TYPE_DESERT = "FOOD_TYPE_DESERT";
+    const FOOD_TYPE_MEET = 0;
+    const FOOD_TYPE_FISH = 1;
+    const FOOD_TYPE_VEGETABLE = 2;
+    const FOOD_TYPE_CHEESE = 3;
+    const FOOD_TYPE_DESERT = 4;
 
     /**
      * @var integer
@@ -467,11 +467,11 @@ class Wine
     public static function getFoodTypes()
     {
         return array(
-            Wine::FOOD_TYPE_MEET => 'MEET',
-            Wine::FOOD_TYPE_FISH => 'FISH',
-            Wine::FOOD_TYPE_VEGETABLE => 'VEGETABLE',
-            Wine::FOOD_TYPE_CHEESE => 'CHEESE',
-            Wine::FOOD_TYPE_DESERT => 'DESERT'
+            Wine::FOOD_TYPE_MEET => 'global.wine.food_type.meet',
+            Wine::FOOD_TYPE_FISH => 'global.wine.food_type.fish',
+            Wine::FOOD_TYPE_VEGETABLE => 'global.wine.food_type.vegetable',
+            Wine::FOOD_TYPE_CHEESE => 'global.wine.food_type.cheese',
+            Wine::FOOD_TYPE_DESERT => 'global.wine.food_type.desert'
         );
     }
 }
