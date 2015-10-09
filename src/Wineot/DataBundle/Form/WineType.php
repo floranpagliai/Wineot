@@ -17,7 +17,10 @@ class WineType extends AbstractType
     {
         $builder->add('name');
         $builder->add('description', 'textarea', array(
-            'required' => false
+            'required' => false,
+            'attr' => array(
+                'rows' => '15'
+            )
         ));
         $builder->add('color', 'choice', array(
             'choices' => Wine::getColors(),
