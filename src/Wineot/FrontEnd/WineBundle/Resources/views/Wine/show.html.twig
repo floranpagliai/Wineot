@@ -4,7 +4,9 @@
         <div class="col-sm-8">
             <div class="banner-wrapper row">
                 <div class="wine-show-image col-sm-3">
-                    {% if  wine.labelPicture.md5 is defined %}
+                    {% if  wine.bottlePicture.md5 is defined %}
+                        <img class="img-responsive site-hero-image" src="{{ wine.bottlePicture.getImage() }}">
+                    {% elseif  wine.labelPicture.md5 is defined %}
                         <img class="img-responsive site-hero-image" src="{{ wine.labelPicture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>

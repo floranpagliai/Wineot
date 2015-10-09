@@ -18,11 +18,35 @@ class WineType extends AbstractType
         $builder->add('description', 'textarea');
         $builder->add('color', 'choice', array(
             'choices' => Wine::getColors(),
-            'placeholder' => 'crud.form.color',
+            'placeholder' => 'crud.form.wine.color',
+            'attr' => array(
+                'class' => 'select2'
+            )
+        ));
+        $builder->add('containsSulphites', 'checkbox', array(
+            'label' => 'crud.form.wine.containsSulphites',
+            'required' => false
+        ));
+        $builder->add('isBio', 'checkbox', array(
+            'label' => 'crud.form.wine.isbio',
+            'required' => false
+        ));
+        $builder->add('labelPicture', new ImageType(), array(
+            'required' => false
+        ));
+        $builder->add('bottlePicture', new ImageType(), array(
+            'required' => false
+        ));
+        $builder->add('foodPairings', 'choice', array(
+            'choices' => Wine::getFoodTypes(),
+            'label' => 'crud.form.wine.food_pairings',
+            'placeholder' => 'crud.form.wine.food_pairings',
+            'multiple' => true,
+//            'expanded' => true,
+            'required' => false,
             'attr' => array(
                 'class' => 'select2'
             ),));
-        $builder->add('labelPicture', new ImageType(), array('required' => false));
         $builder->add('vintages', 'collection', array(
             'type' => new VintageType(),
             'allow_add' => true,

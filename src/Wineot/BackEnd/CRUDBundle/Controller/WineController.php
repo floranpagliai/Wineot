@@ -123,4 +123,23 @@ class WineController extends Controller
         }
         return $this->redirect($request->headers->get('referer'));
     }
+
+    public function deleteBottlePictureAction(Request $request, $id)
+    {
+        $flash = $this->get('notify_messenger.flash');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($id);
+        if ($wine) {
+            $picture = $wine->getBottlePicture();
+            $dm->remove($picture);
+            $wine->setBottlePicture(null);
+            $dm->persist($wine);
+            $dm->flush();
+
+            $flash->success($this->get('translator')->trans('crud.warn.wine.picture.deleted'));
+        } else {
+            $flash->error($this->get('translator')->trans('crud.error.wine.notfound'));
+        }
+        return $this->redirect($request->headers->get('referer'));
+    }
 } 

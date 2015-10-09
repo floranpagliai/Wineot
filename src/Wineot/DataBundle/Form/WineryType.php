@@ -10,6 +10,8 @@ namespace Wineot\DataBundle\Form;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class WineryType extends AbstractType
@@ -32,6 +34,16 @@ class WineryType extends AbstractType
                     return $er->createQueryBuilder('c');
                 }
         ));
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function(FormEvent $event) {
+                $product = $event->getData();
+                $form = $event->getForm();
+                var_dump($product);
+
+            }
+        );
         $builder->add('region', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Region',
             'property' => 'name',

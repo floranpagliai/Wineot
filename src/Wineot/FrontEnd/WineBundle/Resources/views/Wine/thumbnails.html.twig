@@ -4,7 +4,9 @@
             <div class="wine-thumbnail-img col-xs-5">
                 <a href="{{ path('wineot_front_end_wine_show',
                 { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}">
-                    {% if  wine.labelPicture.md5 is defined %}
+                    {% if  wine.bottlePicture.md5 is defined %}
+                        <img class="img-responsive" src="{{ wine.bottlePicture.getImage() }}">
+                    {% elseif  wine.labelPicture.md5 is defined %}
                         <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>

@@ -75,6 +75,16 @@ class Wine
     private $labelPicture;
 
     /**
+     * @var Image
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"all"},
+     *  simple=true)
+     */
+    private $bottlePicture;
+
+    /**
      * @var collection
      *
      * @MongoDB\ReferenceMany(
@@ -274,6 +284,22 @@ class Wine
     public function getLabelPicture()
     {
         return $this->labelPicture;
+    }
+
+    /**
+     * @param Image $bottlePicture
+     */
+    public function setBottlePicture($bottlePicture)
+    {
+        $this->bottlePicture = $bottlePicture;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getBottlePicture()
+    {
+        return $this->bottlePicture;
     }
 
     /**
