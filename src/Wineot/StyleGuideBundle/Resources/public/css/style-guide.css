@@ -958,20 +958,24 @@ section:nth-of-type(6) h2::before {
     background-size: 32px 32px;
 }
 .cd-icons .cd-icon-5 {
-  background-image: url("../assets/icons/comments_b9b5b2_512.svg");
+  background-image: url("img/icons/food_meet.png");
     background-size: 32px 32px;
 }
 .cd-icons .cd-icon-6 {
-  background-image: url("../assets/icons/star_ffb701_32.png");
+  background-image: url("img/icons/food_fish.png");
     background-size: 32px 32px;
 }
 .cd-icons .cd-icon-7 {
-  background-image: url("../assets/icons/icon-7.svg");
+  background-image: url("img/icons/food_vegetable.png");
     background-size: 32px 32px;
 }
 .cd-icons .cd-icon-8 {
-  background-image: url("../assets/icons/icon-8.svg");
+  background-image: url("img/icons/food_cheese.png");
     background-size: 32px 32px;
+}
+.cd-icons .cd-icon-9 {
+  background-image: url("img/icons/food_desert.png");
+  background-size: 32px 32px;
 }
 
 /* xForm section - basic style */

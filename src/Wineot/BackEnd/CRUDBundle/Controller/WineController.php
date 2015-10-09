@@ -69,7 +69,7 @@ class WineController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
 
-            foreach ($originalVintages as $grappe) {
+            foreach ($originalVintages as $vintage) {
                 if ($wine->getVintages()->contains($vintage) == false) {
                     $dm->remove($vintage);
                 }

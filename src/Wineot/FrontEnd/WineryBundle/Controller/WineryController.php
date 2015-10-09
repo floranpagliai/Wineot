@@ -35,7 +35,12 @@ class WineryController extends Controller
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wines = $dm->getRepository('WineotDataBundle:Wine')->findBestRatedWines($wineryId);
-        $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
+        if (is_array($wines))
+            $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
+        else {
+            $wines = $dm->getRepository('WineotDataBundle:Wine')->findTrendingWines();
+            $paramsRender = array('wines' => $wines, 'wineListTitle' => 'wine.title.trends');
+        }
         return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
     }
 } 

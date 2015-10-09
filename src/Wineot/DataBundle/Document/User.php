@@ -107,7 +107,6 @@ class User implements UserInterface
      * @var collection
      *
      * @MongoDB\Field(type="collection")
-     *
      * @Assert\NotBlank()
      */
     private $roles;

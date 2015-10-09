@@ -16,7 +16,7 @@
                     <h2>
                         <a href="{{ path('wineot_front_end_winery_show',
                         {'wineryName':wine.winery.name|replace({' ':'-'}),
-                        'wineryId':wine.winery.id}) }}">{{ wine.winery.name }}
+                            'wineryId':wine.winery.id}) }}">{{ wine.winery.name }}
                         </a>
                     </h2>
 
@@ -103,15 +103,19 @@
     </div>
 {% endblock %}
 {% block body %}
-    <div class="col-sm-12">
-    <h3 class="section-title clearfix"><i class="line"></i>
-    {{ 'wine.title.description'|trans }}
-    </h3>
 
-    <div class="col-sm-8 col-sm-offset-4">
-    <p>{{ wine.description }}</p>
+    {% if wine.description is not empty %}
+    <div class="col-sm-12">
+        <h3 class="section-title clearfix"><i class="line"></i>
+            {{ 'wine.title.description'|trans }}
+        </h3>
+
+        <div class="col-sm-8 col-sm-offset-4">
+            <p>{{ wine.description }}</p>
+        </div>
     </div>
-    </div>
+    {% endif %}
+
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
@@ -130,9 +134,9 @@
                     {% for vintageElem in wine.vintages %}
                         <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
                         { 'wineryName':wine.winery.name|replace({' ':'-'}),
-                        'wineName':wine.name|replace({' ':'-'}),
-                        'wineId':wine.id,
-                        'vintage':vintageElem.productionYear }) }}'"
+                            'wineName':wine.name|replace({' ':'-'}),
+                            'wineId':wine.id,
+                            'vintage':vintageElem.productionYear }) }}'"
                             style="cursor: pointer;">
                             {% if vintage == vintageElem.productionYear %}
                                 <td><b>{{ vintageElem.productionYear }}</b></td>
@@ -148,10 +152,35 @@
             </div>
         </div>
     {% endif %}
+
+    {% if wine.foodPairings is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.food_pairings'|trans }}
+            </h3>
+
+            {#<div class="col-sm-8 col-sm-offset-4">#}
+                <div class="col-sm-12">
+                {% for foodPairing in wine.foodPairings %}
+                    {#<div class="food-pairing">#}
+                        <div class="food-pairing-logo col-sm-2 pull-right" style="display: inline;">
+                            <i class="food-type food-type-{{ foodPairing }}"></i>
+                        </div>
+                        {#<div class="food-pairing-text">#}
+                            {#Accords avec {{ foodPairing }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
+
 {% block sidebar_right %}
     {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': wine })) %}
 {% endblock %}
+
 {% block featured_bottom %}
     {% include 'WineotFrontEndWineryBundle:Winery:poster.html.twig' with {'winery': wine.winery} %}
     {{ render_hinclude(path('wineot_front_end_winery_best_rated',
