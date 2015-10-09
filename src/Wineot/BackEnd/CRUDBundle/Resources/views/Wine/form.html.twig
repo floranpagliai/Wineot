@@ -9,6 +9,7 @@
         {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
     </div>
     <div class="form-group">
+        <div class="row">
         <div class="col-sm-6">
             {% if  wine.labelPicture.md5 is defined %}
                 <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}" width="200px">
@@ -33,6 +34,7 @@
             {{ form_widget(form.bottlePicture.fileuploaded) }}
         {% endif %}
             </div>
+        </div>
     </div>
     <div class="form-group">
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'crud.form.wine.name'|trans } } ) }}
