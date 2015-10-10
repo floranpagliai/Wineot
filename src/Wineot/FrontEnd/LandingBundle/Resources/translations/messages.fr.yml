@@ -1,6 +1,6 @@
 landing:
     button:
-        submit: "Soit le premier informé"
+        submit: "Sois le premier informé"
         search: "Recherche"
     form:
         email: "Entre ton email..."
