@@ -27,4 +27,9 @@ class WineryRepository extends DocumentRepository {
 
         return $wineries;
     }
+
+    public function getCount()
+    {
+        return $this->createQueryBuilder()->getQuery()->execute()->count();
+    }
 } 

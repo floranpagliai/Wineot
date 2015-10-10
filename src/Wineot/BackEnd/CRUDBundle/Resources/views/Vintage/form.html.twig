@@ -1,15 +1,25 @@
 <table class="table col-lg-6">
     <thead>
     <tr>
-        <th style="width: 25%;">{{ 'global.vintage.form.name'|trans }}</th>
+        <th>{{ 'global.vintage.form.name'|trans }}</th>
+        <th>{{ 'global.vintage.form.keeping'|trans }}</th>
+        <th>{{ 'global.vintage.form.peak'|trans }}</th>
+        <th>{{ 'global.vintage.form.alcohol'|trans }}</th>
+        <th>{{ 'global.vintage.form.isBio'|trans }}</th>
+        <th>{{ 'global.vintage.form.containsSulphites'|trans }}</th>
         <th>{{ 'global.vintage.form.domain_price'|trans }}</th>
         <th class="btn-table"></th>
     </tr>
     </thead>
 
     {% macro tagCollectionItem(formData) %}
-            <td>{{ form_widget(formData.productionYear) }}</td>
-            <td>{{ form_widget(formData.wineryPrice) }}</td>
+        <td>{{ form_widget(formData.productionYear) }}</td>
+        <td>{{ form_widget(formData.keeping) }}</td>
+        <td>{{ form_widget(formData.peak) }}</td>
+        <td>{{ form_widget(formData.alcohol) }}</td>
+        <td>{{ form_widget(formData.isBio) }}</td>
+        <td>{{ form_widget(formData.containsSulphites) }}</td>
+        <td>{{ form_widget(formData.wineryPrice) }}</td>
         {#{% if  formData.labelPicture.md5 is defined %}#}
     {#<td><img class="img-responsive" src="{{ formData.labelPicture.getImage() }}" width="200px"></td>#}
         {#{% else %}#}
@@ -17,11 +27,6 @@
     {#{% endif %}#}
             <td class="hidden">form_widget(formData)</td>
     {% endmacro %}
-    {% if not form.vars.valid %}
-        <div class="alert alert-danger">
-            {{ form_errors(form) }}
-        </div>
-    {% endif %}
     <tbody class="collection" data-prototype="{{ _self.tagCollectionItem(form.vintages.vars.prototype)|e }}">
     {% for vintage in form.vintages %}
         <tr>

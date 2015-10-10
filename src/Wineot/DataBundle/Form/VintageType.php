@@ -22,7 +22,40 @@ class VintageType extends AbstractType
                 'class' => 'select2'
             ))
         );
-        $builder->add('wineryPrice', 'money');
+        $builder->add('containsSulphites', 'checkbox', array(
+            'label' => 'crud.form.wine.containsSulphites',
+            'required' => false
+        ));
+        $builder->add('isBio', 'checkbox', array(
+            'label' => 'crud.form.wine.isbio',
+            'required' => false
+        ));
+        $builder->add('keeping', 'choice', array(
+                'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
+                'placeholder' => 'crud.form.wine.keeping',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'select2'
+                ))
+        );
+        $builder->add('peak', 'choice', array(
+                'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
+                'placeholder' => 'crud.form.wine.peak',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'select2'
+                ))
+        );
+        $builder->add('alcohol', 'percent', array(
+                'scale' => 1,
+                'type' => 'integer',
+                'required' => false
+            )
+        );
+        $builder->add('wineryPrice', 'money', array(
+                'required' => false
+                )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

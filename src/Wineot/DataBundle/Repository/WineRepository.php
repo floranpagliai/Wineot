@@ -57,4 +57,9 @@ class WineRepository extends DocumentRepository
             ->limit(3);
         return $query->getQuery()->execute();
     }
+
+    public function getCount()
+    {
+        return $this->createQueryBuilder()->getQuery()->execute()->count();
+    }
 }

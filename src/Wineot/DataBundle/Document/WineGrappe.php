@@ -7,7 +7,6 @@
 
 namespace Wineot\DataBundle\Document;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,7 +16,7 @@ use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 
 /**
  * @MongoDB\Document(collection="wines_grappes")
- * @MongoDBUnique(fields="{wine, grappe}", message="wine.warn.unique_grappe")
+ * @MongoDBUnique(fields={"wine", "grappe"}, message="wine.warn.unique_grappe")
  */
 class WineGrappe {
     /**
@@ -28,7 +27,7 @@ class WineGrappe {
     private $id;
 
     /**
-     * @var Image
+     * @var Wine
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Wine",
@@ -37,7 +36,7 @@ class WineGrappe {
     private $wine;
 
     /**
-     * @var Image
+     * @var Grappe
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Grappe",
@@ -46,7 +45,7 @@ class WineGrappe {
     private $grappe;
 
     /**
-     * @param \Wineot\DataBundle\Document\Image $grappe
+     * @param \Wineot\DataBundle\Document\Grappe $grappe
      */
     public function setGrappe($grappe)
     {
@@ -54,7 +53,7 @@ class WineGrappe {
     }
 
     /**
-     * @return \Wineot\DataBundle\Document\Image
+     * @return \Wineot\DataBundle\Document\Grappe
      */
     public function getGrappe()
     {
@@ -78,7 +77,7 @@ class WineGrappe {
     }
 
     /**
-     * @param \Wineot\DataBundle\Document\Image $wine
+     * @param \Wineot\DataBundle\Document\Wine $wine
      */
     public function setWine($wine)
     {
@@ -86,7 +85,7 @@ class WineGrappe {
     }
 
     /**
-     * @return \Wineot\DataBundle\Document\Image
+     * @return \Wineot\DataBundle\Document\Wine
      */
     public function getWine()
     {

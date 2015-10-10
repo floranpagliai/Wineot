@@ -4,6 +4,11 @@
                 <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
             {% endfor %}
         {% endif %}
+    {% if not form.vars.valid %}
+        <div class="alert alert-danger">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
 <fieldset>
     <div class="form-group">
         {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
@@ -44,12 +49,6 @@
     </div>
     <div class="form-group">
         {{ form_widget(form.color) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.isBio) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.containsSulphites) }}
     </div>
     <div class="form-group">
         {{ form_row(form.foodPairings) }}

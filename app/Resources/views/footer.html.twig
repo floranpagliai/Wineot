@@ -159,6 +159,28 @@
             });
         }
 
-
+        var $sport = $('#wineot_databundle_winerytype_country');
+        // When sport gets selected ...
+        $sport.change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            // Simulate form data, but only include the selected sport value.
+            var data = {};
+            data[$sport.attr('name')] = $sport.val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    // Replace current position field ...
+                    $('#wineot_databundle_winerytype_region').replaceWith(
+                            // ... with the returned one from the AJAX response.
+                            $(html).find('#wineot_databundle_winerytype_region')
+                    );
+                    // Position field now displays the appropriate positions.
+                }
+            });
+        });
     </script>
 {% endblock %}

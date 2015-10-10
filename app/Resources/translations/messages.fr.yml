@@ -32,7 +32,12 @@ global:
     vintage:
         form:
             name: "Millésimes"
-            domain_price: "Prix de la bouteille au domaine"
+            domain_price: "Prix de la bouteille"
+            keeping: "Garde"
+            peak: "Apogée"
+            alcohol: "Alcool"
+            isBio: "Biologique"
+            containsSulphites: "Sulphites"
     grappe:
         form:
             name: "Cépages"

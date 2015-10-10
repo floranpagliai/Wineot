@@ -10,11 +10,6 @@
         <td>{{ form_widget(formData.grappe) }}</td>
         <td class="hidden">form_widget(formData)</td>
     {% endmacro %}
-    {% if not form.vars.valid %}
-        <div class="alert alert-danger">
-            {{ form_errors(form) }}
-        </div>
-    {% endif %}
     <tbody class="grappeCollection" data-prototype="{{ _self.tagCollectionItem(form.grappes.vars.prototype)|e }}">
     {% for grappe in form.grappes %}
         <tr>

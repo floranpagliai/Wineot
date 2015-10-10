@@ -12,14 +12,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
  * @MongoDB\Document(collection="vintages")
- * @MongoDBUnique("wine")
- * @MongoDBUnique("productionYear")
+ * @MongoDBUnique(fields={"wine", "productionYear"}, message="wine.warn.unique_vintage")
  */
+
 class Vintage
 {
     /**
@@ -34,7 +35,6 @@ class Vintage
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Wine",
-     *  mappedBy="vintages",
      *  simple=true)
      */
     private $wine;
@@ -46,6 +46,41 @@ class Vintage
      * @Assert\NotBlank()
      */
     private $productionYear;
+
+    /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean", name="is_bio")
+     */
+    private $isBio;
+
+    /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean", name="contains_sulphites")
+     */
+    private $containsSulphites;
+
+    /**
+     * @var Int
+     *
+     * @MongoDB\Field(type="int", nullable=true))
+     */
+    private $keeping;
+
+    /**
+     * @var Int
+     *
+     * @MongoDB\Field(type="int", nullable=true))
+     */
+    private $peak;
+
+    /**
+     * @var float
+     *
+     * @MongoDB\Field(type="float", nullable=true)
+     */
+    private $alcohol;
 
     /**
      * @var float
@@ -114,6 +149,102 @@ class Vintage
     public function getProductionYear()
     {
         return $this->productionYear;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIsBio()
+    {
+        return $this->isBio;
+    }
+
+    /**
+     * @param boolean $isBio
+     */
+    public function setIsBio($isBio)
+    {
+        $this->isBio = $isBio;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param ArrayCollection $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isContainsSulphites()
+    {
+        return $this->containsSulphites;
+    }
+
+    /**
+     * @param boolean $containsSulphites
+     */
+    public function setContainsSulphites($containsSulphites)
+    {
+        $this->containsSulphites = $containsSulphites;
+    }
+
+    /**
+     * @return Int
+     */
+    public function getKeeping()
+    {
+        return $this->keeping;
+    }
+
+    /**
+     * @param Int $keeping
+     */
+    public function setKeeping($keeping)
+    {
+        $this->keeping = $keeping;
+    }
+
+    /**
+     * @return Int
+     */
+    public function getPeak()
+    {
+        return $this->peak;
+    }
+
+    /**
+     * @param Int $peak
+     */
+    public function setPeak($peak)
+    {
+        $this->peak = $peak;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAlcohol()
+    {
+        return $this->alcohol;
+    }
+
+    /**
+     * @param float $alcohol
+     */
+    public function setAlcohol($alcohol)
+    {
+        $this->alcohol = $alcohol;
     }
 
     /**
