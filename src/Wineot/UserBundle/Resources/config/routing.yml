@@ -6,9 +6,21 @@ wineot_user_login_check:
 wineot_user_register:
     path:     /register
     defaults: { _controller: WineotUserBundle:Security:register }
-wineot_user_profile:
-    path:     /profile
-    defaults: { _controller: WineotUserBundle:Security:profile }
 wineot_user_logout:
     path:     /logout
     defaults: { _controller: WineotUserBundle:Security:logout }
+wineot_user_profile:
+    path:     /profile
+    defaults: { _controller: WineotUserBundle:User:profile }
+wineot_user_profile_edit:
+    path:     /profile/edit
+    defaults: { _controller: WineotUserBundle:User:editProfile }
+wineot_user_profile_edit_password:
+    path:     /profile/editpassword
+    defaults: { _controller: WineotUserBundle:User:editPassword}
+wineot_user_favorite_wine:
+    path:     /favorite/{wineId}
+    defaults: { _controller: WineotUserBundle:User:favorite }
+wineot_user_unfavorite_wine:
+    path:     /unfavorite/{wineId}
+    defaults: { _controller: WineotUserBundle:User:unfavorite }

@@ -10,6 +10,7 @@ namespace Wineot\DataBundle\Document;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -50,9 +51,9 @@ class Comment
     /**
      * @var integer
      *
-     * @MongoDB\Field(name="vintage_id")
+     * @MongoDB\Field()
      * @MongoDB\ReferenceOne(
-     *  targetDocument="Wine",
+     *  targetDocument="Vintage",
      *  inversedBy="comments",
      *  simple=true)
      */
@@ -61,6 +62,7 @@ class Comment
     /**
      * @var Datetime $createdAt
      *
+     * @Gedmo\Timestampable(on="create")
      * @MongoDB\Date(name="created_at")
      */
     private $createdAt;
@@ -132,9 +134,9 @@ class Comment
     }
 
     /**
-     * Get vintageId
+     * Get vintage
      *
-     * @return \Wineot\DataBundle\Document\Wine $wine
+     * @return \Wineot\DataBundle\Document\Vintage $vintage
      */
     public function getWine()
     {
@@ -154,12 +156,12 @@ class Comment
     /**
      * Set Wine
      *
-     * @param \Wineot\DataBundle\Document\Wine $wine
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
      * @return self
      */
-    public function setWine(Wine $wine)
+    public function setWine(Vintage $vintage)
     {
-        $this->wine = $wine;
+        $this->wine = $vintage;
         return $this;
     }
 

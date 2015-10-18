@@ -3,16 +3,16 @@
     <div class="featured row">
         <div class="col-sm-8">
             <div class="banner-wrapper row">
-                <div class="wine-show-image col-xs-3">
-                    {% if  wine.bottlePicture.md5 is defined %}
-                        <img class="img-responsive site-hero-image" src="{{ wine.bottlePicture.getImage() }}">
-                    {% elseif  wine.labelPicture.md5 is defined %}
-                        <img class="img-responsive site-hero-image" src="{{ wine.labelPicture.getImage() }}">
+                <div class="wine-show-image col-sm-3">
+                    {% if  vintage.bottlePicture.md5 is defined %}
+                        <img class="img-responsive site-hero-image" src="{{ vintage.bottlePicture.getImage() }}">
+                    {% elseif  vintage.labelPicture.md5 is defined %}
+                        <img class="img-responsive site-hero-image" src="{{ vintage.labelPicture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
                     {% endif %}
                 </div>
-                <div class="wine-show-body col-xs-9">
+                <div class="wine-show-body col-sm-9">
                     <h2>
                         <a href="{{ path('wineot_front_end_winery_show',
                         {'wineryName':wine.winery.name|replace({' ':'-'}),
@@ -20,7 +20,10 @@
                         </a>
                     </h2>
 
-                    <h1>{{ wine.name }}</h1>
+                    <h1>
+                        {{ wine.name }}
+                            <span style="font-weight: lighter"> {{ vintage.productionYear }}</span>
+                    </h1>
                     <br/>
 
                     <p>
@@ -30,10 +33,10 @@
                     </p>
 
                     <p style="min-height: 95px; padding-right: 15px;">
-                        {% if wine.grappes is not empty %}
+                        {% if vintage.grappes is not empty %}
                             <strong>{{ 'wine.grappe.title.grappes'|trans }} :</strong><br/>
                         {% endif %}
-                        {% for wineGrappe in wine.grappes %}
+                        {% for wineGrappe in vintage.grappes %}
                             {{ wineGrappe.grappe.name }}<br/>
                         {% endfor %}
                     </p>
@@ -43,9 +46,9 @@
                             <h4>{{ 'wine.keys.avg_rating'|trans }}</h4>
 
                             <p>
-                                {% if wine.getAvgRating() is not null %}
-                                    {{ wine.getAvgRating() }}
-                                    {% for i in 1..wine.getAvgRating() %}
+                                {% if vintage.getAvgRating() is not null %}
+                                    {{ vintage.getAvgRating() }}
+                                    {% for i in 1..vintage.getAvgRating() %}
                                         <i class="rank rank-small"></i>
                                     {% endfor %}
                                 {% else %}
@@ -57,8 +60,8 @@
                             <h4>{{ 'wine.keys.avg_price'|trans }}</h4>
 
                             <p>
-                                {% if wine.getAvgPrice() is not null %}
-                                    {{ wine.getAvgPrice() }} €
+                                {% if vintage.getAvgPrice() is not null %}
+                                    {{ vintage.getAvgPrice() }} €
                                 {% else %}
                                     -
                                 {% endif %}
@@ -73,8 +76,7 @@
 
         <div class="col-sm-4">
             <div class="banner-wrapper row text-center">
-                <div style="height:280px;"></div>
-                {#{% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'vintageId' : wine.id })) %}#}
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'vintageId' : vintage.id })) %}
                 <span class="horizontal-line"></span>
 
                 <div class="col-md-12 wine-show-share">
@@ -101,16 +103,16 @@
 {% endblock %}
 {% block body %}
 
-    {% if wine.description is not empty %}
-    <div class="col-sm-12">
-        <h3 class="section-title clearfix"><i class="line"></i>
-            {{ 'wine.title.description'|trans }}
-        </h3>
+    {% if vintage.description is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.description'|trans }}
+            </h3>
 
-        <div class="col-sm-8 col-sm-offset-4">
-            <p>{{ wine.description|nl2br }}</p>
+            <div class="col-sm-8 col-sm-offset-4">
+                <p>{{ vintage.description|nl2br }}</p>
+            </div>
         </div>
-    </div>
     {% endif %}
 
     {% if wine.vintages is not empty %}
@@ -135,8 +137,13 @@
                             'vintage':vintageElem.productionYear,
                             'vintageId':vintageElem.id}) }}'"
                             style="cursor: pointer;">
+                            {% if vintage.productionYear == vintageElem.productionYear %}
+                                <td><b>{{ vintageElem.productionYear }}</b></td>
+                                <td class="text-right"><b>{{ vintageElem.getAvgPrice }} €</b></td>
+                            {% else %}
                                 <td>{{ vintageElem.productionYear }}</td>
                                 <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -145,22 +152,22 @@
         </div>
     {% endif %}
 
-    {% if wine.foodPairings is not empty %}
+    {% if vintage.foodPairings is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
                 {{ 'wine.title.food_pairings'|trans }}
             </h3>
 
             {#<div class="col-sm-8 col-sm-offset-4">#}
-                <div class="col-sm-12">
-                {% for foodPairing in wine.foodPairings %}
+            <div class="col-sm-12">
+                {% for foodPairing in vintage.foodPairings %}
                     {#<div class="food-pairing">#}
-                        <div class="food-pairing-logo col-sm-2 pull-right" style="display: inline;">
-                            <i class="food-type food-type-{{ foodPairing }}"></i>
-                        </div>
-                        {#<div class="food-pairing-text">#}
-                            {#Accords avec {{ foodPairing }}#}
-                        {#</div>#}
+                    <div class="food-pairing-logo col-sm-2 pull-right" style="display: inline;">
+                        <i class="food-type food-type-{{ foodPairing }}"></i>
+                    </div>
+                    {#<div class="food-pairing-text">#}
+                    {#Accords avec {{ foodPairing }}#}
+                    {#</div>#}
                     {#</div>#}
                 {% endfor %}
             </div>
@@ -170,7 +177,7 @@
 {% endblock %}
 
 {% block sidebar_right %}
-    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': wine })) %}
+    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': vintage })) %}
 {% endblock %}
 
 {% block featured_bottom %}

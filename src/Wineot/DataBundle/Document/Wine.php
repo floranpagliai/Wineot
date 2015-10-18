@@ -132,15 +132,6 @@ class Wine
      */
     private $foodPairings;
 
-    /**
-     * @var collection
-     *
-     * @MongoDB\ReferenceMany(
-     *  targetDocument="Comment",
-     *  mappedBy="wine",
-     *  nullable=true)
-     */
-    private $comments;
 
     public function __construct()
     {
@@ -308,17 +299,15 @@ class Wine
         return $this->winery;
     }
 
-//    public function getComments()
-//    {
-//        $comments = array();
-//        foreach ($this->vintages as $vintage) {
-//            $vintage_comments = $vintage->getComments();
-//            if(!isset($vintage_comments))
-//                $comments[] = $vintage_comments;
-//        }
-//
-//        return $comments;
-//    }
+    public function getComments()
+    {
+        $comments = new ArrayCollection();
+        foreach ($this->vintages as $vintage) {
+            foreach ($vintage->getComments() as $comment)
+                $comments->add($comment);
+        }
+        return $comments;
+    }
 
     /**
      * @param \Wineot\DataBundle\Document\Image $labelPicture
@@ -352,25 +341,6 @@ class Wine
         return $this->bottlePicture;
     }
 
-    /**
-     * Add comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
-     */
-    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
-    {
-        $this->comments[] = $comment;
-    }
-
-    /**
-     * Remove comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
-     */
-    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
 
     public function isFavorited(User $user)
     {
@@ -417,19 +387,6 @@ class Wine
     }
 
     /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection $comments
-     */
-    public function getComments()
-    {
-        if (!empty($this->comments))
-            return $this->comments;
-        else
-            return null;
-    }
-
-    /**
      * @return boolean
      */
     public function isIsBio()
@@ -467,14 +424,14 @@ class Wine
      */
     public function getAvgRating()
     {
-        if ($this->comments->count() != 0) {
+        if ($this->vintages->count() != 0) {
             $avgRating = 0;
-            $comments = $this->comments;
-            foreach($comments as $comment)
+            $vintages = $this->vintages;
+            foreach($vintages as $vintage)
             {
-                $avgRating += $comment->getRank();
+                $avgRating += $vintage->getAvgRating();
             }
-            return number_format($avgRating/$this->comments->count(), 1);
+            return number_format($avgRating/$this->vintages->count(), 1);
         } else
             return null;
     }
@@ -491,7 +448,7 @@ class Wine
             $vintages = $this->vintages;
             foreach($vintages as $vintage)
             {
-                $avgPrice += $vintage->getWineryPrice();
+                $avgPrice += $vintage->getAvgPrice();
             }
             return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
         } else

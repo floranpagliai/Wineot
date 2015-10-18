@@ -1,9 +1,9 @@
-    <div class="wine-comments">
-        <h3 class="section-title clearfix"><i class="line"></i>{{ 'comment.title.list'|trans }}</h3>
-        {% if comments is not empty %}
+<div class="wine-comments">
+    <h3 class="section-title clearfix"><i class="line"></i>{{ 'comment.title.list'|trans }}</h3>
+    {% if comments is not empty %}
         {% for comment in comments %}
             <article class="wine-comment">
-                <h4><a href="#">{{ comment.user.username }}</a>
+                <h4><a href="#">{{ comment.user.firstname }}</a>
                     <span class="date">{{ comment.createdAt|date("m/d/Y") }}</span>
                 </h4>
 
@@ -20,7 +20,7 @@
                 </div>
             </article>
         {% endfor %}
-            {% else %}
-            <p class="text-center">{{ 'comment.warn.no_comment'|trans }}</p>
-        {% endif %}
-    </div>
+    {% else %}
+        <p class="text-center">{{ 'comment.warn.no_comment'|trans }}</p>
+    {% endif %}
+</div>

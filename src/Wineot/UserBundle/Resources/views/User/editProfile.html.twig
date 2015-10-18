@@ -1,0 +1,48 @@
+{% extends 'WineotUserBundle::layout.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    {% if errors  is defined %}
+        {% for error in errors %}
+            <div class="alert alert-danger"><i class="fa fa-warning"></i> {{ error.message|trans }}</div>
+        {% endfor %}
+    {% endif %}
+        <fieldset>
+            <h2 class="section-title clearfix"><i class="line"></i>
+                {{ 'user.title.my_informations'|trans }}
+            </h2>
+
+            <div class="form-group">
+                <label for="username">{{ 'user.form.username'|trans }}</label>
+                {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.username'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label for="firstname">{{ 'user.form.firstname'|trans }}</label>
+                {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label for="lastname">{{ 'user.form.lastname'|trans }}</label>
+                {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
+            </div>
+            <div class="form-group">
+                <label for="email">{{ 'user.form.email'|trans }}</label>
+                {{ form_widget(form.mail, { 'attr': { 'placeholder': 'user.form.email'|trans } } ) }}
+            </div>
+        </fieldset>
+            <input class="btn btn-lg btn-block" type="submit" id="_submit" name="submit_user_register"
+                   value="{{ 'user.action.save'|trans }}"/>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block sidebar %}
+    <section id="section-categories" class="section">
+        <h2 class="section-title h4 clearfix"><i class="line"></i></h2>
+        <ul class="nav nav-pills nav-stacked nav-categories">
+            <li class="{% if app.request.attributes.get('_route') in ['wineot_user_profile_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_back_end_crud_winery') }}">{{ 'user.title.my_informations'|trans }}</a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') in ['wineot_user_profile_edit_password'] %}active{% endif %}">
+                <a href="{{ path('wineot_user_profile_edit_password') }}">{{ 'user.title.change_password'|trans }}</a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

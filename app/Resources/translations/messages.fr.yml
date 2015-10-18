@@ -2,6 +2,8 @@ global:
     menu:
         home: "Accueil"
         admin: "Administration"
+        profile: "Mon profil"
+        edit_profile: "Réglages"
     action:
         submit: "Enregistrer"
         delete: "Supprimer"
@@ -41,3 +43,5 @@ global:
     grappe:
         form:
             name: "Cépages"
+    warn:
+        usermostlogged: "Vous devez être connecté"

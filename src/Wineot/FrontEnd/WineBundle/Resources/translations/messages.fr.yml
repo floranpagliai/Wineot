@@ -14,4 +14,7 @@ wine:
     keys:
         avg_rating: "Note Moyenne"
         avg_price: "Prix Moyen"
+    warning:
+        favorited: "Le vin à bien été ajouté a vos favoris"
+        unfavorited: "Le vin à bien été enlevé a vos favoris"
 

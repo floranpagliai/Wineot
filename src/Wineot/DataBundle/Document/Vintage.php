@@ -100,6 +100,17 @@ class Vintage
      */
     private $labelPicture;
 
+    /**
+     * @var collection
+     *
+     * @MongoDB\ReferenceMany(
+     *  targetDocument="Comment",
+     *  mappedBy="wine",
+     *  cascade={"all"},
+     *  nullable=true)
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -283,5 +294,80 @@ class Vintage
     public function getLabelPicture()
     {
         return $this->labelPicture;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Wineot\DataBundle\Document\Comment $comment
+     */
+    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    public function getWinery()
+    {
+        return $this->wine->getWinery();
+    }
+
+    public function getName()
+    {
+        return $this->wine->getName();
+    }
+
+    public function getDescription()
+    {
+        return $this->wine->getDescription();
+    }
+
+    public function getColor()
+    {
+        return $this->wine->getColor();
+    }
+
+    public function getVintages()
+    {
+        return $this->wine->getVintages();
+    }
+
+    public function getFoodPairings()
+    {
+        return $this->wine->getFoodPairings();
+    }
+
+    public function getGrappes()
+    {
+        return $this->wine->getGrappes();
+    }
+
+    public function getAvgRating()
+    {
+        $comments = $this->getComments();
+        if ($comments->count() != 0) {
+            $avgRating = 0;
+            foreach($comments as $comment)
+            {
+                $avgRating += $comment->getRank();
+            }
+            return number_format($avgRating/$comments->count(), 1);
+        } else
+            return null;
+    }
+
+    public function getAvgPrice()
+    {
+        //TODO : Calculate price based on sellings
+        return number_format($this->wineryPrice, 2, ",", " ");
     }
 }

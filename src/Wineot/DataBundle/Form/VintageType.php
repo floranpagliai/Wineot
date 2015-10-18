@@ -47,7 +47,7 @@ class VintageType extends AbstractType
                 ))
         );
         $builder->add('alcohol', 'percent', array(
-                'scale' => 1,
+                'scale' => 2,
                 'type' => 'integer',
                 'required' => false
             )

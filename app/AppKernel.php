@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new Pinano\Select2Bundle\PinanoSelect2Bundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
             new Utils\RatingBundle\UtilsRatingBundle(),
