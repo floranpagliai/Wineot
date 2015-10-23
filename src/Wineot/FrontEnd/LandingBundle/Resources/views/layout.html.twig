@@ -7,69 +7,95 @@
     <header class="site-header" role="banner">
         <div class="container">
             <div id="logo" class="site-logo text-center">
-                <a href="{{ path('wineot_front_end_homepage') }}"><img src="{{ asset('img/logo-white.png') }}" alt="Wine'ot"
+                <a href="{{ path('wineot_front_end_homepage') }}"><img src="{{ asset('img/logo-white.png') }}"
+                                                                       alt="Wine'ot"
                                                                        height="80%"/></a>
-            </div><!-- #logo -->
+            </div>
+            <!-- #logo -->
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-12 landing-title">
-                <h1>Plus besoin d'être un expert pour choisir une bouteille de vin !</h1>
+                    <h1>Plus besoin d'être un expert pour choisir une bouteille de vin !</h1>
+
                     <div class="description">
-                        Prends en photo l'étiquette,  l'application te dira tout ce que tu dois savoir pour faire ton choix. Et partage ton avis !
-                        L'application sort bientôt donne nous ton adresse et nous serons ravis de t'envoyer un message le moment venu.</h2>
-                    {{ form_start(form) }}
+                        Prends en photo l'étiquette, l'application te dira tout ce que tu dois savoir pour faire ton
+                        choix. Et partage ton avis !
+                        L'application sort bientôt donne nous ton adresse et nous serons ravis de t'envoyer un message
+                        le moment venu.</h2>
+                        {{ form_start(form) }}
                     </div>
                     <div class="form-inline">
                         <div class="form-group">
                             {{ form_widget(form.email, { 'attr': { 'placeholder': 'landing.form.email'|trans , 'class': 'suscribe-email form-control' } } ) }}
                         </div>
-                        <button type="submit" class="btn" id="_submit" name="_submit">{{ 'landing.button.submit'|trans }}</button>
+                        <button type="submit" class="btn" id="_submit"
+                                name="_submit">{{ 'landing.button.submit'|trans }}</button>
                     </div>
-                        {{ form_end(form) }}
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
     </header>
 
     <div class="features-container section-container">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 section-description">
-                <h2 class="section-title clearfix">Fonctionnalités</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 section-description">
+                    <h2 class="section-title clearfix">Fonctionnalités</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 feature-box">
+                    <i class="fa fa-camera fa-5x"></i>
+
+                    <h3>Scanne un vin</h3>
+
+                    <p>Avec l'application, prends en photo l'étiquette pour reconnaitre le vin et tout savoir à son
+                        sujet</p>
+                </div>
+                <div class="col-sm-4 feature-box">
+                    <i class="fa fa-thumbs-up fa-5x"></i>
+
+                    <h3>Conseil personnalisé</h3>
+
+                    <p>L'application analyse ton profil gustatif au fil des utilisations et te conseille les vin suceptible de te plaire.
+                    Parce que tout les goûts sont dans la nature, nos conseils d'achats se basent sur tes goût et non ceux d'autres personnes</p>
+                </div>
+                <div class="col-sm-4 feature-box">
+                    <i class="fa fa-star fa-5x"></i>
+
+                    <h3>Note et Partage</h3>
+
+                    <p>Donne une note au vin que tu as dégusté, accompagné d'un commentaire et partage ton avis avec la
+                        communauté ou mêmes avec tes amis sur les réseaux sociaux.</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-4 feature-box">
+                    <i class="fa fa-shopping-cart fa-5x"></i>
+
+                    <h3>Compare les prix</h3>
+
+                    <p>L'application référence le prix moyen du vin et les endroits où tu peux le trouver.
+                        Tu seras certain de toujours payer le meilleur prix.</p>
+                </div>
+                <div class="col-sm-4 feature-box">
+                    <i class="fa fa-cutlery fa-5x"></i>
+
+                    <h3>Accord Mets & Vin</h3>
+
+                    <p>Pour apprécier au mieux un vin, rien de tel qu'une bonne association de saveurs.</p>
+                </div>
+                <div class="col-sm-4 feature-box">
+                    <i class="fa fa-heart fa-5x"></i>
+
+                    <h3>Favoris</h3>
+
+                    <p>Conserve tes vins favoris dans l'application pour ne plus jamais oublier une bonne bouteille.</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4 feature-box">
-                <i class="fa fa-camera fa-5x"></i>
-                <h3>Scanne un vin</h3>
-                <p>Avec l'application, prends en photo l'étiquette pour reconnaitre le vin et tout savoir à son sujet</p>
-            </div>
-            <div class="col-sm-4 feature-box">
-                <i class="fa fa-star fa-5x"></i>
-                <h3>Note et Partage</h3>
-                <p>Donne une note au vin que tu as dégusté, accompagné d'un commentaire et partage ton avis avec la
-                    communauté ou mêmes avec tes amis sur les réseaux sociaux.</p>
-            </div>
-            <div class="col-sm-4 feature-box">
-                <i class="fa fa-shopping-cart fa-5x"></i>
-                <h3>Compare les prix</h3>
-                <p>L'application référence le prix moyen du vin et les endroits où tu peux le trouver.
-                    Tu seras certain de toujours payer le meilleur prix.</p>
-            </div>
-            </div>
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-2 feature-box">
-                <i class="fa fa-cutlery fa-5x"></i>
-                <h3>Accord Mets & Vin</h3>
-                <p>Pour apprécier au mieux un vin, rien de tel qu'une bonne association de saveurs.</p>
-            </div>
-            <div class="col-sm-4 feature-box">
-                <i class="fa fa-heart fa-5x"></i>
-                <h3>Favoris</h3>
-                <p>Conserve tes vins favoris dans l'application pour ne plus jamais oublier une bonne bouteille.</p>
-            </div>
-            </div>
     </div>
-        </div>
 
     <div class="team-container section-container">
         <div class="container">
@@ -81,41 +107,55 @@
             <div class="row">
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/floran.jpg') }}" class="img-circle">
+
                     <h3>Floran Pagliai</h3>
+
                     <p>Chef de projet et développeur Symfony</p>
                 </div>
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/sarah.jpg') }}" class="img-circle">
+
                     <h3>Sarah Chasseuil</h3>
+
                     <p>Développeur REST Node.js</p>
                 </div>
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/vincent.jpg') }}" class="img-circle">
+
                     <h3>Vincent Ribes</h3>
+
                     <p>Communication et Big Data</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/ayrton.jpg') }}" class="img-circle">
+
                     <h3>Ayrton Werck</h3>
+
                     <p>Développeur IOS</p>
                 </div>
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/chevre.jpg') }}" class="img-circle">
+
                     <h3>Yohann Payrot</h3>
+
                     <p>Développeur WindowsPhone</p>
                 </div>
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/chevre.jpg') }}" class="img-circle">
+
                     <h3>Aurélien Pluche</h3>
+
                     <p>Développeur Android</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4 team-box">
                     <img src="{{ asset('img/team/laurent.jpg') }}" class="img-circle">
+
                     <h3>Laurent Loukopoulos</h3>
+
                     <p>Développeur C++</p>
                 </div>
             </div>
