@@ -19,9 +19,10 @@ class UserController extends Controller
 {
     public function profileAction()
     {
-        if (!$this->get('security.context')->isGranted('ROLE_USER'))
-            return $this->redirect($this->generateUrl('wineot_user_login'));
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirect($this->generateUrl('wineot_user_login'));
+        }
         $favoritesWines = $user->getFavoritesWines();
         $comments = $user->getComments();
         $paramsRender = array(
@@ -32,14 +33,14 @@ class UserController extends Controller
 
     public function editProfileAction(Request $request)
     {
-        if (!$this->get('security.context')->isGranted('ROLE_USER'))
+        $user = $this->getUser();
+        if (!$user) {
             return $this->redirect($this->generateUrl('wineot_user_login'));
+        }
 
         $em = $this->get('doctrine_mongodb')->getManager();
 
-        $user = $this->getUser();
         $form = $this->createForm(new UserEditType(), $user);
-
         $form->handleRequest($request);
             if ($form->isValid()) {
                 $em->persist($user);
