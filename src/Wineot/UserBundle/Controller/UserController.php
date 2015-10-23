@@ -25,7 +25,6 @@ class UserController extends Controller
         $favoritesWines = $user->getFavoritesWines();
         $comments = $user->getComments();
         $paramsRender = array(
-            'favoritesWines' => $favoritesWines,
             'favoritesWines' => $favoritesWines
         );
         return $this->render('WineotUserBundle:User:profile.html.twig', $paramsRender);

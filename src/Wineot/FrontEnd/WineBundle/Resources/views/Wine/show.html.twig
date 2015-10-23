@@ -44,10 +44,9 @@
 
                             <p>
                                 {% if wine.getAvgRating() is not null %}
-                                    {{ wine.getAvgRating() }}
-                                    {% for i in 1..wine.getAvgRating() %}
-                                        <i class="rank rank-small"></i>
-                                    {% endfor %}
+                                    <i class="fa fa-star rank"></i>
+                                        {{ wine.getAvgRating() }}
+
                                 {% else %}
                                     -
                                 {% endif %}

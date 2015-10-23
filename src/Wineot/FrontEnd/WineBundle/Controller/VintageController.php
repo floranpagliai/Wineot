@@ -17,7 +17,7 @@ class VintageController extends Controller
         $dm = $this->get('doctrine_mongodb')->getManager();
         $vintage = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
         $wine = $vintage->getWine();
-        if (!$wine && !$vintage)
+        if (!$wine || !$vintage)
             throw $this->createNotFoundException('wine.warn.doesntexsit');
         $paramsRender = array('wine' => $wine, 'vintage' => $vintage);
         return $this->render('WineotFrontEndWineBundle:Vintage:show.html.twig', $paramsRender);

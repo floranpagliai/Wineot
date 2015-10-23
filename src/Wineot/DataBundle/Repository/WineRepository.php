@@ -62,4 +62,20 @@ class WineRepository extends DocumentRepository
     {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
     }
+
+    public function ensureVintagesRelation()
+    {
+        $dm = $this->getDocumentManager();
+
+        $wines = $this->findAll();
+        foreach ($wines as $wine)
+        {
+            foreach ($wine->getVintages() as $vintage)
+            {
+                $vintage->setWine($wine);
+            }
+            $dm->persist($wine);
+        }
+        $dm->flush();
+    }
 }
