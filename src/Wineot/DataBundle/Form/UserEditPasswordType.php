@@ -12,6 +12,7 @@ class UserEditPasswordType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('password', 'password');
         $builder->add('plain_password', 'repeated', array(
             'type' => 'password',
             'invalid_message' => 'Les mots de passe doivent correspondre',

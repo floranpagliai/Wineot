@@ -51,7 +51,7 @@ class UserController extends Controller
                 return $this->redirect($this->generateUrl('wineot_user_profile'));
             }
         $paramsRender = array('form' => $form->createView());
-        return $this->render('WineotUserBundle:User:editProfile.html.twig', $paramsRender);
+        return $this->render('WineotUserBundle:Settings:editProfile.html.twig', $paramsRender);
     }
 
     public function editpasswordAction(Request $request)
@@ -66,6 +66,8 @@ class UserController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($user->getPlainPassword(), null));
             $em->persist($user);
             $em->flush();
 
@@ -74,7 +76,19 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('wineot_user_profile_edit_password'));
         }
         $paramsRender = array('form' => $form->createView());
-        return $this->render('WineotUserBundle:User:editProfile.html.twig', $paramsRender);
+        return $this->render('WineotUserBundle:Settings:editPassword.html.twig', $paramsRender);
+    }
+
+    /**
+     *
+     */
+    public function resetPasswordAction(Request $request, $token)
+    {
+        if ($token == null) {
+            var_dump('test');
+        }
+        $paramsRender = array();
+        return $this->render('WineotUserBundle:User:resetPassword.html.twig', $paramsRender);
     }
 
     public function favoriteAction(Request $request, $wineId)

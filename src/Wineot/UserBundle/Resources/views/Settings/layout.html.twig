@@ -1,0 +1,15 @@
+{% extends "frontend/layout.html.twig" %}
+{% set menu_selected = 'profile' %}
+{% block sidebar %}
+    <section id="section-categories" class="section">
+        <h2 class="section-title h4 clearfix"><i class="line"></i></h2>
+        <ul class="nav nav-pills nav-stacked nav-categories">
+            <li class="{% if app.request.attributes.get('_route') in ['wineot_user_profile_edit'] %}active{% endif %}">
+                <a href="{{ path('wineot_user_profile_edit') }}">{{ 'user.title.my_informations'|trans }}</a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') in ['wineot_user_profile_edit_password'] %}active{% endif %}">
+                <a href="{{ path('wineot_user_profile_edit_password') }}">{{ 'user.title.change_password'|trans }}</a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}
