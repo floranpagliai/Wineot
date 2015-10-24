@@ -19,11 +19,12 @@ class UserController extends Controller
 {
     public function profileAction()
     {
-        $user = $this->getUser();
-        if (!$this->get('security.context')->isGranted('ROLE_USER') && $user)
+        if (!$this->get('security.context')->isGranted('ROLE_USER'))
             return $this->redirect($this->generateUrl('wineot_user_login'));
 
-        $favoritesWines = $user->getFavoritesWines();
+        $user = $this->getUser();
+//        $favoritesWines = $user->getFavoritesWines();
+        $favoritesWines = null;
         $comments = $user->getComments();
         $paramsRender = array(
             'favoritesWines' => $favoritesWines
