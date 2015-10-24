@@ -10,7 +10,9 @@ namespace Wineot\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 use Wineot\DataBundle\Document\User;
+use Wineot\DataBundle\Form\EmailType;
 use Wineot\DataBundle\Form\UserEditPasswordType;
 use Wineot\DataBundle\Form\UserEditType;
 use Wineot\DataBundle\Form\UserType;
@@ -73,7 +75,7 @@ class UserController extends Controller
             $em->flush();
 
             $flash = $this->get('notify_messenger.flash');
-            $flash->success($this->get('translator')->trans('user.warn.user_edited'));
+            $flash->success($this->get('translator')->trans('user.warn.password_edited'));
             return $this->redirect($this->generateUrl('wineot_user_profile_edit_password'));
         }
         $paramsRender = array('form' => $form->createView());
@@ -83,12 +85,42 @@ class UserController extends Controller
     /**
      *
      */
-    public function resetPasswordAction(Request $request, $token)
+    public function resetPasswordAction(Request $request)
     {
-        if ($token == null) {
-            var_dump('test');
+        $em = $this->get('doctrine_mongodb')->getManager();
+        $flash = $this->get('notify_messenger.flash');
+        $mailjet = $this->container->get('headoo_mailjet_wrapper');
+        $errors = null;
+
+        $form = $this->createForm(new EmailType());
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $user = $em->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $form->get('mail')->getData()));
+            if ($user) {
+
+                $password =  substr(uniqid(rand(), true), 0, 8);
+                $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                $user->setPassword($encoder->encodePassword($password, null));
+                $em->persist($user);
+                $em->flush();
+
+                $params = array(
+                    "method" => "POST",
+                    "from" => "no-reply@wineot.net",
+                    "to" => $user->getMail(),
+                    "subject" => $this->get('translator')->trans('user.title.reset_password'),
+                    "html" => $this->renderView('Emails/resetPassword.html.twig', array('password' => $password))
+                );
+
+                $mailjet->sendEmail($params);
+
+                $flash->success($this->get('translator')->trans('user.warn.reset_password'));
+                return $this->redirect($this->generateUrl('wineot_user_login'));
+            }
+            $errors[] = array('message' => $this->get('translator')->trans('user.warn.unknown_email'));
         }
-        $paramsRender = array();
+        $paramsRender = array('form' => $form->createView(), 'errors' => $errors);
         return $this->render('WineotUserBundle:User:resetPassword.html.twig', $paramsRender);
     }
 

@@ -28,6 +28,8 @@ class AppKernel extends Kernel
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new Pinano\Select2Bundle\PinanoSelect2Bundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
+            new Headoo\HeadooMailjetBundle\HeadooMailjetBundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
             new Utils\RatingBundle\UtilsRatingBundle(),

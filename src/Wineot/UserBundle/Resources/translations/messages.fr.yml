@@ -7,12 +7,14 @@ user:
         remember_me: "Se souvenir de moi"
         save: "Sauvegarder"
         return_home: "Retour sur l'accueil"
+        reset_password: "Nouveau mot de passe"
     title:
         login: "Se connecter"
         register: "S'inscrire"
         my_informations: "Mes informations"
         change_password: "Modifier mot de passe"
         favorites: "Mes vins favoris"
+        reset_password: "Mot de passe oublié"
     form:
         email: "Email"
         username: "Nom d'utilisateur"
@@ -22,8 +24,10 @@ user:
         firstname: "Prénom"
         lastname: "Nom"
     warn:
-        password_updated: "Mot de passe mis à jour."
         can_login: "Utilisateur enregistré. Vous pouvez maintenant vous connecter."
         unique_email: "Cet email est déjà utilisé."
-        password_length: "Votre mot de passe doit faire entre 5 et 30 caractères"
+        unknown_email: "Cet email n'est associé a aucun compte"
         user_edited: "Vos informations ont bien été mises à jour"
+        password_edited: "Mot de passe mis à jour."
+        password_length: "Votre mot de passe doit faire entre 5 et 30 caractères"
+        password_reset: "Un Email vient de vous être envoyé avec votre nouveau mot de passe. Vérifiez vos spams."

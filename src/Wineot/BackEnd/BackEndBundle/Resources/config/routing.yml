@@ -1,3 +1,6 @@
 wineot_back_end_homepage:
     path:     /
     defaults: { _controller: WineotBackEndBackEndBundle:Default:index }
+console:
+    resource: "@CoreSphereConsoleBundle/Resources/config/routing.yml"
+    prefix: /

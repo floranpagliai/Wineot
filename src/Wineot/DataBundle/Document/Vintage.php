@@ -362,7 +362,7 @@ class Vintage
             {
                 $avgRating += $comment->getRank();
             }
-            return number_format($avgRating/$comments->count(), 1);
+            return number_format($avgRating/$comments->count(), 2);
         } else
             return null;
     }
