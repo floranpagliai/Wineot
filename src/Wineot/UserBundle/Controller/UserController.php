@@ -25,7 +25,7 @@ class UserController extends Controller
         $user = $this->getUser();
 //        $favoritesWines = $user->getFavoritesWines();
         $favoritesWines = null;
-        $comments = $user->getComments();
+//        $comments = $user->getComments();
         $paramsRender = array(
             'favoritesWines' => $favoritesWines
         );
