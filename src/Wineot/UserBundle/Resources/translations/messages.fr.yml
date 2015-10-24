@@ -26,8 +26,10 @@ user:
     warn:
         can_login: "Utilisateur enregistré. Vous pouvez maintenant vous connecter."
         unique_email: "Cet email est déjà utilisé."
-        unknown_email: "Cet email n'est associé a aucun compte"
-        user_edited: "Vos informations ont bien été mises à jour"
+        unknown_email: "Nous n'avons pas pu trouver de compte associé à cet Email."
+        user_edited: "Vos informations ont bien été mises à jour."
         password_edited: "Mot de passe mis à jour."
-        password_length: "Votre mot de passe doit faire entre 5 et 30 caractères"
+        password_length: "Votre mot de passe doit faire entre 5 et 30 caractères."
         password_reset: "Un Email vient de vous être envoyé avec votre nouveau mot de passe. Vérifiez vos spams."
+    text:
+        password_reset: "Entrez votre email et vous recevrez un nouveau mot de passe rapidement."

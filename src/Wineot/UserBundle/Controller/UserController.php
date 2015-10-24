@@ -50,7 +50,7 @@ class UserController extends Controller
                 $em->flush();
 
                 $flash = $this->get('notify_messenger.flash');
-                $flash->success($this->get('translator')->trans('user.warn.user_edited'));
+                $flash->success('user.warn.user_edited');
                 return $this->redirect($this->generateUrl('wineot_user_profile'));
             }
         $paramsRender = array('form' => $form->createView());
@@ -87,6 +87,9 @@ class UserController extends Controller
      */
     public function resetPasswordAction(Request $request)
     {
+        if ($this->get('security.context')->isGranted('ROLE_USER'))
+            return $this->redirect($this->generateUrl('wineot_user_profile'));
+        
         $em = $this->get('doctrine_mongodb')->getManager();
         $flash = $this->get('notify_messenger.flash');
         $mailjet = $this->container->get('headoo_mailjet_wrapper');
@@ -118,7 +121,7 @@ class UserController extends Controller
                 $flash->success($this->get('translator')->trans('user.warn.reset_password'));
                 return $this->redirect($this->generateUrl('wineot_user_login'));
             }
-            $errors[] = array('message' => $this->get('translator')->trans('user.warn.unknown_email'));
+            $errors[] = array('message' => 'user.warn.unknown_email');
         }
         $paramsRender = array('form' => $form->createView(), 'errors' => $errors);
         return $this->render('WineotUserBundle:User:resetPassword.html.twig', $paramsRender);
