@@ -34,7 +34,6 @@ security:
         - { path: ^/user/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/favorite, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/unfavorite, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user/unfavorite, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/resetpassword$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/, roles: ROLE_USER }
         - { path: ^/admin/, roles: ROLE_ADMIN }

@@ -9,11 +9,12 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
@@ -108,6 +109,7 @@ class Vintage
      *  mappedBy="wine",
      *  cascade={"all"},
      *  nullable=true)
+     * @Gedmo\ReferenceIntegrity("nullify")
      */
     private $comments;
 
