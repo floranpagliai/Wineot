@@ -46,8 +46,7 @@
         "ahmedsamy/hype-mailchimp-bundle": "dev-master",
         "pinano/select2-bundle": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
-      "headoo/headoo-mailjet-bundle" : "1.0.x-dev",
-        "coresphere/console-bundle": "dev-master"
+        "headoo/headoo-mailjet-bundle" : "1.0.x-dev"
     },
     "scripts": {
         "post-install-cmd": [
