@@ -9,6 +9,7 @@ namespace Wineot\DataBundle\Repository;
 
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Wineot\DataBundle\Document\Wine;
 
 class WineryRepository extends DocumentRepository {
 
