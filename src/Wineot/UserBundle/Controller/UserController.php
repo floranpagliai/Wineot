@@ -112,13 +112,13 @@ class UserController extends Controller
                     "method" => "POST",
                     "from" => "no-reply@wineot.net",
                     "to" => $user->getMail(),
-                    "subject" => $this->get('translator')->trans('user.title.reset_password'),
+                    "subject" => $this->get('translator')->trans('user.title.password_reset'),
                     "html" => $this->renderView('Emails/resetPassword.html.twig', array('password' => $password))
                 );
 
                 $mailjet->sendEmail($params);
 
-                $flash->success($this->get('translator')->trans('user.warn.reset_password'));
+                $flash->success($this->get('translator')->trans('user.warn.password_reset'));
                 return $this->redirect($this->generateUrl('wineot_user_login'));
             }
             $errors[] = array('message' => 'user.warn.unknown_email');

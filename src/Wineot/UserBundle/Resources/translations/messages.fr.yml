@@ -14,7 +14,7 @@ user:
         my_informations: "Mes informations"
         change_password: "Modifier mot de passe"
         favorites: "Mes vins favoris"
-        reset_password: "Mot de passe oublié"
+        password_reset: "Mot de passe oublié"
     form:
         email: "Email"
         username: "Nom d'utilisateur"

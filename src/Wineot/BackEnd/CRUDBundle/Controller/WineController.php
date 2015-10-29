@@ -95,6 +95,7 @@ class WineController extends Controller
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wine = $dm->getRepository('WineotDataBundle:Wine')->find($id);
         if ($wine) {
+            $wine->getWinery()->removeWine($wine);
             $dm->remove($wine);
             $dm->flush();
 
