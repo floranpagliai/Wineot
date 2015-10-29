@@ -31,6 +31,7 @@ class DefaultController extends Controller
 
             $params = array(
                 "method" => "POST",
+                "ListID" => 1519070,
                 "Email" => $email
             );
             $mailjet->contact($params);
