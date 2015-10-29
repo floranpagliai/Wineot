@@ -4,3 +4,5 @@ landing:
         search: "Recherche"
     form:
         email: "Entre ton email..."
+    warn:
+        success: "Merci de ton intérêt, nous avons bien enregistré ton Email !"
