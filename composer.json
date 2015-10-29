@@ -45,7 +45,8 @@
         "ismaambrosi/generator-bundle": "~2.4",
         "ahmedsamy/hype-mailchimp-bundle": "dev-master",
         "pinano/select2-bundle": "^4.0",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "headoo/headoo-mailjet-bundle" : "1.0.x-dev"
     },
     "scripts": {
         "post-install-cmd": [

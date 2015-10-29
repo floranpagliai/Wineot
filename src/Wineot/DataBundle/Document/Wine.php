@@ -14,7 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
+ * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository", requireIndexes=true,
+ *      @MongoDB\Indexes({
+ *          @MongoDB\Index(keys={"winery"="asc"}),
+ *          @MongoDB\Index(keys={"name"="asc"})
+ *      })
+ * )
  */
 class Wine
 {
@@ -40,7 +45,7 @@ class Wine
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Winery",
-     *  inversedBy="wines",
+     *  cascade={"persist"},
      *  simple=true)
      */
     private $winery;
@@ -286,6 +291,7 @@ class Wine
     public function setWinery(Winery $wineryId)
     {
         $this->winery = $wineryId;
+        $this->winery->addWine($this);
         return $this;
     }
 

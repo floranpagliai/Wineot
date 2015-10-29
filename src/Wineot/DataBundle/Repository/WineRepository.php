@@ -78,4 +78,18 @@ class WineRepository extends DocumentRepository
         }
         $dm->flush();
     }
+
+    public function ensureWineryRelation()
+    {
+        $dm = $this->getDocumentManager();
+
+        $wines = $this->findAll();
+        foreach ($wines as $wine)
+        {
+            $winery = $wine->getWinery();
+            $winery->addWine($wine);
+            $dm->persist($winery);
+        }
+        $dm->flush();
+    }
 }
