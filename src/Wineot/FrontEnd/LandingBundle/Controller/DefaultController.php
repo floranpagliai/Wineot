@@ -12,6 +12,7 @@ class DefaultController extends Controller
         $mc = $this->get('hype_mailchimp');
         $mailjet = $this->container->get('headoo_mailjet_wrapper');
         $flash = $this->get('notify_messenger.flash');
+        $logger = $this->get('logger');
 
         $form = $this->createFormBuilder()
             ->add('email', 'email')
@@ -27,14 +28,14 @@ class DefaultController extends Controller
                 "subject" => "Que penses tu de Wine'ot",
                 "html" => $this->renderView('Emails/welcome.html.twig')
             );
-            $mailjet->sendEmail($params);
+            $logger->info($mailjet->sendEmail($params));
 
             $params = array(
                 "method" => "POST",
                 "ListID" => 1519070,
                 "Email" => $email
             );
-            $mailjet->contact($params);
+            $logger->info($mailjet->contact($params));
             $flash->success($this->get('translator')->trans('landing.warn.success'));
             return $this->redirect($this->generateUrl('wineot_front_end_landing_homepage'));
         }
