@@ -32,18 +32,11 @@ class SecurityControllerTest extends WebTestCase
         $client->request('GET', '/user/profile');
         $this->assertTrue($client->getResponse()->isRedirect());
 
-        //Log a test user
-        $session = $client->getContainer()->get('session');
-        $firewall = 'main';
-        $token = new UsernamePasswordToken('testUser', null, $firewall, array('ROLE_USER'));
-        $session->set('_security_'.$firewall, serialize($token));
-        $session->save();
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $client->getCookieJar()->set($cookie);
+        $client->request('GET', '/user/profile/edit');
+        $this->assertTrue($client->getResponse()->isRedirect());
 
-        //Trying go to user route being logged
-        $client->request('GET', '/user/profile');
-        $this->assertFalse($client->getResponse()->isRedirect());
+        $client->request('GET', '/user/profile/editpassword');
+        $this->assertTrue($client->getResponse()->isRedirect());
     }
 
     public function testUserFormRegister()

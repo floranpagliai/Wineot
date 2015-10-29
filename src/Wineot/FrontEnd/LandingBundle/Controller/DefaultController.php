@@ -9,10 +9,8 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $mc = $this->get('hype_mailchimp');
         $mailjet = $this->container->get('headoo_mailjet_wrapper');
         $flash = $this->get('notify_messenger.flash');
-        $logger = $this->get('logger');
 
         $form = $this->createFormBuilder()
             ->add('email', 'email')
@@ -20,23 +18,24 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $email = $form->getData()['email'];
-//            $mc->getList()->subscribe($email);
-            $params = array(
-                "method" => "POST",
-                "from" => "floran@wineot.net",
-                "to" => $email,
-                "subject" => "Que penses tu de Wine'ot",
-                "html" => $this->renderView('Emails/welcome.html.twig')
-            );
-            $mailjet->sendEmail($params);
 
             $params = array(
                 "method" => "POST",
-                "ListID" => 1519070,
                 "Email" => $email
             );
             $mailjet->contact($params);
-            $flash->success($this->get('translator')->trans('landing.warn.success'));
+            if ($mailjet->_response_code == 200) {
+                $params = array(
+                    "method" => "POST",
+                    "from" => "floran@wineot.net",
+                    "to" => $email,
+                    "subject" => "Que penses tu de Wine'ot",
+                    "html" => $this->renderView('Emails/welcome.html.twig')
+                );
+                $mailjet->sendEmail($params);
+                $flash->success($this->get('translator')->trans('landing.warn.success'));
+            } else
+                $flash->error($this->get('translator')->trans('landing.warn.error'));
             return $this->redirect($this->generateUrl('wineot_front_end_landing_homepage'));
         }
 
