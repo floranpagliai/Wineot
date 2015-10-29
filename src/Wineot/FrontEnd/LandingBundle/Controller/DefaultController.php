@@ -28,14 +28,14 @@ class DefaultController extends Controller
                 "subject" => "Que penses tu de Wine'ot",
                 "html" => $this->renderView('Emails/welcome.html.twig')
             );
-            $logger->info($mailjet->sendEmail($params));
+            $mailjet->sendEmail($params);
 
             $params = array(
                 "method" => "POST",
                 "ListID" => 1519070,
                 "Email" => $email
             );
-            $logger->info($mailjet->contact($params));
+            $mailjet->contact($params);
             $flash->success($this->get('translator')->trans('landing.warn.success'));
             return $this->redirect($this->generateUrl('wineot_front_end_landing_homepage'));
         }
