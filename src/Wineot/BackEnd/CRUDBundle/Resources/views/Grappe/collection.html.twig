@@ -8,9 +8,10 @@
 
     {% macro tagCollectionItem(formData) %}
         <td>{{ form_widget(formData.grappe) }}</td>
+        <td class="tooltip-content collection-delete"></td>
         <td class="hidden">form_widget(formData)</td>
     {% endmacro %}
-    <tbody class="grappeCollection" data-prototype="{{ _self.tagCollectionItem(form.grappes.vars.prototype)|e }}">
+    <tbody class="collection-table" data-prototype="{{ _self.tagCollectionItem(form.grappes.vars.prototype)|e }}">
     {% for grappe in form.grappes %}
         <tr>
             {{ _self.tagCollectionItem(grappe) }}

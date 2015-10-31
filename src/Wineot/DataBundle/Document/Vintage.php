@@ -19,7 +19,6 @@ use Wineot\DataBundle\Document\Comment;
 
 /**
  * @MongoDB\Document(collection="vintages")
- * @MongoDBUnique(fields={"wine", "productionYear"}, message="wine.warn.unique_vintage")
  */
 
 class Vintage
@@ -93,13 +92,22 @@ class Vintage
     /**
      * @var Image
      *
-     * @MongoDB\Field(name="label_picture")
      * @MongoDB\ReferenceOne(
      *  targetDocument="Image",
-     *  cascade={"persist"},
+     *  cascade={"all"},
      *  simple=true)
      */
     private $labelPicture;
+
+    /**
+     * @var Image
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"all"},
+     *  simple=true)
+     */
+    private $bottlePicture;
 
     /**
      * @var collection
@@ -296,6 +304,22 @@ class Vintage
     public function getLabelPicture()
     {
         return $this->labelPicture;
+    }
+
+    /**
+     * @param Image $bottlePicture
+     */
+    public function setBottlePicture($bottlePicture)
+    {
+        $this->bottlePicture = $bottlePicture;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getBottlePicture()
+    {
+        return $this->bottlePicture;
     }
 
     /**

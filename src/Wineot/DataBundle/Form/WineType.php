@@ -17,12 +17,14 @@ class WineType extends AbstractType
     {
         $builder->add('name');
         $builder->add('description', 'textarea', array(
+            'label' => 'wine.form.description',
             'required' => false,
             'attr' => array(
                 'rows' => '15'
             )
         ));
         $builder->add('color', 'choice', array(
+            'label' => 'wine.form.color',
             'choices' => Wine::getColors(),
             'placeholder' => 'crud.form.wine.color',
             'attr' => array(
@@ -30,14 +32,16 @@ class WineType extends AbstractType
             )
         ));
         $builder->add('labelPicture', new ImageType(), array(
+            'label' => 'wine.form.label_picture',
             'required' => false
         ));
         $builder->add('bottlePicture', new ImageType(), array(
+            'label' => 'wine.form.bottle_picture',
             'required' => false
         ));
         $builder->add('foodPairings', 'choice', array(
+            'label' => 'wine.form.food_pairings',
             'choices' => Wine::getFoodTypes(),
-            'label' => 'crud.form.wine.food_pairings',
             'placeholder' => 'crud.form.wine.food_pairings',
             'multiple' => true,
 //            'expanded' => true,
@@ -47,6 +51,7 @@ class WineType extends AbstractType
             )
         ));
         $builder->add('vintages', 'collection', array(
+            'label' => 'wine.form.vintages',
             'type' => new VintageType(),
             'allow_add' => true,
             'allow_delete' => true,
@@ -54,16 +59,21 @@ class WineType extends AbstractType
             'cascade_validation' => true
         ));
         $builder->add('grappes', 'collection', array(
+            'label' => 'wine.form.grappes',
             'type' => new GrappeSelectorType(),
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false,
-            'cascade_validation' => true
+            'cascade_validation' => true,
+            'attr' => array(
+                'class' => 'grappe-collection',
+            ),
         ));
         $builder->add('winery', 'document', array(
+            'label' => 'wine.form.winery',
             'class' => 'Wineot\DataBundle\Document\Winery',
             'property' => 'name',
-            'placeholder' => 'crud.form.winery',
+            'placeholder' => 'wine.placeholder.winery',
             'attr' => array(
                 'class' => 'select2'
             ),

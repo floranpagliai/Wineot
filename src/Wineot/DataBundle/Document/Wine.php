@@ -117,6 +117,7 @@ class Wine
      *  targetDocument="Vintage",
      *  cascade={"all"},
      *  simple=true)
+     * @Assert\Valid
      */
     private $vintages;
 

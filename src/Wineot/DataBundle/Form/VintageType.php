@@ -17,45 +17,58 @@ class VintageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('productionYear', 'choice', array(
+            'label' => 'wine.form.vintage',
             'choices' => array_combine(range(date('Y'), date('Y') - 100), range(date('Y'), date('Y') - 100)),
             'attr' => array(
                 'class' => 'select2'
-            ))
-        );
+            )
+        ));
+        $builder->add('keeping', 'choice', array(
+            'label' => 'wine.form.keeping',
+            'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
+            'placeholder' => 'crud.form.wine.keeping',
+            'required' => false,
+            'attr' => array(
+                'class' => 'select2'
+            )
+        ));
+        $builder->add('peak', 'choice', array(
+            'label' => 'wine.form.peak',
+            'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
+            'placeholder' => 'crud.form.wine.peak',
+            'required' => false,
+            'attr' => array(
+                'class' => 'select2'
+            )
+        ));
+        $builder->add('labelPicture', new ImageType(), array(
+            'label' => 'wine.form.label_picture',
+            'required' => false
+        ));
+        $builder->add('bottlePicture', new ImageType(), array(
+            'label' => 'wine.form.bottle_picture',
+            'required' => false
+        ));
         $builder->add('containsSulphites', 'checkbox', array(
-            'label' => 'crud.form.wine.containsSulphites',
+            'label' => 'wine.form.containsSulphites',
             'required' => false
         ));
         $builder->add('isBio', 'checkbox', array(
-            'label' => 'crud.form.wine.isbio',
+            'label' => 'wine.form.isBio',
             'required' => false
         ));
-        $builder->add('keeping', 'choice', array(
-                'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
-                'placeholder' => 'crud.form.wine.keeping',
-                'required' => false,
-                'attr' => array(
-                    'class' => 'select2'
-                ))
-        );
-        $builder->add('peak', 'choice', array(
-                'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
-                'placeholder' => 'crud.form.wine.peak',
-                'required' => false,
-                'attr' => array(
-                    'class' => 'select2'
-                ))
-        );
         $builder->add('alcohol', 'percent', array(
-                'scale' => 2,
-                'type' => 'integer',
-                'required' => false
-            )
-        );
+            'label' => 'wine.form.alcohol',
+            'scale' => 2,
+            'type' => 'integer',
+            'required' => false
+
+        ));
         $builder->add('wineryPrice', 'money', array(
-                'required' => false
-                )
-        );
+            'label' => 'wine.form.price',
+            'required' => false
+
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

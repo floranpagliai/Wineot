@@ -8,6 +8,7 @@
 
     {% macro tagCollectionItem(formData) %}
             <td>{{ form_widget(formData.name) }}</td>
+            <td class="tooltip-content collection-delete"></td>
             <td class="hidden">form_widget(formData)</td>
     {% endmacro %}
     {% if not form.vars.valid %}
@@ -15,7 +16,7 @@
             {{ form_errors(form) }}
         </div>
     {% endif %}
-    <tbody class="collection" data-prototype="{{ _self.tagCollectionItem(form.regions.vars.prototype)|e }}">
+    <tbody class="collection-table" data-prototype="{{ _self.tagCollectionItem(form.regions.vars.prototype)|e }}">
     {% for region in form.regions %}
         <tr>
             {{ _self.tagCollectionItem(region) }}
