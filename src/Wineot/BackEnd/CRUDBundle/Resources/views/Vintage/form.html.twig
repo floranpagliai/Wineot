@@ -1,36 +1,68 @@
-<table class="table col-lg-6">
-    <thead>
-    <tr>
-        <th style="width: 25%;">{{ 'global.vintage.form.name'|trans }}</th>
-        <th>{{ 'global.vintage.form.domain_price'|trans }}</th>
-        <th class="btn-table"></th>
-    </tr>
-    </thead>
-
-    {% macro tagCollectionItem(formData) %}
-            <td>{{ form_widget(formData.productionYear) }}</td>
-            <td>{{ form_widget(formData.wineryPrice) }}</td>
-        {#{% if  formData.labelPicture.md5 is defined %}#}
-    {#<td><img class="img-responsive" src="{{ formData.labelPicture.getImage() }}" width="200px"></td>#}
-        {#{% else %}#}
-    {#<td>{{ form_widget(formData.labelPicture) }}</td>#}
-    {#{% endif %}#}
-            <td class="hidden">form_widget(formData)</td>
-    {% endmacro %}
-    {% if not form.vars.valid %}
-        <div class="alert alert-danger">
-            {{ form_errors(form) }}
+{% macro tagCollectionItem(formData) %}
+        <div class="row">
+            <div class="col-xs-4">
+                {{ form_row(formData.productionYear) }}
+            </div>
+            <div class="col-xs-3">
+                {{ form_row(formData.keeping) }}
+            </div>
+            <div class="col-xs-3">
+                {{ form_row(formData.peak) }}
+            </div>
+            <div class="col-xs-1 col-xs-offset-1 collection-delete">
+                {#<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">#}
+                    {#Button with data-target#}
+                {#</button>#}
+            </div>
         </div>
-    {% endif %}
-    <tbody class="collection" data-prototype="{{ _self.tagCollectionItem(form.vintages.vars.prototype)|e }}">
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(formData.alcohol) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(formData.wineryPrice) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(formData.isBio) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(formData.containsSulphites) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                {% if  formData.vars.data.labelPicture.md5 is defined %}
+                    <img class="img-responsive" src="{{ formData.vars.data.labelPicture.getImage() }}" width="200px">
+                    <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': formData.vars.data.id, 'pictureId': formData.vars.data.labelPicture.id }) }}"
+                       onclick="return confirm('Delete ?')">
+                        <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
+                    </a>
+                {% else %}
+                    <label>{{ 'global.wine.picture.label'|trans }}</label>
+                    {{ form_widget(formData.labelPicture.fileuploaded) }}
+                {% endif %}
+            </div>
+            <div class="col-sm-6">
+                {% if  formData.vars.data.bottlePicture.md5 is defined %}
+                    <img class="img-responsive" src="{{ formData.vars.data.bottlePicture.getImage() }}" width="200px">
+                    <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': formData.vars.data.id, 'pictureId': formData.vars.data.bottlePicture.id }) }}"
+                       onclick="return confirm('Delete ?')">
+                        <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
+                    </a>
+                {% else %}
+                    <label>{{ 'global.wine.picture.bottle'|trans }}</label>
+                    {{ form_widget(formData.bottlePicture.fileuploaded) }}
+                {% endif %}
+            </div>
+        </div>
+{% endmacro %}
+<label>{{ 'wine.vintage.title.vintages'|trans }}</label>
+<div class="collection-vintages" data-prototype="{{ _self.tagCollectionItem(form.vintages.vars.prototype)|e }}">
     {% for vintage in form.vintages %}
-        <tr>
+        <div class="collection-elem">
             {{ _self.tagCollectionItem(vintage) }}
-        </tr>
+        </div>
     {% endfor %}
-    </tbody>
-</table>
-
-{#{% block page_script %}#}
-{#{{ parent() }}#}
-{#{% endblock %}#}
+</div>

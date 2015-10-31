@@ -15,3 +15,5 @@ parameters:
     mailer_password: null
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
+    mailjet_api_key: mailjet_api_key
+    mailjet_secret_key: mailjet_secret_key

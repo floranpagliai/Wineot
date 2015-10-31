@@ -1,14 +1,24 @@
 (node) util.print is deprecated. Use console.log instead.
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic);
+.wine-color-0 {
+  color: #9d000b;
+}
+.wine-color-1 {
+  color: #e97e9b;
+}
+.wine-color-2 {
+  color: #f0c300;
+}
 .landing-page {
   text-align: center;
 }
 .landing-page .site-header {
   height: 650px;
   background-size: cover;
-  background: rgba(0, 0, 0, 0.1) url("img/backgroung.jpg") no-repeat right top;
+  background: rgba(255, 255, 255, 0.1) url(img/background.jpg) no-repeat center center;
 }
 .landing-page .landing-title {
-  font-family: "Open Sans", serif;
+  font-family: 'Open Sans', sans-serif;
   color: white;
   margin-top: 42px;
   margin-bottom: 42px;
@@ -26,9 +36,13 @@
   margin-bottom: 42px;
 }
 @media (max-width: 767px) {
+  .landing-page .landing-title {
+    margin-top: 0;
+  }
   .landing-page .landing-title h1 {
+    font-size: 30px;
     margin-bottom: 30px;
-    line-height: 50px;
+    line-height: 40px;
   }
   .landing-page .landing-title .description {
     line-height: 25px;
@@ -65,6 +79,12 @@
 .landing-page .features-container .feature-box {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+.landing-page .features-container h3 {
+  margin-top: 8px;
+}
+.landing-page .features-container p {
+  margin-top: 5px;
 }
 @media (max-width: 767px) {
   .landing-page input,

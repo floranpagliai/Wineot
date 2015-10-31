@@ -10,9 +10,10 @@ namespace Wineot\DataBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -99,7 +100,12 @@ class User implements UserInterface
     /**
      * @var collection
      *
-     * @MongoDB\ReferenceMany(name="favorite_wine_ids", targetDocument="Wine", simple=true)
+     * @MongoDB\ReferenceMany(
+     *  name="favorite_wine_ids",
+     *  targetDocument="Vintage",
+     *  simple=true,
+     *  strategy="set",
+     *  sort={"Datetime": "desc"})
      */
     private $favoritesWines;
 
@@ -355,28 +361,28 @@ class User implements UserInterface
     /**
      * Add favorite wine
      *
-     * @param \Wineot\DataBundle\Document\Wine $wine
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
      */
-    public function addFavoriteWine(Wine $wine)
+    public function addFavoriteWine(Vintage $vintage)
     {
-        if (!$this->isFavorited($wine))
-            $this->favoritesWines->add($wine);
+        if (!$this->isFavorited($vintage))
+            $this->favoritesWines->add($vintage);
     }
 
     /**
      * Remove favorite wine
      *
-     * @param \Wineot\DataBundle\Document\Wine $wine
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
      */
-    public function removeFavoriteWine(Wine $wine)
+    public function removeFavoriteWine(Vintage $vintage)
     {
-        $this->favoritesWines->removeElement($wine);
+        $this->favoritesWines->removeElement($vintage);
     }
 
 
-    public function isFavorited(Wine $wine)
+    public function isFavorited(Vintage $vintage)
     {
-        if ($this->favoritesWines->contains($wine))
+        if ($this->favoritesWines->contains($vintage))
             return true;
         else
             return false;

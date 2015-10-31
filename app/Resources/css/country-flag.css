@@ -6,7 +6,7 @@
   background-size: 15px auto;
   background-repeat: no-repeat;
   position: relative;
-  top: 4px;
+  vertical-align: middle;
 }
 .flag-au {
   background-image: url("img/flags/Australia.png");

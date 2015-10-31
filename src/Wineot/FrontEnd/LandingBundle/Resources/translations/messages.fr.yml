@@ -1,6 +1,9 @@
 landing:
     button:
-        submit: "Soit le premier informé"
+        submit: "Sois le premier informé"
         search: "Recherche"
     form:
         email: "Entre ton email..."
+    warn:
+        success: "Merci de ton intérêt, nous avons bien enregistré ton Email !"
+        error: "Oups une erreur c'est produite. Peut être que tu est déjà inscrit."

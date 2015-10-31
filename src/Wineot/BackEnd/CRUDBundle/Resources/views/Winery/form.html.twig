@@ -6,20 +6,20 @@
         {% endif %}
 <fieldset>
     <div class="form-group">
-        {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
+        {{ form_row(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.country, { 'attr': { 'placeholder': 'country'|trans } } ) }}
+        {{ form_row(form.country, { 'attr': { 'placeholder': 'country'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.region, { 'attr': { 'placeholder': 'region'|trans } } ) }}
+        {{ form_row(form.region, { 'attr': { 'placeholder': 'region'|trans } } ) }}
     </div>
     {% include 'WineotDataBundle:Address:form.html.twig' %}
     <div class="form-group">
-        {{ form_widget(form.mail, { 'attr': { 'placeholder': 'mail'|trans } } ) }}
+        {{ form_row(form.mail, { 'attr': { 'placeholder': 'mail'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.phone, { 'attr': { 'placeholder': 'phone'|trans } } ) }}
+        {{ form_row(form.phone, { 'attr': { 'placeholder': 'phone'|trans } } ) }}
     </div>
     <div class="form-group">
         {% if  winery.coverPicture.md5 is defined %}
@@ -39,3 +39,7 @@
 </fieldset>
 <br>
 {{ form_end(form) }}
+
+<script>
+
+</script>

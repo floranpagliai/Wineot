@@ -16,6 +16,12 @@ crud:
             isbio: "Cocher si le vin est bio"
             containsSulphites: "Cocher si le vin contient des sulfites"
             food_pairings: "Avec quels aliments se marie t-il ?"
+            vintage: "Millésime"
+            keeping: "Année de garde"
+            peak: "Année d'apogé"
+        winery:
+            country: "Choisir un pays"
+            region: "Choisir une région"
     title:
         comments: "Commentaires"
         countries: "Pays"
@@ -30,3 +36,4 @@ crud:
         wine:
             edited: "Le vin à bien été modifié"
             deleted: "Le vin à bien été supprimé"
+            need_vintage: "Vous devez ajoutez au moins un millésime au vin."

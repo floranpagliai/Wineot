@@ -9,6 +9,7 @@ namespace Wineot\DataBundle\Repository;
 
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Wineot\DataBundle\Document\Wine;
 
 class WineryRepository extends DocumentRepository {
 
@@ -26,5 +27,10 @@ class WineryRepository extends DocumentRepository {
             ->getQuery()->execute();
 
         return $wineries;
+    }
+
+    public function getCount()
+    {
+        return $this->createQueryBuilder()->getQuery()->execute()->count();
     }
 } 

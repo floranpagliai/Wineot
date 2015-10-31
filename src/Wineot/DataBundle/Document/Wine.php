@@ -11,10 +11,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContext;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Wineot\DataBundle\Document\Comment;
 
 /**
  * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
+ *
  */
 class Wine
 {
@@ -40,7 +43,7 @@ class Wine
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Winery",
-     *  inversedBy="wines",
+     *  cascade={"persist"},
      *  simple=true)
      */
     private $winery;
@@ -96,12 +99,24 @@ class Wine
     private $labelPicture;
 
     /**
+     * @var Image
+     *
+     * @MongoDB\ReferenceOne(
+     *  targetDocument="Image",
+     *  cascade={"all"},
+     *  simple=true)
+     */
+    private $bottlePicture;
+
+    /**
      * @var collection
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
      *  cascade={"all"},
-     *  simple=true)
+     *  simple=true),
+     *  sort={"productionYear": "ASC"}
+     * @Assert\Valid
      */
     private $vintages;
 
@@ -122,15 +137,6 @@ class Wine
      */
     private $foodPairings;
 
-    /**
-     * @var collection
-     *
-     * @MongoDB\ReferenceMany(
-     *  targetDocument="Comment",
-     *  mappedBy="wine",
-     *  nullable=true)
-     */
-    private $comments;
 
     public function __construct()
     {
@@ -138,6 +144,10 @@ class Wine
         $this->vintages = new ArrayCollection();
         $this->grappes = new ArrayCollection();
     }
+
+    /**
+     * GETTER / SETTER
+     */
 
     /**
      * Get id
@@ -207,7 +217,6 @@ class Wine
 
     /**
      * Get color
-     *
      * @return int $color
      */
     public function getColor()
@@ -216,28 +225,7 @@ class Wine
     }
 
     /**
-     * Add vintage
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     */
-    public function addVintage(Vintage $vintage)
-    {
-        $this->vintages[] = $vintage;
-        $vintage->setWine($this);
-    }
-
-    /**
-     * Remove vintage
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     */
-    public function removeVintage(Vintage $vintage)
-    {
-        $this->vintages->removeElement($vintage);
-        $vintage->setWine(null);
-    }
-
-    /**
+     * Set vintage
      * @param \Doctrine\Common\Collections\Collection $vintages
      * @return $this
      */
@@ -272,25 +260,24 @@ class Wine
      */
     public function getFoodPairings()
     {
-//        var_dump($this->foodPairings->getValues());
         return $this->foodPairings;
     }
 
     /**
-     * Set wineryId
+     * Set winery
      *
-     * @param \Wineot\DataBundle\Document\Winery $wineryId
+     * @param \Wineot\DataBundle\Document\Winery $winery
      * @return self
      */
-    public function setWinery(Winery $wineryId)
+    public function setWinery(Winery $winery)
     {
-        $this->winery = $wineryId;
+        $this->winery = $winery;
+        $this->winery->addWine($this);
         return $this;
     }
 
     /**
      * Get winery
-     *
      * @return \Wineot\DataBundle\Document\Winery $winery
      */
     public function getWinery()
@@ -298,17 +285,15 @@ class Wine
         return $this->winery;
     }
 
-//    public function getComments()
-//    {
-//        $comments = array();
-//        foreach ($this->vintages as $vintage) {
-//            $vintage_comments = $vintage->getComments();
-//            if(!isset($vintage_comments))
-//                $comments[] = $vintage_comments;
-//        }
-//
-//        return $comments;
-//    }
+    public function getComments()
+    {
+        $comments = new ArrayCollection();
+        foreach ($this->vintages as $vintage) {
+            foreach ($vintage->getComments() as $comment)
+                $comments->add($comment);
+        }
+        return $comments;
+    }
 
     /**
      * @param \Wineot\DataBundle\Document\Image $labelPicture
@@ -327,23 +312,19 @@ class Wine
     }
 
     /**
-     * Add comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
+     * @param Image $bottlePicture
      */
-    public function addComment(\Wineot\DataBundle\Document\Comment $comment)
+    public function setBottlePicture($bottlePicture)
     {
-        $this->comments[] = $comment;
+        $this->bottlePicture = $bottlePicture;
     }
 
     /**
-     * Remove comment
-     *
-     * @param \Wineot\DataBundle\Document\Comment $comment
+     * @return Image
      */
-    public function removeComment(\Wineot\DataBundle\Document\Comment $comment)
+    public function getBottlePicture()
     {
-        $this->comments->removeElement($comment);
+        return $this->bottlePicture;
     }
 
     public function isFavorited(User $user)
@@ -367,40 +348,6 @@ class Wine
     public function getGrappes()
     {
         return $this->grappes;
-    }
-
-    /**
-     * Add grappe
-     *
-     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
-     */
-    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
-    {
-        $this->grappes[] = $grappe;
-    }
-
-    /**
-     * Remove grappe
-     *
-     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
-     */
-    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
-    {
-        $this->grappes->removeElement($grappe);
-        $grappe = null;
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection $comments
-     */
-    public function getComments()
-    {
-        if (!empty($this->comments))
-            return $this->comments;
-        else
-            return null;
     }
 
     /**
@@ -436,26 +383,88 @@ class Wine
     }
 
     /**
+     * ADDER / REMOVER
+     */
+
+    /**
+     * Add vintage
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function addVintage(Vintage $vintage)
+    {
+        $this->vintages[] = $vintage;
+        $vintage->setWine($this);
+    }
+
+    /**
+     * Remove vintage
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function removeVintage(Vintage $vintage)
+    {
+        $this->vintages->removeElement($vintage);
+        $vintage->setWine(null);
+    }
+
+    /**
+     * Add grappe
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes[] = $grappe;
+    }
+
+    /**
+     * Remove grappe
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes->removeElement($grappe);
+        $grappe = null;
+    }
+
+    /**
+     * FUNCTIONS
+     */
+
+    /**
+     * Set correct picture relation to null
+     * @param Image $picture
+     */
+    public function removePicture(Image $picture)
+    {
+        if ($this->bottlePicture == $picture)
+            $this->bottlePicture = null;
+        elseif ($this->labelPicture == $picture)
+            $this->labelPicture = null;
+    }
+
+    /**
      * Get average rating for all comment of the wine
      * @return null|string
      */
     public function getAvgRating()
     {
-        if ($this->comments->count() != 0) {
+        if ($this->vintages->count() != 0) {
             $avgRating = 0;
-            $comments = $this->comments;
-            foreach($comments as $comment)
+            $ratedVintageCount = 0;
+            $vintages = $this->vintages;
+            foreach($vintages as $vintage)
             {
-                $avgRating += $comment->getRank();
+                if ($vintage->getAvgRating())
+                    $ratedVintageCount++;
+                $avgRating += $vintage->getAvgRating();
             }
-            return number_format($avgRating/$this->comments->count(), 1);
-        } else
-            return null;
+            if ($ratedVintageCount != 0)
+                return number_format($avgRating/$ratedVintageCount, 1);
+        }
+        return null;
     }
 
     /**
      * Get average price for all vintages of the wine
-     *
      * @return null|string
      */
     public function getAvgPrice()
@@ -465,7 +474,7 @@ class Wine
             $vintages = $this->vintages;
             foreach($vintages as $vintage)
             {
-                $avgPrice += $vintage->getWineryPrice();
+                $avgPrice += $vintage->getAvgPrice();
             }
             return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
         } else
@@ -473,6 +482,7 @@ class Wine
     }
 
     /**
+     * Get color choices for a wine
      * @return array
      */
     public static function getColors()
@@ -485,6 +495,7 @@ class Wine
     }
 
     /**
+     * Get food type choice for a wine
      * @return array
      */
     public static function getFoodTypes()
@@ -496,5 +507,25 @@ class Wine
             Wine::FOOD_TYPE_CHEESE => 'global.wine.food_type.cheese',
             Wine::FOOD_TYPE_DESERT => 'global.wine.food_type.desert'
         );
+    }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ($this->vintages->count() == 0)
+            $context->buildViolation('crud.warn.wine.need_vintage')
+                ->atPath('vintages')
+                ->addViolation();
+        $test = null;
+        foreach ($this->vintages as $vintage) {
+            $test[] += $vintage->getProductionYear();
+        }
+        if (!count(array_unique($test)) == count($test))
+            $context->buildViolation('crud.warn.wine.unique_vintage')
+                ->atPath('vintages')
+                ->addViolation();
     }
 }

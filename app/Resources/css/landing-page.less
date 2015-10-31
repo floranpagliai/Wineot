@@ -1,14 +1,17 @@
+@import "vars/colors.less";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic);
+
 .landing-page {
   text-align: center;
 
   .site-header {
     height: 650px;
     background-size: cover;
-    background: rgba(0, 0, 0, 0.1) url("img/backgroung.jpg") no-repeat right top;
+    background: rgba(255, 255, 255, 0.1) url(img/background.jpg) no-repeat center center;
   }
 
   .landing-title {
-    font-family: "Open Sans", serif;
+    font-family: @font-family-base;
     color: white;
     margin-top: 42px;
     margin-bottom: 42px;
@@ -27,11 +30,13 @@
     }
 
     @media (max-width: 767px) {
-      h1 {
-        margin-bottom: 30px;
-        line-height: 50px;
-      }
+      margin-top: 0;
 
+      h1 {
+        font-size: 30px;
+        margin-bottom: 30px;
+        line-height: 40px;
+      }
       .description {
         line-height: 25px;
         margin-bottom: 30px;
@@ -72,6 +77,12 @@
     .feature-box {
       padding-top: 15px;
       padding-bottom: 15px;
+    }
+    h3 {
+      margin-top: 8px;
+    }
+    p {
+      margin-top: 5px;
     }
   }
 

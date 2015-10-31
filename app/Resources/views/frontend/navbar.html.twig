@@ -18,8 +18,16 @@
                         <a href="{{ path('wineot_back_end_homepage') }}">{{ 'global.menu.admin'|trans }}</a>
                     </li>
                 {% endif %}
-                <li>
-                    <a href="{{ path('wineot_user_logout') }}">{{ 'user.action.logout'|trans }}</a>
+                <li class="dropdown {% if menu_selected=='profile' %}active{% endif %}">
+                        <a class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{ app.user.firstname }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownProfile">
+                            <li><a href="{{ path('wineot_user_profile') }}">{{ 'global.menu.profile'|trans }}</a></li>
+                            <li><a href="{{ path('wineot_user_profile_edit') }}">{{ 'global.menu.edit_profile'|trans }}</a></li>
+                            <li><a href="{{ path('wineot_user_logout') }}">{{ 'user.action.logout'|trans }}</a></li>
+                        </ul>
                 </li>
             {% else %}
                 <li class="{% if menu_selected=='register' %}active{% endif %}">

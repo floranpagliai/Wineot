@@ -1,0 +1,185 @@
+{% extends "WineotFrontEndWineBundle::layout.html.twig" %}
+{% block featured %}
+    <div class="featured row">
+        <div class="col-sm-8">
+            <div class="banner-wrapper row">
+                <div class="wine-show-image col-sm-3">
+                    {% if  vintage.bottlePicture.md5 is defined %}
+                        <img class="img-responsive site-hero-image" src="{{ vintage.bottlePicture.getImage() }}">
+                    {% elseif  vintage.labelPicture.md5 is defined %}
+                        <img class="img-responsive site-hero-image" src="{{ vintage.labelPicture.getImage() }}">
+                    {% else %}
+                        <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
+                    {% endif %}
+                </div>
+                <div class="wine-show-body col-sm-9">
+                    <h2>
+                        <a href="{{ path('wineot_front_end_winery_show',
+                        {'wineryName':wine.winery.name|replace({' ':'-'}),
+                            'wineryId':wine.winery.id}) }}">{{ wine.winery.name }}
+                        </a>
+                    </h2>
+
+                    <h1>
+                        {{ wine.name }}
+                            <span style="font-weight: lighter"> {{ vintage.productionYear }}</span>
+                    </h1>
+                    <br/>
+
+                    <p>
+                        <i class="country-flag flag-{{ wine.winery.country.code }}"></i> {{ wine.winery.region.name }}
+                        · {{ wine.winery.country.name }}<br/>
+                        <i class="fa fa-circle-o-notch wine-color-{{ wine.color }}"></i> {{ wine.color|wineColor }}
+                    </p>
+
+                    <p style="min-height: 95px; padding-right: 15px;">
+                        {% if vintage.grappes is not empty %}
+                            <strong>{{ 'wine.grappe.title.grappes'|trans }} :</strong><br/>
+                        {% endif %}
+                        {% for wineGrappe in vintage.grappes %}
+                            {{ wineGrappe.grappe.name }}<br/>
+                        {% endfor %}
+                    </p>
+
+                    <div class="wine-show-keys">
+                        <div class="wine-show-key pull-right">
+                            <h4>{{ 'wine.keys.avg_rating'|trans }}</h4>
+
+                            <p>
+                                {% if vintage.getAvgRating() is not null %}
+                                    {{ vintage.getAvgRating() }}
+                                    {% for i in 1..vintage.getAvgRating() %}
+                                        <i class="rank rank-small"></i>
+                                    {% endfor %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="wine-show-key pull-right">
+                            <h4>{{ 'wine.keys.avg_price'|trans }}</h4>
+
+                            <p>
+                                {% if vintage.getAvgPrice() is not null %}
+                                    {{ vintage.getAvgPrice() }} €
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- .banner-wrapper -->
+        </div>
+
+        <div class="col-sm-4">
+            <div class="banner-wrapper row text-center">
+                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'vintageId' : vintage.id })) %}
+                <span class="horizontal-line"></span>
+
+                <div class="col-md-12 wine-show-share">
+                    <p>
+                        {% if app.user and app.user.isFavorited(vintage) %}
+                            <a href="{{ path('wineot_user_unfavorite_wine', {'vintageId': vintage.id}) }}"
+                               class="btn-social btn-favorite-active" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'wine.action.unfavorite'|trans }}">
+                                <i class="fa fa-heart fa-fw"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('wineot_user_favorite_wine', {'vintageId': vintage.id}) }}"
+                               class="btn-social btn-favorite" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
+                                <i class="fa fa-heart fa-fw"></i>
+                            </a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- .banner-wrapper -->
+    </div>
+{% endblock %}
+{% block body %}
+
+    {% if vintage.description is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.description'|trans }}
+            </h3>
+
+            <div class="col-sm-8 col-sm-offset-4">
+                <p>{{ vintage.description|nl2br }}</p>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if wine.vintages is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.vintage.title.vintages'|trans }}
+            </h3>
+
+            <div class="col-sm-8 col-sm-offset-4">
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
+                        <td class="text-right">{{ wine.getAvgPrice() }} €</td>
+                    </tr>
+                    {% for vintageElem in wine.vintages %}
+                        <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
+                        { 'wineryName':wine.winery.name|replace({' ':'-'}),
+                            'wineName':wine.name|replace({' ':'-'}),
+                            'vintage':vintageElem.productionYear,
+                            'vintageId':vintageElem.id}) }}'"
+                            style="cursor: pointer;">
+                            {% if vintage.productionYear == vintageElem.productionYear %}
+                                <td><b>{{ vintageElem.productionYear }}</b></td>
+                                <td class="text-right"><b>{{ vintageElem.getAvgPrice }} €</b></td>
+                            {% else %}
+                                <td>{{ vintageElem.productionYear }}</td>
+                                <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if vintage.foodPairings is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.food_pairings'|trans }}
+            </h3>
+
+            {#<div class="col-sm-8 col-sm-offset-4">#}
+            <div class="col-sm-12">
+                {% for foodPairing in vintage.foodPairings %}
+                    {#<div class="food-pairing">#}
+                    <div class="food-pairing-logo col-sm-2 pull-right" style="display: inline;">
+                        <i class="food-type food-type-{{ foodPairing }}"></i>
+                    </div>
+                    {#<div class="food-pairing-text">#}
+                    {#Accords avec {{ foodPairing }}#}
+                    {#</div>#}
+                    {#</div>#}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block sidebar_right %}
+    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': vintage })) %}
+{% endblock %}
+
+{% block featured_bottom %}
+    {% include 'WineotFrontEndWineryBundle:Winery:poster.html.twig' with {'winery': wine.winery} %}
+    {{ render_hinclude(path('wineot_front_end_winery_best_rated',
+    { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineryId':wine.winery.id })) }}
+{% endblock %}

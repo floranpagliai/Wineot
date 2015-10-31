@@ -1,0 +1,71 @@
+<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="wine-thumbnail">
+        <article>
+            <div class="wine-thumbnail-img col-xs-5">
+                <a href="{{ path('wineot_front_end_wine_show', {
+                    'wineryName':vintage.winery.name|replace({' ':'-'}),
+                    'wineName':vintage.name|replace({' ':'-'}),
+                    'vintage': vintage.productionYear,
+                    'vintageId':vintage.id }) }}">
+                    {% if  vintage.bottlePicture.md5 is defined %}
+                        <img class="img-responsive" src="{{ vintage.bottlePicture.getImage() }}">
+                    {% elseif  vintage.labelPicture.md5 is defined %}
+                        <img class="img-responsive" src="{{ vintage.labelPicture.getImage() }}">
+                    {% else %}
+                        <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
+                    {% endif %}
+                    <div class="img-background"></div>
+                </a>
+            </div>
+            <div class="wine-thumbnail-body col-xs-7">
+                <h2>
+                    <a href="{{ path('wineot_front_end_winery_show',
+                    { 'wineryName':vintage.winery.name|replace({' ':'-'}),
+                        'wineryId':vintage.winery.id}) }}">{{ vintage.winery.name }}</a>
+                </h2>
+
+                <h1>
+                    <a href="{{ path('wineot_front_end_wine_show', {
+                        'wineryName':vintage.winery.name|replace({' ':'-'}),
+                        'wineName':vintage.name|replace({' ':'-'}),
+                        'vintage': vintage.productionYear,
+                        'vintageId':vintage.id }) }}">{{ vintage.name }}
+                        {% if vintage.productionYear is defined %}
+                            <span style="font-weight: lighter">{{ vintage.productionYear }}</span>
+                        {% endif %}
+                    </a>
+                </h1>
+
+                <p>
+                    <i class="country-flag flag-{{ vintage.winery.country.code }}"></i> {{ vintage.winery.region.name }}
+                    · {{ vintage.winery.country.name }}<br/>
+                    <i class="fa fa-circle-o-notch wine-color-{{ vintage.color }}"></i> {{ vintage.color|wineColor }}
+                </p>
+
+                <div class="wine-thumbnail-footer">
+                    {#<div class="wine-thumbnail-key">#}
+                    {#<i class="fa fa-comments"></i>#}
+                    {#{{ vintage.comments|length }}#}
+                    {#</div>#}
+                    <div class="wine-thumbnail-key">
+                        <i class="fa fa-star"></i>
+                        {% if vintage.getAvgRating() is not null %}
+                            {{ vintage.getAvgRating() }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                    <div class="wine-thumbnail-key">
+                        <i class="fa fa-tag"></i>
+                        {% if vintage.getAvgPrice() is not null %}
+                            {{ vintage.getAvgPrice() }}€
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+</li>

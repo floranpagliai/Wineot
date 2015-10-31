@@ -1,0 +1,4 @@
+{% extends 'WineotUserBundle::layout.html.twig' %}
+{% block body %}
+       {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorites'} %}
+{% endblock %}

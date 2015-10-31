@@ -16,21 +16,25 @@ use Wineot\DataBundle\Form\CommentType;
 
 class CommentController extends Controller
 {
-    public function listAction(Request $request, Wine $wine)
+    public function listAction(Request $request, $wine)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
+//        $wine = $dm->getRepository('WineotDataBundle:Wine')->findBy($wineId);
         $comments = $wine->getComments();
-//        $comments = $dm->getRepository('WineotDataBundle:Comment')->findBy(array('wine' => $wine->getId()));
+//        if ($wine)
+//            $comments = $wine->getComments();
+//        else
+//            $comments = $dm->getRepository('WineotDataBundle:Comment')->findBy(array('wine' => $wineId));
         $paramsRender = array('comments' => $comments);
         return $this->render('WineotFrontEndCommentBundle:Comment:list.html.twig', $paramsRender);
     }
 
-    public function addAction(Request $request, $wineId)
+    public function addAction(Request $request, $vintageId)
     {
         $user = $this->getUser();
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
+        $wine = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
         $comment = new Comment();
         $form = $this->createForm(new CommentType(), $comment);
         $userComment = null;

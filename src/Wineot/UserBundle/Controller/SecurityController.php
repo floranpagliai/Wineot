@@ -76,13 +76,6 @@ class SecurityController extends Controller
         return $this->render('WineotUserBundle:Security:register.html.twig', $paramsRender);
     }
 
-    public function profileAction()
-    {
-        if (!$this->get('security.context')->isGranted('ROLE_USER'))
-            return $this->redirect($this->generateUrl('wineot_user_login'));
-        return $this->render('WineotUserBundle:Security:profile.html.twig');
-    }
-
     public function logoutAction()
     {
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');

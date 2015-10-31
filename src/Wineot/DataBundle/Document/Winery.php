@@ -69,7 +69,8 @@ class Winery
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Wine",
-     *  mappedBy="winery")
+     *  cascade={"all"},
+     *  simple=true)
      */
     private $wines;
 
