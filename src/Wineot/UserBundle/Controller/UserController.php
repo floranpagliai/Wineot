@@ -23,10 +23,11 @@ class UserController extends Controller
     {
         if (!$this->get('security.context')->isGranted('ROLE_USER'))
             return $this->redirect($this->generateUrl('wineot_user_login'));
-
+        $favoritesVintages = null;
         $user = $this->getUser();
-        $favoritesVintages = $user->getFavoritesWines();
-//        $favoritesWines = null;
+        if ($user) {
+            $favoritesVintages = $user->getFavoritesWines();
+        }
 //        $comments = $user->getComments();
         $paramsRender = array(
             'favoritesVintages' => $favoritesVintages
