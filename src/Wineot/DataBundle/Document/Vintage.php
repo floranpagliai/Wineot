@@ -377,6 +377,14 @@ class Vintage
         return $this->wine->getGrappes();
     }
 
+    public function removePicture(Image $picture)
+    {
+        if ($this->bottlePicture == $picture)
+            $this->bottlePicture = null;
+        elseif ($this->labelPicture == $picture)
+            $this->labelPicture = null;
+    }
+
     public function getAvgRating()
     {
         $comments = $this->getComments();

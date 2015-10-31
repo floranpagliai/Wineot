@@ -147,6 +147,10 @@ class Wine
     }
 
     /**
+     * GETTER / SETTER
+     */
+
+    /**
      * Get id
      *
      * @return id $id
@@ -214,7 +218,6 @@ class Wine
 
     /**
      * Get color
-     *
      * @return int $color
      */
     public function getColor()
@@ -223,28 +226,7 @@ class Wine
     }
 
     /**
-     * Add vintage
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     */
-    public function addVintage(Vintage $vintage)
-    {
-        $this->vintages[] = $vintage;
-        $vintage->setWine($this);
-    }
-
-    /**
-     * Remove vintage
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     */
-    public function removeVintage(Vintage $vintage)
-    {
-        $this->vintages->removeElement($vintage);
-        $vintage->setWine(null);
-    }
-
-    /**
+     * Set vintage
      * @param \Doctrine\Common\Collections\Collection $vintages
      * @return $this
      */
@@ -279,26 +261,24 @@ class Wine
      */
     public function getFoodPairings()
     {
-//        var_dump($this->foodPairings->getValues());
         return $this->foodPairings;
     }
 
     /**
-     * Set wineryId
+     * Set winery
      *
-     * @param \Wineot\DataBundle\Document\Winery $wineryId
+     * @param \Wineot\DataBundle\Document\Winery $winery
      * @return self
      */
-    public function setWinery(Winery $wineryId)
+    public function setWinery(Winery $winery)
     {
-        $this->winery = $wineryId;
+        $this->winery = $winery;
         $this->winery->addWine($this);
         return $this;
     }
 
     /**
      * Get winery
-     *
      * @return \Wineot\DataBundle\Document\Winery $winery
      */
     public function getWinery()
@@ -348,7 +328,6 @@ class Wine
         return $this->bottlePicture;
     }
 
-
     public function isFavorited(User $user)
     {
         return $user->isFavorited($this);
@@ -370,27 +349,6 @@ class Wine
     public function getGrappes()
     {
         return $this->grappes;
-    }
-
-    /**
-     * Add grappe
-     *
-     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
-     */
-    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
-    {
-        $this->grappes[] = $grappe;
-    }
-
-    /**
-     * Remove grappe
-     *
-     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
-     */
-    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
-    {
-        $this->grappes->removeElement($grappe);
-        $grappe = null;
     }
 
     /**
@@ -426,6 +384,65 @@ class Wine
     }
 
     /**
+     * ADDER / REMOVER
+     */
+
+    /**
+     * Add vintage
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function addVintage(Vintage $vintage)
+    {
+        $this->vintages[] = $vintage;
+        $vintage->setWine($this);
+    }
+
+    /**
+     * Remove vintage
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function removeVintage(Vintage $vintage)
+    {
+        $this->vintages->removeElement($vintage);
+        $vintage->setWine(null);
+    }
+
+    /**
+     * Add grappe
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes[] = $grappe;
+    }
+
+    /**
+     * Remove grappe
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes->removeElement($grappe);
+        $grappe = null;
+    }
+
+    /**
+     * FUNCTIONS
+     */
+
+    /**
+     * Set correct picture relation to null
+     * @param Image $picture
+     */
+    public function removePicture(Image $picture)
+    {
+        if ($this->bottlePicture == $picture)
+            $this->bottlePicture = null;
+        elseif ($this->labelPicture == $picture)
+            $this->labelPicture = null;
+    }
+
+    /**
      * Get average rating for all comment of the wine
      * @return null|string
      */
@@ -449,7 +466,6 @@ class Wine
 
     /**
      * Get average price for all vintages of the wine
-     *
      * @return null|string
      */
     public function getAvgPrice()
@@ -467,6 +483,7 @@ class Wine
     }
 
     /**
+     * Get color choices for a wine
      * @return array
      */
     public static function getColors()
@@ -479,6 +496,7 @@ class Wine
     }
 
     /**
+     * Get food type choice for a wine
      * @return array
      */
     public static function getFoodTypes()
