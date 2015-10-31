@@ -1,0 +1,47 @@
+global:
+    menu:
+        home: "Accueil"
+        admin: "Administration"
+        profile: "Mon profil"
+        edit_profile: "Réglages"
+    action:
+        submit: "Enregistrer"
+        delete: "Supprimer"
+        add: "Ajouter"
+    wine:
+        action:
+            add: "Ajouter un vin"
+        color:
+            red: "Vin rouge"
+            pink: "Vin rosé"
+            white: "Vin blanc"
+            red_short: "Rouge"
+            pink_short: "Rosé"
+            white_short: "Blanc"
+        picture:
+            label: "Étiquette"
+            bottle: "Bouteille"
+        food_type:
+            meet: "Viandes"
+            fish: "Poissons"
+            vegetable: "Légumes"
+            desert: "Deserts"
+            cheese: "Fromages"
+    winery:
+        picture:
+            cover: "Image de couverture"
+
+    vintage:
+        form:
+            name: "Millésimes"
+            domain_price: "Prix de la bouteille"
+            keeping: "Garde"
+            peak: "Apogée"
+            alcohol: "Alcool"
+            isBio: "Biologique"
+            containsSulphites: "Sulphites"
+    grappe:
+        form:
+            name: "Cépages"
+    warn:
+        usermostlogged: "Vous devez être connecté"

@@ -12,23 +12,23 @@
             </h2>
 
             <div class="form-group">
-                <label for="username">{{ 'user.form.username'|trans }}</label>
-                {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.username'|trans } } ) }}
+                <label for="username">{{ 'user.form.label.username'|trans }}</label>
+                {{ form_widget(form.username, { 'attr': { 'placeholder': 'user.form.placeholder.username'|trans } } ) }}
             </div>
             <div class="form-group">
-                <label for="firstname">{{ 'user.form.firstname'|trans }}</label>
-                {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'user.form.firstname'|trans } } ) }}
+                <label for="firstname">{{ 'user.form.label.firstname'|trans }}</label>
+                {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'user.form.placeholder.firstname'|trans } } ) }}
             </div>
             <div class="form-group">
-                <label for="lastname">{{ 'user.form.lastname'|trans }}</label>
-                {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.lastname'|trans } } ) }}
+                <label for="lastname">{{ 'user.form.label.lastname'|trans }}</label>
+                {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'user.form.placeholder.lastname'|trans } } ) }}
             </div>
             <div class="form-group">
-                <label for="email">{{ 'user.form.email'|trans }}</label>
-                {{ form_widget(form.mail, { 'attr': { 'placeholder': 'user.form.email'|trans } } ) }}
+                <label for="email">{{ 'user.form.label.email'|trans }}</label>
+                {{ form_widget(form.mail, { 'attr': { 'placeholder': 'user.form.placeholder.email'|trans } } ) }}
             </div>
         </fieldset>
             <input class="btn btn-lg btn-block" type="submit" id="_submit" name="submit_user_register"
-                   value="{{ 'user.action.save'|trans }}"/>
+                   value="{{ 'global.action.save'|trans }}"/>
     {{ form_end(form) }}
 {% endblock %}
