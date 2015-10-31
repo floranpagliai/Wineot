@@ -1,9 +1,9 @@
 wineot_front_end_wine_show:
-    path:     /{wineName}/{wineId}
-    defaults: { _controller: WineotFrontEndWineBundle:Wine:show }
-wineot_front_end_wine_vintage_show:
     path:     /{wineName}/{vintage}/{vintageId}
-    defaults: { _controller: WineotFrontEndWineBundle:Vintage:show }
+    defaults: { _controller: WineotFrontEndWineBundle:Wine:show }
+wineot_front_end_wine_redirect:
+    path:     /{wineName}/{wineId}
+    defaults: { _controller: WineotFrontEndWineBundle:Wine:redirectWine }
 wineot_front_end_wine_trends:
     path:     /trends
     defaults: { _controller: WineotFrontEndWineBundle:Wine:trends, wineryName: all }

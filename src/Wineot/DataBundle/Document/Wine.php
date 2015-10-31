@@ -14,12 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository", requireIndexes=true,
- *      @MongoDB\Indexes({
- *          @MongoDB\Index(keys={"winery"="asc"}),
- *          @MongoDB\Index(keys={"name"="asc"})
- *      })
- * )
+ * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
+ *
  */
 class Wine
 {
@@ -116,7 +112,8 @@ class Wine
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
      *  cascade={"all"},
-     *  simple=true)
+     *  simple=true),
+     *  sort={"productionYear": "ASC"}
      * @Assert\Valid
      */
     private $vintages;

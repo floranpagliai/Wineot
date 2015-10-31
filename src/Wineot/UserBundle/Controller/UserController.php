@@ -25,11 +25,11 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('wineot_user_login'));
 
         $user = $this->getUser();
-//        $favoritesWines = $user->getFavoritesWines();
-        $favoritesWines = null;
+        $favoritesVintages = $user->getFavoritesWines();
+//        $favoritesWines = null;
 //        $comments = $user->getComments();
         $paramsRender = array(
-            'favoritesWines' => $favoritesWines
+            'favoritesVintages' => $favoritesVintages
         );
         return $this->render('WineotUserBundle:User:profile.html.twig', $paramsRender);
     }
@@ -127,39 +127,41 @@ class UserController extends Controller
         return $this->render('WineotUserBundle:User:resetPassword.html.twig', $paramsRender);
     }
 
-    public function favoriteAction(Request $request, $wineId)
+    public function favoriteAction(Request $request, $vintageId)
     {
         $flash = $this->get('notify_messenger.flash');
-        $user = $this->getUser();
-        if (!$user) {
-            $flash->error($this->get('translator')->trans('global.warn.usermostlogged'));
-            return $this->redirect($request->headers->get('referer'));
-        }
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
-        if ($wine) {
-            $user->addFavoriteWine($wine);
-            $flash->success($this->get('translator')->trans('wine.warn.favorited'));
-            $dm->persist($user);
-            $dm->flush();
-        }
+        $user = $this->getUser();
+
+        if ($user) {
+            $wine = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
+            if ($wine) {
+                $user->addFavoriteWine($wine);
+                $flash->success($this->get('translator')->trans('wine.warn.favorited'));
+                $dm->persist($user);
+                $dm->flush();
+            }
+        } else
+            $flash->error($this->get('translator')->trans('global.warn.usermostlogged'));
         return $this->redirect($request->headers->get('referer'));
     }
 
-    public function unfavoriteAction(Request $request, $wineId)
+    public function unfavoriteAction(Request $request, $vintageId)
     {
         $flash = $this->get('notify_messenger.flash');
-        $user = $this->getUser();
-        if (!$user) {
-            $flash->error($this->get('translator')->trans('global.warn.usermostlogged'));
-            return $this->redirect($request->headers->get('referer'));
-        }
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
-        $user->removeFavoriteWine($wine);
-        $flash->success($this->get('translator')->trans('wine.warn.unfavorited'));
-        $dm->persist($user);
-        $dm->flush();
+        $user = $this->getUser();
+
+        if ($user) {
+            $wine = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
+            if ($wine) {
+                $user->removeFavoriteWine($wine);
+                $flash->success($this->get('translator')->trans('wine.warn.unfavorited'));
+                $dm->persist($user);
+                $dm->flush();
+            }
+        } else
+            $flash->error($this->get('translator')->trans('global.warn.usermostlogged'));
         return $this->redirect($request->headers->get('referer'));
     }
 

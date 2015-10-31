@@ -1,0 +1,13 @@
+<div class="col-sm-12 wine-list">
+    <h3 class="section-title clearfix"><i class="line"></i>
+        {{ vintageListTitle|trans }}
+    </h3>
+
+    <div class="row">
+        <ul class="wine-thumbnails">
+            {% for vintage in vintages %}
+                {% include 'WineotFrontEndWineBundle:Vintage:thumbnails.html.twig' with {'vintage': vintage} %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

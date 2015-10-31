@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="vintages")
+ * @MongoDB\Document(collection="vintages", repositoryClass="Wineot\DataBundle\Repository\VintageRepository")
  */
 
 class Vintage

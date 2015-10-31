@@ -2,7 +2,7 @@
     <div class="wine-thumbnail">
         <article>
             <div class="wine-thumbnail-img col-xs-5">
-                <a href="{{ path('wineot_front_end_wine_show',
+                <a href="{{ path('wineot_front_end_wine_redirect',
                 { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}">
                     {% if  wine.bottlePicture.md5 is defined %}
                         <img class="img-responsive" src="{{ wine.bottlePicture.getImage() }}">
@@ -22,7 +22,7 @@
                 </h2>
 
                 <h1>
-                    <a href="{{ path('wineot_front_end_wine_show',
+                    <a href="{{ path('wineot_front_end_wine_redirect',
                     { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}">{{ wine.name }}
                     </a>
                 </h1>

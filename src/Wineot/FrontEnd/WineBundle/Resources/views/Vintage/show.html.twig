@@ -81,14 +81,14 @@
 
                 <div class="col-md-12 wine-show-share">
                     <p>
-                        {% if app.user and app.user.isFavorited(wine) %}
-                            <a href="{{ path('wineot_user_unfavorite_wine', {'wineId': wine.id}) }}"
+                        {% if app.user and app.user.isFavorited(vintage) %}
+                            <a href="{{ path('wineot_user_unfavorite_wine', {'vintageId': vintage.id}) }}"
                                class="btn-social btn-favorite-active" data-toggle="tooltip"
                                data-placement="top" data-original-title="{{ 'wine.action.unfavorite'|trans }}">
                                 <i class="fa fa-heart fa-fw"></i>
                             </a>
                         {% else %}
-                            <a href="{{ path('wineot_user_favorite_wine', {'wineId': wine.id}) }}"
+                            <a href="{{ path('wineot_user_favorite_wine', {'vintageId': vintage.id}) }}"
                                class="btn-social btn-favorite" data-toggle="tooltip"
                                data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
                                 <i class="fa fa-heart fa-fw"></i>
@@ -124,14 +124,12 @@
             <div class="col-sm-8 col-sm-offset-4">
                 <table class="table table-hover">
                     <tbody>
-                    <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
-                    { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"
-                        style="cursor: pointer;">
+                    <tr>
                         <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
                         <td class="text-right">{{ wine.getAvgPrice() }} €</td>
                     </tr>
                     {% for vintageElem in wine.vintages %}
-                        <tr onclick="location.href='{{ path('wineot_front_end_wine_vintage_show',
+                        <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
                         { 'wineryName':wine.winery.name|replace({' ':'-'}),
                             'wineName':wine.name|replace({' ':'-'}),
                             'vintage':vintageElem.productionYear,

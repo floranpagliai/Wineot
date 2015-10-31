@@ -22,8 +22,8 @@ wineot_user_profile_reset_password:
     path:     /resetpassword-{token}
     defaults: { _controller: WineotUserBundle:User:resetPassword, token: null}
 wineot_user_favorite_wine:
-    path:     /favorite/{wineId}
+    path:     /favorite/{vintageId}
     defaults: { _controller: WineotUserBundle:User:favorite }
 wineot_user_unfavorite_wine:
-    path:     /unfavorite/{wineId}
+    path:     /unfavorite/{vintageId}
     defaults: { _controller: WineotUserBundle:User:unfavorite }
