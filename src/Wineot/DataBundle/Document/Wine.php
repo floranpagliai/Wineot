@@ -515,17 +515,20 @@ class Wine
      */
     public function validate(ExecutionContextInterface $context)
     {
-        if ($this->vintages->count() == 0)
+        if ($this->vintages->count() == 0) {
             $context->buildViolation('crud.warn.wine.need_vintage')
                 ->atPath('vintages')
                 ->addViolation();
-        $test = null;
-        foreach ($this->vintages as $vintage) {
-            $test[] += $vintage->getProductionYear();
+
+        } else {
+            $vintagesProductionYear = null;
+            foreach ($this->vintages as $vintage) {
+                $vintagesProductionYear[] += $vintage->getProductionYear();
+            }
+            if (!count(array_unique($vintagesProductionYear)) == count($vintagesProductionYear))
+                $context->buildViolation('crud.warn.wine.unique_vintage')
+                    ->atPath('vintages')
+                    ->addViolation();
         }
-        if (!count(array_unique($test)) == count($test))
-            $context->buildViolation('crud.warn.wine.unique_vintage')
-                ->atPath('vintages')
-                ->addViolation();
     }
 }

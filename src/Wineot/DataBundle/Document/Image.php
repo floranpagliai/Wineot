@@ -28,7 +28,7 @@ class Image
     private $fileuploaded;
 
     /** @MongoDB\String */
-    private $filename;
+    private $filename = null;
 
     /** @MongoDB\String */
     private $mimeType;
@@ -168,7 +168,10 @@ class Image
 
     public function getImage()
     {
-        return "data:".$this->getMimeType().";base64," . base64_encode($this->file->getMongoGridFSFile()->getBytes());
+        if ($this->file)
+            return "data:".$this->getMimeType().";base64," . base64_encode($this->file->getMongoGridFSFile()->getBytes());
+        else
+            return null;
     }
 
 }

@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                {% if  formData.vars.data.labelPicture.md5 is defined %}
+                {% if  form.vars.data.labelPicture.filename is defined and form.vars.data.labelPicture.filename %}
                     <img class="img-responsive" src="{{ formData.vars.data.labelPicture.getImage() }}" width="200px">
                     <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': formData.vars.data.id, 'pictureId': formData.vars.data.labelPicture.id }) }}"
                        onclick="return confirm('Delete ?')">
@@ -45,7 +45,7 @@
                 {% endif %}
             </div>
             <div class="col-sm-6">
-                {% if  formData.vars.data.bottlePicture.md5 is defined %}
+                {% if  form.vars.data.bottlePicture.filename is defined and form.vars.data.bottlePicture.filename %}
                     <img class="img-responsive" src="{{ formData.vars.data.bottlePicture.getImage() }}" width="200px">
                     <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': formData.vars.data.id, 'pictureId': formData.vars.data.bottlePicture.id }) }}"
                        onclick="return confirm('Delete ?')">
