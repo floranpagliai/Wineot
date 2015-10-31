@@ -40,7 +40,7 @@
                     {#<i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>#}
                     {#</a>#}
                 {% else %}
-                    <label>{{ 'wine.form.label_picture'|trans }}</label>
+                    <label>{{ 'global.wine.picture.label'|trans }}</label>
                     {{ form_widget(formData.labelPicture.fileuploaded) }}
                 {% endif %}
             </div>
@@ -52,13 +52,13 @@
                     {#<i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>#}
                     {#</a>#}
                 {% else %}
-                    <label>{{ 'wine.form.bottle_picture'|trans }}</label>
+                    <label>{{ 'global.wine.picture.bottle'|trans }}</label>
                     {{ form_widget(formData.bottlePicture.fileuploaded) }}
                 {% endif %}
             </div>
         </div>
 {% endmacro %}
-<label>{{ 'wine.form.vintages'|trans }}</label>
+<label>{{ 'wine.vintage.title.vintages'|trans }}</label>
 <div class="collection-vintages" data-prototype="{{ _self.tagCollectionItem(form.vintages.vars.prototype)|e }}">
     {% for vintage in form.vintages %}
         <div class="collection-elem">

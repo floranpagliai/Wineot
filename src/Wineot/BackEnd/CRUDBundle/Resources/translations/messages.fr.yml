@@ -16,6 +16,7 @@ crud:
             isbio: "Cocher si le vin est bio"
             containsSulphites: "Cocher si le vin contient des sulfites"
             food_pairings: "Avec quels aliments se marie t-il ?"
+            vintage: "Millésime"
             keeping: "Année de garde"
             peak: "Année d'apogé"
         winery:
