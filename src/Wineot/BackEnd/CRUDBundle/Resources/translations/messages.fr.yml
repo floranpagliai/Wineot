@@ -36,3 +36,4 @@ crud:
         wine:
             edited: "Le vin à bien été modifié"
             deleted: "Le vin à bien été supprimé"
+            need_vintage: "Vous devez ajoutez au moins un millésime au vin."

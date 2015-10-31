@@ -11,6 +11,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContext;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Wineot\DataBundle\Document\Comment;
 
 /**
@@ -505,5 +507,25 @@ class Wine
             Wine::FOOD_TYPE_CHEESE => 'global.wine.food_type.cheese',
             Wine::FOOD_TYPE_DESERT => 'global.wine.food_type.desert'
         );
+    }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ($this->vintages->count() == 0)
+            $context->buildViolation('crud.warn.wine.need_vintage')
+                ->atPath('vintages')
+                ->addViolation();
+        $test = null;
+        foreach ($this->vintages as $vintage) {
+            $test[] += $vintage->getProductionYear();
+        }
+        if (!count(array_unique($test)) == count($test))
+            $context->buildViolation('crud.warn.wine.unique_vintage')
+                ->atPath('vintages')
+                ->addViolation();
     }
 }

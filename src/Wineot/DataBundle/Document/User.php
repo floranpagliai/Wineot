@@ -100,7 +100,12 @@ class User implements UserInterface
     /**
      * @var collection
      *
-     * @MongoDB\ReferenceMany(name="favorite_wine_ids", targetDocument="Vintage", simple=true)
+     * @MongoDB\ReferenceMany(
+     *  name="favorite_wine_ids",
+     *  targetDocument="Vintage",
+     *  simple=true,
+     *  strategy="set",
+     *  sort={"Datetime": "desc"})
      */
     private $favoritesWines;
 
