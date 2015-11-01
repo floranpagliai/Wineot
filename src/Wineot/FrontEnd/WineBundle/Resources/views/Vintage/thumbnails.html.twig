@@ -7,10 +7,8 @@
                     'wineName':vintage.name|replace({' ':'-'}),
                     'vintage': vintage.productionYear,
                     'vintageId':vintage.id }) }}">
-                    {% if  vintage.bottlePicture.md5 is defined %}
-                        <img class="img-responsive" src="{{ vintage.bottlePicture.getImage() }}">
-                    {% elseif  vintage.labelPicture.md5 is defined %}
-                        <img class="img-responsive" src="{{ vintage.labelPicture.getImage() }}">
+                    {% if  vintage.picture is not null %}
+                        <img class="img-responsive" src="{{ vintage.picture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
                     {% endif %}

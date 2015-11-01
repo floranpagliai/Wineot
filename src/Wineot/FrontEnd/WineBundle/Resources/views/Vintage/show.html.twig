@@ -1,13 +1,11 @@
 {% extends "WineotFrontEndWineBundle::layout.html.twig" %}
 {% block featured %}
     <div class="featured row">
-        <div class="col-sm-8">
+        <div class="col-md-8">
             <div class="banner-wrapper row">
                 <div class="wine-show-image col-sm-3">
-                    {% if  vintage.bottlePicture.md5 is defined %}
-                        <img class="img-responsive site-hero-image" src="{{ vintage.bottlePicture.getImage() }}">
-                    {% elseif  vintage.labelPicture.md5 is defined %}
-                        <img class="img-responsive site-hero-image" src="{{ vintage.labelPicture.getImage() }}">
+                    {% if  vintage.picture is not null %}
+                        <img class="img-responsive site-hero-image" src="{{ vintage.picture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
                     {% endif %}
@@ -74,7 +72,7 @@
             <!-- .banner-wrapper -->
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-md-4">
             <div class="banner-wrapper row text-center">
                 {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'vintageId' : vintage.id })) %}
                 <span class="horizontal-line"></span>

@@ -385,6 +385,24 @@ class Vintage
             $this->labelPicture = null;
     }
 
+    /**
+     * Get one image of the wintage or the wintage
+     * @return null|Image
+     */
+    public function getPicture()
+    {
+        if ($this->bottlePicture)
+            return $this->bottlePicture;
+        elseif ($this->wine->getBottlePicture())
+            return $this->getWine()->getBottlePicture();
+        elseif ($this->labelPicture)
+            return $this->labelPicture;
+        elseif ($this->getWine()->getLabelPicture())
+            return $this->getWine()->getLabelPicture();
+        else
+            return null;
+    }
+
     public function getAvgRating()
     {
         $comments = $this->getComments();
