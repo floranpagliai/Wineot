@@ -25,7 +25,13 @@ class DefaultControllerTest extends WebTestCase
         $client->request('GET', '/admin/crud/wine/');
         $this->assertTrue($client->getResponse()->isSuccessful());
 
+        $client->request('GET', '/admin/crud/wine/add');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+
         $client->request('GET', '/admin/crud/winery/');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+
+        $client->request('GET', '/admin/crud/wine/add');
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $client->request('GET', '/admin/crud/comment/');
@@ -36,6 +42,10 @@ class DefaultControllerTest extends WebTestCase
 
         $client->request('GET', '/admin/crud/country/');
         $this->assertTrue($client->getResponse()->isSuccessful());
+
+        $client->request('GET', '/admin/crud/wine/add');
+        $this->assertTrue($client->getResponse()->isSuccessful());
+
     }
 
     public function testCRUDFirewall()
