@@ -1,0 +1,4 @@
+wineot_rest_user:
+  type: rest
+  resource: "WineotUserBundle:UserRest"
+  name_prefix:  wineot_api_user_
