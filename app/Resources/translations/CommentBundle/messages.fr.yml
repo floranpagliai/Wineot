@@ -1,0 +1,69 @@
+global:
+    action:
+        add: "Ajouter"
+        delete: "Supprimer"
+        submit: "Éditer"
+        search: "Recherche"
+        save: "Sauvegarder"
+    title:
+        home: "Accueil"
+        admin: "Administration"
+        search_result: "Résultat de la recherche"
+comment:
+    action:
+        add: "Donner votre avis"
+    title:
+        list: "Les avis sur ce vin"
+    form:
+        comment: "Votre avis sur le vin"
+    warn:
+        added: "Votre comentaire a bien été ajouté."
+        usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+        no_comment: "Aucun avis n'a été publié sur ce vin. Soyez le premier à donner votre avis."
+wine:
+    action:
+        add: "Ajouter un vin"
+        delete: "Supprimer le vin"
+        search: "Rechercher un vin"
+    title:
+        color_red: "Rouge"
+        color_white: "Blanc"
+        color_pink: "Rosé"
+        all_vintages: "Tout les millésimes"
+        grappes: "Cépages"
+    form:
+        color: "Couleur"
+        containsSulphites: "Cocher si le vin contient des sulfites"
+        isbio: "Cocher si le vin est bio"
+        vintage: "Millésime"
+        vintages: "Millésimes"
+    placeholder:
+        color: "Choisir une couleur"
+        winery: "Choisir un domaine"
+        grappe: "Choisir un cépage"
+    warn:
+        edited: "Le vin à bien été modifié"
+        deleted: "Le vin à bien été supprimé"
+winery:
+    action:
+        add: "Ajouter un domaine"
+        delete: "Supprimer le domaine"
+    title:
+    form:
+    placeholder:
+        country: "Choisir un pays"
+        region: "Choisir une région"
+    warn:
+        edited: "Le domaine à bien été modifié"
+        deleted: "Le domaine à bien été supprimé"
+picture:
+    action:
+        add: "Ajouter une image"
+        delete: "Supprimer l'image"
+    title:
+    form:
+        bottle: "Bouteille"
+        label: "Étiquette"
+    warn:
+        edited: "L'image à bien été modifié"
+        deleted: "L'image à bien été supprimé"
