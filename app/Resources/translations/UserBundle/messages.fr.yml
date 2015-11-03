@@ -1,0 +1,46 @@
+user:
+    action:
+        login: "Se connecter"
+        register: "S'inscrire"
+        logout: "Se déconnecter"
+        remember_me: "Se souvenir de moi"
+        password_reset: "Nouveau mot de passe"
+        favorite_wine: "Ajouter à mes favoris"
+    description:
+        forget_password: "Mot de passe oublié ?"
+    title:
+        login: "Connexion"
+        register: "Inscription"
+        my_profile: "Mon profil"
+        password_forget: "Mot de passe oublié"
+        password_edit: "Nouveau mot de passe"
+        settings: "Paramètres"
+        my_informations: "Mes informations"
+        favorite_wines: "Mes vins favoris"
+    form:
+        label:
+            username: "Nom d'utilisateur"
+            firstname: "Prénom"
+            lastname: "Nom"
+            email: "Email"
+            password: "Mot de passe"
+            password_validation: "Mot de passe (Validation)"
+        legend:
+        placeholder:
+            username: "Nom d'utilisateur"
+            firstname: "Prénom"
+            lastname: "Nom"
+            email: "Email"
+            password: "Mot de passe"
+            password_validation: "Mot de passe (Validation)"
+    message:
+        reset_password: "Entrez votre email et vous recevrez un nouveau mot de passe rapidement."
+    warn:
+        registered: "Utilisateur enregistré. Vous pouvez maintenant vous connecter."
+        email_unique: "Cet email est déjà utilisé."
+        email_unknown: "Nous n'avons pas pu trouver de compte associé à cet Email."
+        user_edited: "Vos informations ont bien été mises à jour."
+        password_edited: "Mot de passe mis à jour."
+        password_length: "Votre mot de passe doit faire entre 5 et 30 caractères."
+        password_reset: "Un Email vient de vous être envoyé avec votre nouveau mot de passe. Vérifiez vos spams."
+    word:

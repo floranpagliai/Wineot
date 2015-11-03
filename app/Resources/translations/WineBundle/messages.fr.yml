@@ -1,0 +1,24 @@
+wine:
+    action:
+        add: "Ajouter un vin"
+        delete: "Supprimer le vin"
+        search: "Rechercher un vin"
+    title:
+        color_red: "Rouge"
+        color_white: "Blanc"
+        color_pink: "Rosé"
+        all_vintages: "Tout les millésimes"
+        grappes: "Cépages"
+    form:
+        color: "Couleur"
+        containsSulphites: "Cocher si le vin contient des sulfites"
+        isbio: "Cocher si le vin est bio"
+        vintage: "Millésime"
+        vintages: "Millésimes"
+    placeholder:
+        color: "Choisir une couleur"
+        winery: "Choisir un domaine"
+        grappe: "Choisir un cépage"
+    warn:
+        edited: "Le vin à bien été modifié."
+        deleted: "Le vin à bien été supprimé."
