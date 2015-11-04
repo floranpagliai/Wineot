@@ -1,3 +1,3 @@
 {% extends "frontend/layout.html.twig" %}
-{% block page_title %}{{ wine.winery.name }} - {{ wine.name }}{% endblock %}
+{% set page_title = {{ wine.winery.name }} - {{ wine.name }} %}
 {% set menu_selected = 'home' %}

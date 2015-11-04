@@ -14,65 +14,75 @@
     </header>
 
     {% if sitehero_active is not defined %}
+        <!-- site-hero -->
         <div class="site-hero clearfix">
             <div class="container">
                 {{ block('featured') }}
             </div>
-        </div><!-- .site-hero -->
+        </div>
+        <!-- site-hero -->
     {% endif %}
 
-
+    <!-- main -->
     <div id="main" class="site-main clearfix">
         <div class="container">
-
             <div class="content-area">
                 <div class="row">
-
                     {% if block('sidebar') is not empty %}
+                        <!-- sidebar-left -->
                         <div id="sidebar" class="site-sidebar col-md-3">
                             <div class="widget-area">
                                 {{ block('sidebar') }}
                             </div>
                         </div>
+                        <!-- sidebar-left -->
+                        <!-- body -->
                         <div id="content" class="site-content col-md-9">
                             <div class="row">
                                 {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
                                 {{  block('body') }}
                             </div>
                         </div>
+                        <!-- body -->
                     {% elseif block('sidebar_right') is not empty %}
+                        <!-- body -->
                         <div id="content" class="site-content col-md-9" style="border-right: solid 2px #f2f2f2;">
                             <div class="row">
                                 {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
                                 {{  block('body') }}
                             </div>
                         </div>
+                        <!-- body -->
+                        <!-- sidebar-right -->
                         <div id="sidebar" class="site-sidebar col-md-3">
                             <div class="widget-area">
                                 {{ block('sidebar_right') }}
                             </div>
                         </div>
+                        <!-- sidebar-right -->
                     {% else %}
+                        <!-- body -->
                         <div id="content" class="site-content col-md-12">
                             <div class="row">
                                 {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
                                 {{  block('body') }}
                             </div>
                         </div>
+                        <!-- body -->
                     {% endif %}
-
                 </div>
             </div>
         </div>
     </div>
-    <!-- #main -->
+    <!-- main -->
 
+    <!-- featured-bottom -->
     <div class="clearfix">
         <div class="container">
             {{ block('featured_bottom') }}
         </div>
     </div>
-    <!-- .site-hero -->
+    <!-- featured-bottom -->
 
     {% include 'footer.html.twig' %}
 </div>

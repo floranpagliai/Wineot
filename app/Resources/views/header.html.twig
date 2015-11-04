@@ -1,5 +1,5 @@
 <head>
-    <title>{% block page_title %}Wine'ot{% endblock %}</title>
+    <title>{% if page_title is defined %} {{ page_title|trans }} - {% endif %}Wine'ot</title>
 
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

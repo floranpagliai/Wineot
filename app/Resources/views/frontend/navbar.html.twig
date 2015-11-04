@@ -1,11 +1,14 @@
 {% if menu_selected is not defined %}
     {% set menu_selected='home' %}
 {% endif %}
+<!-- logo -->
 <div id="logo" class="site-logo text-center">
-    {#<h1>Wine'ot</h1>#}
-    <a href="{{ path('wineot_front_end_homepage') }}"><img src="{{ asset('img/logo-black.png') }}" alt="Wine'ot"
-                                                           height="80%"/></a>
-</div><!-- #logo -->
+    <a href="{{ path('wineot_front_end_homepage') }}">
+        <img src="{{ asset('img/logo-black.png') }}" alt="Wine'ot" height="80%"/>
+    </a>
+</div>
+<!-- logo -->
+<!-- navabar -->
 <div id="navbar" class="navbar-wrapper text-center">
     <nav class="navbar navbar-default site-navigation" role="navigation">
         <ul class="nav navbar-nav navbar-menu">
