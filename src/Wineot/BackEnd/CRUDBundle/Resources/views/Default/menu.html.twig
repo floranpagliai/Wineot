@@ -1,0 +1,10 @@
+<section id="section-categories" class="section">
+    <h2 class="section-title h4 clearfix"><i class="line"></i>CRUD</h2>
+    <ul class="nav nav-pills nav-stacked nav-categories">
+        {% for link in menu %}
+            <li class="{% if app.request.attributes.get('_route') in menu.routes %}active{% endif %}">
+                <a href="{{ path(menu.route) }}">{{ menu.name|trans }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

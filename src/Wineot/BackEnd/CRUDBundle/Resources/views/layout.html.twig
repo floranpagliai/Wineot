@@ -3,6 +3,7 @@
 {% set search_active = false %}
 {% set sitehero_active = false %}
 {% block sidebar %}
+    {% render(controller('WineotBackEndCRUDBundle:Default:renderMenu')) %}
     <section id="section-categories" class="section">
         <h2 class="section-title h4 clearfix"><i class="line"></i>CRUD</h2>
         <ul class="nav nav-pills nav-stacked nav-categories">
