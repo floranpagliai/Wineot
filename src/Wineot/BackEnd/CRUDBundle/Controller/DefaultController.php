@@ -23,7 +23,7 @@ class DefaultController extends Controller
             'name' => 'crud.title.wineries',
             'routes' => array('wineot_back_end_crud_winery', 'wineot_back_end_crud_winery_add', 'wineot_back_end_crud_winery_edit')
         ));
-        $paramsRender = array('menu' => $crudMenu);
+        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'CRUD');
         return $this->render('WineotBackEndCRUDBundle:Default:index.html.twig', $paramsRender);
     }
 }

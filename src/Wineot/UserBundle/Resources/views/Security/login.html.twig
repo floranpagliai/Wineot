@@ -1,6 +1,9 @@
 {% extends 'WineotUserBundle::layout.html.twig' %}
 {% set menu_selected = 'login' %}
 {% set page_title = 'user.action.login' %}
+{% block sidebar %}
+    {% render(controller('WineotBackEndCRUDBundle:Default:renderMenu')) %}
+{% endblock %}
 {% block body %}
     <div class="col-lg-4 col-lg-offset-4">
         <h2 class="section-title  clearfix"><i class="line"></i>
