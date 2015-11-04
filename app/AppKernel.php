@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
-            new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new Pinano\Select2Bundle\PinanoSelect2Bundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Headoo\HeadooMailjetBundle\HeadooMailjetBundle(),

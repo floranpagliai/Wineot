@@ -16,10 +16,7 @@
     {% if sitehero_active is not defined %}
         <div class="site-hero clearfix">
             <div class="container">
-                {% set featured_block = block('featured') %}
-                {% if featured_block is not empty %}
-                    {{ featured_block|raw }}
-                {% endif %}
+                {{ block('featured') }}
             </div>
         </div><!-- .site-hero -->
     {% endif %}
@@ -31,38 +28,35 @@
             <div class="content-area">
                 <div class="row">
 
-                    {% set sidebar_block = block('sidebar') %}
-                    {% set sidebar_block_right = block('sidebar_right') %}
-                    {% set body_block = block('body') %}
-                    {% if sidebar_block is not empty %}
+                    {% if block('sidebar') is not empty %}
                         <div id="sidebar" class="site-sidebar col-md-3">
                             <div class="widget-area">
-                                {{ sidebar_block|raw }}
+                                {{ block('sidebar') }}
                             </div>
                         </div>
                         <div id="content" class="site-content col-md-9">
                             <div class="row">
                                 {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
-                                {{ body_block|raw }}
+                                {{  block('body') }}
                             </div>
                         </div>
-                    {% elseif sidebar_block_right is not empty %}
+                    {% elseif block('sidebar_right') is not empty %}
                         <div id="content" class="site-content col-md-9" style="border-right: solid 2px #f2f2f2;">
                             <div class="row">
                                 {#{% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}#}
-                                {{ body_block|raw }}
+                                {{  block('body') }}
                             </div>
                         </div>
                         <div id="sidebar" class="site-sidebar col-md-3">
                             <div class="widget-area">
-                                {{ sidebar_block_right|raw }}
+                                {{ block('sidebar_right') }}
                             </div>
                         </div>
                     {% else %}
                         <div id="content" class="site-content col-md-12">
                             <div class="row">
                                 {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': false } %}
-                                {{ body_block|raw }}
+                                {{  block('body') }}
                             </div>
                         </div>
                     {% endif %}
@@ -75,10 +69,7 @@
 
     <div class="clearfix">
         <div class="container">
-            {% set featured_bottom_block = block('featured_bottom') %}
-            {% if featured_bottom_block is not empty %}
-                {{ featured_bottom_block|raw }}
-            {% endif %}
+            {{ block('featured_bottom') }}
         </div>
     </div>
     <!-- .site-hero -->

@@ -23,7 +23,7 @@
         "php": ">=5.3.3",
         "phpunit/phpunit": "4.3.*",
         "symfony/symfony": "~2.6",
-        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/orm": "2.4.*",
         "doctrine/doctrine-bundle": "1.2.*",
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*-dev",
@@ -43,7 +43,6 @@
         "jquery/jquery":  "1.10.*",
         "oyejorge/less.php": "1.5.*",
         "ismaambrosi/generator-bundle": "~2.4",
-        "ahmedsamy/hype-mailchimp-bundle": "dev-master",
         "pinano/select2-bundle": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
         "headoo/headoo-mailjet-bundle" : "1.0.x-dev"

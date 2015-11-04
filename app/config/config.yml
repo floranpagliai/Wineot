@@ -89,8 +89,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-hype_mailchimp:
-    api_key: f0bcd52787022617bf764fb9121401bf-us7
-    default_list: cda90528d2
-    ssl: true #optional configuring curl connection
