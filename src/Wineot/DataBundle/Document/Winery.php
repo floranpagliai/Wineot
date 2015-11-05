@@ -141,7 +141,8 @@ class Winery
      */
     public function addWine(Wine $wine)
     {
-        $this->wines[] = $wine;
+        if (!$this->wines->contains($wine))
+            $this->wines[] = $wine;
     }
 
     /**
