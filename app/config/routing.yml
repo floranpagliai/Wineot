@@ -1,3 +1,8 @@
+wineot_rest:
+    type : rest
+    resource : "routing_rest.yml"
+    prefix : /api
+
 wineot_front_end_landing:
     resource: "@WineotFrontEndLandingBundle/Resources/config/routing.yml"
     prefix:   /landing

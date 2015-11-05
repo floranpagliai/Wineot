@@ -1,0 +1,4 @@
+wineot_rest_user :
+  type:  rest
+  resource: "@WineotUserBundle/Resources/config/routing_rest.yml"
+  prefix: /user
