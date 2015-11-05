@@ -107,8 +107,3 @@ fos_rest:
         default_engine: twig
     routing_loader:
         default_format: json
-
-hype_mailchimp:
-    api_key: f0bcd52787022617bf764fb9121401bf-us7
-    default_list: cda90528d2
-    ssl: true #optional configuring curl connection
