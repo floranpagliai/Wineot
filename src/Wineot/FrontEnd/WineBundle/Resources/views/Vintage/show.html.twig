@@ -1,4 +1,5 @@
 {% extends "WineotFrontEndWineBundle::layout.html.twig" %}
+{% set page_title = wine.name ~ ' ' ~ vintage.productionYear  %}
 {% block featured %}
     <div class="featured row">
         <div class="col-md-8">
@@ -20,7 +21,7 @@
 
                     <h1>
                         {{ wine.name }}
-                            <span style="font-weight: lighter"> {{ vintage.productionYear }}</span>
+                        <span style="font-weight: lighter"> {{ vintage.productionYear }}</span>
                     </h1>
                     <br/>
 
