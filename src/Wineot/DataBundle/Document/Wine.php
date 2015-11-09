@@ -327,11 +327,6 @@ class Wine
         return $this->bottlePicture;
     }
 
-    public function isFavorited(User $user)
-    {
-        return $user->isFavorited($this);
-    }
-
     /**
      * @param \Doctrine\Common\Collections\Collection $grappes
      * @return self

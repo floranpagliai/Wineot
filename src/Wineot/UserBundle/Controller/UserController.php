@@ -90,8 +90,8 @@ class UserController extends Controller
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
             return $this->redirect($this->generateUrl('wineot_user_profile'));
-        
-        $em = $this->get('doctrine_mongodb')->getManager();
+
+        $dm = $this->get('doctrine_mongodb')->getManager();
         $flash = $this->get('notify_messenger.flash');
         $mailjet = $this->container->get('headoo_mailjet_wrapper');
         $errors = null;
@@ -100,14 +100,14 @@ class UserController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $user = $em->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $form->get('mail')->getData()));
+            $user = $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $form->get('mail')->getData()));
             if ($user) {
 
                 $password =  substr(uniqid(rand(), true), 0, 8);
                 $encoder = $this->get('security.encoder_factory')->getEncoder($user);
                 $user->setPassword($encoder->encodePassword($password, null));
-                $em->persist($user);
-                $em->flush();
+                $dm->persist($user);
+                $dm->flush();
 
                 $params = array(
                     "method" => "POST",

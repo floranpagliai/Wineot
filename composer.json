@@ -45,7 +45,9 @@
         "ismaambrosi/generator-bundle": "~2.4",
         "pinano/select2-bundle": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "headoo/headoo-mailjet-bundle" : "1.0.x-dev"
+        "headoo/headoo-mailjet-bundle" : "1.0.x-dev",
+        "friendsofsymfony/rest-bundle": "dev-master",
+        "jms/serializer-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
