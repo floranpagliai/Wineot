@@ -483,9 +483,9 @@ class Wine
     public static function getColors()
     {
         return array(
-            Wine::COLOR_RED => 'global.wine.color.red',
-            Wine::COLOR_PINK => 'global.wine.color.pink',
-            Wine::COLOR_WHITE => 'global.wine.color.white'
+            Wine::COLOR_RED => 'wine.title.color_red',
+            Wine::COLOR_PINK => 'wine.title.color_pink',
+            Wine::COLOR_WHITE => 'wine.title.color_white'
         );
     }
 
@@ -496,11 +496,11 @@ class Wine
     public static function getFoodTypes()
     {
         return array(
-            Wine::FOOD_TYPE_MEET => 'global.wine.food_type.meet',
-            Wine::FOOD_TYPE_FISH => 'global.wine.food_type.fish',
-            Wine::FOOD_TYPE_VEGETABLE => 'global.wine.food_type.vegetable',
-            Wine::FOOD_TYPE_CHEESE => 'global.wine.food_type.cheese',
-            Wine::FOOD_TYPE_DESERT => 'global.wine.food_type.desert'
+            Wine::FOOD_TYPE_MEET => 'wine.title.food_type_meet',
+            Wine::FOOD_TYPE_FISH => 'wine.title.food_type_fish',
+            Wine::FOOD_TYPE_VEGETABLE => 'wine.title.food_type_vegetable',
+            Wine::FOOD_TYPE_CHEESE => 'wine.title.food_type_cheese',
+            Wine::FOOD_TYPE_DESERT => 'wine.title.food_type_desert'
         );
     }
 

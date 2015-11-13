@@ -2,6 +2,10 @@ winery:
     action:
         add: "Ajouter un domaine"
         delete: "Supprimer le domaine"
+    title:
+        avg_rating: "Notes Moyenne"
+        wines_count: "Vins"
+        wines_list: "Les vins de ce domaine"
     placeholder:
         country: "Choisir un pays"
         region: "Choisir une région"
