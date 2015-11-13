@@ -11,15 +11,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContext;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository", requireIndexes=true,
- *      @MongoDB\Indexes({
- *          @MongoDB\Index(keys={"winery"="asc"}),
- *          @MongoDB\Index(keys={"name"="asc"})
- *      })
- * )
+ * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
+ *
  */
 class Wine
 {
@@ -116,7 +114,8 @@ class Wine
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
      *  cascade={"all"},
-     *  simple=true)
+     *  simple=true),
+     *  sort={"productionYear": "ASC"}
      * @Assert\Valid
      */
     private $vintages;
@@ -145,6 +144,10 @@ class Wine
         $this->vintages = new ArrayCollection();
         $this->grappes = new ArrayCollection();
     }
+
+    /**
+     * GETTER / SETTER
+     */
 
     /**
      * Get id
@@ -214,7 +217,6 @@ class Wine
 
     /**
      * Get color
-     *
      * @return int $color
      */
     public function getColor()
@@ -223,28 +225,7 @@ class Wine
     }
 
     /**
-     * Add vintage
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     */
-    public function addVintage(Vintage $vintage)
-    {
-        $this->vintages[] = $vintage;
-        $vintage->setWine($this);
-    }
-
-    /**
-     * Remove vintage
-     *
-     * @param \Wineot\DataBundle\Document\Vintage $vintage
-     */
-    public function removeVintage(Vintage $vintage)
-    {
-        $this->vintages->removeElement($vintage);
-        $vintage->setWine(null);
-    }
-
-    /**
+     * Set vintage
      * @param \Doctrine\Common\Collections\Collection $vintages
      * @return $this
      */
@@ -279,26 +260,24 @@ class Wine
      */
     public function getFoodPairings()
     {
-//        var_dump($this->foodPairings->getValues());
         return $this->foodPairings;
     }
 
     /**
-     * Set wineryId
+     * Set winery
      *
-     * @param \Wineot\DataBundle\Document\Winery $wineryId
+     * @param \Wineot\DataBundle\Document\Winery $winery
      * @return self
      */
-    public function setWinery(Winery $wineryId)
+    public function setWinery(Winery $winery)
     {
-        $this->winery = $wineryId;
+        $this->winery = $winery;
         $this->winery->addWine($this);
         return $this;
     }
 
     /**
      * Get winery
-     *
      * @return \Wineot\DataBundle\Document\Winery $winery
      */
     public function getWinery()
@@ -348,12 +327,6 @@ class Wine
         return $this->bottlePicture;
     }
 
-
-    public function isFavorited(User $user)
-    {
-        return $user->isFavorited($this);
-    }
-
     /**
      * @param \Doctrine\Common\Collections\Collection $grappes
      * @return self
@@ -370,27 +343,6 @@ class Wine
     public function getGrappes()
     {
         return $this->grappes;
-    }
-
-    /**
-     * Add grappe
-     *
-     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
-     */
-    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
-    {
-        $this->grappes[] = $grappe;
-    }
-
-    /**
-     * Remove grappe
-     *
-     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
-     */
-    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
-    {
-        $this->grappes->removeElement($grappe);
-        $grappe = null;
     }
 
     /**
@@ -426,6 +378,65 @@ class Wine
     }
 
     /**
+     * ADDER / REMOVER
+     */
+
+    /**
+     * Add vintage
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function addVintage(Vintage $vintage)
+    {
+        $this->vintages[] = $vintage;
+        $vintage->setWine($this);
+    }
+
+    /**
+     * Remove vintage
+     * @param \Wineot\DataBundle\Document\Vintage $vintage
+     */
+    public function removeVintage(Vintage $vintage)
+    {
+        $this->vintages->removeElement($vintage);
+        $vintage->setWine(null);
+    }
+
+    /**
+     * Add grappe
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function addGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes[] = $grappe;
+    }
+
+    /**
+     * Remove grappe
+     * @param \Wineot\DataBundle\Document\Grappe|\Wineot\DataBundle\Document\WineGrappe $grappe
+     */
+    public function removeGrappe(\Wineot\DataBundle\Document\WineGrappe $grappe)
+    {
+        $this->grappes->removeElement($grappe);
+        $grappe = null;
+    }
+
+    /**
+     * FUNCTIONS
+     */
+
+    /**
+     * Set correct picture relation to null
+     * @param Image $picture
+     */
+    public function removePicture(Image $picture)
+    {
+        if ($this->bottlePicture == $picture)
+            $this->bottlePicture = null;
+        elseif ($this->labelPicture == $picture)
+            $this->labelPicture = null;
+    }
+
+    /**
      * Get average rating for all comment of the wine
      * @return null|string
      */
@@ -449,7 +460,6 @@ class Wine
 
     /**
      * Get average price for all vintages of the wine
-     *
      * @return null|string
      */
     public function getAvgPrice()
@@ -467,6 +477,7 @@ class Wine
     }
 
     /**
+     * Get color choices for a wine
      * @return array
      */
     public static function getColors()
@@ -479,6 +490,7 @@ class Wine
     }
 
     /**
+     * Get food type choice for a wine
      * @return array
      */
     public static function getFoodTypes()
@@ -490,5 +502,28 @@ class Wine
             Wine::FOOD_TYPE_CHEESE => 'global.wine.food_type.cheese',
             Wine::FOOD_TYPE_DESERT => 'global.wine.food_type.desert'
         );
+    }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ($this->vintages->count() == 0) {
+            $context->buildViolation('crud.warn.wine.need_vintage')
+                ->atPath('vintages')
+                ->addViolation();
+
+        } else {
+            $vintagesProductionYear = null;
+            foreach ($this->vintages as $vintage) {
+                $vintagesProductionYear[] += $vintage->getProductionYear();
+            }
+            if (!count(array_unique($vintagesProductionYear)) == count($vintagesProductionYear))
+                $context->buildViolation('crud.warn.wine.unique_vintage')
+                    ->atPath('vintages')
+                    ->addViolation();
+        }
     }
 }

@@ -24,7 +24,7 @@ class DefaultController extends Controller
                 "Email" => $email
             );
             $mailjet->contact($params);
-            if ($mailjet->_response_code == 200) {
+//            if ($mailjet->_response_code == 200) {
                 $params = array(
                     "method" => "POST",
                     "from" => "floran@wineot.net",
@@ -34,8 +34,8 @@ class DefaultController extends Controller
                 );
                 $mailjet->sendEmail($params);
                 $flash->success($this->get('translator')->trans('landing.warn.success'));
-            } else
-                $flash->error($this->get('translator')->trans('landing.warn.error'));
+//            } else
+//                $flash->error($this->get('translator')->trans('landing.warn.error'));
             return $this->redirect($this->generateUrl('wineot_front_end_landing_homepage'));
         }
 

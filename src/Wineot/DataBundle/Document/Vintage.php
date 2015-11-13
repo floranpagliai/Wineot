@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Wineot\DataBundle\Document\Comment;
 
 /**
- * @MongoDB\Document(collection="vintages")
+ * @MongoDB\Document(collection="vintages", repositoryClass="Wineot\DataBundle\Repository\VintageRepository")
  */
 
 class Vintage
@@ -375,6 +375,32 @@ class Vintage
     public function getGrappes()
     {
         return $this->wine->getGrappes();
+    }
+
+    public function removePicture(Image $picture)
+    {
+        if ($this->bottlePicture == $picture)
+            $this->bottlePicture = null;
+        elseif ($this->labelPicture == $picture)
+            $this->labelPicture = null;
+    }
+
+    /**
+     * Get one image of the wintage or the wintage
+     * @return null|Image
+     */
+    public function getPicture()
+    {
+        if ($this->bottlePicture)
+            return $this->bottlePicture;
+        elseif ($this->wine->getBottlePicture())
+            return $this->getWine()->getBottlePicture();
+        elseif ($this->labelPicture)
+            return $this->labelPicture;
+        elseif ($this->getWine()->getLabelPicture())
+            return $this->getWine()->getLabelPicture();
+        else
+            return null;
     }
 
     public function getAvgRating()

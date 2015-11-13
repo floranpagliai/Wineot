@@ -32,6 +32,12 @@
 .featured .wine-show-image {
   padding-bottom: 15px;
 }
+.featured .wine-show-image img {
+  max-height: 330px;
+  width: 100%;
+  object-position: center;
+  object-fit: contain;
+}
 .featured h1,
 h2,
 h3 {

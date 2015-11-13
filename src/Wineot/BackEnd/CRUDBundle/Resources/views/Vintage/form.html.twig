@@ -33,32 +33,32 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                {% if  formData.labelPicture.md5 is defined %}
-                    <img class="img-responsive" src="{{ formData.labelPicture.getImage() }}" width="200px">
-                    {#<a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': wine.id }) }}"#}
-                    {#onclick="return confirm('Delete ?')">#}
-                    {#<i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>#}
-                    {#</a>#}
+                {% if  formData.vars.data.labelPicture.filename is defined and formData.vars.data.labelPicture.filename %}
+                    <img class="img-responsive form-picture" src="{{ formData.vars.data.labelPicture.getImage() }}">
+                    <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': formData.vars.data.id, 'pictureId': formData.vars.data.labelPicture.id }) }}"
+                       onclick="return confirm('Delete ?')">
+                        <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
+                    </a>
                 {% else %}
-                    <label>{{ 'wine.form.label_picture'|trans }}</label>
+                    <label>{{ 'global.wine.picture.label'|trans }}</label>
                     {{ form_widget(formData.labelPicture.fileuploaded) }}
                 {% endif %}
             </div>
             <div class="col-sm-6">
-                {% if  formData.bottlePicture.md5 is defined %}
-                    <img class="img-responsive" src="{{ formData.bottlePicture.getImage() }}" width="200px">
-                    {#<a href="{{ path('wineot_back_end_crud_wine_delete_bottle_picture', {'id': wine.id }) }}"#}
-                    {#onclick="return confirm('Delete ?')">#}
-                    {#<i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>#}
-                    {#</a>#}
+                {% if  formData.vars.data.bottlePicture.filename is defined and formData.vars.data.bottlePicture.filename %}
+                    <img class="img-responsive form-picture" src="{{ formData.vars.data.bottlePicture.getImage() }}">
+                    <a href="{{ path('wineot_back_end_crud_wine_delete_picture', {'id': formData.vars.data.id, 'pictureId': formData.vars.data.bottlePicture.id }) }}"
+                       onclick="return confirm('Delete ?')">
+                        <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
+                    </a>
                 {% else %}
-                    <label>{{ 'wine.form.bottle_picture'|trans }}</label>
+                    <label>{{ 'global.wine.picture.bottle'|trans }}</label>
                     {{ form_widget(formData.bottlePicture.fileuploaded) }}
                 {% endif %}
             </div>
         </div>
 {% endmacro %}
-<label>{{ 'wine.form.vintages'|trans }}</label>
+<label>{{ 'wine.vintage.title.vintages'|trans }}</label>
 <div class="collection-vintages" data-prototype="{{ _self.tagCollectionItem(form.vintages.vars.prototype)|e }}">
     {% for vintage in form.vintages %}
         <div class="collection-elem">

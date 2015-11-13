@@ -2,11 +2,11 @@
 
 namespace Wineot\FrontEnd\SearchBundle\Controller;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Int;
 use MongoRegex;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\FrontEnd\SearchBundle\Form\Type\SearchType;
+use Wineot\FrontEnd\SearchBundle\Resources\utils\StringUtil;
 
 
 class SearchController extends Controller
@@ -34,6 +34,7 @@ class SearchController extends Controller
 
             $search = array();
             foreach ($searchInputs as $searchInput) {
+                $searchInput = StringUtil::accentToRegex($searchInput);
                 $search[] = new \MongoRegex("/$searchInput/i");
             }
 

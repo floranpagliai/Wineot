@@ -1,13 +1,12 @@
 {% extends "WineotFrontEndWineBundle::layout.html.twig" %}
+{% set page_title = wine.name ~ ' ' ~ vintage.productionYear  %}
 {% block featured %}
     <div class="featured row">
-        <div class="col-sm-8">
+        <div class="col-md-8">
             <div class="banner-wrapper row">
                 <div class="wine-show-image col-sm-3">
-                    {% if  vintage.bottlePicture.md5 is defined %}
-                        <img class="img-responsive site-hero-image" src="{{ vintage.bottlePicture.getImage() }}">
-                    {% elseif  vintage.labelPicture.md5 is defined %}
-                        <img class="img-responsive site-hero-image" src="{{ vintage.labelPicture.getImage() }}">
+                    {% if  vintage.picture is not null %}
+                        <img class="img-responsive site-hero-image" src="{{ vintage.picture.getImage() }}">
                     {% else %}
                         <img class="img-responsive" src="{{ asset('img/wine_default.jpg') }}"/>
                     {% endif %}
@@ -22,7 +21,7 @@
 
                     <h1>
                         {{ wine.name }}
-                            <span style="font-weight: lighter"> {{ vintage.productionYear }}</span>
+                        <span style="font-weight: lighter"> {{ vintage.productionYear }}</span>
                     </h1>
                     <br/>
 
@@ -74,21 +73,21 @@
             <!-- .banner-wrapper -->
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-md-4">
             <div class="banner-wrapper row text-center">
                 {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'vintageId' : vintage.id })) %}
                 <span class="horizontal-line"></span>
 
                 <div class="col-md-12 wine-show-share">
                     <p>
-                        {% if app.user and app.user.isFavorited(wine) %}
-                            <a href="{{ path('wineot_user_unfavorite_wine', {'wineId': wine.id}) }}"
+                        {% if app.user and app.user.isFavorited(vintage) %}
+                            <a href="{{ path('wineot_user_unfavorite_wine', {'vintageId': vintage.id}) }}"
                                class="btn-social btn-favorite-active" data-toggle="tooltip"
                                data-placement="top" data-original-title="{{ 'wine.action.unfavorite'|trans }}">
                                 <i class="fa fa-heart fa-fw"></i>
                             </a>
                         {% else %}
-                            <a href="{{ path('wineot_user_favorite_wine', {'wineId': wine.id}) }}"
+                            <a href="{{ path('wineot_user_favorite_wine', {'vintageId': vintage.id}) }}"
                                class="btn-social btn-favorite" data-toggle="tooltip"
                                data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
                                 <i class="fa fa-heart fa-fw"></i>
@@ -124,14 +123,12 @@
             <div class="col-sm-8 col-sm-offset-4">
                 <table class="table table-hover">
                     <tbody>
-                    <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
-                    { 'wineryName':wine.winery.name|replace({' ':'-'}), 'wineName':wine.name|replace({' ':'-'}), 'wineId':wine.id }) }}'"
-                        style="cursor: pointer;">
+                    <tr>
                         <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
                         <td class="text-right">{{ wine.getAvgPrice() }} €</td>
                     </tr>
                     {% for vintageElem in wine.vintages %}
-                        <tr onclick="location.href='{{ path('wineot_front_end_wine_vintage_show',
+                        <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
                         { 'wineryName':wine.winery.name|replace({' ':'-'}),
                             'wineName':wine.name|replace({' ':'-'}),
                             'vintage':vintageElem.productionYear,

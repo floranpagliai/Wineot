@@ -19,8 +19,8 @@
                     <div class="description">
                         Prends en photo l'étiquette, l'application te dira tout ce que tu dois savoir pour faire ton
                         choix. Et partage ton avis !
-                        L'application sort bientôt donne nous ton adresse et nous serons ravis de t'envoyer un message
-                        le moment venu.</h2>
+                        L'application sort bientôt, donne nous ton adresse et nous serons ravis de t'envoyer un message
+                        le moment venu.
                         {{ form_start(form) }}
                     </div>
                     <div class="form-inline">
@@ -50,23 +50,23 @@
                     <h3>Scanne un vin</h3>
 
                     <p>Avec l'application, prends en photo l'étiquette pour reconnaitre le vin et tout savoir à son
-                        sujet</p>
+                        sujet.</p>
                 </div>
                 <div class="col-sm-4 feature-box">
                     <i class="fa fa-thumbs-up fa-5x"></i>
 
                     <h3>Conseil personnalisé</h3>
 
-                    <p>L'application analyse ton profil gustatif au fil des utilisations et te conseille les vin suceptible de te plaire.
-                    Parce que tout les goûts sont dans la nature, nos conseils d'achats se basent sur tes goût et non ceux d'autres personnes</p>
+                    <p>L'application analyse ton profil gustatif au fil des utilisations et te conseille les vins susceptibles de te plaire.
+                        Parce que tous les goûts sont dans la nature, nos conseils d'achat se basent sur tes goûts et non ceux d'autres personnes.</p>
                 </div>
                 <div class="col-sm-4 feature-box">
                     <i class="fa fa-star fa-5x"></i>
 
                     <h3>Note et Partage</h3>
 
-                    <p>Donne une note au vin que tu as dégusté, accompagné d'un commentaire et partage ton avis avec la
-                        communauté ou mêmes avec tes amis sur les réseaux sociaux.</p>
+                    <p>Donne une note au vin que tu as dégusté, accompagnée d'un commentaire et partage ton avis avec la
+                        communauté ou même avec tes amis sur les réseaux sociaux.</p>
                 </div>
 
             </div>
@@ -136,7 +136,7 @@
                     <p>Développeur IOS</p>
                 </div>
                 <div class="col-sm-4 team-box">
-                    <img src="{{ asset('img/team/chevre.jpg') }}" class="img-circle">
+                    <img src="{{ asset('img/team/yohann.jpg') }}" class="img-circle">
 
                     <h3>Yohann Payrot</h3>
 
@@ -158,17 +158,18 @@
 
                     <p>Développeur C++</p>
                 </div>
+                <div class="col-sm-4 team-box">
+                    <img src="{{ asset('img/team/thomas.jpg') }}" class="img-circle">
+
+                    <h3>Thomas Medard</h3>
+
+                    <p>Marketing</p>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="clearfix">
-        <div class="container">
-            {% set featured_bottom_block = block('featured_bottom') %}
-            {% if featured_bottom_block is not empty %}
-                {{ featured_bottom_block|raw }}
-            {% endif %}
-        </div>
     </div>
     <!-- .site-hero -->
 

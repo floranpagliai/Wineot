@@ -25,10 +25,11 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new IsmaAmbrosi\Bundle\GeneratorBundle\IsmaAmbrosiGeneratorBundle(),
-            new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new Pinano\Select2Bundle\PinanoSelect2Bundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Headoo\HeadooMailjetBundle\HeadooMailjetBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
             new Utils\RatingBundle\UtilsRatingBundle(),

@@ -12,7 +12,6 @@ use Wineot\DataBundle\Document\Winery;
  */
 class WineRepository extends DocumentRepository
 {
-
     /**
      * Find wines from a array of string terms or an array of wineries
      *
@@ -43,19 +42,20 @@ class WineRepository extends DocumentRepository
 
     public function findTrendingWines()
     {
-        $query = $this->createQueryBuilder();
-        $query->sort('name', 'ASC')
-            ->limit(3);
-        return $query->getQuery()->execute();
+
+        return $this->createQueryBuilder()
+            ->sort('name', 'ASC')
+            ->limit(3)
+            ->getQuery()->execute();
     }
 
     public function findBestRatedWines($wineryId)
     {
-        $query = $this->createQueryBuilder();
-        $query->field('winery')->equals($wineryId);
-        $query->sort('avg_rating', 'DESC')
-            ->limit(3);
-        return $query->getQuery()->execute();
+        return $this->createQueryBuilder()
+            ->field('winery')->equals($wineryId)
+            ->sort('avg_rating', 'DESC')
+            ->limit(3)
+            ->getQuery()->execute();
     }
 
     public function getCount()

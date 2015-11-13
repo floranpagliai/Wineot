@@ -8,14 +8,29 @@ use Wineot\DataBundle\Document\User;
 
 class WineController extends Controller
 {
-    public function showAction($wineName, $wineId)
+    public function redirectWineAction($wineryName, $wineName, $wineId)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($wineId);
-        if (!$wine)
+        $vintage = $dm->getRepository('WineotDataBundle:Vintage')->getNewest($wineId);
+        if (!$vintage)
             throw $this->createNotFoundException('wine.warn.doesntexsit');
-        $paramsRender = array('wine' => $wine);
-        return $this->render('WineotFrontEndWineBundle:Wine:show.html.twig', $paramsRender);
+        $params = array(
+            'wineryName' => $wineryName,
+            'wineName' => $wineName,
+            'vintage' => $vintage->getProductionYear(),
+            'vintageId' => $vintage->getId());
+        return $this->redirect($this->generateUrl('wineot_front_end_wine_show', $params));
+    }
+
+    public function showAction($vintageId)
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $vintage = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
+        $wine = $vintage->getWine();
+        if (!$wine || !$vintage)
+            throw $this->createNotFoundException('wine.warn.doesntexsit');
+        $paramsRender = array('wine' => $wine, 'vintage' => $vintage);
+        return $this->render('WineotFrontEndWineBundle:Vintage:show.html.twig', $paramsRender);
     }
 
     public function trendsAction()

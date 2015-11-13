@@ -35,14 +35,15 @@
   position: relative;
   background-image: url("../../img/icons/star.png");
 }
+.rank {
+  color: #ffb701 !important;
+}
 .rank-small {
   font-size: 15px;
-  color: #ffb701 !important;
   margin-bottom: 5px;
 }
 .rank-big {
   font-size: 30px;
-  color: #ffb701 !important;
   margin-bottom: 15px;
 }
 .rating {

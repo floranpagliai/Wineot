@@ -85,7 +85,7 @@ class WineController extends Controller
             $flash->success($this->get('translator')->trans('crud.warn.wine.edited'));
             return $this->redirectToRoute('wineot_back_end_crud_wine');
         }
-        $paramsRender = array('form' => $form->createView(), 'id' => $id, 'wine' => $wine);
+        $paramsRender = array('form' => $form->createView());
         return $this->render('WineotBackEndCRUDBundle:Wine:edit.html.twig', $paramsRender);
     }
 
@@ -106,34 +106,17 @@ class WineController extends Controller
         return $this->redirectToRoute('wineot_back_end_crud_wine');
     }
 
-    public function deletePictureAction(Request $request, $id)
+    public function deletePictureAction(Request $request, $id, $pictureId)
     {
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
         $wine = $dm->getRepository('WineotDataBundle:Wine')->find($id);
+        if (!$wine)
+            $wine = $dm->getRepository('WineotDataBundle:Vintage')->find($id);
+        $picture = $dm->getRepository('WineotDataBundle:Image')->find($pictureId);
         if ($wine) {
-            $picture = $wine->getLabelPicture();
             $dm->remove($picture);
-            $wine->setLabelPicture(null);
-            $dm->persist($wine);
-            $dm->flush();
-
-            $flash->success($this->get('translator')->trans('crud.warn.wine.picture.deleted'));
-        } else {
-            $flash->error($this->get('translator')->trans('crud.error.wine.notfound'));
-        }
-        return $this->redirect($request->headers->get('referer'));
-    }
-
-    public function deleteBottlePictureAction(Request $request, $id)
-    {
-        $flash = $this->get('notify_messenger.flash');
-        $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Wine')->find($id);
-        if ($wine) {
-            $picture = $wine->getBottlePicture();
-            $dm->remove($picture);
-            $wine->setBottlePicture(null);
+            $wine->removePicture($picture);
             $dm->persist($wine);
             $dm->flush();
 
