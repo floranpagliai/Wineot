@@ -1,47 +1,23 @@
 global:
-    menu:
+    action:
+        add: "Ajouter"
+        delete: "Supprimer"
+        submit: "Éditer"
+        search: "Recherche"
+        save: "Sauvegarder"
+    title:
         home: "Accueil"
         admin: "Administration"
-        profile: "Mon profil"
-        edit_profile: "Réglages"
-    action:
-        submit: "Enregistrer"
-        delete: "Supprimer"
-        add: "Ajouter"
-    wine:
-        action:
-            add: "Ajouter un vin"
-        color:
-            red: "Vin rouge"
-            pink: "Vin rosé"
-            white: "Vin blanc"
-            red_short: "Rouge"
-            pink_short: "Rosé"
-            white_short: "Blanc"
-        picture:
-            label: "Étiquette"
-            bottle: "Bouteille"
-        food_type:
-            meet: "Viandes"
-            fish: "Poissons"
-            vegetable: "Légumes"
-            desert: "Deserts"
-            cheese: "Fromages"
-    winery:
-        picture:
-            cover: "Image de couverture"
-
-    vintage:
-        form:
-            name: "Millésimes"
-            domain_price: "Prix de la bouteille"
-            keeping: "Garde"
-            peak: "Apogée"
-            alcohol: "Alcool"
-            isBio: "Biologique"
-            containsSulphites: "Sulphites"
-    grappe:
-        form:
-            name: "Cépages"
+        search_result: "Résultat de la recherche"
     warn:
-        usermostlogged: "Vous devez être connecté"
+        usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+picture:
+    action:
+        add: "Ajouter une image"
+        delete: "Supprimer l'image"
+    form:
+        bottle: "Bouteille"
+        label: "Étiquette"
+    warn:
+        edited: "L'image à bien été modifié."
+        deleted: "L'image à bien été supprimé."
