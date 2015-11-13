@@ -150,8 +150,6 @@ class Image
         return $this->uploadDate;
     }
 
-
-
     /**
      * @MongoDB\PrePersist
      * @MongoDB\PreUpdate

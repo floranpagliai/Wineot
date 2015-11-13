@@ -42,7 +42,7 @@
 
                     <div class="wine-show-keys">
                         <div class="wine-show-key pull-right">
-                            <h4>{{ 'wine.keys.avg_rating'|trans }}</h4>
+                            <h4>{{ 'wine.title.avg_rating'|trans }}</h4>
 
                             <p>
                                 {% if vintage.getAvgRating() is not null %}
@@ -56,7 +56,7 @@
                             </p>
                         </div>
                         <div class="wine-show-key pull-right">
-                            <h4>{{ 'wine.keys.avg_price'|trans }}</h4>
+                            <h4>{{ 'wine.title.avg_price'|trans }}</h4>
 
                             <p>
                                 {% if vintage.getAvgPrice() is not null %}
@@ -117,14 +117,14 @@
     {% if wine.vintages is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
-                {{ 'wine.vintage.title.vintages'|trans }}
+                {{ 'wine.title.vintages'|trans }}
             </h3>
 
             <div class="col-sm-8 col-sm-offset-4">
                 <table class="table table-hover">
                     <tbody>
                     <tr>
-                        <td>{{ 'wine.vintage.title.all_vintage'|trans }}</td>
+                        <td>{{ 'wine.title.all_vintages'|trans }}</td>
                         <td class="text-right">{{ wine.getAvgPrice() }} €</td>
                     </tr>
                     {% for vintageElem in wine.vintages %}

@@ -19,6 +19,7 @@ class WineryController extends Controller
     public function indexAction()
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
+        $dm->getRepository('WineotDataBundle:Winery')->ensureWineRelation();
         $dm->getRepository('WineotDataBundle:Wine')->ensureWineryRelation();
         $wineries = $dm->getRepository('WineotDataBundle:Winery')->findAll();
         $paramsRender = array('wineries' => $wineries);

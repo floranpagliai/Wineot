@@ -2,6 +2,7 @@
 
 namespace Wineot\DataBundle\Repository;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Wineot\DataBundle\Document\Wine;

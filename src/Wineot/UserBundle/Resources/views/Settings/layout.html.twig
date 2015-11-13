@@ -8,7 +8,7 @@
                 <a href="{{ path('wineot_user_profile_edit') }}">{{ 'user.title.my_informations'|trans }}</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') in ['wineot_user_profile_edit_password'] %}active{% endif %}">
-                <a href="{{ path('wineot_user_profile_edit_password') }}">{{ 'user.title.change_password'|trans }}</a>
+                <a href="{{ path('wineot_user_profile_edit_password') }}">{{ 'user.title.password_edit'|trans }}</a>
             </li>
         </ul>
     </section>

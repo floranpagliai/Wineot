@@ -1,5 +1,5 @@
 {% extends 'WineotUserBundle::layout.html.twig' %}
-{% set page_title = 'user.title.profile' %}
+{% set page_title = 'user.title.my_profile' %}
 {% block body %}
-       {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorites'} %}
+       {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorite_wines'} %}
 {% endblock %}

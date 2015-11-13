@@ -8,6 +8,7 @@
 namespace Wineot\DataBundle\Repository;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Wineot\DataBundle\Document\Wine;
 
@@ -32,5 +33,18 @@ class WineryRepository extends DocumentRepository {
     public function getCount()
     {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
+    }
+
+    public function ensureWineRelation()
+    {
+        $dm = $this->getDocumentManager();
+
+        $wineries = $this->findAll();
+        foreach ($wineries as $winery)
+        {
+            $winery->setWines(new ArrayCollection());
+            $dm->persist($winery);
+        }
+        $dm->flush();
     }
 } 

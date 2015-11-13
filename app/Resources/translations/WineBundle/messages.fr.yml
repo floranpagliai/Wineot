@@ -1,0 +1,37 @@
+wine:
+    action:
+        add: "Ajouter un vin"
+        delete: "Supprimer le vin"
+        search: "Rechercher un vin"
+    title:
+        color_red: "Rouge"
+        color_white: "Blanc"
+        color_pink: "Rosé"
+        food_pairings: "Accords mets & vins"
+        food_type_meet: "Viande"
+        food_type_fish: "Poisson"
+        food_type_cheese: "Fromage"
+        food_type_desert: "Desert"
+        vintages: "Millésimes"
+        all_vintages: "Tout les millésimes"
+        grappes: "Cépages"
+        trends: "Les vins les plus consultés"
+        avg_price: "Prix Moyen"
+        avg_rating: "Note Moyenne"
+    form:
+        winery: "Domaine"
+        name: "Nom du vin"
+        color: "Couleur"
+        containsSulphites: "Cocher si le vin contient des sulfites"
+        isbio: "Cocher si le vin est bio"
+        vintage: "Millésime"
+        vintages: "Millésimes"
+    placeholder:
+        color: "Choisir une couleur"
+        winery: "Choisir un domaine"
+        grappe: "Choisir un cépage"
+    warn:
+        edited: "Le vin à bien été modifié."
+        deleted: "Le vin à bien été supprimé."
+        favorited: "Le vin à bien été ajouté dans vos favoris."
+        unfavorited: "Le vin à bien été enlevé de vos favoris."

@@ -10,12 +10,12 @@
         <p>
             {{ winery.region.name }} · {{ winery.country.name }}
         </p>
-        <h4>{{ 'winery.keys.wines_count'|trans }}</h4>
+        <h4>{{ 'winery.title.wines_count'|trans }}</h4>
 
         <p>
             {{ winery.wines|length }}
         </p>
-        <h4>{{ 'winery.keys.avg_rating'|trans }}</h4>
+        <h4>{{ 'winery.title.avg_rating'|trans }}</h4>
 
         <p>
             {% if winery.getAvgRating() is not null %}

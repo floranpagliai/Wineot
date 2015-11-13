@@ -15,7 +15,7 @@ use Wineot\DataBundle\Document\Wine;
 
 class WineExtension extends Twig_Extension
 {
-    /** @var \Symfony\Component\Translation\Translator  */
+    /** @var \Symfony\Component\Translation\Translator */
     protected $translator;
 
     public function __construct(Translator $translator)
@@ -37,23 +37,12 @@ class WineExtension extends Twig_Extension
      */
     public function wineColor($wineColor, $short = false)
     {
-        if ($wineColor ==  Wine::COLOR_RED) {
-            if ($short)
-                return $this->translator->trans('global.wine.color.red_short');
-            else
-                return $this->translator->trans('global.wine.color.red');
-        }
-        elseif ($wineColor ==  Wine::COLOR_PINK) {
-            if ($short)
-                return $this->translator->trans('global.wine.color.pink_short');
-            else
-                return $this->translator->trans('global.wine.color.pink');
-        }
-        else {
-            if ($short)
-                return $this->translator->trans('global.wine.color.white_short');
-            else
-                return $this->translator->trans('global.wine.color.white');
+        if ($wineColor == Wine::COLOR_RED) {
+            return $this->translator->trans('wine.title.color_red');
+        } elseif ($wineColor == Wine::COLOR_PINK) {
+            return $this->translator->trans('wine.title.color_pink');
+        } else {
+            return $this->translator->trans('wine.title.color_white');
         }
     }
 

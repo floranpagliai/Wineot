@@ -5,7 +5,7 @@ comment:
         list: "Les avis sur ce vin"
     form:
         comment: "Votre avis sur le vin"
+    message:
+        no_comment: "Aucun avis n'a été publié sur ce vin. Soyez le premier à donner votre avis."
     warn:
         added: "Votre comentaire a bien été ajouté."
-        usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
-        no_comment: "Aucun avis n'a été publié sur ce vin. Soyez le premier à donner votre avis."
