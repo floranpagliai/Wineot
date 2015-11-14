@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Headoo\HeadooMailjetBundle\HeadooMailjetBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Shked0wn\TimelineBundle\TimelineBundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
             new Utils\RatingBundle\UtilsRatingBundle(),

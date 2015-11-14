@@ -5,6 +5,7 @@ namespace Wineot\FrontEnd\WineBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\User;
+use Wineot\DataBundle\Document\Vintage;
 
 class WineController extends Controller
 {
@@ -29,7 +30,26 @@ class WineController extends Controller
         $wine = $vintage->getWine();
         if (!$wine || !$vintage)
             throw $this->createNotFoundException('wine.warn.doesntexsit');
-        $paramsRender = array('wine' => $wine, 'vintage' => $vintage);
+
+        if ($vintage->getKeeping() || $vintage->getPeak()) {
+            $timeline = array(
+                array(
+                    'title' => 'wine.title.vintage',
+                    'date' => array('year' => $vintage->getProductionYear())
+                ),
+                array(
+                    'title' => 'wine.title.peak',
+                    'date' => array('year' => $vintage->getPeak())
+                ),
+                array(
+                    'title' => 'wine.title.keeping',
+                    'date' => array('year' => $vintage->getKeeping())
+                )
+            );
+        } else
+            $timeline = null;
+
+        $paramsRender = array('wine' => $wine, 'vintage' => $vintage, 'timeline' => $timeline);
         return $this->render('WineotFrontEndWineBundle:Vintage:show.html.twig', $paramsRender);
     }
 
