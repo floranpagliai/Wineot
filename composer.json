@@ -47,7 +47,8 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "headoo/headoo-mailjet-bundle" : "1.0.x-dev",
         "friendsofsymfony/rest-bundle": "dev-master",
-        "jms/serializer-bundle": "dev-master"
+        "jms/serializer-bundle": "dev-master",
+        "shked0wn/timeline-bundle": "^1.0"
     },
     "scripts": {
         "post-install-cmd": [

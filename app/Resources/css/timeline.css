@@ -1,0 +1,17 @@
+(node) util.print is deprecated. Use console.log instead.
+section#timeline article div.inner {
+  float: right;
+}
+section#timeline article div.inner h2:after {
+  left: -5px;
+}
+section#timeline article div.inner h2 {
+  background: #e74c3c;
+}
+section#timeline article div.inner h2:after {
+  background: #e74c3c;
+}
+section#timeline article div.inner span.date {
+  width: 60px;
+  height: 50px;
+}

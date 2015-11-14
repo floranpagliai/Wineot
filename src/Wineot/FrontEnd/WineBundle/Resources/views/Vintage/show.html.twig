@@ -171,6 +171,15 @@
         </div>
     {% endif %}
 
+    {% if timeline is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.preservation'|trans }}
+            </h3>
+                {% render(controller('TimelineBundle:Timeline:renderTimeline', { 'timeline': timeline })) %}
+        </div>
+    {% endif %}
+
 {% endblock %}
 
 {% block sidebar_right %}
