@@ -126,6 +126,11 @@
                     <tr>
                         <td>{{ 'wine.title.all_vintages'|trans }}</td>
                         <td class="text-right">{{ wine.getAvgPrice() }} €</td>
+                        {% if wine.getAvgPrice() is not null %}
+                            <td class="text-right">{{ wine.getAvgPrice }} €</td>
+                        {% else %}
+                            <td class="text-right">-</td>
+                        {% endif %}
                     </tr>
                     {% for vintageElem in wine.vintages %}
                         <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
@@ -136,10 +141,13 @@
                             style="cursor: pointer;">
                             {% if vintage.productionYear == vintageElem.productionYear %}
                                 <td><b>{{ vintageElem.productionYear }}</b></td>
-                                <td class="text-right"><b>{{ vintageElem.getAvgPrice }} €</b></td>
                             {% else %}
                                 <td>{{ vintageElem.productionYear }}</td>
+                            {% endif %}
+                            {% if vintageElem.getAvgPrice() is not null %}
                                 <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
+                            {% else %}
+                                <td class="text-right">-</td>
                             {% endif %}
                         </tr>
                     {% endfor %}

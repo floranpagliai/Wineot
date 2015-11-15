@@ -466,12 +466,17 @@ class Wine
     {
         if ($this->vintages->count() != 0) {
             $avgPrice = 0;
+            $count = 0;
             $vintages = $this->vintages;
             foreach($vintages as $vintage)
             {
-                $avgPrice += $vintage->getAvgPrice();
+                if ($vintage->getAvgPrice()) {
+                    $avgPrice += $vintage->getAvgPrice();
+                    $count++;
+                }
+
             }
-            return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
+            return number_format($avgPrice/$count, 2, ",", " ");
         } else
             return null;
     }

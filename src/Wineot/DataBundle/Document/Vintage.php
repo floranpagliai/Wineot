@@ -420,6 +420,9 @@ class Vintage
     public function getAvgPrice()
     {
         //TODO : Calculate price based on sellings
-        return number_format($this->wineryPrice, 2, ",", " ");
+        if ($this->wineryPrice > 0)
+            return number_format($this->wineryPrice, 2, ",", " ");
+        else
+            return null;
     }
 }
