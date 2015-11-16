@@ -4,6 +4,7 @@ wine:
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
     title:
+        description: "Description"
         color_red: "Rouge"
         color_white: "Blanc"
         color_pink: "Rosé"
