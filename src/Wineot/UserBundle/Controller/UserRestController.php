@@ -13,27 +13,47 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class UserRestController extends Controller
 {
     /**
-     * @Get("/{email}", requirements={"email"=".+"})
-     * @Route(requirements={"email"=".+"})
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Get user object for mail",
+     *  output="Wineot\DataBundle\Document\User",
+     *  statusCodes={
+     *         200="Returned when successful",
+     *         404="Returned when the user is not found"
+     *  }
+     * )
+     *
+     * @Get("/{mail}", requirements={"mail"=".+"})
+     * @Route(requirements={"mail"=".+"})
      */
-    public function getUserAction($email)
+    public function getUserAction($mail)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $user =  $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $email));
+        $user =  $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $mail));
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }
         $response = new Response();
-        $response->setStatusCode(201);
+        $response->setStatusCode(200);
 
         return $response;
     }
 
     /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Reset user password for mail, a mail will be sent to him.",
+     *  statusCodes={
+     *         200="Returned when successful",
+     *         404="Returned when the user is not found"
+     *  }
+     * )
+     *
      * @Get("/password/reset/{mail}", requirements={"mail"=".+"})
      * @Route(requirements={"mail"=".+"})
      */
@@ -62,7 +82,7 @@ class UserRestController extends Controller
         $mailjet->sendEmail($params);
 
         $response = new Response();
-        $response->setStatusCode(201);
+        $response->setStatusCode(200);
 
         return $response;
     }

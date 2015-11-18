@@ -48,7 +48,8 @@
         "headoo/headoo-mailjet-bundle" : "1.0.x-dev",
         "friendsofsymfony/rest-bundle": "dev-master",
         "jms/serializer-bundle": "dev-master",
-        "shked0wn/timeline-bundle": "^1.0"
+        "shked0wn/timeline-bundle": "^1.0",
+        "nelmio/api-doc-bundle": "^2.10"
     },
     "scripts": {
         "post-install-cmd": [

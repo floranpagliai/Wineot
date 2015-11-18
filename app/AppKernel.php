@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Shked0wn\TimelineBundle\TimelineBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
             new Utils\NotifyMessengerBundle\UtilsNotifyMessengerBundle(),
             new Utils\RatingBundle\UtilsRatingBundle(),
