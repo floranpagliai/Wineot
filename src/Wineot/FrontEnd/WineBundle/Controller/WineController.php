@@ -40,4 +40,12 @@ class WineController extends Controller
         $paramsRender = array('wines' => $wines, 'wineListTitle' => 'wine.title.trends');
         return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
     }
+
+    public function bestRatedAction()
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $wines = $dm->getRepository('WineotDataBundle:Wine')->findBestRatedWines();
+        $paramsRender = array('wines' => $wines, 'wineListTitle' => 'wine.title.best_rated');
+        return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
+    }
 }

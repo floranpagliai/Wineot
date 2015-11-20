@@ -4,6 +4,7 @@ wine:
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
     title:
+        best_rated: "Les vins les mieux notés"
         description: "Description"
         color_red: "Rouge"
         color_white: "Blanc"

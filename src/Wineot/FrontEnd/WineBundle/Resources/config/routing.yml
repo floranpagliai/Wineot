@@ -7,3 +7,6 @@ wineot_front_end_wine_redirect:
 wineot_front_end_wine_trends:
     path:     /trends
     defaults: { _controller: WineotFrontEndWineBundle:Wine:trends, wineryName: all }
+wineot_front_end_wine_best_rated:
+    path:     /best-rated
+    defaults: { _controller: WineotFrontEndWineBundle:Wine:bestRated, wineryName: all }

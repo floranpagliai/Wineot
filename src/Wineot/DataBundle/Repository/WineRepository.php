@@ -50,13 +50,15 @@ class WineRepository extends DocumentRepository
             ->getQuery()->execute();
     }
 
-    public function findBestRatedWines($wineryId)
+    public function findBestRatedWines($wineryId = null)
     {
-        return $this->createQueryBuilder()
-            ->field('winery')->equals($wineryId)
-            ->sort('avg_rating', 'DESC')
-            ->limit(3)
-            ->getQuery()->execute();
+        $query = $this->createQueryBuilder();
+        if ($wineryId)
+            $query->field('winery')->equals($wineryId);
+
+        return $query->sort('avg_rating', 'DESC')
+                ->limit(3)
+                ->getQuery()->execute();
     }
 
     public function getCount()
