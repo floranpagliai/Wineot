@@ -1,14 +1,31 @@
 winery:
     action:
         add: "Ajouter un domaine"
+        edit: "Modifier le domaine"
+        submit: "Sauvegarder le domaine"
         delete: "Supprimer le domaine"
     title:
+        add: "Ajouter un domaine"
+        edit: "Modifier le domaine"
+        adress: "Adresse"
         avg_rating: "Notes Moyenne"
         wines_count: "Vins"
         wines_list: "Les vins de ce domaine"
+    form:
+        country: "Pays"
+        region: "Région"
+        name: "Nom du domaine"
+        localisation: "Localisation"
+        wines: "Vins"
+        cover_picture: "Image de couverture"
     placeholder:
+        adresse: "Adresse"
+        town: "Ville"
+        zipcode: "Code Postal"
         country: "Choisir un pays"
         region: "Choisir une région"
+        phone: "Numéro de téléphone"
+        mail: "Adresse Email de contact"
     warn:
         edited: "Le domaine à bien été modifié."
         deleted: "Le domaine à bien été supprimé."

@@ -4,9 +4,9 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Localisation</th>
-            <th>Wines</th>
+            <th>{{ 'winery.form.name'|trans }}</th>
+            <th>{{ 'winery.form.localisation'|trans }}</th>
+            <th>{{ 'winery.form.wines'|trans }}</th>
             <th class="btn-table"></th>
             <th class="btn-table"></th>
         </tr>
@@ -39,6 +39,6 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_winery_add') }}">add</a>
+    <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_winery_add') }}">{{ 'winery.action.add'|trans }}</a>
 
 {% endblock %}

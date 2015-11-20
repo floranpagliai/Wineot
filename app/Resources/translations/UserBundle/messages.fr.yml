@@ -26,7 +26,6 @@ user:
             email: "Email"
             password: "Mot de passe"
             password_validation: "Mot de passe (Validation)"
-        legend:
         placeholder:
             username: "Nom d'utilisateur"
             firstname: "Prénom"
