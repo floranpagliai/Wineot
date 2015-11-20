@@ -464,21 +464,20 @@ class Wine
      */
     public function getAvgPrice()
     {
-        if ($this->vintages->count() != 0) {
-            $avgPrice = 0;
-            $count = 0;
-            $vintages = $this->vintages;
-            foreach($vintages as $vintage)
-            {
-                if ($vintage->getAvgPrice()) {
-                    $avgPrice += $vintage->getAvgPrice();
-                    $count++;
-                }
-
+        $avgPrice = 0;
+        $count = 0;
+        $vintages = $this->vintages;
+        foreach($vintages as $vintage)
+        {
+            if ($vintage->getAvgPrice()) {
+                $avgPrice += $vintage->getAvgPrice();
+                $count++;
             }
+
+        }
+        if ($count != 0)
             return number_format($avgPrice/$count, 2, ",", " ");
-        } else
-            return null;
+        return null;
     }
 
     /**
