@@ -36,12 +36,12 @@ class UserRestController extends Controller
         $dm = $this->get('doctrine_mongodb')->getManager();
         $user =  $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $mail));
         if(!is_object($user)){
-            throw $this->createNotFoundException();
+            throw $this->createNotFoundException("User not found");
         }
         $response = new Response();
         $response->setStatusCode(200);
 
-        return $response;
+        return $user;
     }
 
     /**

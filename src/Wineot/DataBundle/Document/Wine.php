@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Wineot\DataBundle\Document\Comment;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
@@ -33,6 +35,7 @@ class Wine
 
     /**
      * @var integer
+     * @Expose
      *
      * @MongoDB\Id
      */
