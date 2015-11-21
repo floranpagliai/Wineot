@@ -171,7 +171,6 @@ class Image
     }
 
     /**
-     * @VirtualProperty
      *
      * @return null|string
      */

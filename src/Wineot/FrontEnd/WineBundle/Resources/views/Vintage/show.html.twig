@@ -125,7 +125,6 @@
                     <tbody>
                     <tr>
                         <td>{{ 'wine.title.all_vintages'|trans }}</td>
-                        <td class="text-right">{{ wine.getAvgPrice() }} €</td>
                         {% if wine.getAvgPrice() is not null %}
                             <td class="text-right">{{ wine.getAvgPrice }} €</td>
                         {% else %}
