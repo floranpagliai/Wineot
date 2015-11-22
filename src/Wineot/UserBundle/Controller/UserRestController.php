@@ -53,7 +53,7 @@ class UserRestController extends Controller
      *  }
      * )
      *
-     * @Get("/resetpassword/{mail}")
+     * @Get("/{mail}/resetpassword")
      * @param $mail
      *
      * @return Response
@@ -63,8 +63,6 @@ class UserRestController extends Controller
         $mailjet = $this->container->get('headoo_mailjet_wrapper');
         $dm = $this->get('doctrine_mongodb')->getManager();
         $user =  $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $mail));
-        var_dump($user->getMail());
-        var_dump($mail);
         if(!is_object($user)){
             throw $this->createNotFoundException("User not found");
         }
@@ -78,7 +76,7 @@ class UserRestController extends Controller
             "method" => "POST",
             "from" => "no-reply@wineot.net",
             "to" => $user->getMail(),
-            "subject" => $this->get('translator')->trans('user.title.password_reset'),
+            "subject" => $this->get('translator')->trans('user.title.password_forget'),
             "html" => $this->renderView('Emails/resetPassword.html.twig', array('password' => $password))
         );
 
