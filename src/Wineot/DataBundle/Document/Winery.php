@@ -292,4 +292,25 @@ class Winery
         else
             return null;
     }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['name'] = $this->getName();
+        $data['country'] = $this->getCountry()->getName();
+        $data['region'] = $this->getRegion()->getName();
+
+        $wines = array();
+        foreach($this->getWines() as $wine)
+            $wines[] = $wine->getId();
+        $data['wines'] = $wines;
+
+        return $data;
+    }
 }

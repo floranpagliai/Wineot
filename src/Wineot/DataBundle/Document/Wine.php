@@ -10,16 +10,21 @@ namespace Wineot\DataBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Wineot\DataBundle\Document\Comment;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\HandlerCallback;
 
 /**
  * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
  *
+ * @ExclusionPolicy("all")
  */
 class Wine
 {
@@ -43,6 +48,7 @@ class Wine
 
     /**
      * @var Winery
+     * @MaxDepth(2)
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Winery",
@@ -53,6 +59,7 @@ class Wine
 
     /**
      * @var string
+     * @Expose
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
@@ -64,6 +71,7 @@ class Wine
 
     /**
      * @var string
+     * @Expose
      *
      * @MongoDB\Field(type="string")
      */
@@ -71,6 +79,7 @@ class Wine
 
     /**
      * @var integer
+     * @Expose
      *
      * @MongoDB\Field(type="int")
      * @Assert\NotBlank()
@@ -79,6 +88,7 @@ class Wine
 
     /**
      * @var boolean
+     * @Expose
      *
      * @MongoDB\Field(type="boolean", name="is_bio")
      */
@@ -86,6 +96,7 @@ class Wine
 
     /**
      * @var boolean
+     * @Expose
      *
      * @MongoDB\Field(type="boolean", name="contains_sulphites")
      */
@@ -113,6 +124,7 @@ class Wine
 
     /**
      * @var collection
+     * @Expose
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
@@ -125,6 +137,8 @@ class Wine
 
     /**
      * @var collection
+     * @Expose
+     * @MaxDepth(2)
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="WineGrappe",
@@ -135,6 +149,7 @@ class Wine
 
     /**
      * @var collection
+     * @Expose
      *
      * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
      */
@@ -532,5 +547,35 @@ class Wine
                     ->atPath('vintages')
                     ->addViolation();
         }
+    }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['name'] = $this->getName();
+        $data['color'] = $this->getColor();
+        $data['description'] = $this->getDescription();
+        $data['winery'] = $this->getWinery()->getDataArray();
+
+        $vintages = array();
+        foreach($this->getVintages() as $vintage)
+            $vintages[] = $vintage->getDataArray();
+        $data['vintages'] = $vintages;
+        
+        return $data;
+    }
+
+    /** @HandlerCallback("json", direction = "serialization")
+     * @param JsonSerializationVisitor $visitor
+     */
+    public function serializeToJson(JsonSerializationVisitor $visitor)
+    {
+        $visitor->setRoot($this->getDataArray());
     }
 }

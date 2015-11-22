@@ -425,4 +425,18 @@ class Vintage
         else
             return null;
     }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['wine'] = $this->getWine()->getId();
+        $data['vintage'] = $this->getProductionYear();
+        return $data;
+    }
 }

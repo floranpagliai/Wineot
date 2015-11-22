@@ -33,7 +33,7 @@ class WineRestController extends Controller
     public function getWineAction($id)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine =  $dm->getRepository('WineotDataBundle:Wine')->findOneBy(array('id' => $id));
+        $wine =  $dm->getRepository('WineotDataBundle:Wine')->find($id);
         if(!is_object($wine)){
             throw $this->createNotFoundException();
         }
