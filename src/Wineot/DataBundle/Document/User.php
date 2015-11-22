@@ -9,10 +9,12 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
+use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -23,7 +25,16 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class User implements UserInterface
 {
     /**
+     * @var integer
+     * @JMS\Type("integer")
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
      * @var string
+     * @JMS\Type("string")
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
@@ -116,13 +127,6 @@ class User implements UserInterface
      * @Assert\NotBlank()
      */
     private $roles;
-
-    /**
-     * @var integer
-     *
-     * @MongoDB\Id
-     */
-    private $id;
 
     public function __construct()
     {
@@ -396,5 +400,29 @@ class User implements UserInterface
         return array(
             'ROLE_ADMIN' => 'Admin',
         );
+    }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['username'] = $this->getUsername();
+        $data['mail'] = $this->getMail();
+
+        return $data;
+    }
+
+    /**
+     * @JMS\HandlerCallback("json", direction = "serialization")
+     * @param JsonSerializationVisitor $visitor
+     */
+    public function serializeToJson(JsonSerializationVisitor $visitor)
+    {
+        $visitor->setRoot($this->getDataArray());
     }
 }

@@ -56,7 +56,7 @@ class WineRepository extends DocumentRepository
         if ($wineryId)
             $query->field('winery')->equals($wineryId);
 
-        return $query->sort('avg_rating', 'DESC')
+        return $query->sort('avg_rating', 'ASC')
                 ->limit(3)
                 ->getQuery()->execute();
     }

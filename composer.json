@@ -46,7 +46,7 @@
         "pinano/select2-bundle": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
         "headoo/headoo-mailjet-bundle" : "1.0.x-dev",
-        "friendsofsymfony/rest-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "^1.7",
         "jms/serializer-bundle": "^1.1",
         "shked0wn/timeline-bundle": "^1.0",
         "nelmio/api-doc-bundle": "^2.10"

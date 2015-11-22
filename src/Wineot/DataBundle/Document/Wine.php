@@ -533,7 +533,7 @@ class Wine
     public function validate(ExecutionContextInterface $context)
     {
         if ($this->vintages->count() == 0) {
-            $context->buildViolation('crud.warn.wine.need_vintage')
+            $context->buildViolation('wine.warn.need_vintage')
                 ->atPath('vintages')
                 ->addViolation();
 
@@ -567,7 +567,7 @@ class Wine
         foreach($this->getVintages() as $vintage)
             $vintages[] = $vintage->getDataArray();
         $data['vintages'] = $vintages;
-        
+
         return $data;
     }
 

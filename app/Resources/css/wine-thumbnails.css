@@ -61,6 +61,9 @@
   padding: 5px;
   margin-top: 5px;
 }
+.wine-thumbnail .wine-thumbnail-body .wine-thumbnail-country p {
+  font-size: 12px;
+}
 .wine-thumbnail .wine-thumbnail-footer {
   position: absolute;
   width: 100%;

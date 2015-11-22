@@ -11,7 +11,7 @@ namespace Wineot\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -28,8 +28,7 @@ class UserRestController extends Controller
      *  }
      * )
      *
-     * @Get("/{mail}", requirements={"mail"=".+"})
-     * @Route(requirements={"mail"=".+"})
+     * @Get("/{mail}")
      */
     public function getUserAction($mail)
     {
@@ -54,14 +53,18 @@ class UserRestController extends Controller
      *  }
      * )
      *
-     * @Get("/password/reset/{mail}", requirements={"mail"=".+"})
-     * @Route(requirements={"mail"=".+"})
+     * @Get("/resetpassword/{mail}")
+     * @param $mail
+     *
+     * @return Response
      */
     public function getResetPasswordUserAction($mail)
     {
         $mailjet = $this->container->get('headoo_mailjet_wrapper');
         $dm = $this->get('doctrine_mongodb')->getManager();
         $user =  $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $mail));
+        var_dump($user->getMail());
+        var_dump($mail);
         if(!is_object($user)){
             throw $this->createNotFoundException("User not found");
         }

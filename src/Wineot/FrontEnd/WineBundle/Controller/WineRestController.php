@@ -28,7 +28,6 @@ class WineRestController extends Controller
      * )
      *
      * @Get("/{id}")
-     * @Route(requirements={"id"})
      */
     public function getWineAction($id)
     {
