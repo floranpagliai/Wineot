@@ -11,14 +11,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Wineot\DataBundle\Document\Comment;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\HandlerCallback;
 
 /**
  * @MongoDB\Document(collection="vintages", repositoryClass="Wineot\DataBundle\Repository\VintageRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 
 class Vintage
@@ -437,6 +442,18 @@ class Vintage
         $data['id'] = $this->getId();
         $data['wine'] = $this->getWine()->getId();
         $data['vintage'] = $this->getProductionYear();
+        $data['is_bio'] = $this->isIsBio();
+        $data['contains_sulphites'] = $this->isContainsSulphites();
+        $data['peak'] = $this->getPeak();
+        $data['keeping'] = $this->getKeeping();
         return $data;
+    }
+
+    /** @HandlerCallback("json", direction = "serialization")
+     * @param JsonSerializationVisitor $visitor
+     */
+    public function serializeToJson(JsonSerializationVisitor $visitor)
+    {
+        $visitor->setRoot($this->getDataArray());
     }
 }

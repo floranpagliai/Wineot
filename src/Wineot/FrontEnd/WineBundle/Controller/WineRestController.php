@@ -39,4 +39,28 @@ class WineRestController extends Controller
 
         return $wine;
     }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Get vintage object for id",
+     *  output="Wineot\DataBundle\Document\Vintage",
+     *  statusCodes={
+     *         200="Returned when successful",
+     *         404="Returned when the vintage is not found"
+     *  }
+     * )
+     *
+     * @Get("/vintage/{id}")
+     */
+    public function getVintageAction($id)
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $wine =  $dm->getRepository('WineotDataBundle:Vintage')->find($id);
+        if(!is_object($wine)){
+            throw $this->createNotFoundException();
+        }
+
+        return $wine;
+    }
 }
