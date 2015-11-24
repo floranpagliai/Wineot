@@ -558,10 +558,10 @@ class Wine
     {
         $data = array();
         $data['id'] = $this->getId();
+        $data['winery'] = $this->getWinery()->getDataArray();
         $data['name'] = $this->getName();
         $data['color'] = $this->getColor();
         $data['description'] = $this->getDescription();
-        $data['winery'] = $this->getWinery()->getDataArray();
 
         $vintages = array();
         foreach($this->getVintages() as $vintage)

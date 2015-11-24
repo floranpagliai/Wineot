@@ -57,14 +57,14 @@ class Vintage
      *
      * @MongoDB\Field(type="boolean", name="is_bio")
      */
-    private $isBio;
+    private $isBio = false;
 
     /**
      * @var boolean
      *
      * @MongoDB\Field(type="boolean", name="contains_sulphites")
      */
-    private $containsSulphites;
+    private $containsSulphites = false;
 
     /**
      * @var Int
@@ -440,7 +440,7 @@ class Vintage
     {
         $data = array();
         $data['id'] = $this->getId();
-        $data['wine'] = $this->getWine()->getId();
+        $data['wine'] = $this->getWine();
         $data['vintage'] = $this->getProductionYear();
         $data['is_bio'] = $this->isIsBio();
         $data['contains_sulphites'] = $this->isContainsSulphites();
