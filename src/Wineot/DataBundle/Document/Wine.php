@@ -552,9 +552,10 @@ class Wine
     /**
      * Get data for serialization of current object
      *
+     * @param bool $vintage
      * @return array
      */
-    public function getDataArray()
+    public function getDataArray($vintage = true)
     {
         $data = array();
         $data['id'] = $this->getId();
@@ -563,10 +564,13 @@ class Wine
         $data['color'] = $this->getColor();
         $data['description'] = $this->getDescription();
 
-        $vintages = array();
-        foreach($this->getVintages() as $vintage)
-            $vintages[] = $vintage->getDataArray();
-        $data['vintages'] = $vintages;
+        if ($vintage)
+        {
+            $vintages = array();
+            foreach($this->getVintages() as $vintage)
+                $vintages[] = $vintage->getDataArray();
+            $data['vintages'] = $vintages;
+        }
 
         return $data;
     }
