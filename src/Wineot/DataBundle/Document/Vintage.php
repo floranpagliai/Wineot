@@ -440,7 +440,7 @@ class Vintage
     {
         $data = array();
         $data['id'] = $this->getId();
-        $data['wine'] = $this->getWine();
+        $data['wine'] = $this->getWine()->getDataArray();
         $data['vintage'] = $this->getProductionYear();
         $data['is_bio'] = $this->isIsBio();
         $data['contains_sulphites'] = $this->isContainsSulphites();
