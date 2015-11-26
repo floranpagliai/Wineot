@@ -105,7 +105,7 @@
     {% if vintage.tasteProfile is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
-                {{ 'wine.title.description'|trans }}
+                Profil du vin
             </h3>
 
             <div class="col-sm-12">
@@ -141,6 +141,9 @@
                     <p style="text-align: center;">
                         {{ count }} / 6  <i class="fa fa-heart fa-fw fa-inverse" style="color: #ffb701"></i><br/>
                         Ce vin réunie {{ count }} de vos critère(s) d'appréciation sur 6.
+                        {% if count >= 4  %}
+                            Ce vin est susceptible de vous plaire, nous vous le recommandons.
+                        {% endif %}
                     </p>
                 </div>
             </div>
