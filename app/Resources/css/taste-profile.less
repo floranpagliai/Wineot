@@ -1,0 +1,52 @@
+@import "vars/colors.less";
+
+.bar-chart-item {
+  margin-bottom: 1.8em;
+  text-align: center;
+
+  .bar-chart-bar {
+    position: relative;
+    margin: auto;
+    background-color: #f7eaeb;
+    height: 100px;
+    width: 30px;
+  }
+
+  .bar-chart-value {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: @grapefruit;
+  }
+
+  .bar-chart-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 10px;
+
+    i {
+      color: @rank;
+    }
+  }
+
+  .bar-chart-indicator-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .bar-chart-text {
+    display: block;
+    margin-top: 1em;
+    font-size: 14px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 14px;
+    line-height: 1.68rem;
+  }
+}
+

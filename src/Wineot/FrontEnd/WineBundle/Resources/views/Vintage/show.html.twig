@@ -1,5 +1,5 @@
 {% extends "WineotFrontEndWineBundle::layout.html.twig" %}
-{% set page_title = wine.name ~ ' ' ~ vintage.productionYear  %}
+{% set page_title = wine.name ~ ' ' ~ vintage.productionYear %}
 {% block featured %}
     <div class="featured row">
         <div class="col-md-8">
@@ -102,6 +102,52 @@
 {% endblock %}
 {% block body %}
 
+    {% if vintage.tasteProfile is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.description'|trans }}
+            </h3>
+
+            <div class="col-sm-12">
+                {% set count = 0 %}
+                {% for tasteLevel in vintage.tasteProfile.toArray %}
+                    <div class="col-xs-2">
+                        <div class="bar-chart-item">
+                            <div class="bar-chart-bar">
+                                <span class="bar-chart-value" style="height: {{ tasteLevel.value }}%"></span>
+                                {% if app.user  %}
+                                    {{ app.user.calculateTasteLevel() }}
+                                {% endif %}
+                                {% if app.user and app.user.getTasteLevelForValue(tasteLevel.name) is not null %}
+                                    {% set userTasteValue = app.user.getTasteLevelForValue(tasteLevel.name) %}
+
+
+                                    {% if userTasteValue >= tasteLevel.value - 10 and userTasteValue <= tasteLevel.value + 10 %}
+                                        {% set count = count + 1 %}
+                                        <span class="bar-chart-indicator-line" style="height: {{ userTasteValue }}%"></span>
+                                <span class="bar-chart-indicator" style="height: {{ userTasteValue }}%">
+                                    <i class="fa fa-heart fa-fw fa-inverse"></i>
+
+                                </span>
+
+                                    {% endif %}
+                                    {% endif %}
+                            </div>
+                            <span class="bar-chart-text">{{ tasteLevel.label|trans }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-xs-4 col-xs-offset-4">
+                    <p style="text-align: center;">
+                        {{ count }} / 6  <i class="fa fa-heart fa-fw fa-inverse" style="color: #ffb701"></i><br/>
+                        Ce vin réunie {{ count }} de vos critère(s) d'appréciation sur 6.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
     {% if vintage.description is not empty %}
         <div class="col-sm-12">
             <h3 class="section-title clearfix"><i class="line"></i>
@@ -183,7 +229,7 @@
             <h3 class="section-title clearfix"><i class="line"></i>
                 {{ 'wine.title.preservation'|trans }}
             </h3>
-                {% render(controller('TimelineBundle:Timeline:renderTimeline', { 'timeline': timeline })) %}
+            {% render(controller('TimelineBundle:Timeline:renderTimeline', { 'timeline': timeline })) %}
         </div>
     {% endif %}
 

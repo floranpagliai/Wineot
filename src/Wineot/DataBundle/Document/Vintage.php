@@ -126,6 +126,13 @@ class Vintage
      */
     private $comments;
 
+    /**
+     * @var TasteProfile
+     *
+     * @MongoDB\EmbedOne(targetDocument="TasteProfile")
+     */
+    private $tasteProfile;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -328,6 +335,23 @@ class Vintage
     }
 
     /**
+     * @return TasteProfile
+     */
+    public function getTasteProfile()
+    {
+        return $this->tasteProfile;
+    }
+
+    /**
+     * @param TasteProfile $tasteProfile
+     */
+    public function setTasteProfile($tasteProfile)
+    {
+        $this->tasteProfile = $tasteProfile;
+    }
+
+
+    /**
      * Add comment
      *
      * @param \Wineot\DataBundle\Document\Comment $comment
@@ -347,41 +371,65 @@ class Vintage
         $this->comments->removeElement($comment);
     }
 
+    /**
+     * @return Winery
+     */
     public function getWinery()
     {
         return $this->wine->getWinery();
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->wine->getName();
     }
 
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return $this->wine->getDescription();
     }
 
+    /**
+     * @return int
+     */
     public function getColor()
     {
         return $this->wine->getColor();
     }
 
+    /**
+     * @return Collection
+     */
     public function getVintages()
     {
         return $this->wine->getVintages();
     }
 
+    /**
+     * @return Collection
+     */
     public function getFoodPairings()
     {
         return $this->wine->getFoodPairings();
     }
 
+    /**
+     * @return Collection
+     */
     public function getGrappes()
     {
         return $this->wine->getGrappes();
     }
 
+    /**
+     * @param Image $picture
+     */
     public function removePicture(Image $picture)
     {
         if ($this->bottlePicture == $picture)
@@ -408,6 +456,9 @@ class Vintage
             return null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getAvgRating()
     {
         $comments = $this->getComments();
@@ -422,6 +473,9 @@ class Vintage
             return null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getAvgPrice()
     {
         //TODO : Calculate price based on sellings

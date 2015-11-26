@@ -69,6 +69,11 @@ class VintageType extends AbstractType
             'required' => false
 
         ));
+        $builder->add('tasteProfile', new TasteProfileType(), array(
+            'label' => 'wine.form.taste_profile',
+            'required' => false
+
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

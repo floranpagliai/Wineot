@@ -128,6 +128,13 @@ class User implements UserInterface
      */
     private $roles;
 
+    /**
+     * @var TasteProfile
+     *
+     * @MongoDB\EmbedOne(targetDocument="TasteProfile")
+     */
+    private $tasteProfile;
+
     public function __construct()
     {
         $this->roles[] = 'ROLE_USER';
@@ -400,6 +407,71 @@ class User implements UserInterface
         return array(
             'ROLE_ADMIN' => 'Admin',
         );
+    }
+
+    /**
+     * @return TasteProfile
+     */
+    public function getTasteProfile()
+    {
+        return $this->tasteProfile;
+    }
+
+    /**
+     * @param TasteProfile $tasteProfile
+     */
+    public function setTasteProfile($tasteProfile)
+    {
+        $this->tasteProfile = $tasteProfile;
+    }
+
+    public function getTasteLevelForValue($value)
+    {
+        if ($value == "sweet")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getSweetLevel());
+        elseif ($value == "fruits")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getFruitsLevel());
+        elseif ($value == "wooded")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getWoodedLevel());
+        elseif ($value == "strength")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getStrengthLevel());
+        elseif ($value == "tannins")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getTanninsLevel());
+        elseif ($value == "complex")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getComplexLevel());
+        else
+            return null;
+    }
+
+    public function calculateTasteLevel()
+    {
+        $sweet = null;
+        $fruits = null;
+        $wooded = null;
+        $strength = null;
+        $tannins = null;
+        $complex = null;
+        $count=0;
+        foreach($this->getFavoritesWines() as $favorite)
+        {
+            if ($favorite->getTasteProfile()) {
+                $sweet = $favorite->getTasteProfile()->getSweetLevel();
+                $fruits = $favorite->getTasteProfile()->getFruitsLevel();
+                $wooded = $favorite->getTasteProfile()->getWoodedLevel();
+                $strength = $favorite->getTasteProfile()->getStrengthLevel();
+                $tannins = $favorite->getTasteProfile()->getTanninsLevel();
+                $complex = $favorite->getTasteProfile()->getComplexLevel();
+                $count++;
+            }
+        }
+        $profile = new TasteProfile();
+        $profile->setSweetLevel($sweet/$count);
+        $profile->setFruitsLevel($fruits/$count);
+        $profile->setWoodedLevel($wooded/$count);
+        $profile->setStrengthLevel($strength/$count);
+        $profile->setTanninsLevel($tannins/$count);
+        $profile->setComplexLevel($complex/$count);
+        $this->setTasteProfile($profile);
     }
 
     /**
