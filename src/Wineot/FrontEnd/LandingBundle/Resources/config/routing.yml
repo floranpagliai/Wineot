@@ -1,3 +1,6 @@
 wineot_front_end_landing_homepage:
     path:     /
     defaults: { _controller: WineotFrontEndLandingBundle:Default:index }
+wineot_front_end_landing_homepage2:
+    path:     /landing
+    defaults: { _controller: WineotFrontEndLandingBundle:Default:index }
