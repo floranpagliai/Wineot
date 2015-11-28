@@ -7,7 +7,7 @@ wineot_rest:
     prefix : /api
 wineot_front_end_landing:
     resource: "@WineotFrontEndLandingBundle/Resources/config/routing.yml"
-    prefix:   /landing
+    prefix:   /
 wineot_front_end_winery:
     resource: "@WineotFrontEndWineryBundle/Resources/config/routing.yml"
     prefix:   /winery
@@ -22,7 +22,7 @@ wineot_back_end_crud:
     prefix:   /admin/crud
 wineot_front_end_home:
     resource: "@WineotFrontEndHomeBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /home
 wineot_back_end_home:
     resource: "@WineotBackEndBackEndBundle/Resources/config/routing.yml"
     prefix:   /admin
