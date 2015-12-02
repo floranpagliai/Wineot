@@ -117,7 +117,7 @@ class Wine
 
     /**
      * @var collection
-     * @JMS\Type("ArrayCollection<Wineot\DataBundle\Document\Vintage>")
+     * @JMS\Type("ArrayCollection<Vintage>")
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
@@ -130,7 +130,7 @@ class Wine
 
     /**
      * @var collection
-     * @JMS\Type("ArrayCollection<Wineot\DataBundle\Document\WineGrappe>")
+     * @JMS\Type("ArrayCollection<WineGrappe>")
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="WineGrappe",
