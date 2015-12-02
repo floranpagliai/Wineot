@@ -117,7 +117,7 @@ class Wine
 
     /**
      * @var collection
-     * @JMS\Type("collection")
+     * @JMS\Type("ArrayCollection<Wineot\DataBundle\Document\Vintage>")
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
@@ -130,7 +130,7 @@ class Wine
 
     /**
      * @var collection
-     * @JMS\Type("collection")
+     * @JMS\Type("ArrayCollection<Wineot\DataBundle\Document\WineGrappe>")
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="WineGrappe",
@@ -141,7 +141,7 @@ class Wine
 
     /**
      * @var collection
-     * @JMS\Type("collection")
+     * @JMS\Type("ArrayCollection<integer>")
      *
      * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
      */
