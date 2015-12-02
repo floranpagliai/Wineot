@@ -163,47 +163,6 @@
         </div>
     {% endif %}
 
-    {% if wine.vintages is not empty %}
-        <div class="col-sm-12">
-            <h3 class="section-title clearfix"><i class="line"></i>
-                {{ 'wine.title.vintages'|trans }}
-            </h3>
-
-            <div class="col-sm-8 col-sm-offset-4">
-                <table class="table table-hover">
-                    <tbody>
-                    <tr>
-                        <td>{{ 'wine.title.all_vintages'|trans }}</td>
-                        {% if wine.getAvgPrice() is not null %}
-                            <td class="text-right">{{ wine.getAvgPrice }} €</td>
-                        {% else %}
-                            <td class="text-right">-</td>
-                        {% endif %}
-                    </tr>
-                    {% for vintageElem in wine.vintages %}
-                        <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
-                        { 'wineryName':wine.winery.name|replace({' ':'-'}),
-                            'wineName':wine.name|replace({' ':'-'}),
-                            'vintage':vintageElem.productionYear,
-                            'vintageId':vintageElem.id}) }}'"
-                            style="cursor: pointer;">
-                            {% if vintage.productionYear == vintageElem.productionYear %}
-                                <td><b>{{ vintageElem.productionYear }}</b></td>
-                            {% else %}
-                                <td>{{ vintageElem.productionYear }}</td>
-                            {% endif %}
-                            {% if vintageElem.getAvgPrice() is not null %}
-                                <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
-                            {% else %}
-                                <td class="text-right">-</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    {% endif %}
 
     {% if vintage.foodPairings is not empty %}
         <div class="col-sm-12">
@@ -239,7 +198,49 @@
 {% endblock %}
 
 {% block sidebar_right %}
+    {% if wine.vintages is not empty %}
+        <div class="col-sm-12">
+            <h3 class="section-title clearfix"><i class="line"></i>
+                {{ 'wine.title.vintages'|trans }}
+            </h3>
+
+
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <td>{{ 'wine.title.all_vintages'|trans }}</td>
+                        {% if wine.getAvgPrice() is not null %}
+                            <td class="text-right">{{ wine.getAvgPrice }} €</td>
+                        {% else %}
+                            <td class="text-right">-</td>
+                        {% endif %}
+                    </tr>
+                    {% for vintageElem in wine.vintages %}
+                        <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
+                        { 'wineryName':wine.winery.name|replace({' ':'-'}),
+                            'wineName':wine.name|replace({' ':'-'}),
+                            'vintage':vintageElem.productionYear,
+                            'vintageId':vintageElem.id}) }}'"
+                            style="cursor: pointer;">
+                            {% if vintage.productionYear == vintageElem.productionYear %}
+                                <td><b>{{ vintageElem.productionYear }}</b></td>
+                            {% else %}
+                                <td>{{ vintageElem.productionYear }}</td>
+                            {% endif %}
+                            {% if vintageElem.getAvgPrice() is not null %}
+                                <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
+                            {% else %}
+                                <td class="text-right">-</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    {% endif %}
+<div class="col-sm-12">
     {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': vintage })) %}
+    </div>
 {% endblock %}
 
 {% block featured_bottom %}

@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @MongoDB\Document(collection="users")
- * @MongoDBUnique(fields="mail", message="user.warn.unique_email")
+ * @MongoDBUnique(fields="mail", message="user.warn.email_unique")
  */
 class User implements UserInterface
 {

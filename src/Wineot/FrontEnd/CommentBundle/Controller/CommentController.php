@@ -51,7 +51,6 @@ class CommentController extends Controller
 
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
                 }
-                $userComment = $dm->getRepository('WineotDataBundle:Comment')->findOneBy(array('wine' => $wine->getId(), 'user' => $user->getId()));
             } else {
                 $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));
             }
