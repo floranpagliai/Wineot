@@ -32,6 +32,7 @@ crud:
         vintages: "Millesimes"
         wines: "Vins"
         wineries: "Domaines"
+        admin: "Administration"
         admin_wines: "Admistration des vins"
     warn:
         wine:

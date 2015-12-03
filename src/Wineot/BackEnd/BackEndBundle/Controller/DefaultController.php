@@ -23,11 +23,16 @@ class DefaultController extends Controller
         $crudMenu = new ArrayCollection();
 
         $crudMenu->add(array(
+            'route' => 'wineot_back_end_homepage',
+            'name' => 'crud.title.admin',
+            'routes' => array('wineot_back_end_homepage')
+        ));
+        $crudMenu->add(array(
             'route' => 'wineot_back_end_admin_wine',
             'name' => 'crud.title.admin_wines',
             'routes' => array('wineot_back_end_admin_wine')
         ));
         $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'Administration');
-        return $this->render('WineotBackEndBackEndBundle:Default:menu.html.twig', $paramsRender);
+        return $this->render('blocks/menu.html.twig', $paramsRender);
     }
 }
