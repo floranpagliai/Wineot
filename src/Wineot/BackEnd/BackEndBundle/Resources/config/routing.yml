@@ -2,8 +2,8 @@ wineot_back_end_homepage:
     path:     /
     defaults: { _controller: WineotBackEndBackEndBundle:Default:index }
 wineot_back_end_admin_wine:
-    path:     /admin-wine
+    path:     /wine
     defaults: { _controller: WineotBackEndBackEndBundle:Wine:index }
 wineot_back_end_admin_wine_validate:
-    path:     /admin-wine/validate/{id}
+    path:     /wine/validate/{id}
     defaults: { _controller: WineotBackEndBackEndBundle:Wine:validate }
