@@ -68,7 +68,7 @@ class SecurityController extends Controller
                 $em->flush();
 
                 $flash = $this->get('notify_messenger.flash');
-                $flash->success($this->get('translator')->trans('user.warn.can_login'));
+                $flash->success($this->get('translator')->trans('user.warn.registered'));
                 return $this->redirect($this->generateUrl('wineot_user_login'));
             }
         }
