@@ -11,14 +11,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Wineot\DataBundle\Document\Comment;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\HandlerCallback;
 
 /**
  * @MongoDB\Document(collection="vintages", repositoryClass="Wineot\DataBundle\Repository\VintageRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 
 class Vintage
@@ -52,14 +57,14 @@ class Vintage
      *
      * @MongoDB\Field(type="boolean", name="is_bio")
      */
-    private $isBio;
+    private $isBio = false;
 
     /**
      * @var boolean
      *
      * @MongoDB\Field(type="boolean", name="contains_sulphites")
      */
-    private $containsSulphites;
+    private $containsSulphites = false;
 
     /**
      * @var Int
@@ -120,6 +125,13 @@ class Vintage
      * @Gedmo\ReferenceIntegrity("nullify")
      */
     private $comments;
+
+    /**
+     * @var TasteProfile
+     *
+     * @MongoDB\EmbedOne(targetDocument="TasteProfile")
+     */
+    private $tasteProfile;
 
     public function __construct()
     {
@@ -323,6 +335,23 @@ class Vintage
     }
 
     /**
+     * @return TasteProfile
+     */
+    public function getTasteProfile()
+    {
+        return $this->tasteProfile;
+    }
+
+    /**
+     * @param TasteProfile $tasteProfile
+     */
+    public function setTasteProfile($tasteProfile)
+    {
+        $this->tasteProfile = $tasteProfile;
+    }
+
+
+    /**
      * Add comment
      *
      * @param \Wineot\DataBundle\Document\Comment $comment
@@ -342,41 +371,65 @@ class Vintage
         $this->comments->removeElement($comment);
     }
 
+    /**
+     * @return Winery
+     */
     public function getWinery()
     {
         return $this->wine->getWinery();
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->wine->getName();
     }
 
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return $this->wine->getDescription();
     }
 
+    /**
+     * @return int
+     */
     public function getColor()
     {
         return $this->wine->getColor();
     }
 
+    /**
+     * @return Collection
+     */
     public function getVintages()
     {
         return $this->wine->getVintages();
     }
 
+    /**
+     * @return Collection
+     */
     public function getFoodPairings()
     {
         return $this->wine->getFoodPairings();
     }
 
+    /**
+     * @return Collection
+     */
     public function getGrappes()
     {
         return $this->wine->getGrappes();
     }
 
+    /**
+     * @param Image $picture
+     */
     public function removePicture(Image $picture)
     {
         if ($this->bottlePicture == $picture)
@@ -403,6 +456,9 @@ class Vintage
             return null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getAvgRating()
     {
         $comments = $this->getComments();
@@ -417,9 +473,41 @@ class Vintage
             return null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getAvgPrice()
     {
         //TODO : Calculate price based on sellings
-        return number_format($this->wineryPrice, 2, ",", " ");
+        if ($this->wineryPrice > 0)
+            return number_format($this->wineryPrice, 2, ",", " ");
+        else
+            return null;
+    }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['wine'] = $this->getWine()->getDataArray(false);
+        $data['vintage'] = $this->getProductionYear();
+        $data['is_bio'] = $this->isIsBio();
+        $data['contains_sulphites'] = $this->isContainsSulphites();
+        $data['peak'] = $this->getPeak();
+        $data['keeping'] = $this->getKeeping();
+        return $data;
+    }
+
+    /** @HandlerCallback("json", direction = "serialization")
+     * @param JsonSerializationVisitor $visitor
+     */
+    public function serializeToJson(JsonSerializationVisitor $visitor)
+    {
+        $visitor->setRoot($this->getDataArray());
     }
 }

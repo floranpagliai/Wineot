@@ -10,14 +10,21 @@ namespace Wineot\DataBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Wineot\DataBundle\Document\Comment;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\HandlerCallback;
 
 /**
  * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
  *
+ * @ExclusionPolicy("all")
  */
 class Wine
 {
@@ -33,6 +40,7 @@ class Wine
 
     /**
      * @var integer
+     * @Expose
      *
      * @MongoDB\Id
      */
@@ -40,6 +48,7 @@ class Wine
 
     /**
      * @var Winery
+     * @MaxDepth(2)
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Winery",
@@ -50,6 +59,7 @@ class Wine
 
     /**
      * @var string
+     * @Expose
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
@@ -61,6 +71,7 @@ class Wine
 
     /**
      * @var string
+     * @Expose
      *
      * @MongoDB\Field(type="string")
      */
@@ -68,6 +79,7 @@ class Wine
 
     /**
      * @var integer
+     * @Expose
      *
      * @MongoDB\Field(type="int")
      * @Assert\NotBlank()
@@ -76,6 +88,7 @@ class Wine
 
     /**
      * @var boolean
+     * @Expose
      *
      * @MongoDB\Field(type="boolean", name="is_bio")
      */
@@ -83,6 +96,7 @@ class Wine
 
     /**
      * @var boolean
+     * @Expose
      *
      * @MongoDB\Field(type="boolean", name="contains_sulphites")
      */
@@ -110,6 +124,7 @@ class Wine
 
     /**
      * @var collection
+     * @Expose
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
@@ -122,6 +137,8 @@ class Wine
 
     /**
      * @var collection
+     * @Expose
+     * @MaxDepth(2)
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="WineGrappe",
@@ -132,6 +149,7 @@ class Wine
 
     /**
      * @var collection
+     * @Expose
      *
      * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
      */
@@ -464,16 +482,20 @@ class Wine
      */
     public function getAvgPrice()
     {
-        if ($this->vintages->count() != 0) {
-            $avgPrice = 0;
-            $vintages = $this->vintages;
-            foreach($vintages as $vintage)
-            {
+        $avgPrice = 0;
+        $count = 0;
+        $vintages = $this->vintages;
+        foreach($vintages as $vintage)
+        {
+            if ($vintage->getAvgPrice()) {
                 $avgPrice += $vintage->getAvgPrice();
+                $count++;
             }
-            return number_format($avgPrice/$this->vintages->count(), 2, ",", " ");
-        } else
-            return null;
+
+        }
+        if ($count != 0)
+            return number_format($avgPrice/$count, 2, ",", " ");
+        return null;
     }
 
     /**
@@ -511,7 +533,7 @@ class Wine
     public function validate(ExecutionContextInterface $context)
     {
         if ($this->vintages->count() == 0) {
-            $context->buildViolation('crud.warn.wine.need_vintage')
+            $context->buildViolation('wine.warn.need_vintage')
                 ->atPath('vintages')
                 ->addViolation();
 
@@ -525,5 +547,39 @@ class Wine
                     ->atPath('vintages')
                     ->addViolation();
         }
+    }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @param bool $vintage
+     * @return array
+     */
+    public function getDataArray($vintage = true)
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['winery'] = $this->getWinery()->getDataArray();
+        $data['name'] = $this->getName();
+        $data['color'] = $this->getColor();
+        $data['description'] = $this->getDescription();
+
+        if ($vintage)
+        {
+            $vintages = array();
+            foreach($this->getVintages() as $vintage)
+                $vintages[] = $vintage->getDataArray();
+            $data['vintages'] = $vintages;
+        }
+
+        return $data;
+    }
+
+    /** @HandlerCallback("json", direction = "serialization")
+     * @param JsonSerializationVisitor $visitor
+     */
+    public function serializeToJson(JsonSerializationVisitor $visitor)
+    {
+        $visitor->setRoot($this->getDataArray());
     }
 }

@@ -1,11 +1,18 @@
 comment:
     action:
         add: "Donner votre avis"
+        delete: "Supprimer l'avis"
     title:
         list: "Les avis sur ce vin"
     form:
         comment: "Votre avis sur le vin"
+        label:
+            comment: "Avis"
+            user: "Utilisateur"
+            rank: "Note"
+            wine: "Vin"
     message:
         no_comment: "Aucun avis n'a été publié sur ce vin. Soyez le premier à donner votre avis."
     warn:
-        added: "Votre comentaire a bien été ajouté."
+        added: "Votre avis a bien été ajouté."
+        deleted: "L'avis a bien été suprimé."

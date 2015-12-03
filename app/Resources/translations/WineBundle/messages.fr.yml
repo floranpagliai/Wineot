@@ -4,6 +4,8 @@ wine:
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
     title:
+        best_rated: "Les vins les mieux notés"
+        description: "Description"
         color_red: "Rouge"
         color_white: "Blanc"
         color_pink: "Rosé"
@@ -30,10 +32,17 @@ wine:
         isbio: "Cocher si le vin est bio"
         vintage: "Millésime"
         vintages: "Millésimes"
+        sweet_level: "Sucrée"
+        fruits_level: "Fruitée"
+        wooded_level: "Boisé"
+        strength_level: "Puissance"
+        tannins_level: "Tannins"
+        complex_level: "Complexe"
     placeholder:
         color: "Choisir une couleur"
         winery: "Choisir un domaine"
         grappe: "Choisir un cépage"
+        taste_profile_level: "Niveau"
     warn:
         edited: "Le vin à bien été modifié."
         deleted: "Le vin à bien été supprimé."

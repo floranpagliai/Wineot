@@ -19,13 +19,13 @@ user:
         favorite_wines: "Mes vins favoris"
     form:
         label:
+            user: "Utilisateur"
             username: "Nom d'utilisateur"
             firstname: "Prénom"
             lastname: "Nom"
             email: "Email"
             password: "Mot de passe"
             password_validation: "Mot de passe (Validation)"
-        legend:
         placeholder:
             username: "Nom d'utilisateur"
             firstname: "Prénom"
@@ -33,6 +33,7 @@ user:
             email: "Email"
             password: "Mot de passe"
             password_validation: "Mot de passe (Validation)"
+            roles:
     message:
         reset_password: "Entrez votre email et vous recevrez un nouveau mot de passe rapidement."
     warn:

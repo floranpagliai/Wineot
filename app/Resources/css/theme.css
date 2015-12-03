@@ -807,9 +807,6 @@ ol.with-line-border > li {
     min-height: 65px;
     padding-top: 0;
   }
-  .site-navigation ul.navbar-menu {
-    display: none !important;
-  }
   .site-navigation {
     display: block;
     border-radius: 4px;

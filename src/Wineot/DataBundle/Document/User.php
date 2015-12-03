@@ -9,21 +9,32 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
+use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @MongoDB\Document(collection="users")
- * @MongoDBUnique(fields="mail", message="user.warn.unique_email")
+ * @MongoDBUnique(fields="mail", message="user.warn.email_unique")
  */
 class User implements UserInterface
 {
     /**
+     * @var integer
+     * @JMS\Type("integer")
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
      * @var string
+     * @JMS\Type("string")
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
@@ -118,11 +129,11 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @var integer
+     * @var TasteProfile
      *
-     * @MongoDB\Id
+     * @MongoDB\EmbedOne(targetDocument="TasteProfile")
      */
-    private $id;
+    private $tasteProfile;
 
     public function __construct()
     {
@@ -396,5 +407,94 @@ class User implements UserInterface
         return array(
             'ROLE_ADMIN' => 'Admin',
         );
+    }
+
+    /**
+     * @return TasteProfile
+     */
+    public function getTasteProfile()
+    {
+        return $this->tasteProfile;
+    }
+
+    /**
+     * @param TasteProfile $tasteProfile
+     */
+    public function setTasteProfile($tasteProfile)
+    {
+        $this->tasteProfile = $tasteProfile;
+    }
+
+    public function getTasteLevelForValue($value)
+    {
+        if ($value == "sweet")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getSweetLevel());
+        elseif ($value == "fruits")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getFruitsLevel());
+        elseif ($value == "wooded")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getWoodedLevel());
+        elseif ($value == "strength")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getStrengthLevel());
+        elseif ($value == "tannins")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getTanninsLevel());
+        elseif ($value == "complex")
+            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getComplexLevel());
+        else
+            return null;
+    }
+
+    public function calculateTasteLevel()
+    {
+        $sweet = null;
+        $fruits = null;
+        $wooded = null;
+        $strength = null;
+        $tannins = null;
+        $complex = null;
+        $count=0;
+        foreach($this->getFavoritesWines() as $favorite)
+        {
+            if ($favorite->getTasteProfile()) {
+                $sweet = $favorite->getTasteProfile()->getSweetLevel();
+                $fruits = $favorite->getTasteProfile()->getFruitsLevel();
+                $wooded = $favorite->getTasteProfile()->getWoodedLevel();
+                $strength = $favorite->getTasteProfile()->getStrengthLevel();
+                $tannins = $favorite->getTasteProfile()->getTanninsLevel();
+                $complex = $favorite->getTasteProfile()->getComplexLevel();
+                $count++;
+            }
+        }
+        $profile = new TasteProfile();
+        $profile->setSweetLevel($sweet/$count);
+        $profile->setFruitsLevel($fruits/$count);
+        $profile->setWoodedLevel($wooded/$count);
+        $profile->setStrengthLevel($strength/$count);
+        $profile->setTanninsLevel($tannins/$count);
+        $profile->setComplexLevel($complex/$count);
+        $this->setTasteProfile($profile);
+    }
+
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['username'] = $this->getUsername();
+        $data['mail'] = $this->getMail();
+
+        return $data;
+    }
+
+    /**
+     * @JMS\HandlerCallback("json", direction = "serialization")
+     * @param JsonSerializationVisitor $visitor
+     */
+    public function serializeToJson(JsonSerializationVisitor $visitor)
+    {
+        $visitor->setRoot($this->getDataArray());
     }
 }

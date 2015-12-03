@@ -38,7 +38,7 @@ class WineryController extends Controller
         if (is_array($wines))
             $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
         else {
-            $wines = $dm->getRepository('WineotDataBundle:Wine')->findTrendingWines();
+            $wines = $dm->getRepository('WineotDataBundle:Wine')->findBestRatedWines();
             $paramsRender = array('wines' => $wines, 'wineListTitle' => 'wine.title.trends');
         }
         return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);

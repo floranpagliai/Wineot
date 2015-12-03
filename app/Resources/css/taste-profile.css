@@ -1,0 +1,53 @@
+(node) util.print is deprecated. Use console.log instead.
+.wine-color-0 {
+  color: #9d000b;
+}
+.wine-color-1 {
+  color: #e97e9b;
+}
+.wine-color-2 {
+  color: #f0c300;
+}
+.bar-chart-item {
+  margin-bottom: 1.8em;
+  text-align: center;
+}
+.bar-chart-item .bar-chart-bar {
+  position: relative;
+  margin: auto;
+  background-color: #f7eaeb;
+  height: 100px;
+  width: 30px;
+}
+.bar-chart-item .bar-chart-value {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #c41230;
+}
+.bar-chart-item .bar-chart-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 10px;
+}
+.bar-chart-item .bar-chart-indicator i {
+  color: #ffb701;
+}
+.bar-chart-item .bar-chart-indicator-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bar-chart-item .bar-chart-text {
+  display: block;
+  margin-top: 1em;
+  font-size: 14px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 14px;
+  line-height: 1.68rem;
+}

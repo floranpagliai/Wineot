@@ -31,6 +31,26 @@
                 {{ form_row(formData.containsSulphites) }}
             </div>
         </div>
+    <div class="row">
+        <div class="col-sm-2">
+            {{ form_row(formData.tasteProfile.sweetLevel) }}
+        </div>
+        <div class="col-sm-2">
+            {{ form_row(formData.tasteProfile.fruitsLevel) }}
+        </div>
+        <div class="col-sm-2">
+            {{ form_row(formData.tasteProfile.woodedLevel) }}
+        </div>
+        <div class="col-sm-2">
+            {{ form_row(formData.tasteProfile.strengthLevel) }}
+        </div>
+        <div class="col-sm-2">
+            {{ form_row(formData.tasteProfile.tanninsLevel) }}
+        </div>
+        <div class="col-sm-2">
+            {{ form_row(formData.tasteProfile.complexLevel) }}
+        </div>
+    </div>
         <div class="row">
             <div class="col-sm-6">
                 {% if  formData.vars.data.labelPicture.filename is defined and formData.vars.data.labelPicture.filename %}

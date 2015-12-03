@@ -29,9 +29,7 @@ class CommentController extends Controller
             $dm->remove($comment);
             $dm->flush();
 
-            $flash->success($this->get('translator')->trans('crud.warn.comment.deleted'));
-        } else {
-            $flash->error($this->get('translator')->trans('crud.error.comment.notfound'));
+            $flash->success($this->get('translator')->trans('comment.warn.deleted'));
         }
         return $this->redirectToRoute('wineot_back_end_crud_comment');
     }
