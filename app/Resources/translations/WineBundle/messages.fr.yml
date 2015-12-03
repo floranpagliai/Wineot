@@ -3,6 +3,7 @@ wine:
         add: "Ajouter un vin"
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
+        validate: "Valider"
     title:
         best_rated: "Les vins les mieux notés"
         description: "Description"
@@ -38,6 +39,8 @@ wine:
         strength_level: "Puissance"
         tannins_level: "Tannins"
         complex_level: "Complexe"
+        label_picture: "Image de l'étiquette"
+        bottle_picture: "Image de la bouteille"
     placeholder:
         color: "Choisir une couleur"
         winery: "Choisir un domaine"

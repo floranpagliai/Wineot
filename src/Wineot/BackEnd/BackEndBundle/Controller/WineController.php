@@ -23,7 +23,7 @@ class WineController extends Controller
             return $this->redirect($this->generateUrl('wineot_front_end_homepage'));
 
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wines = $dm->getRepository('WineotDataBundle:Wine')->findBy(array('isVerified'=>false));
+        $wines = $dm->getRepository('WineotDataBundle:Wine')->findBy(array('isVerified' => false));
         $paramsRender = array('wines' => $wines);
         return $this->render('WineotBackEndBackEndBundle:Wine:index.html.twig', $paramsRender);
     }

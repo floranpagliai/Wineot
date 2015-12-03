@@ -5,6 +5,7 @@ global:
         submit: "Éditer"
         search: "Recherche"
         save: "Sauvegarder"
+        validate: "Valider"
     title:
         home: "Accueil"
         admin: "Administration"

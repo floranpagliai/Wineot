@@ -95,4 +95,17 @@ class WineRepository extends DocumentRepository
         }
         $dm->flush();
     }
+
+    public function unverifyAll()
+    {
+        $dm = $this->getDocumentManager();
+
+        $wines = $this->findAll();
+        foreach ($wines as $wine)
+        {
+            $wine->setIsVerified(false);
+            $dm->persist($wine);
+        }
+        $dm->flush();
+    }
 }
