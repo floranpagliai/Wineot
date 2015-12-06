@@ -486,7 +486,7 @@ class Wine
 
         }
         if ($count != 0)
-            return number_format($avgPrice/$count, 2, ",", " ");
+            return number_format($avgPrice/$count, 2, ".", " ");
         return null;
     }
 

@@ -484,7 +484,7 @@ class Vintage
     {
         //TODO : Calculate price based on sellings
         if ($this->wineryPrice > 0)
-            return number_format($this->wineryPrice, 2, ",", " ");
+            return number_format($this->wineryPrice, 2, ".", " ");
         else
             return null;
     }
