@@ -3,7 +3,7 @@ NelmioApiDocBundle:
     prefix:   /api/doc
 wineot_rest:
     type : rest
-    resource : "routing_rest.yml"
+    resource :"@WineotRestBundle/Resources/config/routing.yml"
     prefix : /api
 wineot_front_end_landing:
     resource: "@WineotFrontEndLandingBundle/Resources/config/routing.yml"
