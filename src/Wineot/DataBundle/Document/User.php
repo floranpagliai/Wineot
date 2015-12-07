@@ -443,7 +443,7 @@ class User implements UserInterface
             return null;
     }
 
-    public function calculateTasteLevel()
+    public function calculateTasteLevel($color)
     {
         $sweet = null;
         $fruits = null;
@@ -452,15 +452,15 @@ class User implements UserInterface
         $tannins = null;
         $complex = null;
         $count=0;
-        foreach($this->getFavoritesWines() as $favorite)
+        foreach($this->getFavoritesWines() as $favoriteVintage)
         {
-            if ($favorite->getTasteProfile()) {
-                $sweet = $favorite->getTasteProfile()->getSweetLevel();
-                $fruits = $favorite->getTasteProfile()->getFruitsLevel();
-                $wooded = $favorite->getTasteProfile()->getWoodedLevel();
-                $strength = $favorite->getTasteProfile()->getStrengthLevel();
-                $tannins = $favorite->getTasteProfile()->getTanninsLevel();
-                $complex = $favorite->getTasteProfile()->getComplexLevel();
+            if ($favoriteVintage->getTasteProfile() && $favoriteVintage->getColor() == $color) {
+                $sweet += $favoriteVintage->getTasteProfile()->getSweetLevel();
+                $fruits += $favoriteVintage->getTasteProfile()->getFruitsLevel();
+                $wooded += $favoriteVintage->getTasteProfile()->getWoodedLevel();
+                $strength += $favoriteVintage->getTasteProfile()->getStrengthLevel();
+                $tannins += $favoriteVintage->getTasteProfile()->getTanninsLevel();
+                $complex += $favoriteVintage->getTasteProfile()->getComplexLevel();
                 $count++;
             }
         }

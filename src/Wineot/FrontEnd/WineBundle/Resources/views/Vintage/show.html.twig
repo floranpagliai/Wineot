@@ -115,8 +115,8 @@
                         <div class="bar-chart-item">
                             <div class="bar-chart-bar">
                                 <span class="bar-chart-value" style="height: {{ tasteLevel.value }}%"></span>
-                                {% if app.user  %}
-                                    {{ app.user.calculateTasteLevel() }}
+                                {% if app.user %}
+                                    {{ app.user.calculateTasteLevel(vintage.color) }}
                                 {% endif %}
                                 {% if app.user and app.user.getTasteLevelForValue(tasteLevel.name) is not null %}
                                     {% set userTasteValue = app.user.getTasteLevelForValue(tasteLevel.name) %}
@@ -124,14 +124,15 @@
 
                                     {% if userTasteValue >= tasteLevel.value - 10 and userTasteValue <= tasteLevel.value + 10 %}
                                         {% set count = count + 1 %}
-                                        <span class="bar-chart-indicator-line" style="height: {{ userTasteValue }}%"></span>
-                                <span class="bar-chart-indicator" style="height: {{ userTasteValue }}%">
+                                        <span class="bar-chart-indicator-line"
+                                              style="height: {{ userTasteValue }}%"></span>
+                                        <span class="bar-chart-indicator" style="height: {{ userTasteValue }}%">
                                     <i class="fa fa-heart fa-fw fa-inverse"></i>
 
                                 </span>
 
                                     {% endif %}
-                                    {% endif %}
+                                {% endif %}
                             </div>
                             <span class="bar-chart-text">{{ tasteLevel.label|trans }}</span>
                         </div>
@@ -139,9 +140,9 @@
                 {% endfor %}
                 <div class="col-xs-4 col-xs-offset-4">
                     <p style="text-align: center;">
-                        {{ count }} / 6  <i class="fa fa-heart fa-fw fa-inverse" style="color: #ffb701"></i><br/>
+                        {{ count }} / 6 <i class="fa fa-heart fa-fw fa-inverse" style="color: #ffb701"></i><br/>
                         Ce vin réunie {{ count }} de vos critère(s) d'appréciation sur 6.<br/>
-                        {% if count >= 4  %}
+                        {% if count >= 4 %}
                             Ce vin est susceptible de vous plaire, nous vous le recommandons.
                         {% endif %}
                     </p>
@@ -205,41 +206,41 @@
             </h3>
 
 
-                <table class="table table-hover">
-                    <tbody>
-                    <tr>
-                        <td>{{ 'wine.title.all_vintages'|trans }}</td>
-                        {% if wine.getAvgPrice() is not null %}
-                            <td class="text-right">{{ wine.getAvgPrice }} €</td>
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>{{ 'wine.title.all_vintages'|trans }}</td>
+                    {% if wine.getAvgPrice() is not null %}
+                        <td class="text-right">{{ wine.getAvgPrice }} €</td>
+                    {% else %}
+                        <td class="text-right">-</td>
+                    {% endif %}
+                </tr>
+                {% for vintageElem in wine.vintages %}
+                    <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
+                    { 'wineryName':wine.winery.name|replace({' ':'-'}),
+                        'wineName':wine.name|replace({' ':'-'}),
+                        'vintage':vintageElem.productionYear,
+                        'vintageId':vintageElem.id}) }}'"
+                        style="cursor: pointer;">
+                        {% if vintage.productionYear == vintageElem.productionYear %}
+                            <td><b>{{ vintageElem.productionYear }}</b></td>
+                        {% else %}
+                            <td>{{ vintageElem.productionYear }}</td>
+                        {% endif %}
+                        {% if vintageElem.getAvgPrice() is not null %}
+                            <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
                         {% else %}
                             <td class="text-right">-</td>
                         {% endif %}
                     </tr>
-                    {% for vintageElem in wine.vintages %}
-                        <tr onclick="location.href='{{ path('wineot_front_end_wine_show',
-                        { 'wineryName':wine.winery.name|replace({' ':'-'}),
-                            'wineName':wine.name|replace({' ':'-'}),
-                            'vintage':vintageElem.productionYear,
-                            'vintageId':vintageElem.id}) }}'"
-                            style="cursor: pointer;">
-                            {% if vintage.productionYear == vintageElem.productionYear %}
-                                <td><b>{{ vintageElem.productionYear }}</b></td>
-                            {% else %}
-                                <td>{{ vintageElem.productionYear }}</td>
-                            {% endif %}
-                            {% if vintageElem.getAvgPrice() is not null %}
-                                <td class="text-right">{{ vintageElem.getAvgPrice }} €</td>
-                            {% else %}
-                                <td class="text-right">-</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     {% endif %}
-<div class="col-sm-12">
-    {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': vintage })) %}
+    <div class="col-sm-12">
+        {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': vintage })) %}
     </div>
 {% endblock %}
 
