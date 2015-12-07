@@ -6,7 +6,7 @@
  * Time: 14:39
  */
 
-namespace Wineot\UserBundle\Controller;
+namespace Wineot\RestBundle\Controller;
 
 
 use Doctrine\ODM\MongoDB\DocumentManager;

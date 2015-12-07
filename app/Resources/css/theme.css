@@ -1,3 +1,4 @@
+(node) util.print is deprecated. Use console.log instead.
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic);
 /*
  *	Stylesheet	: NonKnow
@@ -271,8 +272,12 @@ ol.with-line-border > li {
   margin-bottom: 1.5em;
   border-bottom: 1px solid #eee;
 }
+.site-sidebar {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 /*	5.1 - Entry
-/*-----------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------------*/
 .hentry {
   margin-bottom: 30px;
 }
