@@ -11,7 +11,7 @@
     {% endif %}
 <fieldset>
     <div class="form-group">
-        {{ form_widget(form.winery, { 'attr': { 'placeholder': 'winery'|trans } } ) }}
+        {{ form_widget(form.winery) }}
     </div>
     <div class="form-group">
         <div class="row">
@@ -23,7 +23,7 @@
                         <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
                     </a>
                 {% else %}
-                    <label>{{ 'global.wine.picture.label'|trans }}</label>
+                    <label>{{ 'picture.form.label'|trans }}</label>
                     {{ form_widget(form.labelPicture.fileuploaded) }}
                 {% endif %}
             </div>
@@ -35,7 +35,7 @@
                         <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
                     </a>
                 {% else %}
-                    <label>{{ 'global.wine.picture.bottle'|trans }}</label>
+                    <label>{{ 'picture.form..bottle'|trans }}</label>
                     {{ form_widget(form.bottlePicture.fileuploaded) }}
                 {% endif %}
             </div>
@@ -57,7 +57,7 @@
     {% include 'WineotBackEndCRUDBundle:Vintage:form.html.twig' %}
     <br>
     <input class="btn btn-lg  btn-block" type="submit" id="_submit" name="submit_wine"
-           value="{{ 'global.action.submit'|trans }}"/>
+           value="{{ 'wine.action.submit'|trans }}"/>
 </fieldset>
 <br>
 {{ form_widget(form._token) }}

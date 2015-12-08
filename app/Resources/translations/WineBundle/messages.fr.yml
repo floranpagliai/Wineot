@@ -3,6 +3,7 @@ wine:
         add: "Ajouter un vin"
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
+        submit: "Sauvegarder le vin"
     title:
         best_rated: "Les vins les mieux notés"
         description: "Description"
