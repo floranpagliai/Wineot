@@ -37,6 +37,7 @@ class Vintage
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Wine",
+     *  cascade={"persist"},
      *  simple=true)
      */
     private $wine;

@@ -55,6 +55,7 @@ class Comment
      * @MongoDB\ReferenceOne(
      *  targetDocument="Vintage",
      *  inversedBy="comments",
+     *  cascade={"persist"},
      *  simple=true)
      */
     private $wine;

@@ -13,6 +13,7 @@ wine:
         food_pairings: "Accords mets & vins"
         food_type_meet: "Viande"
         food_type_fish: "Poisson"
+        food_type_vegetable: "Légumes"
         food_type_cheese: "Fromage"
         food_type_desert: "Desert"
         vintage: "Millésime"

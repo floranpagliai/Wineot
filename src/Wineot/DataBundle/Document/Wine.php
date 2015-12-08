@@ -80,6 +80,14 @@ class Wine
     private $color;
 
     /**
+     * @var float
+     * @JMS\Type("float")
+     *
+     * @MongoDB\Field(type="float")
+     */
+    private $avgRating = null;
+
+    /**
      * @var boolean
      * @JMS\Type("boolean")
      *
@@ -446,11 +454,30 @@ class Wine
             $this->labelPicture = null;
     }
 
+
+    /**
+     * Set average rating for the wine
+     * @param $avgRating
+     */
+    public function setAvgRating($avgRating)
+    {
+        $this->avgRating = $avgRating;
+    }
+
     /**
      * Get average rating for all comment of the wine
      * @return null|string
      */
     public function getAvgRating()
+    {
+        $this->calculateAvgRating();
+        if ($this->avgRating > 0)
+            return number_format($this->avgRating, 1);
+        else
+            return null;
+    }
+
+    public function calculateAvgRating()
     {
         if ($this->vintages->count() != 0) {
             $avgRating = 0;
@@ -463,9 +490,8 @@ class Wine
                 $avgRating += $vintage->getAvgRating();
             }
             if ($ratedVintageCount != 0)
-                return number_format($avgRating/$ratedVintageCount, 1);
+                $this->setAvgRating($avgRating/$ratedVintageCount);
         }
-        return null;
     }
 
     /**

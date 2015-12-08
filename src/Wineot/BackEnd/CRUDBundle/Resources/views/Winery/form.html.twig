@@ -9,10 +9,10 @@
         {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.country, { 'attr': { 'placeholder': 'country'|trans } } ) }}
+        {{ form_widget(form.country) }}
     </div>
     <div class="form-group">
-        {{ form_widget(form.region, { 'attr': { 'placeholder': 'region'|trans } } ) }}
+        {{ form_widget(form.region) }}
     </div>
     {% include 'WineotDataBundle:Address:form.html.twig' %}
     <div class="form-group">

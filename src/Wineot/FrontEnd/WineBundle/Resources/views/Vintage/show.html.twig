@@ -121,7 +121,6 @@
                                 {% if app.user and app.user.getTasteLevelForValue(tasteLevel.name) is not null %}
                                     {% set userTasteValue = app.user.getTasteLevelForValue(tasteLevel.name) %}
 
-
                                     {% if userTasteValue >= tasteLevel.value - 10 and userTasteValue <= tasteLevel.value + 10 %}
                                         {% set count = count + 1 %}
                                         <span class="bar-chart-indicator-line"

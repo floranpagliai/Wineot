@@ -34,17 +34,18 @@ class CommentController extends Controller
         $user = $this->getUser();
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
+        $vintage = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
         $comment = new Comment();
         $form = $this->createForm(new CommentType(), $comment);
         $userComment = null;
 
-        $comment->setWine($wine);
+        $comment->setWine($vintage);
         $form->handleRequest($request);
 
         if ($request->isMethod('POST')) {
             if ($user) {
                 if ($form->isValid() && !isset($userComment)) {
+                    $vintage->getWine()->calculateAvgRating();
                     $comment->setUser($user);
                     $dm->persist($comment);
                     $dm->flush();

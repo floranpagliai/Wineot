@@ -1,5 +1,6 @@
 {% extends 'WineotBackEndCRUDBundle::layout.html.twig' %}
 {% block body %}
+    <div class="col-sm-12">
     <table class="table table-hover">
         <thead>
         <tr>
@@ -45,4 +46,5 @@
         </tbody>
     </table>
     <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_wine_add') }}">{{ 'wine.action.add'|trans }}</a>
+    </div>
 {% endblock %}
