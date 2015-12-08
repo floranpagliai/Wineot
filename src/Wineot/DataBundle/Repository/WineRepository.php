@@ -56,7 +56,7 @@ class WineRepository extends DocumentRepository
         if ($wineryId)
             $query->field('winery')->equals($wineryId);
 
-        return $query->sort('avg_rating', 'ASC')
+        return $query->sort('avg_rating', 'DESC')
                 ->limit(3)
                 ->getQuery()->execute();
     }
@@ -64,6 +64,28 @@ class WineRepository extends DocumentRepository
     public function getCount()
     {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
+    }
+
+    public function calculateAvgRating($id)
+    {
+        $dm = $this->getDocumentManager();
+
+        $wine = $this->find($id);
+        if ($wine->getVintages()->count() != 0) {
+            $avgRating = 0;
+            $ratedVintageCount = 0;
+            $vintages = $wine->getVintages();
+            foreach($vintages as $vintage)
+            {
+                if ($vintage->getAvgRating())
+                    $ratedVintageCount++;
+                $avgRating += $vintage->getAvgRating();
+            }
+            if ($ratedVintageCount != 0)
+                $wine->setAvgRating($avgRating/$ratedVintageCount);
+            $dm->persist($wine);
+            $dm->flush();
+        }
     }
 
     public function ensureVintagesRelation()
@@ -94,5 +116,12 @@ class WineRepository extends DocumentRepository
             $dm->persist($winery);
         }
         $dm->flush();
+    }
+
+    public function ensureAvgRating()
+    {
+        $wines = $this->findAll();
+        foreach ($wines as $wine)
+            $this->calculateAvgRating($wine->getId());
     }
 }

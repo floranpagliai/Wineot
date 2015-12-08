@@ -83,7 +83,7 @@ class Wine
      * @var float
      * @JMS\Type("float")
      *
-     * @MongoDB\Field(type="float")
+     * @MongoDB\Field(type="float", name="avg_rating")
      */
     private $avgRating = null;
 
@@ -470,28 +470,10 @@ class Wine
      */
     public function getAvgRating()
     {
-        $this->calculateAvgRating();
         if ($this->avgRating > 0)
             return number_format($this->avgRating, 1);
         else
             return null;
-    }
-
-    public function calculateAvgRating()
-    {
-        if ($this->vintages->count() != 0) {
-            $avgRating = 0;
-            $ratedVintageCount = 0;
-            $vintages = $this->vintages;
-            foreach($vintages as $vintage)
-            {
-                if ($vintage->getAvgRating())
-                    $ratedVintageCount++;
-                $avgRating += $vintage->getAvgRating();
-            }
-            if ($ratedVintageCount != 0)
-                $this->setAvgRating($avgRating/$ratedVintageCount);
-        }
     }
 
     /**
