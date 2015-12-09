@@ -103,7 +103,7 @@
 {% block body %}
 
     {% if vintage.tasteProfile is not empty %}
-        <div class="col-sm-12">
+        <div class="col-xs-12 row">
             <h3 class="section-title clearfix"><i class="line"></i>
                 Profil du vin
             </h3>
@@ -123,12 +123,10 @@
 
                                     {% if userTasteValue >= tasteLevel.value - 10 and userTasteValue <= tasteLevel.value + 10 %}
                                         {% set count = count + 1 %}
-                                        <span class="bar-chart-indicator-line"
-                                              style="height: {{ userTasteValue }}%"></span>
+                                        <span class="bar-chart-indicator-line" style="height: {{ userTasteValue }}%"></span>
                                         <span class="bar-chart-indicator" style="height: {{ userTasteValue }}%">
-                                    <i class="fa fa-heart fa-fw fa-inverse"></i>
-
-                                </span>
+                                            <i class="fa fa-heart fa-fw fa-inverse"></i>
+                                        </span>
 
                                     {% endif %}
                                 {% endif %}
@@ -147,12 +145,11 @@
                     </p>
                 </div>
             </div>
-
         </div>
     {% endif %}
 
     {% if vintage.description is not empty %}
-        <div class="col-sm-12">
+        <div class="col-xs-12 row">
             <h3 class="section-title clearfix"><i class="line"></i>
                 {{ 'wine.title.description'|trans }}
             </h3>
@@ -165,7 +162,7 @@
 
 
     {% if vintage.foodPairings is not empty %}
-        <div class="col-sm-12">
+        <div class="col-xs-12 row">
             <h3 class="section-title clearfix"><i class="line"></i>
                 {{ 'wine.title.food_pairings'|trans }}
             </h3>
@@ -187,7 +184,7 @@
     {% endif %}
 
     {% if timeline is not empty %}
-        <div class="col-sm-12">
+        <div class="col-xs-12 row">
             <h3 class="section-title clearfix"><i class="line"></i>
                 {{ 'wine.title.preservation'|trans }}
             </h3>
@@ -199,7 +196,7 @@
 
 {% block sidebar_right %}
     {% if wine.vintages is not empty %}
-        <div class="col-sm-12">
+        <div class="col-xs-12">
             <h3 class="section-title clearfix"><i class="line"></i>
                 {{ 'wine.title.vintages'|trans }}
             </h3>
@@ -238,7 +235,7 @@
             </table>
         </div>
     {% endif %}
-    <div class="col-sm-12">
+    <div class="col-xs-12">
         {% render(controller('WineotFrontEndCommentBundle:Comment:list', { 'wine': vintage })) %}
     </div>
 {% endblock %}
