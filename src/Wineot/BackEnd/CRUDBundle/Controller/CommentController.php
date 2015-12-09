@@ -20,7 +20,7 @@ class CommentController extends Controller
         return $this->render('WineotBackEndCRUDBundle:Comment:index.html.twig', $paramsRender);
     }
 
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
@@ -31,6 +31,6 @@ class CommentController extends Controller
 
             $flash->success($this->get('translator')->trans('comment.warn.deleted'));
         }
-        return $this->redirectToRoute('wineot_back_end_crud_comment');
+        return $this->redirect($request->headers->get('referer'));
     }
 } 
