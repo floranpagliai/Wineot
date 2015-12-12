@@ -155,6 +155,14 @@ class Wine
      */
     private $foodPairings;
 
+    /**
+     * @var boolean
+     * @Expose
+     *
+     * @MongoDB\Field(type="boolean", name="is_verified")
+     */
+    private $isVerified = false;
+
 
     public function __construct()
     {
@@ -394,6 +402,24 @@ class Wine
     {
         $this->containsSulphites = $containsSulphites;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isIsVerified()
+    {
+        return $this->isVerified;
+    }
+
+    /**
+     * @param boolean $isVerified
+     */
+    public function setIsVerified($isVerified)
+    {
+        $this->isVerified = $isVerified;
+    }
+
+
 
     /**
      * ADDER / REMOVER

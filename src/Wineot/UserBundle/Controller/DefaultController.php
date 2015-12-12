@@ -29,6 +29,6 @@ class DefaultController extends Controller
             'routes' => ['wineot_user_profile_edit_password']
         ));
         $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'user.title.settings');
-        return $this->render('WineotUserBundle:Default:menu.html.twig', $paramsRender);
+        return $this->render('blocks/menu.html.twig', $paramsRender);
     }
 }
