@@ -5,7 +5,7 @@
  * Time: 21:08
  */
 
-namespace Wineot\FrontEnd\WineBundle\Controller;
+namespace Wineot\RestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;

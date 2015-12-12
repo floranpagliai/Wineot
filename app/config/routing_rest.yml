@@ -1,8 +1,0 @@
-wineot_rest_user:
-  type:  rest
-  resource: "@WineotUserBundle/Resources/config/routing_rest.yml"
-  prefix: /user
-wineot_rest_wine:
-  type:  rest
-  resource: "@WineotFrontEndWineBundle/Resources/config/routing_rest.yml"
-  prefix: /wine

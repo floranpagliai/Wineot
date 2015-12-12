@@ -1,8 +1,5 @@
 <div class="col-md-12">
     <h2>{{ 'comment.form.comment'|trans }}</h2>
-    {% if userComment is not null %}
-        {% include 'WineotFrontEndCommentBundle:Comment:show.html.twig' with {'comment': userComment, 'showUserName': false} %}
-    {% else %}
         {{ form_start(form) }}
         {% if errors  is defined %}
             {% for error in errors %}
@@ -24,5 +21,4 @@
         </fieldset>
         <br>
         {{ form_end(form) }}
-    {% endif %}
 </div>

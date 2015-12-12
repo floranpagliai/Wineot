@@ -14,17 +14,10 @@ use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\MaxDepth;
-use JMS\Serializer\Annotation\HandlerCallback;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @MongoDB\Document(collection="wines", repositoryClass="Wineot\DataBundle\Repository\WineRepository")
- *
- * @ExclusionPolicy("all")
  */
 class Wine
 {
@@ -40,7 +33,7 @@ class Wine
 
     /**
      * @var integer
-     * @Expose
+     * @JMS\Type("integer")
      *
      * @MongoDB\Id
      */
@@ -48,7 +41,7 @@ class Wine
 
     /**
      * @var Winery
-     * @MaxDepth(2)
+     * @JMS\Type("Winery")
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Winery",
@@ -59,7 +52,7 @@ class Wine
 
     /**
      * @var string
-     * @Expose
+     * @JMS\Type("string")
      *
      * @MongoDB\Field(type="string")
      * @Assert\Length(
@@ -71,7 +64,7 @@ class Wine
 
     /**
      * @var string
-     * @Expose
+     * @JMS\Type("string")
      *
      * @MongoDB\Field(type="string")
      */
@@ -79,7 +72,7 @@ class Wine
 
     /**
      * @var integer
-     * @Expose
+     * @JMS\Type("integer")
      *
      * @MongoDB\Field(type="int")
      * @Assert\NotBlank()
@@ -87,8 +80,16 @@ class Wine
     private $color;
 
     /**
+     * @var float
+     * @JMS\Type("float")
+     *
+     * @MongoDB\Field(type="float", name="avg_rating")
+     */
+    private $avgRating = null;
+
+    /**
      * @var boolean
-     * @Expose
+     * @JMS\Type("boolean")
      *
      * @MongoDB\Field(type="boolean", name="is_bio")
      */
@@ -96,7 +97,7 @@ class Wine
 
     /**
      * @var boolean
-     * @Expose
+     * @JMS\Type("boolean")
      *
      * @MongoDB\Field(type="boolean", name="contains_sulphites")
      */
@@ -124,7 +125,7 @@ class Wine
 
     /**
      * @var collection
-     * @Expose
+     * @JMS\Type("ArrayCollection<Vintage>")
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="Vintage",
@@ -137,8 +138,7 @@ class Wine
 
     /**
      * @var collection
-     * @Expose
-     * @MaxDepth(2)
+     * @JMS\Type("ArrayCollection<WineGrappe>")
      *
      * @MongoDB\ReferenceMany(
      *  targetDocument="WineGrappe",
@@ -149,7 +149,7 @@ class Wine
 
     /**
      * @var collection
-     * @Expose
+     * @JMS\Type("ArrayCollection<integer>")
      *
      * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
      */
@@ -480,26 +480,26 @@ class Wine
             $this->labelPicture = null;
     }
 
+
+    /**
+     * Set average rating for the wine
+     * @param $avgRating
+     */
+    public function setAvgRating($avgRating)
+    {
+        $this->avgRating = $avgRating;
+    }
+
     /**
      * Get average rating for all comment of the wine
      * @return null|string
      */
     public function getAvgRating()
     {
-        if ($this->vintages->count() != 0) {
-            $avgRating = 0;
-            $ratedVintageCount = 0;
-            $vintages = $this->vintages;
-            foreach($vintages as $vintage)
-            {
-                if ($vintage->getAvgRating())
-                    $ratedVintageCount++;
-                $avgRating += $vintage->getAvgRating();
-            }
-            if ($ratedVintageCount != 0)
-                return number_format($avgRating/$ratedVintageCount, 1);
-        }
-        return null;
+        if ($this->avgRating > 0)
+            return number_format($this->avgRating, 1);
+        else
+            return null;
     }
 
     /**
@@ -520,7 +520,7 @@ class Wine
 
         }
         if ($count != 0)
-            return number_format($avgPrice/$count, 2, ",", " ");
+            return number_format($avgPrice/$count, 2, ".", " ");
         return null;
     }
 
@@ -589,6 +589,8 @@ class Wine
         $data['name'] = $this->getName();
         $data['color'] = $this->getColor();
         $data['description'] = $this->getDescription();
+        $data['avg_rating'] = $this->getAvgRating();
+        $data['avg_price'] = $this->getAvgPrice();
 
         if ($vintage)
         {
@@ -601,7 +603,8 @@ class Wine
         return $data;
     }
 
-    /** @HandlerCallback("json", direction = "serialization")
+    /**
+     * @JMS\HandlerCallback("json", direction = "serialization")
      * @param JsonSerializationVisitor $visitor
      */
     public function serializeToJson(JsonSerializationVisitor $visitor)

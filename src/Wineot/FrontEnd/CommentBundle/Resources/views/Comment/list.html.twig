@@ -4,7 +4,15 @@
         {% for comment in comments %}
             <article class="wine-comment">
                 <h4><a href="#">{{ comment.user.firstname }}</a>
-                    <span class="date">{{ comment.createdAt|date("m/d/Y") }}</span>
+                    <span class="date">{{ comment.createdAt|date("m/d/Y") }}
+                        {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('wineot_back_end_crud_comment_delete', {'id': comment.id}) }}"
+                               data-toggle="tooltip" data-placement="top" data-original-title="{{ 'comment.action.delete'|trans }}"
+                               onclick="return confirm('Delete ?')">
+                                <i class="fa fa-times fa-fw"></i>
+                            </a>
+                        {% endif %}
+                    </span>
                 </h4>
 
                 <div class="rank rank-small">

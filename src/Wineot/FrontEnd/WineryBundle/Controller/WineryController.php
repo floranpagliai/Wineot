@@ -37,10 +37,8 @@ class WineryController extends Controller
         $wines = $dm->getRepository('WineotDataBundle:Wine')->findBestRatedWines($wineryId);
         if (is_array($wines))
             $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
-        else {
-            $wines = $dm->getRepository('WineotDataBundle:Wine')->findBestRatedWines();
-            $paramsRender = array('wines' => $wines, 'wineListTitle' => 'wine.title.trends');
-        }
+        else
+            return $this->redirect($this->generateUrl('wineot_front_end_wine_best_rated'));
         return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
     }
 } 

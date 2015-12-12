@@ -19,6 +19,7 @@ picture:
     form:
         bottle: "Bouteille"
         label: "Étiquette"
+        cover: "Image de couverture"
     warn:
         edited: "L'image à bien été modifié."
         deleted: "L'image à bien été supprimé."

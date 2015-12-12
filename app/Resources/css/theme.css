@@ -272,8 +272,12 @@ ol.with-line-border > li {
   margin-bottom: 1.5em;
   border-bottom: 1px solid #eee;
 }
+.site-sidebar {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 /*	5.1 - Entry
-/*-----------------------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------------------*/
 .hentry {
   margin-bottom: 30px;
 }
