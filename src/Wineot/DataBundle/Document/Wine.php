@@ -157,7 +157,6 @@ class Wine
 
     /**
      * @var boolean
-     * @Expose
      *
      * @MongoDB\Field(type="boolean", name="is_verified")
      */
