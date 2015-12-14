@@ -140,5 +140,18 @@ class Country {
         return $this->code;
     }
 
+    /**
+     * Get data for serialization of current object
+     *
+     * @return array
+     */
+    public function getDataArray()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['name'] = $this->getName();
+        $data['code'] = $this->getCode();
 
+        return $data;
+    }
 } 
