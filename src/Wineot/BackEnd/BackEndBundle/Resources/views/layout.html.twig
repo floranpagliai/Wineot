@@ -2,3 +2,7 @@
 {% set menu_selected = 'admin' %}
 {% set search_active = false %}
 {% set sitehero_active = false %}
+{% block sidebar %}
+    {% render(controller('WineotBackEndBackEndBundle:Default:renderMenu')) %}
+    {% render(controller('WineotBackEndCRUDBundle:Default:renderMenu')) %}
+{% endblock %}

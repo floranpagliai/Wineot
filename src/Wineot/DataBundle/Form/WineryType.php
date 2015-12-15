@@ -29,7 +29,7 @@ class WineryType extends AbstractType
         $builder->add('country', 'document', array(
             'class' => 'Wineot\DataBundle\Document\Country',
             'property' => 'name',
-            'placeholder' => 'crud.form.winery.country',
+            'placeholder' => 'winery.form.country',
             'attr' => array(
                 'class' => 'select2'
             ),
@@ -44,7 +44,7 @@ class WineryType extends AbstractType
             $form->add('region', 'document', array(
                 'class'       => 'Wineot\DataBundle\Document\Region',
                 'property' => 'name',
-                'placeholder' => 'crud.form.winery.region',
+                'placeholder' => 'winery.form.region',
                 'choices'     => $regions,
             ));
         };

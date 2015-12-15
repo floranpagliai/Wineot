@@ -2,6 +2,7 @@
 
 namespace Wineot\FrontEnd\WineBundle\Controller;
 
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\User;
@@ -11,10 +12,11 @@ class WineController extends Controller
 {
     public function redirectWineAction($wineryName, $wineName, $wineId)
     {
+        /** @var DocumentManager $dm */
         $dm = $this->get('doctrine_mongodb')->getManager();
         $vintage = $dm->getRepository('WineotDataBundle:Vintage')->getNewest($wineId);
         if (!$vintage)
-            throw $this->createNotFoundException('wine.warn.doesntexsit');
+            throw $this->createNotFoundException('wine.warn.notfound');
         $params = array(
             'wineryName' => $wineryName,
             'wineName' => $wineName,
@@ -25,29 +27,30 @@ class WineController extends Controller
 
     public function showAction($vintageId)
     {
+        /** @var DocumentManager $dm */
         $dm = $this->get('doctrine_mongodb')->getManager();
         $vintage = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
+        if (!$vintage)
+            throw $this->createNotFoundException('wine.warn.notfound');
         $wine = $vintage->getWine();
-        if (!$wine || !$vintage)
-            throw $this->createNotFoundException('wine.warn.doesntexsit');
-
+        $timeline = null;
         if ($vintage->getKeeping() || $vintage->getPeak()) {
-            $timeline = array(
-                array(
-                    'title' => 'wine.title.vintage',
-                    'date' => array('year' => $vintage->getProductionYear())
-                ),
-                array(
-                    'title' => 'wine.title.peak',
+            $productionYear =  array(
+                'title' => 'wine.title.vintage',
+                'date' => array('year' => $vintage->getProductionYear())
+            );
+            $timeline[] = $productionYear;
+            if ($vintage->getPeak())
+                $timeline[] = array(
+                    'title' => 'wine.title.keeping',
                     'date' => array('year' => $vintage->getPeak())
-                ),
-                array(
+                );
+            if ($vintage->getKeeping())
+                $timeline[] = array(
                     'title' => 'wine.title.keeping',
                     'date' => array('year' => $vintage->getKeeping())
-                )
-            );
-        } else
-            $timeline = null;
+                );
+        }
 
         $paramsRender = array('wine' => $wine, 'vintage' => $vintage, 'timeline' => $timeline);
         return $this->render('WineotFrontEndWineBundle:Vintage:show.html.twig', $paramsRender);

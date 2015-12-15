@@ -23,6 +23,8 @@ security:
             provider: default_provider
             anonymous: ~
             form_login:
+                always_use_default_target_path: true
+                default_target_path: wineot_user_profile
                 login_path:  wineot_user_login
                 check_path:  wineot_user_login_check
             logout:

@@ -11,6 +11,7 @@ namespace Wineot\DataBundle\Repository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use Wineot\DataBundle\Document\Wine;
+use Wineot\DataBundle\Document\Winery;
 
 class WineryRepository extends DocumentRepository {
 
@@ -22,7 +23,7 @@ class WineryRepository extends DocumentRepository {
      * @return mixed
      */
     public function search($search) {
-        $query = $this->createQueryBuilder('WineotDataBundle:Winery');
+        $query = $this->createQueryBuilder();
         $wineries = $query
             ->field('name')->in($search)
             ->getQuery()->execute();
@@ -30,18 +31,30 @@ class WineryRepository extends DocumentRepository {
         return $wineries;
     }
 
+    /**
+     * Get the count of wineries present in database
+     *
+     * @return mixed
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     */
     public function getCount()
     {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
     }
 
+    /**
+     * Maintenance function who init the wines collection of all winery
+     * Need to call WineRepository->ensureWineryRelation() after
+     */
     public function ensureWineRelation()
     {
         $dm = $this->getDocumentManager();
 
         $wineries = $this->findAll();
+
         foreach ($wineries as $winery)
         {
+            /** @var Winery $winery */
             $winery->setWines(new ArrayCollection());
             $dm->persist($winery);
         }

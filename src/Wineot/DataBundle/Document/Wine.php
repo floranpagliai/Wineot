@@ -80,6 +80,14 @@ class Wine
     private $color;
 
     /**
+     * @var float
+     * @JMS\Type("float")
+     *
+     * @MongoDB\Field(type="float", name="avg_rating")
+     */
+    private $avgRating = null;
+
+    /**
      * @var boolean
      * @JMS\Type("boolean")
      *
@@ -146,6 +154,13 @@ class Wine
      * @MongoDB\Field(type="collection", name="food_pairings", nullable=true)
      */
     private $foodPairings;
+
+    /**
+     * @var boolean
+     *
+     * @MongoDB\Field(type="boolean", name="is_verified")
+     */
+    private $isVerified = false;
 
 
     public function __construct()
@@ -388,6 +403,24 @@ class Wine
     }
 
     /**
+     * @return boolean
+     */
+    public function isIsVerified()
+    {
+        return $this->isVerified;
+    }
+
+    /**
+     * @param boolean $isVerified
+     */
+    public function setIsVerified($isVerified)
+    {
+        $this->isVerified = $isVerified;
+    }
+
+
+
+    /**
      * ADDER / REMOVER
      */
 
@@ -446,26 +479,26 @@ class Wine
             $this->labelPicture = null;
     }
 
+
+    /**
+     * Set average rating for the wine
+     * @param $avgRating
+     */
+    public function setAvgRating($avgRating)
+    {
+        $this->avgRating = $avgRating;
+    }
+
     /**
      * Get average rating for all comment of the wine
      * @return null|string
      */
     public function getAvgRating()
     {
-        if ($this->vintages->count() != 0) {
-            $avgRating = 0;
-            $ratedVintageCount = 0;
-            $vintages = $this->vintages;
-            foreach($vintages as $vintage)
-            {
-                if ($vintage->getAvgRating())
-                    $ratedVintageCount++;
-                $avgRating += $vintage->getAvgRating();
-            }
-            if ($ratedVintageCount != 0)
-                return number_format($avgRating/$ratedVintageCount, 1);
-        }
-        return null;
+        if ($this->avgRating > 0)
+            return number_format($this->avgRating, 1);
+        else
+            return null;
     }
 
     /**

@@ -32,8 +32,11 @@ crud:
         vintages: "Millesimes"
         wines: "Vins"
         wineries: "Domaines"
+        admin: "Administration"
+        admin_wines: "Admistration des vins"
     warn:
         wine:
-            edited: "Le vin à bien été modifié"
-            deleted: "Le vin à bien été supprimé"
+            edited: "Le vin à bien été modifié."
+            deleted: "Le vin à bien été supprimé."
             need_vintage: "Vous devez ajoutez au moins un millésime au vin."
+            validated: "Le vin à bien été modéré."

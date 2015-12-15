@@ -10,9 +10,9 @@ class AddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('address');
-        $builder->add('town');
-        $builder->add('zipcode');
+        $builder->add('address', array('placeholder' => 'winery.placeholder.address'));
+        $builder->add('town', array('placeholder' => 'winery.placeholder.town'));
+        $builder->add('zipcode', array('placeholder' => 'winery.placeholder.zipcode'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

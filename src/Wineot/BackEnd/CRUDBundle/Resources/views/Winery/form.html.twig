@@ -6,20 +6,20 @@
         {% endif %}
 <fieldset>
     <div class="form-group">
-        {{ form_row(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
+        {{ form_widget(form.name, { 'attr': { 'placeholder': 'name'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_row(form.country, { 'attr': { 'placeholder': 'country'|trans } } ) }}
+        {{ form_widget(form.country) }}
     </div>
     <div class="form-group">
-        {{ form_row(form.region, { 'attr': { 'placeholder': 'region'|trans } } ) }}
+        {{ form_widget(form.region) }}
     </div>
     {% include 'WineotDataBundle:Address:form.html.twig' %}
     <div class="form-group">
-        {{ form_row(form.mail, { 'attr': { 'placeholder': 'mail'|trans } } ) }}
+        {{ form_widget(form.mail, { 'attr': { 'placeholder': 'mail'|trans } } ) }}
     </div>
     <div class="form-group">
-        {{ form_row(form.phone, { 'attr': { 'placeholder': 'phone'|trans } } ) }}
+        {{ form_widget(form.phone, { 'attr': { 'placeholder': 'phone'|trans } } ) }}
     </div>
     <div class="form-group">
         {% if  winery.coverPicture.md5 is defined %}
@@ -29,7 +29,7 @@
                 <i class="fa fa-times"> {{ 'crud.action.delete_image'|trans }}</i>
             </a>
         {% else %}
-            <label>{{ 'global.winery.picture.cover'|trans }}</label>
+            <label>{{ 'picture.form.cover'|trans }}</label>
             {{ form_widget(form.coverPicture.fileuploaded) }}
         {% endif %}
     </div>

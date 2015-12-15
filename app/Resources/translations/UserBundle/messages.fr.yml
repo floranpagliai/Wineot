@@ -44,4 +44,5 @@ user:
         password_edited: "Mot de passe mis à jour."
         password_length: "Votre mot de passe doit faire entre 5 et 30 caractères."
         password_reset: "Un Email vient de vous être envoyé avec votre nouveau mot de passe. Vérifiez vos spams."
+        must_logged: "Vous devez être connecté."
     word:

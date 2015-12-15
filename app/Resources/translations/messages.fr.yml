@@ -5,12 +5,14 @@ global:
         submit: "Éditer"
         search: "Recherche"
         save: "Sauvegarder"
+        validate: "Valider"
     title:
         home: "Accueil"
         admin: "Administration"
         search_result: "Résultat de la recherche"
     warn:
         usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+
 picture:
     action:
         add: "Ajouter une image"
@@ -18,6 +20,7 @@ picture:
     form:
         bottle: "Bouteille"
         label: "Étiquette"
+        cover: "Image de couverture"
     warn:
         edited: "L'image à bien été modifié."
         deleted: "L'image à bien été supprimé."

@@ -4,8 +4,10 @@ winery:
         edit: "Modifier le domaine"
         submit: "Sauvegarder le domaine"
         delete: "Supprimer le domaine"
+        own: "Je suis le propriétaire"
     title:
         add: "Ajouter un domaine"
+        address: "Adresse"
         edit: "Modifier le domaine"
         adress: "Adresse"
         avg_rating: "Notes Moyenne"
@@ -19,7 +21,7 @@ winery:
         wines: "Vins"
         cover_picture: "Image de couverture"
     placeholder:
-        adresse: "Adresse"
+        address: "Adresse"
         town: "Ville"
         zipcode: "Code Postal"
         country: "Choisir un pays"
