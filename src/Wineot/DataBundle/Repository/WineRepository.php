@@ -5,6 +5,7 @@ namespace Wineot\DataBundle\Repository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Wineot\DataBundle\Document\Vintage;
 use Wineot\DataBundle\Document\Wine;
 use Wineot\DataBundle\Document\Winery;
 
@@ -24,11 +25,12 @@ class WineRepository extends DocumentRepository
      */
     public function search($search, $color, $wineries = null) {
         $wineriesIds = array();
+        /** @var Winery $winery */
         foreach ($wineries as $winery)
             $wineriesIds[] = $winery->getId();
 
         //Find wines for the searched text or with the id of wineries found
-        $query = $this->createQueryBuilder('WineotDataBundle:Wine');
+        $query = $this->createQueryBuilder();
         $query
             ->addOr($query->expr()->field('name')->in($search))
             ->addOr($query->expr()->field('winery')->in($wineriesIds))
@@ -41,6 +43,11 @@ class WineRepository extends DocumentRepository
 
     }
 
+    /**
+     * Find 3 most viewed wines in a month
+     *
+     * @return mixed
+     */
     public function findTrendingWines()
     {
 
@@ -50,6 +57,12 @@ class WineRepository extends DocumentRepository
             ->getQuery()->execute();
     }
 
+    /**
+     * Find 3 best rated wines off all times
+     *
+     * @param null $wineryId
+     * @return mixed
+     */
     public function findBestRatedWines($wineryId = null)
     {
         $query = $this->createQueryBuilder();
@@ -61,11 +74,23 @@ class WineRepository extends DocumentRepository
                 ->getQuery()->execute();
     }
 
+    /**
+     * Get the count of wines present in database
+     *
+     * @return mixed
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     */
     public function getCount()
     {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
     }
 
+    /**
+     * Calculate average rating for a wine and persist it
+     *
+     * @param Wine $id
+     * @throws \Doctrine\ODM\MongoDB\LockException
+     */
     public function calculateAvgRating($id)
     {
         $dm = $this->getDocumentManager();
@@ -75,6 +100,7 @@ class WineRepository extends DocumentRepository
             $avgRating = 0;
             $ratedVintageCount = 0;
             $vintages = $wine->getVintages();
+            /** @var Vintage $vintage */
             foreach($vintages as $vintage)
             {
                 if ($vintage->getAvgRating())
@@ -88,11 +114,15 @@ class WineRepository extends DocumentRepository
         }
     }
 
+    /**
+     * Maintenance function who set the id of parent wine to each vintages
+     */
     public function ensureVintagesRelation()
     {
         $dm = $this->getDocumentManager();
 
         $wines = $this->findAll();
+        /** @var Wine $wine */
         foreach ($wines as $wine)
         {
             foreach ($wine->getVintages() as $vintage)
@@ -104,11 +134,15 @@ class WineRepository extends DocumentRepository
         $dm->flush();
     }
 
+    /**
+     * Maintenance function who set the id of parent winery to each wines
+     */
     public function ensureWineryRelation()
     {
         $dm = $this->getDocumentManager();
 
         $wines = $this->findAll();
+        /** @var Wine $wine */
         foreach ($wines as $wine)
         {
             $winery = $wine->getWinery();
@@ -118,11 +152,15 @@ class WineRepository extends DocumentRepository
         $dm->flush();
     }
 
+    /**
+     * Maintenance function who set isVerified on false for each wines
+     */
     public function unverifyAll()
     {
         $dm = $this->getDocumentManager();
 
         $wines = $this->findAll();
+        /** @var Wine $wine */
         foreach ($wines as $wine)
         {
             $wine->setIsVerified(false);
@@ -130,10 +168,14 @@ class WineRepository extends DocumentRepository
         }
         $dm->flush();
     }
-    
+
+    /**
+     * Maintenance function who calculate average rating for each wines
+     */
     public function ensureAvgRating()
     {
         $wines = $this->findAll();
+        /** @var Wine $wine */
         foreach ($wines as $wine)
             $this->calculateAvgRating($wine->getId());
     }

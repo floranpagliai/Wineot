@@ -1,6 +1,7 @@
 wine:
     action:
         add: "Ajouter un vin"
+        add_it: "Ajoutez le !"
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
         validate: "Valider"
@@ -53,3 +54,6 @@ wine:
         deleted: "Le vin à bien été supprimé."
         favorited: "Le vin à bien été ajouté dans vos favoris."
         unfavorited: "Le vin à bien été enlevé de vos favoris."
+        not_found: "Ce vin n'existe pas."
+    message:
+        not_found: "Vous ne trouvez pas le vin que vous cherchez ?"

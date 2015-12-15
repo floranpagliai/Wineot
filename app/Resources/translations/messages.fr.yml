@@ -12,6 +12,7 @@ global:
         search_result: "Résultat de la recherche"
     warn:
         usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+
 picture:
     action:
         add: "Ajouter une image"

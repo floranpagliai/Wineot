@@ -21,7 +21,7 @@ winery:
         wines: "Vins"
         cover_picture: "Image de couverture"
     placeholder:
-        adresse: "Adresse"
+        address: "Adresse"
         town: "Ville"
         zipcode: "Code Postal"
         country: "Choisir un pays"

@@ -2,6 +2,7 @@
 
 namespace Wineot\FrontEnd\WineBundle\Controller;
 
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\User;
@@ -11,10 +12,11 @@ class WineController extends Controller
 {
     public function redirectWineAction($wineryName, $wineName, $wineId)
     {
+        /** @var DocumentManager $dm */
         $dm = $this->get('doctrine_mongodb')->getManager();
         $vintage = $dm->getRepository('WineotDataBundle:Vintage')->getNewest($wineId);
         if (!$vintage)
-            throw $this->createNotFoundException('wine.warn.doesntexsit');
+            throw $this->createNotFoundException('wine.warn.notfound');
         $params = array(
             'wineryName' => $wineryName,
             'wineName' => $wineName,
@@ -25,6 +27,7 @@ class WineController extends Controller
 
     public function showAction($vintageId)
     {
+        /** @var DocumentManager $dm */
         $dm = $this->get('doctrine_mongodb')->getManager();
         $vintage = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
         if (!$vintage)

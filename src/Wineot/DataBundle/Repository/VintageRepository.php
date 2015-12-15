@@ -19,14 +19,26 @@ class VintageRepository extends DocumentRepository
         return $this->createQueryBuilder()->getQuery()->execute();
     }
 
-    public function getNewest($wineId)
+    /**
+     * Get the newest vintage for a wine
+     *
+     * @param Wine $id
+     * @return array|null|object
+     */
+    public function getNewest($id)
     {
         return $this->createQueryBuilder()
-            ->field('wine')->equals($wineId)
+            ->field('wine')->equals($id)
             ->sort('production_year', 'DESC')
             ->getQuery()->getSingleResult();
     }
 
+    /**
+     * Get the count of vintages present in database
+     *
+     * @return mixed
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     */
     public function getCount()
     {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
