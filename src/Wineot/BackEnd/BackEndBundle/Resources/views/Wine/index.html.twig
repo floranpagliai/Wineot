@@ -10,6 +10,7 @@
                 <th>{{ 'wine.form.name'|trans }}</th>
                 <th>{{ 'wine.form.vintages'|trans }}</th>
                 <th class="btn-table"></th>
+                <th class="btn-table"></th>
             </tr>
             </thead>
             <tbody>
@@ -39,14 +40,14 @@
                     <td class="tooltips">
                         <a href="{{ path('wineot_back_end_crud_wine_edit', { 'id': wine.id }) }}"
                            class="btn btn-sm btn-blue btn-block" data-toggle="tooltip"
-                           data-placement="top" data-original-title="Edit">
+                           data-placement="top" data-original-title="{{ 'wine.action.edit'|trans }}">
                             <i class="fa fa-pencil"></i>
                         </a>
                     </td>
                     <td class="tooltips">
                         <a href="{{ path('wineot_back_end_admin_wine_validate', { 'id': wine.id }) }}"
                            class="btn btn-sm btn-green btn-block" data-toggle="tooltip"
-                           data-placement="top" data-original-title="{{ 'global.action.validate'|trans }}">
+                           data-placement="top" data-original-title="{{ 'wine.action.validate'|trans }}">
                             <i class="fa fa-check"></i>
                         </a>
                     </td>
@@ -54,7 +55,7 @@
             {% endfor %}
             </tbody>
         </table>
-        {% else %}
+    {% else %}
         <p>Vous avez pas de vins à valider, bon travail !</p>
     {% endif %}
 {% endblock %}
