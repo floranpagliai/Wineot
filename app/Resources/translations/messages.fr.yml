@@ -13,10 +13,11 @@ global:
         error404: "Erreur 404"
         error500: "Erreur 500"
     message:
-        error404: "La page que vous cherchez n'existe pas (ou plus)."
-        error500: "Une erreur interne est survenue"
+        error404: "La page que vous cherchez n'existe pas."
+        error500: "Ooops..."
     warn:
         usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+
 picture:
     action:
         add: "Ajouter une image"
@@ -25,6 +26,7 @@ picture:
     form:
         bottle: "Bouteille"
         label: "Étiquette"
+        cover: "Image de couverture"
     warn:
         edited: "L'image à bien été modifié."
         deleted: "L'image à bien été supprimé."

@@ -9,27 +9,23 @@ namespace Wineot\DataBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\JsonSerializationVisitor;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique as MongoDBUnique;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Wineot\DataBundle\Document\Comment;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\HandlerCallback;
+use JMS\Serializer\Annotation as JMS;
+
 
 /**
  * @MongoDB\Document(collection="vintages", repositoryClass="Wineot\DataBundle\Repository\VintageRepository")
- *
- * @ExclusionPolicy("all")
  */
 
 class Vintage
 {
     /**
      * @var integer
+     * @JMS\Type("integer")
      *
      * @MongoDB\Id
      */
@@ -37,15 +33,18 @@ class Vintage
 
     /**
      * @var Wine
+     * @JMS\Type("Wine")
      *
      * @MongoDB\ReferenceOne(
      *  targetDocument="Wine",
+     *  cascade={"persist"},
      *  simple=true)
      */
     private $wine;
 
     /**
      * @var Int
+     * @JMS\Type("integer")
      *
      * @MongoDB\Field(type="int", name="production_year"))
      * @Assert\NotBlank()
@@ -54,6 +53,7 @@ class Vintage
 
     /**
      * @var boolean
+     * @JMS\Type("boolean")
      *
      * @MongoDB\Field(type="boolean", name="is_bio")
      */
@@ -61,6 +61,7 @@ class Vintage
 
     /**
      * @var boolean
+     * @JMS\Type("boolean")
      *
      * @MongoDB\Field(type="boolean", name="contains_sulphites")
      */
@@ -68,6 +69,7 @@ class Vintage
 
     /**
      * @var Int
+     * @JMS\Type("integer")
      *
      * @MongoDB\Field(type="int", nullable=true))
      */
@@ -75,6 +77,7 @@ class Vintage
 
     /**
      * @var Int
+     * @JMS\Type("integer")
      *
      * @MongoDB\Field(type="int", nullable=true))
      */
@@ -82,6 +85,7 @@ class Vintage
 
     /**
      * @var float
+     * @JMS\Type("float")
      *
      * @MongoDB\Field(type="float", nullable=true)
      */
@@ -89,6 +93,7 @@ class Vintage
 
     /**
      * @var float
+     * @JMS\Type("float")
      *
      * @MongoDB\Field(type="float", name="winery_price", nullable=true)
      */
@@ -480,7 +485,7 @@ class Vintage
     {
         //TODO : Calculate price based on sellings
         if ($this->wineryPrice > 0)
-            return number_format($this->wineryPrice, 2, ",", " ");
+            return number_format($this->wineryPrice, 2, ".", " ");
         else
             return null;
     }
@@ -500,10 +505,13 @@ class Vintage
         $data['contains_sulphites'] = $this->isContainsSulphites();
         $data['peak'] = $this->getPeak();
         $data['keeping'] = $this->getKeeping();
+        $data['avg_rating'] = $this->getAvgRating();
+        $data['avg_price'] = $this->getAvgPrice();
         return $data;
     }
 
-    /** @HandlerCallback("json", direction = "serialization")
+    /**
+     * @JMS\HandlerCallback("json", direction = "serialization")
      * @param JsonSerializationVisitor $visitor
      */
     public function serializeToJson(JsonSerializationVisitor $visitor)

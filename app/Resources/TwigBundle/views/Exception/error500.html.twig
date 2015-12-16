@@ -1,9 +1,10 @@
 {% extends "frontend/layout.html.twig" %}
-{% set search_active = false %}
 {% block body %}
-    <h1>{{ 'global.title.error500'|trans }}</h1>
+    <div class="col-xs-6 col-xs-offset-3 text-center jumbotron">
+        <h1>{{ 'global.title.error500'|trans }}</h1>
 
-    <p>
-        {{ 'global.message.error500'|trans }}
-    </p>
+        <p>
+            {{ 'global.message.error500'|trans }}
+        </p>
+    </div>
 {% endblock %}

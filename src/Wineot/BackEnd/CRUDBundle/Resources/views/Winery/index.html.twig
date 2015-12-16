@@ -1,6 +1,7 @@
 {% extends 'WineotBackEndCRUDBundle::layout.html.twig' %}
 {% set menu_selected = 'admin' %}
 {% block body %}
+    <div class="col-sm-12">
     <table class="table table-hover">
         <thead>
         <tr>
@@ -40,5 +41,5 @@
         </tbody>
     </table>
     <a class="btn btn-lg btn-block" href="{{ path('wineot_back_end_crud_winery_add') }}">{{ 'winery.action.add'|trans }}</a>
-
+</div>
 {% endblock %}

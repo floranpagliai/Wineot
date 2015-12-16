@@ -34,29 +34,32 @@ class CommentController extends Controller
         $user = $this->getUser();
         $flash = $this->get('notify_messenger.flash');
         $dm = $this->get('doctrine_mongodb')->getManager();
-        $wine = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
+
+        $vintage = $dm->getRepository('WineotDataBundle:Vintage')->find($vintageId);
         $comment = new Comment();
         $form = $this->createForm(new CommentType(), $comment);
-        $userComment = null;
 
-        $comment->setWine($wine);
+        $comment->setWine($vintage);
         $form->handleRequest($request);
 
         if ($request->isMethod('POST')) {
             if ($user) {
-                if ($form->isValid() && !isset($userComment)) {
+                if ($form->isValid()) {
                     $comment->setUser($user);
                     $dm->persist($comment);
                     $dm->flush();
 
+                    //update average rating for the commented wine
+                    $dm->getRepository('WineotDataBundle:Wine')->calculateAvgRating($vintage->getWine()->getId());
+
                     $flash->success($this->get('translator')->trans('comment.warn.added'));
                 }
             } else {
-                $flash->error($this->get('translator')->trans('comment.warn.usermostlogged'));
+                $flash->error($this->get('translator')->trans('user.warn.must_logged'));
             }
         }
 
-        $paramsRender = array('form' => $form->createView(), 'userComment' => $userComment);
+        $paramsRender = array('form' => $form->createView());
         return $this->render('WineotFrontEndCommentBundle:Comment:add.html.twig', $paramsRender);
     }
 } 

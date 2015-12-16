@@ -15,8 +15,8 @@
             {#{% endfor %}#}
         </div>
         <div class="row no-result">
-            <h4>Vous ne trouvez pas le vin que vous cherchez ?</h4>
-            <a href="#" class="btn btn-lg btn-green">Ajoutez le !</a>
+            <h4>{{ 'wine.message.not_found'|trans }}</h4>
+            <a href="#" class="btn btn-lg btn-green">{{ 'wine.action.add_it'|trans }}</a>
         </div>
     </div>
 {% endblock %}
