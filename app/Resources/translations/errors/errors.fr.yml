@@ -1,5 +1,0 @@
-errors:
-    title:
-        404: "La page que vous cherchez n'existe pas (ou plus)."
-    button:
-        page_home: "Revenir à la page d'acceuil"
