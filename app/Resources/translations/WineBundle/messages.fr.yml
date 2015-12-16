@@ -2,6 +2,7 @@ wine:
     action:
         add: "Ajouter un vin"
         add_it: "Ajoutez le !"
+        edit: "Modifier le vin"
         delete: "Supprimer le vin"
         search: "Rechercher un vin"
         validate: "Valider"

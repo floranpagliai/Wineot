@@ -1,5 +1,7 @@
 {% extends 'WineotBackEndBackEndBundle::layout.html.twig' %}
 {% block body %}
+    <div class="col-sm-12">
+        {% if (wines|length > 0) %}
     <table class="table table-hover">
         <thead>
         <tr>
@@ -11,39 +13,48 @@
             <th class="btn-table"></th>
         </tr>
         </thead>
-        <tbody>
-        {% for wine in wines %}
-            <tr>
-                <td>
-                    {% if  wine.labelPicture is not null %}
-                        <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}" width="50px">
-                    {% endif %}
-                </td>
-                <td>
-                    {% if wine.bottlePicture is not null %}
-                        <img class="img-responsive" src="{{ wine.bottlePicture.getImage() }}" width="50px"/>
-                    {% endif %}
-                </td>
-                <td>
-                    {% if wine.winery.name is defined %}
-                        {{ wine.winery.name }}
-                    {% endif %}
-                </td>
-                <td>
-                    {{ wine.name }}
-                </td>
-                <td>
-                    {{ wine.vintages|length }}
-                </td>
-                <td class="tooltips">
-                    <a href="{{ path('wineot_back_end_admin_wine_validate', { 'id': wine.id }) }}"
-                       class="btn btn-sm btn-green btn-block" data-toggle="tooltip"
-                       data-placement="top" data-original-title="{{ 'global.action.validate'|trans }}">
-                        <i class="fa fa-check"></i>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <tbody>
+            {% for wine in wines %}
+                <tr>
+                    <td>
+                        {% if  wine.labelPicture is not null %}
+                            <img class="img-responsive" src="{{ wine.labelPicture.getImage() }}" width="50px">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if wine.bottlePicture is not null %}
+                            <img class="img-responsive" src="{{ wine.bottlePicture.getImage() }}" width="50px"/>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if wine.winery.name is defined %}
+                            {{ wine.winery.name }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ wine.name }}
+                    </td>
+                    <td>
+                        {{ wine.vintages|length }}
+                    </td>
+                    <td class="tooltips">
+                        <a href="{{ path('wineot_back_end_crud_wine_edit', { 'id': wine.id }) }}"
+                           class="btn btn-sm btn-blue btn-block" data-toggle="tooltip"
+                           data-placement="top" data-original-title="{{ 'wine.action.edit'|trans }}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td class="tooltips">
+                        <a href="{{ path('wineot_back_end_admin_wine_validate', { 'id': wine.id }) }}"
+                           class="btn btn-sm btn-green btn-block" data-toggle="tooltip"
+                           data-placement="top" data-original-title="{{ 'wine.action.validate'|trans }}">
+                            <i class="fa fa-check"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </div>
 {% endblock %}
