@@ -405,7 +405,8 @@ class User implements UserInterface
     public static function getRolesType()
     {
         return array(
-            'ROLE_ADMIN' => 'Admin',
+            'ROLE_WINERY_ADMIN' => 'global.word.winery_admin',
+            'ROLE_ADMIN' => 'global.word.admin',
         );
     }
 

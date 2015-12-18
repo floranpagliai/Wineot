@@ -17,6 +17,9 @@ global:
         error500: "Ooops..."
     warn:
         usermostlogged: "Vous devez être connecté pour ajouter un commentaire."
+    word:
+        winery_admin: "Administrateur de domaine"
+        admin: "Administrateur"
 
 picture:
     action:

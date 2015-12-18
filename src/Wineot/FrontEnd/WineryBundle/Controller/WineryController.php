@@ -7,7 +7,11 @@
 
 namespace Wineot\FrontEnd\WineryBundle\Controller;
 
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Wineot\DataBundle\Document\Owning;
+use Wineot\DataBundle\Document\Winery;
 
 class WineryController extends Controller
 {
@@ -29,6 +33,31 @@ class WineryController extends Controller
         $wines = $winery->getWines();
         $paramsRender = array('wines' => $wines, 'wineListTitle' => 'winery.title.wines_list');
         return $this->render('WineotFrontEndWineBundle:Wine:list.html.twig', $paramsRender);
+    }
+
+    public function ownAction(Request $request, $wineryId)
+    {
+        $flash = $this->get('notify_messenger.flash');
+
+        /** @var DocumentManager $dm */
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $user = $this->getUser();
+
+        /** @var Winery $winery*/
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($wineryId);
+        if (!$winery)
+            throw $this->createNotFoundException('winery.warn.doesntexsit');
+        if ($user) {
+            $owning = new Owning();
+            $owning->setUser($user);
+            $winery->setOwning($owning);
+            $dm->persist($winery);
+            $dm->flush();
+            $flash->success($this->get('translator')->trans('winery.warn.request_owning'));
+        } else
+            $flash->error($this->get('translator')->trans('user.warn.must_logged'));
+
+        return $this->redirect($request->headers->get('referer'));
     }
 
     public function bestRatedAction($wineryId)

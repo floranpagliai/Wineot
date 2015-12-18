@@ -31,3 +31,4 @@ winery:
     warn:
         edited: "Le domaine à bien été modifié."
         deleted: "Le domaine à bien été supprimé."
+        request_owning: "Nous avons pris en compte votre demande."
