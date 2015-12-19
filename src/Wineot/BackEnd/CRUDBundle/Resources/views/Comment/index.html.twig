@@ -16,7 +16,8 @@
         {% for comment in comments %}
             <tr>
                 <td>
-                    {{ comment.user.username }}
+                    <b>{{ user.username }}</b><br/>
+                    {{ user.firstname }} {{ user.lastname }}
                 </td>
                 <td>
                     {% if comment.wine.name is defined %}
