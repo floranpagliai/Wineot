@@ -7,3 +7,12 @@ wineot_back_end_admin_wine:
 wineot_back_end_admin_wine_validate:
     path:     /wine/validate/{id}
     defaults: { _controller: WineotBackEndBackEndBundle:Wine:validate }
+wineot_back_end_admin_winery_owning:
+    path:     /winery/owning
+    defaults: { _controller: WineotBackEndBackEndBundle:Winery:indexOwning }
+wineot_back_end_admin_winery_owning_validate:
+    path:     /winery/{id}/owning/validate
+    defaults: { _controller: WineotBackEndBackEndBundle:Winery:validateOwning }
+wineot_back_end_admin_winery_owning_invalidate:
+    path:     /winery/{id}/owning/invalidate
+    defaults: { _controller: WineotBackEndBackEndBundle:Winery:invalidateOwning }

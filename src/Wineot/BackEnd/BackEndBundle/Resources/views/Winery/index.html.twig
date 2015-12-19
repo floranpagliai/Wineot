@@ -1,0 +1,44 @@
+{% extends 'WineotBackEndBackEndBundle::layout.html.twig' %}
+{% block body %}
+    <div class="col-sm-12">
+        {% if (wineries|length > 0) %}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'winery.form.name'|trans }}</th>
+                    <th>{{ 'user.form.label.user'|trans }}</th>
+                    <th class="btn-table"></th>
+                    <th class="btn-table"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for winery in wineries %}
+                    <tr>
+                        <td>
+                            {{ winery.name }}
+                        </td>
+                        <td>
+                            {{ winery.owning.user.mail }}<br/>
+                            {{ winery.owning.user.firstname }} {{ winery.owning.user.lastname }}
+                        </td>
+                        <td class="tooltips">
+                            <a href="{{ path('wineot_back_end_admin_winery_owning_validate', { 'id': winery.id }) }}"
+                               class="btn btn-sm btn-green btn-block" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'global.action.validate'|trans }}">
+                                <i class="fa fa-check"></i>
+                            </a>
+                        </td>
+                        <td class="tooltips">
+                            <a href="{{ path('wineot_back_end_admin_winery_owning_invalidate', { 'id': winery.id }) }}"
+                               class="btn btn-sm btn-red btn-block" data-toggle="tooltip"
+                               data-placement="top" data-original-title="{{ 'global.action.delete'|trans }}" onclick="return confirm('Delete ?')">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

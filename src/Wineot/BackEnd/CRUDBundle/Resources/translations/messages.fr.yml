@@ -34,6 +34,7 @@ crud:
         wineries: "Domaines"
         admin: "Administration"
         admin_wines: "Admistration des vins"
+        admin_owning: ""
     warn:
         wine:
             edited: "Le vin à bien été modifié."

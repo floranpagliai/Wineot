@@ -32,3 +32,5 @@ winery:
         edited: "Le domaine à bien été modifié."
         deleted: "Le domaine à bien été supprimé."
         request_owning: "Nous avons pris en compte votre demande."
+        validate_owning: "Demande de propriété à bien été validé."
+        invalidate_owning: "Demande de propriété à bien été supprimé."
