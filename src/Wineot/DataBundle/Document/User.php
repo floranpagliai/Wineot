@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @MongoDB\Document(collection="users")
- * @MongoDBUnique(fields="mail", message="user.warn.email_unique")
+ * @MongoDBUnique(fields="username", message="user.warn.email_unique")
  */
 class User implements UserInterface
 {
@@ -37,9 +37,7 @@ class User implements UserInterface
      * @JMS\Type("string")
      *
      * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 25
-     * )
+     * @Assert\Email()
      * @Assert\NotBlank()
      */
     private $username;
@@ -70,14 +68,6 @@ class User implements UserInterface
      * */
     private $plainPassword;
 
-    /**
-     * @var string
-     *
-     * @MongoDB\Field(type="string")
-     * @Assert\Email()
-     * @Assert\NotBlank()
-     */
-    private $mail;
 
     /**
      * @var string
@@ -104,7 +94,10 @@ class User implements UserInterface
     /**
      * @var collection
      *
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="user")
+     * @MongoDB\ReferenceMany(
+     *     targetDocument="Comment",
+     *     mappedBy="user",
+     *     cascade={"all"})
      */
     private $comments;
 
@@ -202,27 +195,6 @@ class User implements UserInterface
         return $this->plainPassword;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return self
-     */
-    public function setMail($email)
-    {
-        $this->mail = $email;
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string $email
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
 
     /**
      * Set firstname

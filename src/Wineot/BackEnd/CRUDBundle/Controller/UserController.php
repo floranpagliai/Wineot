@@ -37,7 +37,7 @@ class UserController extends Controller
             $dm->persist($user);
             $dm->flush();
 
-            $flash->success($this->get('translator')->trans('crud.warn.user.edited'));
+            $flash->success($this->get('translator')->trans('user.warn.edited'));
             return $this->redirectToRoute('wineot_back_end_crud_user');
         }
         $paramsRender = array('form' => $form->createView(), 'id' => $id);
@@ -53,7 +53,7 @@ class UserController extends Controller
             $dm->remove($user);
             $dm->flush();
 
-            $flash->success($this->get('translator')->trans('crud.warn.user.deleted'));
+            $flash->success($this->get('translator')->trans('user.warn.deleted'));
         } else {
             $flash->error($this->get('translator')->trans('crud.error.user.notfound'));
         }

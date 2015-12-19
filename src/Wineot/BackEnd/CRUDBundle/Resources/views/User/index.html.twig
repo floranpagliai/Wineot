@@ -5,9 +5,8 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>{{ 'user.form.label.user'|trans }}</th>
+            <th>{{ 'user.form.label.roles'|trans }}</th>
             <th class="btn-table"></th>
             <th class="btn-table"></th>
         </tr>
@@ -19,7 +18,6 @@
                     <b>{{ user.username }}</b><br/>
                     {{ user.firstname }} {{ user.lastname }}
                 </td>
-                <td>{{ user.mail }}</td>
                 <td>
                     {% for role in user.roles %}
                         {{ role }}<br/>

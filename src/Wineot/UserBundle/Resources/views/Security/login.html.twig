@@ -12,13 +12,11 @@
         <form action="{{ path("wineot_user_login_check") }}" method="post">
             <fieldset>
                 <div class="form-group">
-                    <label class="sr-only" for="username">Username</label>
-                    <input class="form-control" placeholder="{{ 'user.form.placeholder.username'|trans }}" type="text"
+                    <input class="form-control" placeholder="{{ 'user.form.placeholder.email'|trans }}" type="text"
                            id="username" name="_username"
                            value="{{ last_username }}" required="required">
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="password">Password</label>
                     <input class="form-control" placeholder="{{ 'user.form.placeholder.password'|trans }}"
                            id="password" name="_password" type="password" value=""
                            required="required">
@@ -34,7 +32,7 @@
                        value="{{ 'user.action.login'|trans }}"/>
             </fieldset>
             <br>
-            <p style="text-align: center;">
+            <p class="text-center">
                 <a href="{{ path('wineot_user_profile_reset_password') }}">{{ 'user.description.forget_password'|trans }}</a>
             </p>
         </form>

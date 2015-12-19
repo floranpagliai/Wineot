@@ -127,7 +127,6 @@ class Vintage
      *  mappedBy="wine",
      *  cascade={"all"},
      *  nullable=true)
-     * @Gedmo\ReferenceIntegrity("nullify")
      */
     private $comments;
 

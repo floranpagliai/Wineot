@@ -26,6 +26,7 @@ user:
             email: "Email"
             password: "Mot de passe"
             password_validation: "Mot de passe (Validation)"
+            roles: "Rôles"
         placeholder:
             username: "Nom d'utilisateur"
             firstname: "Prénom"
@@ -33,14 +34,16 @@ user:
             email: "Email"
             password: "Mot de passe"
             password_validation: "Mot de passe (Validation)"
-            roles:
     message:
         reset_password: "Entrez votre email et vous recevrez un nouveau mot de passe rapidement."
     warn:
         registered: "Utilisateur enregistré. Vous pouvez maintenant vous connecter."
+        edited: "L'utilisateur à bien été edité."
+        deleted: "L'utilisateur à bien été supprimée."
         email_unique: "Cet email est déjà utilisé."
         email_unknown: "Nous n'avons pas pu trouver de compte associé à cet Email."
         user_edited: "Vos informations ont bien été mises à jour."
+        password_match: "Les mots de passe doivent correspondre."
         password_edited: "Mot de passe mis à jour."
         password_length: "Votre mot de passe doit faire entre 5 et 30 caractères."
         password_reset: "Un Email vient de vous être envoyé avec votre nouveau mot de passe. Vérifiez vos spams."

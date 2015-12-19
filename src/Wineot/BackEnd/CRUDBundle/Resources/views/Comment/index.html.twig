@@ -16,9 +16,7 @@
         {% for comment in comments %}
             <tr>
                 <td>
-                    {% if comment.user.mail is defined %}
-                    {{ comment.user.mail }}
-                        {% endif %}
+                    {{ comment.user.username }}
                 </td>
                 <td>
                     {% if comment.wine.name is defined %}
