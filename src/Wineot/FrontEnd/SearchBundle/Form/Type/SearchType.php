@@ -10,7 +10,12 @@ class SearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('searchInput', 'text');
+        $builder->add('searchInput', 'text', array(
+            'attr' => array(
+                'placeholder' => 'wine.action.search',
+                'class' => 'search-field form-control input-lg'
+            )
+        ));
     }
 
     public function getName()
