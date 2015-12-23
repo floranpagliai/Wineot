@@ -8,6 +8,7 @@ wine:
         validate: "Valider"
         submit: "Sauvegarder le vin"
     title:
+        wines: "Vins"
         best_rated: "Les vins les mieux notés"
         description: "Description"
         color_red: "Rouge"
