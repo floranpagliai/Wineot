@@ -63,7 +63,7 @@
     });
     $(function () {
         // Tooltips for sidebar toggle and sidebar logout button
-        $('.tooltip-sidebar-toggle, .tooltips').tooltip({
+        $('.tooltip-sidebar-toggle, .tooltips, .wine-show-toolbar').tooltip({
             selector: "[data-toggle=tooltip]",
             container: "body"
         });
@@ -73,14 +73,14 @@
     <script>
         $(document).ready(function(){
             $('.collection-vintages').collection({
-                'add': '<a href="#" class="btn"><i class="icon-plus-sign"></i> Add</a>',
-                'delete': '<a href="#" class="btn btn-sm btn-red" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>',
+                'add': '<a href="#" class="btn"><i class="icon-plus-sign"></i>{{ 'global.action.add'|trans }}</a>',
+                'delete': '<a href="#" class="btn btn-sm btn-red tooltips" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'global.action.delete'|trans }}"><i class="fa fa-times"></i></a>',
                 'container': '<div class="collection-elem"></div>',
                 'containerSelector': '.collection-elem'
             })
             $('.collection-table').collection({
-                'add': '<a href="#" class="btn"><i class="icon-plus-sign"></i> Add</a>',
-                'delete': '<a href="#" class="btn btn-sm btn-red btn-block" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>',
+                'add': '<a href="#" class="btn"><i class="icon-plus-sign"></i>{{ 'global.action.add'|trans }}</a>',
+                'delete': '<a href="#" class="btn btn-sm btn-red btn-block tooltips" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'global.action.delete'|trans }}"><i class="fa fa-times"></i></a>',
                 'container': '<tr></tr>',
                 'containerSelector': 'tr'
             })

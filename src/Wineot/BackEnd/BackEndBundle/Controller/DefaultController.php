@@ -21,6 +21,7 @@ class DefaultController extends Controller
     public function renderMenuAction()
     {
         $crudMenu = new ArrayCollection();
+        $dm = $this->get('doctrine_mongodb')->getManager();
 
         $crudMenu->add(array(
             'route' => 'wineot_back_end_homepage',
@@ -30,12 +31,14 @@ class DefaultController extends Controller
         $crudMenu->add(array(
             'route' => 'wineot_back_end_admin_wine',
             'name' => 'backend.title.admin_wines',
-            'routes' => array('wineot_back_end_admin_wine')
+            'routes' => array('wineot_back_end_admin_wine'),
+            'badge' => sizeof($dm->getRepository('WineotDataBundle:Wine')->findBy(array('isVerified' => false)))
         ));
         $crudMenu->add(array(
             'route' => 'wineot_back_end_admin_winery_owning',
             'name' => 'backend.title.admin_owning',
-            'routes' => array('wineot_back_end_admin_winery_owning')
+            'routes' => array('wineot_back_end_admin_winery_owning'),
+            'badge' => sizeof($dm->getRepository('WineotDataBundle:Winery')->findBy(array('owning.is_verified' => false)))
         ));
         $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'backend.title.admin');
         return $this->render('blocks/menu.html.twig', $paramsRender);

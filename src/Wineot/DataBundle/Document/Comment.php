@@ -38,7 +38,7 @@ class Comment
     private $rank;
 
     /**
-     * @var integer
+     * @var User
      *
      * @MongoDB\Field(name="user_id")
      * @MongoDB\ReferenceOne(
@@ -49,7 +49,7 @@ class Comment
     private $user;
 
     /**
-     * @var integer
+     * @var Wine
      *
      * @MongoDB\Field()
      * @MongoDB\ReferenceOne(
@@ -113,7 +113,7 @@ class Comment
     }
 
     /**
-     * Set userId
+     * Set User
      *
      * @param \Wineot\DataBundle\Document\User $user
      * @return self
@@ -125,7 +125,7 @@ class Comment
     }
 
     /**
-     * Get userId
+     * Get User
      *
      * @return \Wineot\DataBundle\Document\User $user
      */

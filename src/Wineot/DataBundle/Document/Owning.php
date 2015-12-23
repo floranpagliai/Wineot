@@ -15,12 +15,13 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 class Owning
 {
     /**
-     * @var integer
+     * @var User
      *
      * @MongoDB\Field(name="user_id")
      * @MongoDB\ReferenceOne(
      *  targetDocument="User",
-     *  simple=true)
+     *  simple=true,
+     *  cascade={"persist"})
      */
     private $user;
 
@@ -32,7 +33,7 @@ class Owning
     private $isVerified = false;
 
     /**
-     * @return int
+     * @return User
      */
     public function getUser()
     {
@@ -40,7 +41,7 @@ class Owning
     }
 
     /**
-     * @param int $user
+     * @param User $user
      */
     public function setUser($user)
     {

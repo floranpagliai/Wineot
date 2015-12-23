@@ -12,6 +12,9 @@ global:
         search_result: "Résultat de la recherche"
         error404: "Erreur 404"
         error500: "Erreur 500"
+    form:
+        placeholder:
+            year: "Choisir une année"
     message:
         error404: "La page que vous cherchez n'existe pas."
         error500: "Ooops..."

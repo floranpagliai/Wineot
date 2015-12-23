@@ -325,6 +325,12 @@ class User implements UserInterface
         return $this;
     }
 
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
+        return $this;
+    }
+
     /**
      * @param \Doctrine\Common\Collections\Collection $favoritesWines
      */

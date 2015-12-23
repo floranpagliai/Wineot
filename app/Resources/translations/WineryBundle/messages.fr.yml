@@ -13,6 +13,7 @@ winery:
         avg_rating: "Notes Moyenne"
         wines_count: "Vins"
         wines_list: "Les vins de ce domaine"
+        owning: "Demande de propriété"
     form:
         country: "Pays"
         region: "Région"

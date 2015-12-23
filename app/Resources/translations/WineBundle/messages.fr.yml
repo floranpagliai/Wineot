@@ -30,6 +30,7 @@ wine:
         peak: "Apogé"
         keeping: "Potentiel de garde"
     form:
+        alcohol: "Alcool"
         winery: "Domaine"
         name: "Nom du vin"
         color: "Couleur"
@@ -37,6 +38,8 @@ wine:
         isbio: "Cocher si le vin est bio"
         vintage: "Millésime"
         vintages: "Millésimes"
+        peak: "Apogé"
+        keeping: "Potentiel de garde"
         sweet_level: "Sucrée"
         fruits_level: "Fruitée"
         wooded_level: "Boisé"
@@ -45,6 +48,7 @@ wine:
         complex_level: "Complexe"
         label_picture: "Image de l'étiquette"
         bottle_picture: "Image de la bouteille"
+        price: "Prix"
     placeholder:
         color: "Choisir une couleur"
         winery: "Choisir un domaine"

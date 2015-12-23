@@ -11,6 +11,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\Owning;
+use Wineot\DataBundle\Document\User;
 use Wineot\DataBundle\Document\Winery;
 
 class WineryController extends Controller
@@ -37,10 +38,10 @@ class WineryController extends Controller
 
     public function ownAction(Request $request, $wineryId)
     {
-        $flash = $this->get('notify_messenger.flash');
-
         /** @var DocumentManager $dm */
         $dm = $this->get('doctrine_mongodb')->getManager();
+        $flash = $this->get('notify_messenger.flash');
+        $mailjet = $this->container->get('headoo_mailjet_wrapper');
         $user = $this->getUser();
 
         /** @var Winery $winery*/
@@ -51,6 +52,16 @@ class WineryController extends Controller
             $owning = new Owning();
             $owning->setUser($user);
             $winery->setOwning($owning);
+
+            $params = array(
+                "method" => "POST",
+                "from" => "floran@wineot.net",
+                "to" => $user->getUsername(),
+                "subject" => $this->get('translator')->trans('winery.title.owning'),
+                "html" => $this->renderView('Emails/owning.html.twig', array('wineryName' => $winery->getName()))
+            );
+            $mailjet->sendEmail($params);
+
             $dm->persist($winery);
             $dm->flush();
             $flash->success($this->get('translator')->trans('winery.warn.request_owning'));

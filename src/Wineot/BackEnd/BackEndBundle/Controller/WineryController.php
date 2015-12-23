@@ -9,7 +9,7 @@ namespace Wineot\BackEnd\BackEndBundle\Controller;
 
 
 use Doctrine\ODM\MongoDB\DocumentManager;
-use MongoDBODMProxies\__CG__\Wineot\DataBundle\Document\Winery;
+use Wineot\DataBundle\Document\Winery;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -35,9 +35,13 @@ class WineryController  extends Controller
         $dm = $this->get('doctrine_mongodb')->getManager();
         $flash = $this->get('notify_messenger.flash');
 
+        /** @var Winery $winery */
         $winery = $dm->getRepository('WineotDataBundle:Winery')->find($id);
         if ($winery) {
             $winery->getOwning()->setIsVerified(true);
+            $user = $winery->getOwning()->getUser()->addRole("ROLE_WINERY_ADMIN");
+
+            //$dm->persist($user);
             $dm->persist($winery);
             $dm->flush();
 
