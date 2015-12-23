@@ -13,13 +13,13 @@ use Wineot\FrontEnd\SearchBundle\Resources\utils\StringUtil;
 
 class SearchController extends Controller
 {
-    public function searchAction()
+    public function searchAction(Request $request)
     {
         $form = $this->createForm(new SearchType(), null,
             array(
                 'action' => $this->generateUrl('wineot_search_result'),
                 'method' => 'GET'));
-        $paramsRender = array('form' => $form->createView());
+        $paramsRender = array('form' => $form->createView(), 'searchInput' => $request->query->get('search')['searchInput']);
         return $this->render('WineotFrontEndSearchBundle:Search:Search.html.twig', $paramsRender);
     }
 

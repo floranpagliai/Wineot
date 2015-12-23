@@ -1,8 +1,7 @@
 {{ form_start(form) }}
 <div class="form-inline">
     <div class="form-group">
-        {{  form_widget(form.searchInput, { 'name' : 'searchInput', 'attr' : {'placeholder': 'wine.action.search'|trans, 'class': 'search-field form-control input-lg'} })}}
-
+        {{  form_widget(form.searchInput, { 'value' : searchInput} )}}
     </div>
     <input type="submit" class="search-submit btn btn-lg pull-right" id="_submit" name="_submit" value="{{ 'global.action.search'|trans }}"/>
 </div>
