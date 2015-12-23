@@ -15,7 +15,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @MongoDB\Document(collection="comments")
+ * @MongoDB\Document(collection="comments", repositoryClass="Wineot\DataBundle\Repository\CommentRepository")
  */
 class Comment
 {

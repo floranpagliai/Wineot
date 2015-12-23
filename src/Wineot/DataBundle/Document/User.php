@@ -36,7 +36,7 @@ class User implements UserInterface
      * @var string
      * @JMS\Type("string")
      *
-     * @MongoDB\Field(type="string")
+     * @MongoDB\Field(type="string", name="email")
      * @Assert\Email()
      * @Assert\NotBlank()
      */
@@ -157,6 +157,11 @@ class User implements UserInterface
         return $this->username;
     }
 
+    public function getEmail()
+    {
+        return $this->getUsername();
+    }
+
     /**
      * Set password
      *
@@ -243,7 +248,7 @@ class User implements UserInterface
     /**
      * Get id
      *
-     * @return id $id
+     * @return int $id
      */
     public function getId()
     {
@@ -306,7 +311,7 @@ class User implements UserInterface
     /**
      * Returns the roles granted to the user.
      *
-     * @return Roles[] The user roles
+     * @return String[] The user roles
      */
     public function getRoles()
     {
@@ -472,7 +477,7 @@ class User implements UserInterface
         $data = array();
         $data['id'] = $this->getId();
         $data['username'] = $this->getUsername();
-        $data['mail'] = $this->getMail();
+        $data['mail'] = $this->getEmail();
 
         return $data;
     }

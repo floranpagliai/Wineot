@@ -1,3 +1,6 @@
 wineot_front_end_comment_add:
-    path:     /add
+    path:     /add/wine/{vintageId}
     defaults: { _controller: WineotFrontEndCommentBundle:Comment:add }
+wineot_front_end_comment_add_form:
+    path:     /add/form
+    defaults: { _controller: WineotFrontEndCommentBundle:Comment:getAddForm }

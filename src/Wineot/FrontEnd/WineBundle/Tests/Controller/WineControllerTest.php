@@ -7,6 +7,7 @@
 
 namespace Wineot\FrontEnd\WineBundle\Tests\Controller;
 
+use MongoDBODMProxies\__CG__\Wineot\DataBundle\Document\Vintage;
 use MongoDBODMProxies\__CG__\Wineot\DataBundle\Document\Wine;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -28,6 +29,18 @@ class WineControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-//        $this->assertTrue($client->getResponse()->isSuccessful());
+
+        $vintages = $this->dm->getRepository('WineotDataBundle:Vintage')->createQueryBuilder('v')->limit(15)->getQuery()->execute();
+        foreach ($vintages as $vintage)
+        {
+            /** @var Vintage $vintage */
+            $wineryName = $vintage->getWinery()->getName();
+            $wineName = $vintage->getWine()->getName();
+            $vintageYear = $vintage->getProductionYear();
+            $vintageId = $vintage->getId();
+            $client->request('GET', '/winery/'.$wineryName.'/wine/'.$wineName.'/'.$vintageYear.'/'.$vintageId);
+            $this->assertTrue($client->getResponse()->isSuccessful());
+        }
+
     }
 }

@@ -3,6 +3,6 @@
 {% set search_active = false %}
 {% set sitehero_active = false %}
 {% block sidebar %}
-    {% render(controller('WineotBackEndBackEndBundle:Default:renderMenu')) %}
-    {% render(controller('WineotBackEndCRUDBundle:Default:renderMenu')) %}
+    {% render(controller('WineotBackEndBackEndBundle:Default:renderMenu', { 'currentRoute': app.request.attributes.get('_route')})) %}
+    {% render(controller('WineotBackEndCRUDBundle:Default:renderMenu', { 'currentRoute': app.request.attributes.get('_route')})) %}
 {% endblock %}

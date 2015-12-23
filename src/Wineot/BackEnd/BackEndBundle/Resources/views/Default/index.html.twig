@@ -1,6 +1,20 @@
 {% extends 'WineotBackEndBackEndBundle::layout.html.twig' %}
 {% block body %}
     <div class="col-sm-12">
-    <p>Vins dans la bd : {{ winesCount }}</p>
+        {% for widget in widgets %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="panel widget bg-primary">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                            <em class="icon-cloud-upload fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{ widget.key }}</div>
+                            <div class="text-uppercase">{{ widget.title }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

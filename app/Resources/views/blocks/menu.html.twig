@@ -2,13 +2,12 @@
     <h2 class="section-title h4 clearfix"><i class="line"></i>{{ menuTitle|trans }}</h2>
     <ul class="nav nav-pills nav-stacked nav-categories">
         {% for link in menu %}
-            <li class="{% if app.request.attributes.get('_route') in link.routes  %}active{% endif %}">
+            li class="{% if currentRoute in link.routes  %}active{% endif %}">
                 <a href="{{ path(link.route) }}">{{ link.name|trans }}
                     {% if link.badge is defined and link.badge > 0 %}
                         <span class="badge pull-right">{{ link.badge }}</span>
                     {% endif %}
                 </a>
-
             </li>
         {% endfor %}
     </ul>

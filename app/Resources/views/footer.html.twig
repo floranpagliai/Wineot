@@ -51,19 +51,24 @@
         /*-----------------------------------------------------------------------------------*/
         /*	Main Search
          /*-----------------------------------------------------------------------------------*/
-        $('#header-search .search-field').on('focus', function() {
-            $('#header-search .search-advance-button').fadeIn()
-            $('#header-search .search-advance').slideDown()
+        var $headerSearch = $('#header-search');
+        $headerSearch.find('.search-field').on('focus', function() {
+            $headerSearch.find('.search-advance-button').fadeIn()
+            $headerSearch.find('.search-advance').slideDown()
         })
-        $('#header-search .search-advance-button').on('click', function(e) {
+        $headerSearch.find('.search-advance-button').on('click', function(e) {
             e.preventDefault()
             $(this).fadeOut(100)
-            $('#header-search .search-advance').slideUp(100)
+            $headerSearch.find('.search-advance').slideUp(100)
         })
     });
     $(function () {
         // Tooltips for sidebar toggle and sidebar logout button
+<<<<<<< HEAD
         $('.tooltip-sidebar-toggle, .tooltips, .wine-show-toolbar').tooltip({
+=======
+        $(".tooltip-sidebar-toggle, .tooltips").tooltip({
+>>>>>>> a890c55b2c55acf4fddd6106b0186c1338604a5e
             selector: "[data-toggle=tooltip]",
             container: "body"
         });
