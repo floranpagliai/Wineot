@@ -24,18 +24,18 @@ class VintageType extends AbstractType
             )
         ));
         $builder->add('keeping', 'choice', array(
-            'label' => 'crud.form.wine.keeping',
+            'label' => 'wine.form.keeping',
             'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
-            'placeholder' => 'crud.form.wine.keeping',
+            'placeholder' => 'global.form.placeholder.year',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
             )
         ));
         $builder->add('peak', 'choice', array(
-            'label' => 'crud.form.wine.peak',
+            'label' => 'wine.form.peak',
             'choices' => array_combine(range(date('Y') - 50, date('Y') + 50), range(date('Y')-50, date('Y') + 50)),
-            'placeholder' => 'crud.form.wine.peak',
+            'placeholder' => 'global.form.placeholder.year',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
@@ -50,22 +50,22 @@ class VintageType extends AbstractType
             'required' => false
         ));
         $builder->add('containsSulphites', 'checkbox', array(
-            'label' => 'crud.form.wine.containsSulphites',
+            'label' => 'wine.form.contains_sulphites',
             'required' => false
         ));
         $builder->add('isBio', 'checkbox', array(
-            'label' => 'crud.form.wine.isBio',
+            'label' => 'wine.form.is_bio',
             'required' => false
         ));
         $builder->add('alcohol', 'percent', array(
-            'label' => 'crud.form.wine.alcohol',
+            'label' => 'wine.form.alcohol',
             'scale' => 2,
             'type' => 'integer',
             'required' => false
 
         ));
         $builder->add('wineryPrice', 'money', array(
-            'label' => 'crud.form.wine.price',
+            'label' => 'wine.form.price',
             'required' => false
 
         ));

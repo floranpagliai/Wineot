@@ -18,7 +18,7 @@ class DefaultController extends Controller
         return $this->render('WineotBackEndBackEndBundle:Default:index.html.twig', $paramsRender);
     }
 
-    public function renderMenuAction()
+    public function renderMenuAction($currentRoute)
     {
         $crudMenu = new ArrayCollection();
 
@@ -37,7 +37,7 @@ class DefaultController extends Controller
             'name' => 'backend.title.admin_owning',
             'routes' => array('wineot_back_end_admin_winery_owning')
         ));
-        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'backend.title.admin');
+        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'backend.title.admin', 'currentRoute' => $currentRoute);
         return $this->render('blocks/menu.html.twig', $paramsRender);
     }
 }

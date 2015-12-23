@@ -3,5 +3,5 @@
 {% set search_active = false %}
 {% set sitehero_active = false %}
 {% block sidebar %}
-    {% render(controller('WineotUserBundle:Default:renderMenu')) %}
+    {% render(controller('WineotUserBundle:Default:renderMenu', { 'currentRoute': app.request.attributes.get('_route')})) %}
 {% endblock %}

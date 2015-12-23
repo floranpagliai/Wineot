@@ -34,7 +34,7 @@ class UserControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $client->request('GET', '/user/profile/editpassword');
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertFalse($client->getResponse()->isSuccessful());
     }
 
 }

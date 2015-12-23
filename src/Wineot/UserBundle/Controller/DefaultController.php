@@ -10,11 +10,12 @@ namespace Wineot\UserBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
 
-    public function renderMenuAction()
+    public function renderMenuAction($currentRoute)
     {
         $crudMenu = new ArrayCollection();
 
@@ -28,7 +29,7 @@ class DefaultController extends Controller
             'name' => 'user.title.password_edit',
             'routes' => ['wineot_user_profile_edit_password']
         ));
-        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'user.title.settings');
+        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'user.title.settings', 'currentRoute' => $currentRoute);
         return $this->render('blocks/menu.html.twig', $paramsRender);
     }
 }
