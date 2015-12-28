@@ -4,6 +4,7 @@ namespace Wineot\FrontEnd\LandingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Wineot\FrontEnd\SearchBundle\Form\Type\SearchType;
 
 class DefaultController extends Controller
 {
@@ -15,6 +16,11 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder()
             ->add('email', 'email')
             ->getForm();
+        $formSearch = $this->createForm(new SearchType(), null,
+            array(
+                'action' => $this->generateUrl('wineot_search_result'),
+                'method' => 'GET'));
+
         $form->handleRequest($request);
         if ($form->isValid()) {
             $email = $form->getData()['email'];
@@ -39,7 +45,7 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('wineot_front_end_landing_homepage'));
         }
 
-        $paramsRender = array('form' => $form->createView());
+        $paramsRender = array('form' => $form->createView(), 'formSearch' => $formSearch->createView());
         return $this->render('WineotFrontEndLandingBundle:Default:index.html.twig', $paramsRender);
     }
 }

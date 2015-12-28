@@ -50,19 +50,11 @@ class VintageType extends AbstractType
             'required' => false
         ));
         $builder->add('containsSulphites', 'checkbox', array(
-<<<<<<< HEAD
             'label' => 'wine.wine.containsSulphites',
             'required' => false
         ));
         $builder->add('isBio', 'checkbox', array(
-            'label' => 'wine.form.isbio',
-=======
-            'label' => 'wine.form.contains_sulphites',
-            'required' => false
-        ));
-        $builder->add('isBio', 'checkbox', array(
             'label' => 'wine.form.is_bio',
->>>>>>> a890c55b2c55acf4fddd6106b0186c1338604a5e
             'required' => false
         ));
         $builder->add('alcohol', 'percent', array(
