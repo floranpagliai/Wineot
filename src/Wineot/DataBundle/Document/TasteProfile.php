@@ -182,6 +182,6 @@ class TasteProfile
 
     public function calculatePercentage($value)
     {
-        return ($value) * 100 / 4;
+        return $value * 100 / 4;
     }
 }

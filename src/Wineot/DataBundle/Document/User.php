@@ -411,20 +411,21 @@ class User implements UserInterface
 
     public function getTasteLevelForValue($value)
     {
-        if ($value == "sweet" && $this->tasteProfile->getSweetLevel() != null)
-            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getSweetLevel());
-        elseif ($value == "fruits" && $this->tasteProfile->getFruitsLevel() != null)
-            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getFruitsLevel());
-        elseif ($value == "wooded" && $this->tasteProfile->getWoodedLevel() != null)
-            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getWoodedLevel());
-        elseif ($value == "strength" && $this->tasteProfile->getStrengthLevel() != null)
-            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getStrengthLevel());
-        elseif ($value == "tannins" && $this->tasteProfile->getTanninsLevel() != null)
-            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getTanninsLevel());
-        elseif ($value == "complex" && $this->tasteProfile->getComplexLevel() != null)
-            return $this->tasteProfile->calculatePercentage($this->tasteProfile->getComplexLevel());
-        else
-            return null;
+        if ($this->tasteProfile != null) {
+            if ($value == "sweet")
+                return $this->tasteProfile->calculatePercentage($this->tasteProfile->getSweetLevel());
+            elseif ($value == "fruits")
+                return $this->tasteProfile->calculatePercentage($this->tasteProfile->getFruitsLevel());
+            elseif ($value == "wooded")
+                return $this->tasteProfile->calculatePercentage($this->tasteProfile->getWoodedLevel());
+            elseif ($value == "strength")
+                return $this->tasteProfile->calculatePercentage($this->tasteProfile->getStrengthLevel());
+            elseif ($value == "tannins")
+                return $this->tasteProfile->calculatePercentage($this->tasteProfile->getTanninsLevel());
+            elseif ($value == "complex")
+                return $this->tasteProfile->calculatePercentage($this->tasteProfile->getComplexLevel());
+        }
+        return null;
     }
 
     public function calculateTasteLevel($color)
@@ -457,14 +458,15 @@ class User implements UserInterface
             $strength = $strength/$count;
             $tannins = $tannins/$count;
             $complex = $complex/$count;
+            $profile->setSweetLevel($sweet);
+            $profile->setFruitsLevel($fruits);
+            $profile->setWoodedLevel($wooded);
+            $profile->setStrengthLevel($strength);
+            $profile->setTanninsLevel($tannins);
+            $profile->setComplexLevel($complex);
+            $this->setTasteProfile($profile);
         }
-        $profile->setSweetLevel($sweet);
-        $profile->setFruitsLevel($fruits);
-        $profile->setWoodedLevel($wooded);
-        $profile->setStrengthLevel($strength);
-        $profile->setTanninsLevel($tannins);
-        $profile->setComplexLevel($complex);
-        $this->setTasteProfile($profile);
+
     }
 
     /**

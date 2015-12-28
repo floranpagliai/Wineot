@@ -2,5 +2,41 @@
 {% set page_title = 'user.title.my_profile' %}
 {% set menu_selected = 'profile' %}
 {% block body %}
-       {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorite_wines'} %}
+    <div class="col-xs-12">
+        <h3 class="section-title clearfix"><i class="line"></i>
+            Votre profil
+        </h3>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="nav nav-tabs nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="#0" aria-controls="0" role="tab" data-toggle="tab">Rouge</a>
+                    </li>
+                    <li role="presentation"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Blanc</a></li>
+                    <li role="presentation"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Rosé</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-10 tab-content bar-chart">
+                {% for i in 0..2 %}
+                    <div role="tabpanel" class="tab-pane fade {% if i == 0 %}in active{% endif %}" id="{{ i }}">
+                        {% set count = 0 %}
+                        {{ app.user.calculateTasteLevel(i) }}
+                        {% for tasteLevel in app.user.tasteProfile.toArray %}
+                            <div class="col-xs-2">
+                                <div class="bar-chart-item">
+                                    <div class="bar-chart-bar">
+                                        <span class="bar-chart-value" style="height: {{ tasteLevel.value }}%"></span>
+                                    </div>
+                                    <span class="bar-chart-text">{{ tasteLevel.label|trans }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorite_wines'} %}
 {% endblock %}

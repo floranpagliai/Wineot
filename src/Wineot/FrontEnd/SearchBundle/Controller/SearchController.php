@@ -19,8 +19,7 @@ class SearchController extends Controller
             array(
                 'action' => $this->generateUrl('wineot_search_result'),
                 'method' => 'GET'));
-        $searchInput = $request->query->get('search')['searchInput'];
-        $paramsRender = array('form' => $form->createView(), 'searchInput' => $searchInput);
+        $paramsRender = array('form' => $form->createView(), 'searchInput' => $request->query->get('search')['searchInput']);
         return $this->render('WineotFrontEndSearchBundle:Search:Search.html.twig', $paramsRender);
     }
 
