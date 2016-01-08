@@ -121,7 +121,7 @@
                 Profil du vin
             </h3>
 
-            <div class="col-sm-12">
+            <div class="col-sm-12 bar-chart">
                 {% set count = 0 %}
                 {% for tasteLevel in vintage.tasteProfile.toArray %}
                     <div class="col-xs-2">
@@ -133,7 +133,6 @@
                                 {% endif %}
                                 {% if app.user and app.user.getTasteLevelForValue(tasteLevel.name) is not null %}
                                     {% set userTasteValue = app.user.getTasteLevelForValue(tasteLevel.name) %}
-
                                     {% if userTasteValue >= tasteLevel.value - 10 and userTasteValue <= tasteLevel.value + 10 %}
                                         {% set count = count + 1 %}
                                         <span class="bar-chart-indicator-line"
@@ -149,7 +148,7 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div class="col-xs-6 col-xs-offset-2">
+                <div class="col-xs-8 col-xs-offset-2">
                     <p style="text-align: center;">
                         {{ count }} / 6 <i class="fa fa-heart fa-fw fa-inverse" style="color: #ffb701"></i><br/>
                         Ce vin réunie {{ count }} de vos critère(s) d'appréciation sur 6.<br/>
