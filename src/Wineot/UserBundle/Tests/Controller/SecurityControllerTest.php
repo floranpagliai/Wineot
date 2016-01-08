@@ -48,10 +48,9 @@ class SecurityControllerTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $testForm = array(
-            'wineot_databundle_user[username]'  => 'test',
             'wineot_databundle_user[firstname]'  => 'test',
             'wineot_databundle_user[lastname]'  => 'test',
-            'wineot_databundle_user[mail]'  => 'test@wineot.fr',
+            'wineot_databundle_user[username]'  => 'test@wineot.fr',
             'wineot_databundle_user[plain_password][first]'  => 'blabla',
             'wineot_databundle_user[plain_password][second]' => 'blabla'
         );

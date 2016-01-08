@@ -75,7 +75,7 @@
 
         <div class="col-md-4">
             <div class="banner-wrapper row text-center">
-                {% render(controller('WineotFrontEndCommentBundle:Comment:add', { 'request' : app.request, 'vintageId' : vintage.id })) %}
+                {% render(controller('WineotFrontEndCommentBundle:Comment:getAddForm', { 'request' : app.request, 'vintageId' : vintage.id })) %}
                 <span class="horizontal-line"></span>
 
                 <div class="col-md-12 wine-show-toolbar">
@@ -92,7 +92,7 @@
                             <li>
                                 <a href="{{ path('wineot_user_favorite_wine', {'vintageId': vintage.id}) }}"
                                    class="btn-social btn-favorite" data-toggle="tooltip"
-                                   data-placement="top" data-original-title="{{ 'wine.action.favorite'|trans }}">
+                                   data-placement="top" data-original-title="{{ 'user.action.favorite_wine'|trans }}">
                                     <i class="fa fa-heart fa-fw"></i>
                                 </a>
                             </li>

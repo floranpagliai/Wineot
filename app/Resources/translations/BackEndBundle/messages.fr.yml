@@ -1,0 +1,5 @@
+backend:
+      title:
+        admin: "Administration"
+        admin_wines: "Admistration des vins"
+        admin_owning: "Owning"

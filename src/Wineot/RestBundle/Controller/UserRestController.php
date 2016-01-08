@@ -79,7 +79,7 @@ class UserRestController extends Controller
         $params = array(
             "method" => "POST",
             "from" => "no-reply@wineot.net",
-            "to" => $user->getMail(),
+            "to" => $user->getUsername(),
             "subject" => $this->get('translator')->trans('user.title.password_forget'),
             "html" => $this->renderView('Emails/resetPassword.html.twig', array('password' => $password))
         );

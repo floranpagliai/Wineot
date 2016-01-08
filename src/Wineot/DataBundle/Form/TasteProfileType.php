@@ -19,7 +19,7 @@ class TasteProfileType extends AbstractType
         $builder->add('sweetLevel', 'choice', array(
             'label' => 'wine.form.sweet_level',
             'choices' => array(0 => "Velouté", 1 => "Doux", 2 => "Moelleux", 3 => "Liquoreux", 4 => "Sirupeux"),
-            'placeholder' => 'wine.form.placeholder.taste_profile_level',
+            'placeholder' => 'wine.placeholder.taste_profile_level',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
@@ -28,7 +28,7 @@ class TasteProfileType extends AbstractType
         $builder->add('fruitsLevel', 'choice', array(
             'label' => 'wine.form.fruits_level',
             'choices' => array(0 => "Non fruité", 1 => "Peu fruité", 2 => "Fruité", 3 => "Assez fruité", 4 => "Très fruité"),
-            'placeholder' => 'wine.form.placeholder.taste_profile_level',
+            'placeholder' => 'wine.placeholder.taste_profile_level',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
@@ -37,7 +37,7 @@ class TasteProfileType extends AbstractType
         $builder->add('woodedLevel', 'choice', array(
             'label' => 'wine.form.wooded_level',
             'choices' => array(0 => "Non boisé", 1 => "Peu boisé", 2 => "Boisé", 3 => "Assez boisé", 4 => "Très boisé"),
-            'placeholder' => 'wine.form.placeholder.taste_profile_level',
+            'placeholder' => 'wine.placeholder.taste_profile_level',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
@@ -46,7 +46,7 @@ class TasteProfileType extends AbstractType
         $builder->add('strengthLevel', 'choice', array(
             'label' => 'wine.form.strength_level',
             'choices' => array(0 => "Faible", 1 => "Généreux", 2 => "Gras", 3 => "Capiteux", 4 => "Alcooleux"),
-            'placeholder' => 'wine.form.placeholder.taste_profile_level',
+            'placeholder' => 'wine.placeholder.taste_profile_level',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
@@ -55,7 +55,7 @@ class TasteProfileType extends AbstractType
         $builder->add('tanninsLevel', 'choice', array(
             'label' => 'wine.form.tannins_level',
             'choices' => array(0 => "Lisse", 1 => "Fondu", 2 => "Charpenté", 3 => "Chargé", 4 => "Âpre"),
-            'placeholder' => 'wine.form.placeholder.taste_profile_level',
+            'placeholder' => 'wine.placeholder.taste_profile_level',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'
@@ -64,7 +64,7 @@ class TasteProfileType extends AbstractType
         $builder->add('complexLevel', 'choice', array(
             'label' => 'wine.form.complex_level',
             'choices' => array(0 => "Très simple", 1 => "Simple", 2 => "Normal", 3 => "Complexe", 4 => "Très complexe"),
-            'placeholder' => 'wine.form.placeholder.taste_profile_level',
+            'placeholder' => 'wine.placeholder.taste_profile_level',
             'required' => false,
             'attr' => array(
                 'class' => 'select2'

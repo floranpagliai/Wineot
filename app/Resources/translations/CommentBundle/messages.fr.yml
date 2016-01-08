@@ -3,6 +3,7 @@ comment:
         add: "Donner votre avis"
         delete: "Supprimer l'avis"
     title:
+        comments: "Commentaires"
         list: "Les avis sur ce vin"
     form:
         comment: "Votre avis sur le vin"

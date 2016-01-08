@@ -14,7 +14,7 @@ class DefaultController extends Controller
         return $this->render('WineotBackEndCRUDBundle:Default:index.html.twig');
     }
 
-    public function renderMenuAction()
+    public function renderMenuAction($currentRoute)
     {
         $crudMenu = new ArrayCollection();
 
@@ -48,7 +48,7 @@ class DefaultController extends Controller
             'name' => 'crud.title.grappes',
             'routes' => array('wineot_back_end_crud_grappe', 'wineot_back_end_crud_grappe_add', 'wineot_back_end_crud_grappe_edit')
         ));
-        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'CRUD');
+        $paramsRender = array('menu' => $crudMenu, 'menuTitle' => 'CRUD', 'currentRoute' => $currentRoute);
         return $this->render('blocks/menu.html.twig', $paramsRender);
     }
 }

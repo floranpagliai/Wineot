@@ -57,8 +57,10 @@
 
                     <h3>Conseil personnalisé</h3>
 
-                    <p>L'application analyse ton profil gustatif au fil des utilisations et te conseille les vins susceptibles de te plaire.
-                        Parce que tous les goûts sont dans la nature, nos conseils d'achat se basent sur tes goûts et non ceux d'autres personnes.</p>
+                    <p>L'application analyse ton profil gustatif au fil des utilisations et te conseille les vins
+                        susceptibles de te plaire.
+                        Parce que tous les goûts sont dans la nature, nos conseils d'achat se basent sur tes goûts et
+                        non ceux d'autres personnes.</p>
                 </div>
                 <div class="col-sm-4 feature-box">
                     <i class="fa fa-star fa-5x"></i>
@@ -93,6 +95,27 @@
 
                     <p>Conserve tes vins favoris dans l'application pour ne plus jamais oublier une bonne bouteille.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-container section-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 section-description">
+                    <h2 class="section-title clearfix">Recherche un vin</h2>
+                </div>
+            </div>
+            <div class="row">
+                {{ form_start(formSearch) }}
+                <div class="form-inline">
+                    <div class="form-group">
+                        {{ form_widget(formSearch.searchInput, { 'attr': { 'class': 'form-control' } } ) }}
+                    </div>
+                    <button type="submit" class="btn" id="_submit"
+                            name="_submit">{{ 'global.action.search'|trans }}</button>
+                </div>
+                {{ form_end(formSearch) }}
             </div>
         </div>
     </div>

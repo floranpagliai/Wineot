@@ -103,6 +103,13 @@ class Winery
     private $coverPicture;
 
     /**
+     * @var Owning
+     *
+     * @MongoDB\EmbedOne(targetDocument="Owning")
+     */
+    private $owning;
+
+    /**
      * Get id
      *
      * @return id $id
@@ -276,6 +283,22 @@ class Winery
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * @return Owning
+     */
+    public function getOwning()
+    {
+        return $this->owning;
+    }
+
+    /**
+     * @param Owning $owning
+     */
+    public function setOwning($owning)
+    {
+        $this->owning = $owning;
     }
 
     public function getAvgRating()

@@ -65,7 +65,9 @@
                 {% if winery.mail is not null %}
                     <p><i class="fa fa-envelope"></i> <a href="mailto:{{ winery.mail }}">{{ winery.mail }}</a></p>
                 {% endif %}
-                <a href="#">I'm the owner</a>
+                {% if winery.owning is null %}
+                    <a href="{{ path('wineot_front_end_winery_own', { 'wineryId': winery.id }) }}">{{ 'winery.action.own'|trans }}</a>
+                {% endif %}
             </div>
         </div>
         <!-- .banner-wrapper -->

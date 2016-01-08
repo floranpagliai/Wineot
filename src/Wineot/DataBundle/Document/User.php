@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @MongoDB\Document(collection="users")
- * @MongoDBUnique(fields="mail", message="user.warn.email_unique")
+ * @MongoDBUnique(fields="username", message="user.warn.email_unique")
  */
 class User implements UserInterface
 {
@@ -36,10 +36,8 @@ class User implements UserInterface
      * @var string
      * @JMS\Type("string")
      *
-     * @MongoDB\Field(type="string")
-     * @Assert\Length(
-     *      max = 25
-     * )
+     * @MongoDB\Field(type="string", name="email")
+     * @Assert\Email()
      * @Assert\NotBlank()
      */
     private $username;
@@ -70,14 +68,6 @@ class User implements UserInterface
      * */
     private $plainPassword;
 
-    /**
-     * @var string
-     *
-     * @MongoDB\Field(type="string")
-     * @Assert\Email()
-     * @Assert\NotBlank()
-     */
-    private $mail;
 
     /**
      * @var string
@@ -104,7 +94,10 @@ class User implements UserInterface
     /**
      * @var collection
      *
-     * @MongoDB\ReferenceMany(targetDocument="Comment", mappedBy="user")
+     * @MongoDB\ReferenceMany(
+     *     targetDocument="Comment",
+     *     mappedBy="user",
+     *     cascade={"all"})
      */
     private $comments;
 
@@ -164,6 +157,11 @@ class User implements UserInterface
         return $this->username;
     }
 
+    public function getEmail()
+    {
+        return $this->getUsername();
+    }
+
     /**
      * Set password
      *
@@ -202,27 +200,6 @@ class User implements UserInterface
         return $this->plainPassword;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return self
-     */
-    public function setMail($email)
-    {
-        $this->mail = $email;
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string $email
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
 
     /**
      * Set firstname
@@ -271,7 +248,7 @@ class User implements UserInterface
     /**
      * Get id
      *
-     * @return id $id
+     * @return int $id
      */
     public function getId()
     {
@@ -334,7 +311,7 @@ class User implements UserInterface
     /**
      * Returns the roles granted to the user.
      *
-     * @return Roles[] The user roles
+     * @return String[] The user roles
      */
     public function getRoles()
     {
@@ -350,6 +327,12 @@ class User implements UserInterface
     public function setRoles($roles)
     {
         $this->roles = $roles;
+        return $this;
+    }
+
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
         return $this;
     }
 
@@ -405,7 +388,8 @@ class User implements UserInterface
     public static function getRolesType()
     {
         return array(
-            'ROLE_ADMIN' => 'Admin',
+            'ROLE_WINERY_ADMIN' => 'global.word.winery_admin',
+            'ROLE_ADMIN' => 'global.word.admin',
         );
     }
 
@@ -495,7 +479,7 @@ class User implements UserInterface
         $data = array();
         $data['id'] = $this->getId();
         $data['username'] = $this->getUsername();
-        $data['mail'] = $this->getMail();
+        $data['mail'] = $this->getEmail();
 
         return $data;
     }
