@@ -148,6 +148,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% if app.user %}
                 <div class="col-xs-8 col-xs-offset-2">
                     <p style="text-align: center;">
                         {{ count }} / 6 <i class="fa fa-heart fa-fw fa-inverse" style="color: #ffb701"></i><br/>
@@ -157,6 +158,7 @@
                         {% endif %}
                     </p>
                 </div>
+                    {% endif %}
             </div>
         </div>
     {% endif %}
