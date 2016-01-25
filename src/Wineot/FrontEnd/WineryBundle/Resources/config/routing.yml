@@ -1,12 +1,18 @@
 wineot_front_end_winery_show:
     path:     /{wineryName}_{wineryId}
     defaults: { _controller: WineotFrontEndWineryBundle:Winery:show }
+wineot_front_end_winery_edit:
+    path:     /{wineryName}_{wineryId}/edit
+    defaults: { _controller: WineotFrontEndWineryBundle:Winery:edit }
 wineot_front_end_winery_winelist:
     path:     /{wineryName}_{wineryId}/list
     defaults: { _controller: WineotFrontEndWineryBundle:Winery:listWine }
 wineot_front_end_winery_own:
     path:     /{wineryId}/own
     defaults: { _controller: WineotFrontEndWineryBundle:Winery:own }
+wineot_front_end_winery_owning_list:
+    path:     /ownings
+    defaults: { _controller: WineotFrontEndWineryBundle:Winery:listOwning }
 wineot_front_end_winery_best_rated:
     path:     /{wineryName}_{wineryId}/bestrated
     defaults: { _controller: WineotFrontEndWineryBundle:Winery:bestRated }
