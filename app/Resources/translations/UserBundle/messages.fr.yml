@@ -35,7 +35,7 @@ user:
             password: "Mot de passe"
             password_validation: "Mot de passe (Validation)"
     message:
-        reset_password: "Entrez votre email et vous recevrez un nouveau mot de passe rapidement."
+        password_reset: "Entrez votre email et vous recevrez un nouveau mot de passe rapidement."
     warn:
         registered: "Utilisateur enregistré. Vous pouvez maintenant vous connecter."
         edited: "L'utilisateur à bien été edité."

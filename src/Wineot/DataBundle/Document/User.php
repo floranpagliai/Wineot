@@ -464,8 +464,8 @@ class User implements UserInterface
             $profile->setStrengthLevel($strength);
             $profile->setTanninsLevel($tannins);
             $profile->setComplexLevel($complex);
-            $this->setTasteProfile($profile);
         }
+        $this->setTasteProfile($profile);
 
     }
 
