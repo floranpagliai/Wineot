@@ -37,7 +37,7 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.5.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "braincrafted/bootstrap-bundle": "~2.0",
+        "braincrafted/bootstrap-bundle": "2.1.*",
         "twbs/bootstrap": "3.0.*",
         "bmatzner/fontawesome-bundle": "~4.4",
         "jquery/jquery":  "1.10.*",
