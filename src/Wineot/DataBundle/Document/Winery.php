@@ -316,6 +316,16 @@ class Winery
             return null;
     }
 
+    public function getComments()
+    {
+        $comments = new ArrayCollection();
+        foreach ($this->wines as $wine) {
+            foreach ($wine->getComments() as $comment)
+                $comments->add($comment);
+        }
+        return $comments;
+    }
+
     /**
      * Get data for serialization of current object
      *

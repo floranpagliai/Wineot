@@ -1,0 +1,68 @@
+{% extends 'WineotFrontEndWineryBundle::layout.html.twig' %}
+{% block body %}
+    <div class="col-sm-12">
+        <h2 class="section-title clearfix"><i class="line"></i>
+            {{ winery.name }}
+        </h2>
+
+        <div class="row">
+            {% for widget in widgets %}
+                <div class="col-lg-4 col-sm-6">
+                    <div class="panel widget bg-primary">
+                        <div class="row row-table">
+                            <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                                <em class="{{ widget.icon }} fa-3x"></em>
+                            </div>
+                            <div class="col-xs-8 pv-lg">
+                                <div class="h2 mt0">{{ widget.key }}</div>
+                                <div class="text-uppercase">{{ widget.title|trans }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% include 'WineotFrontEndWineBundle:Wine:tableList.html.twig' with {'wines': winery.wines} %}
+
+    </div>
+{% endblock %}
+
+{% block sidebar_right %}
+    <div class="col-xs-12">
+        <div class="wine-comments">
+            <h3 class="section-title clearfix"><i class="line"></i>Les derniers commentaires</h3>
+            {% if winery.getComments() is not empty %}
+                {% for comment in winery.getComments() %}
+                    <article class="wine-comment">
+                        <h4><a href="#">{{ comment.user.firstname }}</a>
+                    <span class="date">{{ comment.createdAt|date("m/d/Y") }}
+                        {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('wineot_back_end_crud_comment_delete', {'id': comment.id}) }}"
+                               data-toggle="tooltip" data-placement="top" data-original-title="{{ 'comment.action.delete'|trans }}"
+                               onclick="return confirm('Delete ?')">
+                                <i class="fa fa-times fa-fw"></i>
+                            </a>
+                        {% endif %}
+                    </span>
+                        </h4>
+
+                        <div class="rank rank-small">
+                            {% for i in 1..comment.rank %}
+                                <i class="fa fa-star"></i>
+                            {% endfor %}
+                        </div>
+
+                        <div class="comment">
+                            <p>
+                                "{{ comment.comment }}"
+                            </p>
+                        </div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">Aucun commentaire.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

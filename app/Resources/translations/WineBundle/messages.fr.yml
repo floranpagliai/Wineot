@@ -39,6 +39,8 @@ wine:
         is_bio: "Cocher si le vin est bio"
         vintage: "Millésime"
         vintages: "Millésimes"
+        grappes: "Cépages"
+        grappe: "Cépage"
         keeping: "Année de garde"
         peak: "Année d'apogé"
         food_pairings: "Accords mets & vins"

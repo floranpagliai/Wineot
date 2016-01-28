@@ -48,7 +48,7 @@ class WineryController extends Controller
         return $this->render('WineotFrontEndWineryBundle:Winery:edit.html.twig', $paramsRender);
     }
 
-    public function listWineAction($wineryId)
+    public function listWinesAction($wineryId)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $winery = $dm->getRepository('WineotDataBundle:Winery')->find($wineryId);
@@ -92,14 +92,6 @@ class WineryController extends Controller
             $flash->error($this->get('translator')->trans('user.warn.must_logged'));
 
         return $this->redirect($request->headers->get('referer'));
-    }
-
-    public function listOwningAction(Request $request)
-    {
-        $dm = $this->get('doctrine_mongodb')->getManager();
-        $ownings = $dm->getRepository('WineotDataBundle:Winery')->getOwnings($this->getUser()->getId());
-        $paramsRender = array('ownings' => $ownings);
-        return $this->render('WineotFrontEndWineryBundle:Winery:list.html.twig', $paramsRender);
     }
 
     public function bestRatedAction($wineryId)
