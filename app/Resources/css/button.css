@@ -1,3 +1,4 @@
+(node) util.print is deprecated. Use console.log instead.
 .wine-color-0 {
   color: #9d000b;
 }
@@ -6,6 +7,22 @@
 }
 .wine-color-2 {
   color: #f0c300;
+}
+.bg-grapefruit {
+  background-color: #c41230;
+  color: #fff!important;
+}
+.bg-grapefruit-dark {
+  background-color: #9d000b;
+  color: #fff!important;
+}
+.bg-primary-dark {
+  background-color: #2f80e7;
+  color: #fff!important;
+}
+.bg-primary {
+  background-color: #5d9cec;
+  color: #fff!important;
 }
 .btn {
   padding-bottom: 5px;

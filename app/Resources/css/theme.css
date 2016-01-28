@@ -43,6 +43,22 @@
 .wine-color-2 {
   color: #f0c300;
 }
+.bg-grapefruit {
+  background-color: #c41230;
+  color: #fff!important;
+}
+.bg-grapefruit-dark {
+  background-color: #9d000b;
+  color: #fff!important;
+}
+.bg-primary-dark {
+  background-color: #2f80e7;
+  color: #fff!important;
+}
+.bg-primary {
+  background-color: #5d9cec;
+  color: #fff!important;
+}
 /*-----------------------------------------------------------------------------------*/
 /*	0.0 - Commons
 /*-----------------------------------------------------------------------------------*/
@@ -90,6 +106,9 @@ h6,
 /*-----------------------------------------------------------------------------------*/
 /*	2.0 - Repeatable Patterns
 /*-----------------------------------------------------------------------------------*/
+.clickable-row {
+  cursor: pointer;
+}
 .invisible {
   visibility: hidden;
   display: none;
@@ -897,4 +916,38 @@ ol.with-line-border > li {
     min-height: 2em;
     padding-left: 2.5em;
   }
+}
+.pv-lg {
+  padding-top: 15px!important;
+  padding-bottom: 15px!important;
+}
+.widget {
+  margin-bottom: 20px;
+  border: 0;
+}
+.panel {
+  margin-bottom: 21px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.row-table {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.row-table > [class*=col-] {
+  display: table-cell;
+  float: none;
+  table-layout: fixed;
+  vertical-align: middle;
+}
+.mt0 {
+  margin-top: 0!important;
+}
+.text-uppercase {
+  text-transform: uppercase;
 }

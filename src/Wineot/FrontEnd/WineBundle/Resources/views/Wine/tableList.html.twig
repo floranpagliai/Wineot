@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>{{ 'wine.form.winery'|trans }}</th>
+            <th>{{ 'wine.form.name'|trans }}</th>
+            <th>{{ 'wine.form.vintages'|trans }}</th>
+            <th>{{ 'wine.form.color'|trans }}</th>
+            <th class="btn-table"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for wine in wines %}
+            <tr>
+                <td>
+                    {% if wine.winery.name is defined %}
+                        {{ wine.winery.name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ wine.name }}
+                </td>
+                <td>
+                    {{ wine.vintages|length }}
+                </td>
+                <td>{{ wine.color|wineColor(true) }}</td>
+                <td class="tooltips">
+                    <a href="{{ path('wineot_front_end_wine_edit', { 'wineryName': wine.winery.name|replace({' ':'-'}), 'wineId': wine.id }) }}"
+                       class="btn btn-sm btn-blue btn-block" data-toggle="tooltip"
+                       data-placement="top" data-original-title="Edit">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-lg btn-block" href="{{ path('wineot_front_end_wine_add', { 'wineryName': winery.name|replace({' ':'-'}) }) }}">{{ 'wine.action.add'|trans }}</a>
+</div>

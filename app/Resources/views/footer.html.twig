@@ -89,7 +89,6 @@
                 'container': '<tr></tr>',
                 'containerSelector': 'tr'
             })
-
         });
     </script>
     <script type="text/javascript">
@@ -114,6 +113,9 @@
                 $siteHero.css('background-size', 'cover');
                 $siteHero.css('background-position', 'center center');
             }
+            $(".clickable-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
         });
 
         var $country = $('#wineot_databundle_winerytype_country');
