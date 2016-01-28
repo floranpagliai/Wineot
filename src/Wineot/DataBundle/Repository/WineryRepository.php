@@ -25,7 +25,7 @@ class WineryRepository extends DocumentRepository {
     public function search($search) {
         $query = $this->createQueryBuilder();
         $wineries = $query
-            ->field('name')->in($search)
+            ->field('name')->equals($search)
             ->getQuery()->execute();
 
         return $wineries;
@@ -42,6 +42,21 @@ class WineryRepository extends DocumentRepository {
         return $this->createQueryBuilder()->getQuery()->execute()->count();
     }
 
+    /**
+     * Get wineries owning for user
+     * @param $userId
+     * @return mixed
+     */
+    public function getOwnings($userId)
+    {
+        $query = $this->createQueryBuilder();
+        $wineries = $query
+            ->field('owning.user')->equals(new \MongoId($userId))
+            ->field('owning.is_verified')->equals(true)
+            ->getQuery()->execute();
+
+        return $wineries;
+    }
     /**
      * Maintenance function who init the wines collection of all winery
      * Need to call WineRepository->ensureWineryRelation() after

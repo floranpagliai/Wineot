@@ -1,0 +1,9 @@
+{% extends 'WineotFrontEndWineryBundle::layout.html.twig' %}
+{% block body %}
+    <div class="col-sm-12">
+        <h2 class="section-title clearfix"><i class="line"></i>
+            {{ 'winery.title.edit'|trans }}
+        </h2>
+        {% include 'WineotBackEndCRUDBundle:Winery:form.html.twig' %}
+    </div>
+{% endblock %}

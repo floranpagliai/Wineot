@@ -38,5 +38,8 @@
         </div>
     </div>
 
-    {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorite_wines'} %}
+    {% if favoritesVintages is not empty %}
+        {% include 'WineotFrontEndWineBundle:Vintage:list.html.twig' with {'vintages': favoritesVintages, 'vintageListTitle': 'user.title.favorite_wines'} %}
+    {% endif %}
+    {% render(path('wineot_front_end_winery_owning_list')) %}
 {% endblock %}

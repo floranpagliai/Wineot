@@ -101,7 +101,7 @@ class UserController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $user = $dm->getRepository('WineotDataBundle:User')->findOneBy(array('mail' => $form->get('mail')->getData()));
+            $user = $dm->getRepository('WineotDataBundle:User')->findOneBy(array('username' => $form->get('mail')->getData()));
             if ($user) {
 
                 $password =  substr(uniqid(rand(), true), 0, 8);
@@ -123,7 +123,7 @@ class UserController extends Controller
                 $flash->success($this->get('translator')->trans('user.warn.password_reset'));
                 return $this->redirect($this->generateUrl('wineot_user_login'));
             }
-            $errors[] = array('message' => 'user.warn.unknown_email');
+            $errors[] = array('message' => 'user.warn.email_unknown');
         }
         $paramsRender = array('form' => $form->createView(), 'errors' => $errors);
         return $this->render('WineotUserBundle:User:resetPassword.html.twig', $paramsRender);

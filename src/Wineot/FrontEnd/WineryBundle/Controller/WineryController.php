@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Wineot\DataBundle\Document\Owning;
 use Wineot\DataBundle\Document\User;
 use Wineot\DataBundle\Document\Winery;
+use Wineot\DataBundle\Form\WineryType;
 
 class WineryController extends Controller
 {
@@ -25,7 +26,29 @@ class WineryController extends Controller
         return $this->render('WineotFrontEndWineryBundle:Winery:show.html.twig', array('winery' => $winery));
     }
 
-    public function listWineAction($wineryId)
+    public function editAction(Request $request, $wineryId)
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $flash = $this->get('notify_messenger.flash');
+        $winery = $dm->getRepository('WineotDataBundle:Winery')->find($wineryId);
+        if (!$winery) {
+            $flash->error($this->get('translator')->trans('crud.error.winery.notfound'));
+            return $this->redirect($request->headers->get('referer'));
+        }
+        $form = $this->createForm(new WineryType(), $winery);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $dm->persist($winery);
+            $dm->flush();
+
+            $flash->success($this->get('translator')->trans('crud.warn.winery.edited'));
+            return $this->redirectToRoute('wineot_user_profile');
+        }
+        $paramsRender = array('form' => $form->createView(), 'id' => $wineryId, 'winery' => $winery);
+        return $this->render('WineotFrontEndWineryBundle:Winery:edit.html.twig', $paramsRender);
+    }
+
+    public function listWinesAction($wineryId)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $winery = $dm->getRepository('WineotDataBundle:Winery')->find($wineryId);

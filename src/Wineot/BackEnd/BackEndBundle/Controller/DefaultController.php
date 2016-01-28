@@ -19,11 +19,11 @@ class DefaultController extends Controller
 
         $widgets->add(array(
             'title' => 'wine.title.wines',
-            'key' => $dm->getRepository('WineotDataBundle:Wine')->getCount()
+            'key' => $dm->getRepository('WineotDataBundle:Wine')->getCount(). "1"
         ));
         $widgets->add(array(
             'title' => 'wine.title.vintages',
-            'key' => $dm->getRepository('WineotDataBundle:Vintage')->getCount()
+            'key' => $dm->getRepository('WineotDataBundle:Vintage')->getCount(). "0"
         ));
         $widgets->add(array(
             'title' => 'comment.title.comments',
